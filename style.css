@@ -691,18 +691,57 @@ input, textarea, select {
   text-align: center;
 }
 
-.about-logo {
-  width: 220px;
-  height: 220px;
-  border-radius: 30px;
-  object-fit: cover;
-  box-shadow: var(--shadow-lg);
-  border: 4px solid var(--color-border);
-  transition: transform 0.4s ease;
+.image-wrapper-creative {
+  position: relative;
+  display: inline-block;
+  padding: 1.5rem;
+  z-index: 1;
 }
 
-.about-logo:hover {
-  transform: scale(1.03);
+.about-image-custom {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border: 1px solid rgba(var(--color-border-rgb), 0.1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-image-custom:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.shape-blob {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 80%;
+  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.15), rgba(var(--color-accent-rgb), 0.15));
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  z-index: 0;
+  animation: blobShape 8s ease-in-out infinite alternate;
+}
+
+.shape-dots {
+  position: absolute;
+  bottom: -20px;
+  left: -10px;
+  width: 100px;
+  height: 100px;
+  background-image: radial-gradient(var(--color-primary) 2px, transparent 2px);
+  background-size: 15px 15px;
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+@keyframes blobShape {
+  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg); }
+  50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(10deg); }
+  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg); }
 }
 
 .about-text h3 {
@@ -1584,8 +1623,10 @@ input, textarea, select {
 
   .programs-grid,
   .why-grid,
-  .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .testimonials-grid,
+  .mission-grid,
+  .about-features {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
   .audience-grid {
@@ -1679,8 +1720,9 @@ input, textarea, select {
   .programs-grid,
   .why-grid,
   .testimonials-grid,
+  .mission-grid,
   .about-features {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .audience-grid {
