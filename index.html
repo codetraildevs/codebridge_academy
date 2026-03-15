@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeBridge Academy — Bridging learning to real software careers. Premium software development training for students, graduates, and professionals.">
+  <meta name="keywords" content="software development, coding bootcamp, web development, training, internship, career readiness">
+  <title>CodeBridge Academy — Bridging Learning to Real Software Careers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+
+  <!-- ============================================
+       NAVBAR
+       ============================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-logo">
+        <img src="logo.png" alt="CodeBridge Academy Logo">
+        <span>CodeBridge</span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#programs" class="nav-link" data-section="programs">Programs</a></li>
+        <li><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
+        <li><a href="#audience" class="nav-link" data-section="audience">Who It's For</a></li>
+        <li><a href="#how-it-works" class="nav-link" data-section="how-it-works">How It Works</a></li>
+        <li><a href="#internships" class="nav-link" data-section="internships">Internships</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta">Register Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       1. HERO SECTION
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content reveal-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Enrollment Open — 2026 Cohort
+        </div>
+        <h1 class="hero-title">
+          Launch Your <span class="highlight">Software Career</span> With Real-World Training
+        </h1>
+        <p class="hero-slogan">Bridging learning to real software careers.</p>
+        <p class="hero-description">
+          CodeBridge Academy equips students, graduates, and professionals with hands-on development skills, real projects, and career-ready mentorship to break into the tech industry with confidence.
+        </p>
+        <div class="hero-buttons">
+          <a href="#programs" class="btn btn-primary btn-lg">
+            Explore Programs <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary btn-lg">
+            Contact Us
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Students Trained</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Completion Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal-right">
+        <div class="hero-image-wrapper">
+          <!-- Code Editor Card -->
+          <div class="hero-code-card">
+            <div class="code-header">
+              <span class="code-dot red"></span>
+              <span class="code-dot yellow"></span>
+              <span class="code-dot green"></span>
+            </div>
+            <div class="code-body">
+              <div><span class="comment">// Your journey starts here</span></div>
+              <div><span class="keyword">const</span> student = {</div>
+              <div>&nbsp;&nbsp;name: <span class="string">"Future Developer"</span>,</div>
+              <div>&nbsp;&nbsp;academy: <span class="string">"CodeBridge"</span>,</div>
+              <div>&nbsp;&nbsp;skills: [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"JS"</span>],</div>
+              <div>&nbsp;&nbsp;ready: <span class="keyword">true</span></div>
+              <div>};</div>
+              <br>
+              <div><span class="function">launchCareer</span>(student);</div>
+            </div>
+          </div>
+
+          <!-- Floating cards -->
+          <div class="float-card float-card-1">
+            <div class="fc-icon"><i class="fa-solid fa-rocket"></i></div>
+            <span>Career Ready</span>
+          </div>
+          <div class="float-card float-card-2">
+            <div class="fc-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <span>Real Projects</span>
+          </div>
+          <div class="float-card float-card-3">
+            <div class="fc-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <span>Mentored</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       2. ABOUT SECTION
+       ============================================ -->
+  <section class="section section-alt" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">About Us</span>
+        <h2 class="section-title">What is CodeBridge Academy?</h2>
+        <p class="section-subtitle">We bridge the gap between theoretical learning and real software development careers through practical, project-based training.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image reveal-left">
+          <img src="logo.png" alt="CodeBridge Academy" class="about-logo">
+        </div>
+        <div class="about-text reveal-right">
+          <h3>Building Tomorrow's Developers, Today</h3>
+          <p>CodeBridge Academy was founded with a clear mission: to prepare aspiring developers for real-world software careers. We believe that traditional learning alone isn't enough — students need hands-on experience, mentorship, and career guidance to truly succeed in tech.</p>
+          <p>Our programs combine practical coding skills with portfolio-building projects and internship preparation, ensuring every student graduates ready to contribute to real development teams.</p>
+        </div>
+      </div>
+
+      <div class="about-features">
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
+          <h4>Practical Learning</h4>
+          <p>Learn by building real applications, not just watching tutorials. Every lesson is paired with hands-on coding exercises.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <h4>Real Projects</h4>
+          <p>Build portfolio-worthy projects that demonstrate your skills to employers and clients from day one.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="fa-solid fa-trophy"></i></div>
+          <h4>Career Readiness</h4>
+          <p>Get prepared for interviews, internships, and job offers with CV optimization, LinkedIn guidance, and mock interviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       3. TRAINING PROGRAMS SECTION
+       ============================================ -->
+  <section class="section" id="programs">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Programs</span>
+        <h2 class="section-title">Training Programs</h2>
+        <p class="section-subtitle">Structured learning paths designed to take you from fundamentals to career-ready full stack development.</p>
+      </div>
+
+      <div class="programs-grid">
+        <!-- Web Development Fundamentals -->
+        <div class="program-card reveal">
+          <div class="program-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Web Development Fundamentals</h3>
+          <div class="program-tags">
+            <span class="program-tag">HTML</span>
+            <span class="program-tag">CSS</span>
+            <span class="program-tag">JavaScript</span>
+            <span class="program-tag">Git / GitHub</span>
+            <span class="program-tag">Responsive Design</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--color-text-secondary); margin-bottom:1.5rem; line-height:1.7;">Master the essential building blocks of the web. Build responsive, accessible websites from scratch and learn professional workflows.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Enroll Now</a>
+        </div>
+
+        <!-- Full Stack Development -->
+        <div class="program-card reveal">
+          <div class="program-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Full Stack Development</h3>
+          <div class="program-tags">
+            <span class="program-tag">React.js</span>
+            <span class="program-tag">Node.js / Express</span>
+            <span class="program-tag">PHP / Laravel</span>
+            <span class="program-tag">MySQL / MongoDB</span>
+            <span class="program-tag">APIs</span>
+            <span class="program-tag">Authentication</span>
+            <span class="program-tag">Deployment</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--color-text-secondary); margin-bottom:1.5rem; line-height:1.7;">Build complete applications from frontend to backend. Learn modern frameworks, databases, authentication, and deployment strategies.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Enroll Now</a>
+        </div>
+
+        <!-- Career & Internship Readiness -->
+        <div class="program-card reveal">
+          <div class="program-icon"><i class="fa-solid fa-rocket"></i></div>
+          <h3>Career &amp; Internship Readiness</h3>
+          <div class="program-tags">
+            <span class="program-tag">CV Writing</span>
+            <span class="program-tag">LinkedIn Optimization</span>
+            <span class="program-tag">GitHub Portfolio</span>
+            <span class="program-tag">Interview Prep</span>
+            <span class="program-tag">Teamwork</span>
+            <span class="program-tag">Workplace Communication</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--color-text-secondary); margin-bottom:1.5rem; line-height:1.7;">Prepare for the professional world with polished CVs, optimized online presence, interview skills, and workplace communication training.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Enroll Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       4. WHY CHOOSE US
+       ============================================ -->
+  <section class="section section-alt" id="why-us">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Why CodeBridge</span>
+        <h2 class="section-title">Why Choose Us?</h2>
+        <p class="section-subtitle">We go beyond teaching code — we build careers. Here's what sets CodeBridge Academy apart.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-hammer"></i></div>
+          <h4>Hands-On Learning</h4>
+          <p>Every lesson involves writing real code and building functional applications.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4>Real-World Projects</h4>
+          <p>Build complete projects that you can showcase in your portfolio to employers.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-people-arrows"></i></div>
+          <h4>Mentorship &amp; Guidance</h4>
+          <p>Get personal mentorship from experienced developers throughout your journey.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h4>Internship Preparation</h4>
+          <p>We prepare you for real internship applications with practical guidance and support.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <h4>Portfolio Development</h4>
+          <p>Graduate with a professional portfolio that demonstrates your capabilities.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <h4>For All Levels</h4>
+          <p>Whether you're a student or a professional, our programs are designed for your growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       5. TARGET AUDIENCE
+       ============================================ -->
+  <section class="section" id="audience">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Who It's For</span>
+        <h2 class="section-title">Who Is CodeBridge Academy For?</h2>
+        <p class="section-subtitle">Our training programs are designed for anyone ready to start or advance their software development journey.</p>
+      </div>
+
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-school"></i></div>
+          <div>
+            <h4>Secondary School Students</h4>
+            <p>Get a head start in tech before university.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <h4>University Students</h4>
+            <p>Supplement your degree with practical coding skills.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div>
+            <h4>Graduates</h4>
+            <p>Bridge the gap between academics and industry requirements.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div>
+            <h4>Internship Seekers</h4>
+            <p>Build the skills and portfolio needed for competitive internships.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-terminal"></i></div>
+          <div>
+            <h4>Junior Developers</h4>
+            <p>Level up your skills and accelerate your career growth.</p>
+          </div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div>
+            <h4>Working Professionals</h4>
+            <p>Upgrade your development skills while working full-time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       6. HOW IT WORKS
+       ============================================ -->
+  <section class="section section-alt" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">The Process</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Your journey from beginner to career-ready developer in five clear steps.</p>
+      </div>
+
+      <div class="steps-container reveal">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h4>Register</h4>
+          <p>Sign up and choose your learning path.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h4>Learn</h4>
+          <p>Engage in structured, hands-on lessons.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h4>Build Projects</h4>
+          <p>Create real-world applications for your portfolio.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <h4>Get Mentored</h4>
+          <p>Receive 1-on-1 guidance from experts.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">5</div>
+          <h4>Launch Career</h4>
+          <p>Prepare for internships and job opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       7. INTERNSHIPS
+       ============================================ -->
+  <section class="section" id="internships">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Opportunities</span>
+        <h2 class="section-title">We Offer Internships For</h2>
+        <p class="section-subtitle">Gain practical experience and launch your career with our specialized internship programs tailored for all levels.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal" style="display: flex; flex-direction: column;">
+          <div class="why-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h4>L4 Students</h4>
+          <p style="margin-bottom: 1.5rem; flex-grow: 1;">Foundational internships designed for Level 4 students to build core development skills in a real-world environment.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; justify-content: center;">Apply Now</a>
+        </div>
+        <div class="why-card reveal" style="display: flex; flex-direction: column;">
+          <div class="why-icon"><i class="fa-solid fa-code-branch"></i></div>
+          <h4>L5 Students</h4>
+          <p style="margin-bottom: 1.5rem; flex-grow: 1;">Advanced practical training and project work for Level 5 students seeking to deepen their technical expertise.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; justify-content: center;">Apply Now</a>
+        </div>
+        <div class="why-card reveal" style="display: flex; flex-direction: column;">
+          <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <h4>Year 1</h4>
+          <p style="margin-bottom: 1.5rem; flex-grow: 1;">Early-stage university students looking to bridge the gap between academic theory and industry practice.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; justify-content: center;">Apply Now</a>
+        </div>
+        <div class="why-card reveal" style="display: flex; flex-direction: column;">
+          <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <h4>Year 2</h4>
+          <p style="margin-bottom: 1.5rem; flex-grow: 1;">Second-year university students ready to take on more complex projects and build a competitive portfolio.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; justify-content: center;">Apply Now</a>
+        </div>
+        <div class="why-card reveal" style="display: flex; flex-direction: column;">
+          <div class="why-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h4>Graduates</h4>
+          <p style="margin-bottom: 1.5rem; flex-grow: 1;">Intensive programs for recent graduates to become fully job-ready developers and land their first roles.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; justify-content: center;">Apply Now</a>
+        </div>
+        <div class="why-card reveal" style="display: flex; flex-direction: column;">
+          <div class="why-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h4>Working Professionals</h4>
+          <p style="margin-bottom: 1.5rem; flex-grow: 1;">Flexible internship and upskilling opportunities for professionals transitioning to or advancing in tech.</p>
+          <a href="https://forms.gle/og6VYfHZeihNC8q29" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; justify-content: center;">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================
+       9. CONTACT & LOCATION SECTION
+       ============================================ -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">Contact &amp; Location</h2>
+        <p class="section-subtitle">Visit us, call us, or reach out online — we'd love to connect with you.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Google Map Embed -->
+        <div class="contact-map reveal-left">
+          <div class="map-wrapper">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.485!2d30.0669!3d-1.9762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca70f9e76a1e7%3A0x0!2sGikondo%2C%20Kigali!5e0!3m2!1sen!2srw!4v1710000000000"
+              width="100%"
+              height="400"
+              style="border:0; border-radius:16px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="CodeBridge Academy Location - Gikondo, Kigali">
+            </iframe>
+          </div>
+          <div class="map-address">
+            <i class="fa-solid fa-location-dot"></i>
+            <p>Gikondo Merez 1, near Merez 1 Petroleum Station, Kicukiro District, Kigali, Rwanda</p>
+          </div>
+        </div>
+
+        <!-- Contact info -->
+        <div class="contact-info reveal-right">
+          <div class="contact-info-header">
+            <h3>Let's Connect</h3>
+            <p>We're here to answer your questions about our programs, registration, schedules, and more.</p>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:info.codebridgeacademy@gmail.com">info.codebridgeacademy@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+250780494000">+250 780 494 000</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h4>Location</h4>
+              <p>Gikondo Merez 1, Kicukiro District<br>Kigali, Rwanda</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="font-size:0.9rem; font-weight:700; color:var(--color-text); margin-bottom:0.75rem;">Follow Us</h4>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="social-link" aria-label="Twitter / X" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" class="social-link" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="social-link" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="social-link" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       10. FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="logo.png" alt="CodeBridge Academy">
+            <span>CodeBridge Academy</span>
+          </div>
+          <p>Bridging learning to real software careers. We provide practical, project-based software development training that prepares students and professionals for the tech industry.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#internships">Internships</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#programs">Web Fundamentals</a></li>
+            <li><a href="#programs">Full Stack Dev</a></li>
+            <li><a href="#programs">Career Readiness</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info.codebridgeacademy@gmail.com">info.codebridgeacademy@gmail.com</a></li>
+            <li><a href="tel:+250780494000">+250 780 494 000</a></li>
+            <li><a href="#">Gikondo, Kigali, Rwanda</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 <a href="#hero">CodeBridge Academy</a>. All rights reserved. | Bridging learning to real software careers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="script.js"></script>
+</body>
+</html>
