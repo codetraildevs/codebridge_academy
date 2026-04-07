@@ -1798,3 +1798,535 @@ input, textarea, select {
 .map-iframe { border: 0; border-radius: 16px; width: 100%; }
 .social-links-header { font-size: 0.9rem; font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem; }
 
+/* Internship Focus Areas CSS */
+.focus-areas-container {
+  text-align: left;
+  background: rgba(var(--color-primary-rgb), 0.04);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .focus-areas-container {
+  background: rgba(var(--color-primary-rgb), 0.06);
+  border-color: rgba(var(--color-primary-rgb), 0.2);
+}
+
+.focus-areas-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.why-card p.focus-areas-text {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* ============================================
+   REGISTRATION MODAL STYLES
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(var(--color-text-rgb, 13, 27, 42), 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  width: 95%;
+  max-width: 600px;
+  max-height: 90vh;
+  border-radius: 24px;
+  position: relative;
+  padding: 3rem 2.5rem;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-section);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal-header h3 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Progress Bar */
+.progress-container {
+  position: relative;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 18px;
+  left: 10%;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.step-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-section);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.step-indicator.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.4);
+  transform: scale(1.1);
+}
+
+.step-indicator.completed {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: transparent;
+  position: relative;
+}
+
+.step-indicator.completed::after {
+  content: '✓';
+  position: absolute;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/* Form Groups */
+.form-step {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.form-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: var(--bg-section);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.1);
+}
+
+/* Validation Error Styles */
+.form-group.error label {
+  color: #ff4d4d;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.03);
+}
+
+.form-group.error input:focus,
+.form-group.error select:focus,
+.form-group.error textarea:focus {
+  box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.1);
+}
+
+input.error, select.error, textarea.error {
+  border-color: #ff4d4d !important;
+}
+
+/* Radio & Checkbox Custom Styling */
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.radio-group.vertical {
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-label, .checkbox-label {
+  display: flex !important;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-weight: 500 !important;
+  color: var(--color-text-secondary) !important;
+  transition: color 0.3s ease;
+  margin-bottom: 0 !important;
+}
+
+.radio-label:hover, .checkbox-label:hover {
+  color: var(--color-primary) !important;
+}
+
+.radio-label input, .checkbox-label input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.form-group.inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.form-navigation .btn {
+  min-width: 120px;
+  justify-content: center;
+}
+
+/* Success Toast */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  z-index: 3000;
+  background: var(--bg-card);
+  border-radius: 100px;
+  padding: 0.75rem 2rem;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toast.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toast i {
+  font-size: 1.5rem;
+  color: #28C840;
+}
+
+.toast h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.toast p {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* Mobile Adjustments for Modal */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 2rem 1.5rem;
+  }
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-group.inline {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* Validation Error Styles */
+.form-group.error label {
+  color: #ff4d4d;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.03);
+}
+
+.form-group.error input:focus,
+.form-group.error select:focus,
+.form-group.error textarea:focus {
+  box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.1);
+}
+
+input.error, select.error, textarea.error {
+  border-color: #ff4d4d !important;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Registration Form — Instruction Step Enhancements */
+.form-description-box.full-step {
+  border-left: none;
+  background: transparent;
+  padding: 0;
+}
+
+.form-description-box h4 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.form-description-box .subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--color-accent);
+}
+
+.info-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.highlight-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-section);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.highlight-item i {
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+
+.highlight-item strong {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.highlight-item p {
+  font-size: 0.85rem;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.fees-section, .discounts-section, .payment-methods, .gains-section {
+  margin-bottom: 1.5rem;
+}
+
+.fees-section h5, .discounts-section h5, .payment-methods h5, .gains-section h5 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.4rem;
+}
+
+.fee-card {
+  background: var(--color-primary-light);
+  color: var(--color-text);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.discounts-section ul {
+  padding-left: 1.25rem;
+}
+
+.discounts-section li {
+  font-size: 0.88rem;
+  margin-bottom: 0.4rem;
+}
+
+.payment-methods p {
+  font-size: 0.88rem;
+  margin-bottom: 0.4rem;
+}
+
+.payment-methods i {
+  width: 1.5rem;
+  color: var(--color-primary);
+}
+
+.gains-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.gains-grid span {
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gains-grid i {
+  color: #28C840;
+}
+
+.final-call {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .info-highlight-grid, .gains-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
