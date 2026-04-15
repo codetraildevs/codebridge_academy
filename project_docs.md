@@ -3,7 +3,7 @@
 ## Overview
 CodeBridge Academy is a premium, one-page static website designed to showcase software development training and internship programs. It has been built prioritizing modern aesthetics, responsive design, and extremely fast performance.
 
-**Live URL:** [https://codebridgeacademy.netlify.app/](https://codebridgeacademy.netlify.app/)
+**Live URL:** [https://codebridgecademy.com/](https://codebridgecademy.com/)
 
 ## Technology Stack
 - **HTML5**: Semantic tags ensuring accessibility and strong SEO structure.
