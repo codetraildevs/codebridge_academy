@@ -76,10 +76,15 @@
   --footer-bg: #091322;
   --footer-text: #8A9BB5;
   --scrollbar-track: #16263A;
-  --scrollbar-thumb: #2A3D55;
   --tag-bg: #1E3450;
   --tag-text: #B0C8E8;
   --tag-border: #2A4A6B;
+}
+
+[data-theme="dark"] .nav-logo {
+  background: white;
+  padding: 5px 15px;
+  border-radius: 8px;
 }
 
 [data-theme="dark"] .program-tag {
@@ -296,11 +301,12 @@ input, textarea, select {
 }
 
 .nav-logo img {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  object-fit: cover;
+  height: 70px;
+  width: auto;
+  object-fit: contain;
 }
+
+
 
 .nav-logo span {
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
@@ -1436,24 +1442,27 @@ input, textarea, select {
   max-width: 300px;
 }
 
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
+.footer-logo img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
 }
 
-.footer-logo img {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  object-fit: cover;
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
 }
 
 .footer-logo span {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.5px;
 }
 
 .footer-brand p {

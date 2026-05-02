@@ -1,0 +1,243 @@
+[
+  {
+    "id": "CBA-2026-001",
+    "name": "GATETE ELIOT DOUE",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-002",
+    "name": "IYAKAREMYE GANZA HERVE",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-003",
+    "name": "MUVUNYI PATIENCE",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-004",
+    "name": "NIYOBYOSE MBARUTE CEDRICK",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-005",
+    "name": "SHUKURU ABDUL KADRI",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-006",
+    "name": "NIZEYIMANA AMURANI",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-007",
+    "name": "NIYOYITA CEDRICK",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-008",
+    "name": "MANZI KELVIN",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-009",
+    "name": "NSENGIYUMVA LEE JOSEPH",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-010",
+    "name": "MANZI AIME",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-011",
+    "name": "MUGISHA CALEB",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-012",
+    "name": "MANIRAFASHA ELIAS",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-013",
+    "name": "SHUKURU ALIFA",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-014",
+    "name": "MUGISHA DJASIRI",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-015",
+    "name": "HANIEL RUCINGA",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-016",
+    "name": "UTUJE MUBARAKA",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-017",
+    "name": "NDATIMANA GISANURA CLOVIS",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-018",
+    "name": "NZABONIMANA RAYENE",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-019",
+    "name": "ABIZERA DIEU MERCI",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-020",
+    "name": "MUGISHA CHRISTIAN",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-021",
+    "name": "KABUYE AYUBU",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-022",
+    "name": "MUGISHA JOEL",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-023",
+    "name": "TUYISHIMIRE CHADIA",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-024",
+    "name": "ISHIMWE DJIBRIL",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-025",
+    "name": "MANIRAFASHA ELIAS",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+
+  {
+    "id": "CBA-2026-026",
+    "name": "JOHN DOE",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-027",
+    "name": "JANE SMITH",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-028",
+    "name": "ALICE JOHNSON",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-029",
+    "name": "ROBERT BROWN",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-030",
+    "name": "MICHAEL DAVIS",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
+  }
+]
