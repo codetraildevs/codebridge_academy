@@ -11,15 +11,11 @@
   <meta name="author" content="CodeBridge Academy">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
   <meta property="og:url" content="https://codebridgecademy.com/">
   <meta property="og:title" content="CodeBridge Academy — Software Career Training">
   <meta property="og:description" content="CodeBridge Academy is a leading software training company offering practical coding bootcamps and professional internships (stage) in Kigali, Rwanda.">
   <meta property="og:image" content="https://codebridgecademy.com/new_logo.png">
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://codebridgecademy.com/">
   <meta property="twitter:title" content="CodeBridge Academy — Software Career Training">
   <meta property="twitter:description" content="CodeBridge Academy is a leading software training company offering practical coding bootcamps and professional internships (stage) in Kigali, Rwanda.">
@@ -27,12 +23,22 @@
 
   <!-- Canonical Link -->
   <link rel="canonical" href="https://codebridgecademy.com/">
-  <!-- Preconnect to FontAwesome CDN -->
+
+  <!-- Preconnect to External Origins -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Preload Critical Assets -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
+  <link rel="preload" href="/.netlify/images?url=new_logo.png&w=400&fm=avif&q=80" as="image" fetchpriority="high">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="new_logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="new_logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1565C0">
 </head>
 <body>
 
@@ -42,7 +48,12 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#hero" class="nav-logo">
-        <img src="new_logo.png" alt="CodeBridge Academy Logo" width="200" height="70" fetchpriority="high">
+        <img 
+          src="codebridge_academy_logo.svg" 
+          alt="CodeBridge Academy Logo" 
+          width="200" 
+          height="70" 
+          fetchpriority="high">
       </a>
 
       <ul class="nav-menu" id="navMenu">
@@ -50,7 +61,6 @@
         <li><a href="#programs" class="nav-link" data-section="programs">Programs</a></li>
         <li><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
         <li><a href="#audience" class="nav-link" data-section="audience">Who It's For</a></li>
-        <li><a href="#how-it-works" class="nav-link" data-section="how-it-works">How It Works</a></li>
         <li><a href="#internships" class="nav-link" data-section="internships">Internships</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
       </ul>
@@ -168,7 +178,14 @@
       <div class="about-grid about-grid-spacing">
         <div class="about-image reveal-left">
           <div class="image-wrapper-creative">
-            <img src="about_section.png" alt="CodeBridge Academy Training" class="about-image-custom">
+            <img 
+              src="/.netlify/images?url=about_section.png&w=800&fm=avif&q=80" 
+              onerror="this.src='about_section.png'; this.onerror=null;"
+              alt="CodeBridge Academy Training" 
+              class="about-image-custom"
+              width="600"
+              height="450"
+              loading="lazy">
             <div class="shape-blob"></div>
             <div class="shape-dots"></div>
           </div>
@@ -411,46 +428,6 @@
     </div>
   </section>
 
-  <!-- ============================================
-       6. HOW IT WORKS
-       ============================================ -->
-  <section class="section section-alt" id="how-it-works">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">The Process</span>
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">Your journey from beginner to career-ready developer in five clear steps.</p>
-      </div>
-
-      <div class="steps-container reveal">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <h4>Register</h4>
-          <p>Sign up and choose your learning path.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <h4>Learn</h4>
-          <p>Engage in structured, hands-on lessons.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <h4>Build Projects</h4>
-          <p>Create real-world applications for your portfolio.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">4</div>
-          <h4>Get Mentored</h4>
-          <p>Receive 1-on-1 guidance from experts.</p>
-        </div>
-        <div class="step-item">
-          <div class="step-number">5</div>
-          <h4>Launch Career</h4>
-          <p>Prepare for internships and job opportunities.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============================================
        7. INTERNSHIPS
@@ -638,7 +615,12 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="new_logo.png" alt="CodeBridge Academy" width="200" height="70" loading="lazy">
+            <img 
+              src="codebridge_academy_logo.svg" 
+              alt="CodeBridge Academy Logo" 
+              width="200" 
+              height="70" 
+              loading="lazy">
           </div>
           <p>Bridging learning to real software careers. We provide practical, project-based software development training that prepares students and professionals for the tech industry.</p>
         </div>
@@ -683,7 +665,7 @@
   <!-- Back to Top -->
   <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
   <!-- ============================================
        REGISTRATION MODAL (Multi-step)
@@ -776,6 +758,10 @@
           <div class="form-group">
             <label for="email">Email Address *</label>
             <input type="email" id="email" name="email" required placeholder="example@email.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+250 7XX XXX XXX">
           </div>
           <div class="form-group">
             <label>Gender *</label>

@@ -1,0 +1,21 @@
+{
+  "name": "CodeBridge Academy",
+  "short_name": "CodeBridge",
+  "description": "Practical software development training academy in Kigali, Rwanda.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1565C0",
+  "icons": [
+    {
+      "src": "new_logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "new_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -2,8 +2,8 @@
    CodeBridge Academy — Design System & Styles
    ============================================ */
 
-/* --- Google Font --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ============================================
    CSS VARIABLES — THEME SYSTEM
@@ -42,6 +42,10 @@
   --footer-text: #C7D2E0;
   --scrollbar-track: #F5F7FA;
   --scrollbar-thumb: #C7D2E0;
+  
+  /* --- Typography --- */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
 }
 
 [data-theme="dark"] {
@@ -82,9 +86,12 @@
 }
 
 [data-theme="dark"] .nav-logo {
-  background: white;
-  padding: 5px 15px;
-  border-radius: 8px;
+  background: transparent !important;
+  padding: 0;
+}
+
+[data-theme="dark"] .nav-logo img {
+  filter: brightness(1.5) invert(1);
 }
 
 [data-theme="dark"] .program-tag {
@@ -115,7 +122,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg-primary);
   color: var(--color-text);
   line-height: 1.7;
@@ -142,6 +149,10 @@ button {
   font-family: inherit;
   border: none;
   outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 input, textarea, select {
@@ -190,6 +201,7 @@ input, textarea, select {
 }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
   color: var(--color-text);
@@ -214,6 +226,7 @@ input, textarea, select {
   gap: 0.5rem;
   padding: 0.85rem 2rem;
   border-radius: 12px;
+  font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.95rem;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -500,6 +513,7 @@ input, textarea, select {
 }
 
 .hero-title {
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 900;
   line-height: 1.1;
@@ -2012,6 +2026,7 @@ input, textarea, select {
 
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="tel"],
 .form-group select,
 .form-group textarea {
   width: 100%;
@@ -2337,5 +2352,17 @@ input.error, select.error, textarea.error {
   .info-highlight-grid, .gains-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 

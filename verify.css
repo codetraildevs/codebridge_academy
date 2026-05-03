@@ -1,18 +1,41 @@
 :root {
+  /* --- Light Theme (default) --- */
+  --bg-color: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --text-primary: #1E293B;
+  --text-secondary: #475569;
+  --border-color: #E2E8F0;
   --color-primary: #1565C0;
   --color-primary-dark: #0D47A1;
   --color-accent: #28C840; /* Green for verified */
   --color-accent-dark: #1B9E30;
   --color-error: #D32F2F;
   --color-error-dark: #B71C1C;
-  --bg-color: #F8FAFC;
-  --card-bg: #FFFFFF;
-  --text-primary: #1E293B;
-  --text-secondary: #475569;
-  --border-color: #E2E8F0;
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0D1B2A;
+  --card-bg: #16263A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #C7D2E0;
+  --border-color: #2A3D55;
+  --color-primary: #4DA3FF;
+  --color-primary-dark: #3B8FE6;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .verify-logo {
+  filter: brightness(1.5) invert(1);
+}
+
+/* Accessibility: Focus Styles */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 * {
@@ -56,6 +79,36 @@ body {
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
+
+/* Theme Toggle */
+.header-actions {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.theme-toggle {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--color-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
 
 /* Main Content */
 .verify-container {
@@ -223,16 +276,20 @@ body {
 .btn-home {
   display: inline-block;
   background: var(--text-primary);
-  color: white;
+  color: var(--card-bg);
   padding: 0.8rem 2rem;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
 }
 
 .btn-home:hover {
-  background: black;
+  background: var(--color-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Loading State */
@@ -324,6 +381,18 @@ body {
 
 .footer-slogan {
   margin-top: 5px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* Responsive */

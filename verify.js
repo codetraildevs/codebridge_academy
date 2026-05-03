@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+  /* --- Theme Logic --- */
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('codebridge-theme') || 'light';
+  html.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('codebridge-theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
+
+  function updateThemeIcon(theme) {
+    const icon = themeToggle.querySelector('i');
+    if (theme === 'light') {
+      icon.className = 'fa-solid fa-moon';
+    } else {
+      icon.className = 'fa-solid fa-sun';
+    }
+  }
+
+  /* --- Verification Logic --- */
   const resultContainer = document.getElementById('verificationResult');
   const urlParams = new URLSearchParams(window.location.search);
   const studentId = urlParams.get('id');
