@@ -52,9 +52,8 @@
     @media (max-width: 992px) { .nav-menu { display: none; } }
   </style>
 
-  <!-- Non-critical styles deferred -->
-  <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="style.css"></noscript>
+  <!-- Main stylesheet (blocking — prevents CLS) -->
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" href="new_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="new_logo.png">
   <link rel="manifest" href="manifest.json">
