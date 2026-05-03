@@ -18,7 +18,7 @@
   --color-primary-dark: #0D47A1;
   --color-primary-light: #E3F0FF;
   --color-text: #0D1B2A;
-  --color-text-secondary: #5C677D;
+  --color-text-secondary: #4A5568; /* Darkened for better contrast (was #5C677D) */
   --color-accent: #FF8C42;
   --color-accent-dark: #E07830;
   --color-border: #DDE5ED;
@@ -175,6 +175,8 @@ input, textarea, select {
 .section {
   padding: 6rem 0;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
 }
 
 .section-alt {
@@ -468,8 +470,8 @@ input, textarea, select {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -30px, 0) scale(1.05); }
 }
 
 .hero .container {
@@ -1632,7 +1634,7 @@ input, textarea, select {
   }
 
   .hero-image-wrapper {
-    max-width: 400px;
+    max-width: 100%;
   }
 
   .float-card {
