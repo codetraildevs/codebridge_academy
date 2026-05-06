@@ -202,7 +202,7 @@
 
   {
     "id": "CBA-2026-026",
-    "name": "JOHN DOE",
+    "name": "BYIRINGIRO OBED",
     "program": "Software Development Internship",
     "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
     "startDate": "08 April 2026",
@@ -210,7 +210,7 @@
   },
   {
     "id": "CBA-2026-027",
-    "name": "JANE SMITH",
+    "name": "UWAMAHORO DIVINE",
     "program": "Software Development Internship",
     "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
     "startDate": "08 April 2026",
@@ -218,7 +218,7 @@
   },
   {
     "id": "CBA-2026-028",
-    "name": "ALICE JOHNSON",
+    "name": "CYUZUZO AISHA",
     "program": "Software Development Internship",
     "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
     "startDate": "08 April 2026",
@@ -226,7 +226,7 @@
   },
   {
     "id": "CBA-2026-029",
-    "name": "ROBERT BROWN",
+    "name": "MAJUNE ALIOU",
     "program": "Software Development Internship",
     "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
     "startDate": "08 April 2026",
@@ -234,7 +234,7 @@
   },
   {
     "id": "CBA-2026-030",
-    "name": "MICHAEL DAVIS",
+    "name": "USANASE SHAMIMU",
     "program": "Software Development Internship",
     "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
     "startDate": "08 April 2026",
