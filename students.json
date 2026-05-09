@@ -239,5 +239,13 @@
     "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
     "startDate": "08 April 2026",
     "endDate": "08 May 2026"
+  },
+  {
+    "id": "CBA-2026-031",
+    "name": "GUMIRA NICK LENZ",
+    "program": "Software Development Internship",
+    "modules": ["BACKEND APPLICATION DEVELOPMENT", "BACKEND SYSTEM DESIGN", "DATA STRUCTURE AND ALGORITHM FUNDAMENTALS", "DATABASE DEVELOPMENT", "PHP PROGRAMMING"],
+    "startDate": "08 April 2026",
+    "endDate": "08 May 2026"
   }
 ]
