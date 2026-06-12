@@ -68,21 +68,21 @@ Create a design system using CSS variables for both white and dark themes.
 
 Light theme colors:
 - Background: #FFFFFF
-- Section background: #F5F7FA
-- Primary: #1565C0
-- Dark text: #0D1B2A
-- Accent: #FF8C42
-- Muted text: #5C677D
-- Border: #DDE5ED
+- Section background: #F8FAFC
+- Primary: #163B73
+- Dark text: #0F172A
+- Accent: #F28C28
+- Muted text: #475569
+- Border: #E2E8F0
 
 Dark theme colors:
-- Background: #0D1B2A
-- Section background: #16263A
-- Primary: #4DA3FF
-- Light text: #FFFFFF
-- Accent: #FF8C42
-- Muted text: #C7D2E0
-- Border: #2A3D55
+- Background: #0F172A
+- Section background: #1E293B
+- Primary: #60A5FA
+- Light text: #F8FAFC
+- Accent: #FBBF24
+- Muted text: #94A3B8
+- Border: #334155
 
 Typography:
 - Use modern, professional font styling
