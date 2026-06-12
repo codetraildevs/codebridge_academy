@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | CodeBridge Academy</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to CodeBridge Academy.">
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="canonical" href="https://codebridgecademy.com/404.html">
+
+  <!-- Preconnect to Font Origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" fetchpriority="high">
+
+  <!-- FontAwesome (Deferred) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+
+  <!-- Critical CSS Inlined -->
+  <style>
+    :root {
+      --bg-primary: #FFFFFF;
+      --bg-section: #F5F7FA;
+      --color-primary: #1565C0;
+      --color-primary-rgb: 21, 101, 192;
+      --color-text: #0D1B2A;
+      --color-text-secondary: #4A5568;
+      --color-accent: #D96B1A;
+      --color-border: #DDE5ED;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-heading: 'Poppins', sans-serif;
+      --nav-bg: rgba(255,255,255,0.92);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] {
+      --bg-primary: #0D1B2A;
+      --bg-section: #16263A;
+      --color-primary: #4DA3FF;
+      --color-primary-rgb: 77, 163, 255;
+      --color-text: #FFFFFF;
+      --color-text-secondary: #C7D2E0;
+      --color-accent: #FF8C42;
+      --color-border: #2A3D55;
+      --nav-bg: rgba(13,27,42,0.95);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.3);
+    }
+    [data-theme="dark"] .nav-logo img { filter: brightness(1.5) invert(1); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+    /* Navbar */
+    .navbar { position: fixed; top: 0; left: 0; width: 100%; height: 72px; background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 70px; width: auto; object-fit: contain; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .theme-toggle { width: 44px; height: 44px; border-radius: 12px; background: var(--bg-section); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--color-text); transition: all 0.3s ease; }
+    .theme-toggle:hover { background: rgba(var(--color-primary-rgb), 0.1); color: var(--color-primary); border-color: var(--color-primary); }
+
+    /* Error Section */
+    .error-section { flex: 1; display: flex; align-items: center; justify-content: center; padding: 7rem 1.5rem 4rem; position: relative; overflow: hidden; min-height: 100vh; background: var(--bg-primary); }
+    .error-section::before { content: ''; position: absolute; top: 20%; right: -5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.08) 0%, transparent 70%); border-radius: 50%; animation: float 8s ease-in-out infinite; }
+    .error-section::after { content: ''; position: absolute; bottom: 10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 140, 66, 0.06) 0%, transparent 70%); border-radius: 50%; animation: float 10s ease-in-out infinite reverse; }
+    @keyframes float { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(0,-30px,0) scale(1.05); } }
+    .error-content { text-align: center; position: relative; z-index: 1; max-width: 600px; }
+    .error-code { font-family: var(--font-heading); font-size: clamp(6rem, 15vw, 12rem); font-weight: 900; line-height: 1; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; position: relative; }
+    .error-dot { position: absolute; top: 10%; left: 10%; width: 12px; height: 12px; background: var(--color-accent); border-radius: 50%; opacity: 0.6; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.5); } }
+    .error-title { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--color-text); margin-bottom: 1rem; }
+    .error-message { font-size: 1.05rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .error-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 12px; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .btn-primary { background: var(--color-primary); color: #FFFFFF; box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.35); }
+    .btn-primary:hover { background: #0D47A1; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(var(--color-primary-rgb), 0.4); }
+    .btn-secondary { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+    .btn-secondary:hover { background: var(--color-primary); color: #FFFFFF; transform: translateY(-2px); }
+    .btn-accent { background: var(--color-accent); color: #FFFFFF; box-shadow: 0 4px 15px rgba(255,140,66,0.35); }
+    .btn-accent:hover { background: #BF5910; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,140,66,0.4); }
+
+    /* Decorative elements */
+    .error-decoration { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+    .deco-bracket { font-family: 'Courier New', monospace; font-size: 3rem; font-weight: 700; color: var(--color-text-secondary); opacity: 0.2; line-height: 1; }
+    .deco-slash { font-size: 2.5rem; font-weight: 900; color: var(--color-primary); opacity: 0.15; line-height: 1; }
+
+    /* Footer */
+    .footer { background: var(--bg-section); padding: 1.5rem 0; text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); border-top: 1px solid var(--color-border); }
+    .footer a { color: var(--color-primary); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .error-section { padding: 6rem 1rem 3rem; }
+      .error-actions { flex-direction: column; align-items: center; }
+      .error-actions .btn { width: 100%; justify-content: center; max-width: 280px; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+    }
+  </style>
+
+  <link rel="icon" href="assets/images/new_logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/images/new_logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1565C0">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img
+          src="assets/images/codebridge_academy_logo.svg"
+          alt="CodeBridge Academy Logo"
+          width="200"
+          height="70"
+          fetchpriority="high">
+      </a>
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Error Section -->
+  <section class="error-section">
+    <div class="error-content">
+      <div class="error-decoration">
+        <span class="deco-bracket">&lt;</span>
+        <span class="deco-slash">/</span>
+        <span class="deco-bracket">&gt;</span>
+      </div>
+
+      <div class="error-code">
+        <span class="error-dot"></span>
+        404
+      </div>
+
+      <h1 class="error-title">Page Not Found</h1>
+
+      <p class="error-message">
+        The page you're looking for doesn't exist, may have been moved, or the link you followed might be broken. Let's get you back on track.
+      </p>
+
+      <div class="error-actions">
+        <a href="index.html" class="btn btn-primary">
+          <i class="fa-solid fa-house"></i> Go Home
+        </a>
+        <a href="verify.html" class="btn btn-secondary">
+          <i class="fa-solid fa-certificate"></i> Verify Certificate
+        </a>
+        <a href="index.html#contact" class="btn btn-accent">
+          <i class="fa-solid fa-envelope"></i> Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 <a href="index.html">CodeBridge Academy</a>. All rights reserved. | Bridging learning to real software careers.</p>
+    </div>
+  </footer>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem('codebridge-theme') || 'light';
+      html.setAttribute('data-theme', savedTheme);
+      updateIcon(savedTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('codebridge-theme', next);
+        updateIcon(next);
+      });
+
+      function updateIcon(theme) {
+        const icon = themeToggle.querySelector('i');
+        icon.className = theme === 'light' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+      }
+    });
+  </script>
+</body>
+</html>

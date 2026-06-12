@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fetch the students data
-  fetch('students.json')
+  fetch('../data/students.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

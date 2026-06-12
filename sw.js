@@ -2,10 +2,14 @@ const CACHE_NAME = 'codebridge-v1';
 const ASSETS = [
   '/',
   '/index.html',
-  '/style.css',
-  '/script.js',
-  '/codebridge_academy_logo.svg',
-  '/new_logo.png',
+  '/404.html',
+  '/verify.html',
+  '/css/style.css',
+  '/css/verify.css',
+  '/js/script.js',
+  '/js/verify.js',
+  '/assets/images/codebridge_academy_logo.svg',
+  '/assets/images/new_logo.png',
   '/manifest.json'
 ];
 

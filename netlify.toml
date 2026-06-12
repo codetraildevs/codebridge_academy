@@ -9,32 +9,32 @@
     Netlify-CDN-Cache-Control = "public, max-age=0, stale-while-revalidate=86400"
 
 [[headers]]
-  for = "/*.css"
+  for = "/**/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.js"
+  for = "/**/*.js"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.png"
+  for = "/**/*.png"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.jpg"
+  for = "/**/*.jpg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.jpeg"
+  for = "/**/*.jpeg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.svg"
+  for = "/**/*.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -42,6 +42,12 @@
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Custom 404 error page
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
 
 [images]
   remote_images = ["https://codebridgecademy\\.com/.*"]

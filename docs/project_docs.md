@@ -11,10 +11,41 @@ CodeBridge Academy is a premium, one-page static website designed to showcase so
 - **JavaScript (Vanilla)**: Lightweight interactions for mobile menu toggling, smooth scrolling, scroll reveal animations, and theme persistence.
 
 ## Project Structure
-- `index.html` - The single-page application structure.
-- `style.css` - comprehensive design system, utility classes, and layout rules.
-- `script.js` - Logic for interactions and dynamic visual states.
-- `logo.png` - Vector-style transparent logo for the brand.
+
+```
+/
+├── index.html              # Main landing page
+├── verify.html             # Certificate verification portal
+├── sw.js                   # Service Worker (PWA support)
+├── manifest.json           # PWA manifest
+├── netlify.toml            # Netlify deployment & caching config
+├── css/
+│   ├── style.css           # Main design system & styles
+│   └── verify.css          # Certificate verification page styles
+├── js/
+│   ├── script.js           # Main site interactions & logic
+│   └── verify.js           # Certificate verification logic
+├── data/
+│   ├── students.json       # Student records database
+│   └── canva_students.csv  # Canva-exported student data
+├── assets/images/
+│   ├── codebridge_academy_logo.svg  # Brand logo (SVG)
+│   ├── new_logo.png        # PWA icon / favicon
+│   ├── about_section.png   # About section image
+│   ├── hero_section.png    # Hero section image
+│   ├── logo.png            # Legacy logo
+│   └── updated_logo.jpeg   # Updated logo variant
+├── docs/
+│   ├── project_docs.md     # This documentation file
+│   └── readme.txt          # Original build prompt & requirements
+├── qr_codes/               # QR code images for certificates
+└── README.md               # Project overview & instructions
+```
+
+### Key Files
+- **index.html** - The single-page application landing page.
+- **style.css** - Comprehensive design system, CSS variables for light/dark themes, utility classes, and layout rules.
+- **script.js** - Logic for theme toggle, mobile menu, scroll animations, multi-step registration modal.
 
 ## Key Features
 1. **Light & Dark Theme Toggle**: Saves user preference to `localStorage`.
