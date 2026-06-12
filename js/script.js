@@ -121,9 +121,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
     revealObserver.observe(el);
   });
+
+  /* ============================================
+     ANIMATED COUNTERS
+     ============================================ */
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+          const targetText = counter.textContent.trim();
+          const suffix = targetText.includes('+') ? '+' : '';
+          const target = parseInt(targetText.replace(/\+/g, '').replace(/%/g, ''));
+          const isPercent = targetText.includes('%');
+          const duration = 2000;
+          const startTime = performance.now();
+          
+          const updateCounter = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+            
+            if (isPercent) {
+              counter.textContent = current + '%';
+            } else {
+              counter.textContent = current + suffix;
+            }
+            
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = targetText;
+            }
+          };
+          requestAnimationFrame(updateCounter);
+        });
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) {
+    counterObserver.observe(heroStats);
+  }
 
   /* ============================================
      REGISTRATION MODAL

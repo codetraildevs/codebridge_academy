@@ -21,31 +21,33 @@
   <style>
     :root {
       --bg-primary: #FFFFFF;
-      --bg-section: #F5F7FA;
-      --color-primary: #1565C0;
-      --color-primary-rgb: 21, 101, 192;
-      --color-text: #0D1B2A;
-      --color-text-secondary: #4A5568;
-      --color-accent: #D96B1A;
-      --color-border: #DDE5ED;
+      --bg-section: #F8FAFC;
+      --color-primary: #163B73;
+      --color-primary-rgb: 22, 59, 115;
+      --color-accent: #F28C28;
+      --color-accent-rgb: 242, 140, 40;
+      --color-text: #0F172A;
+      --color-text-secondary: #475569;
+      --color-border: #E2E8F0;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --font-heading: 'Poppins', sans-serif;
-      --nav-bg: rgba(255,255,255,0.92);
-      --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+      --nav-bg: rgba(255,255,255,0.88);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.05);
     }
     [data-theme="dark"] {
-      --bg-primary: #0D1B2A;
-      --bg-section: #16263A;
-      --color-primary: #4DA3FF;
-      --color-primary-rgb: 77, 163, 255;
-      --color-text: #FFFFFF;
-      --color-text-secondary: #C7D2E0;
-      --color-accent: #FF8C42;
-      --color-border: #2A3D55;
-      --nav-bg: rgba(13,27,42,0.95);
-      --shadow-md: 0 4px 14px rgba(0,0,0,0.3);
+      --bg-primary: #0F172A;
+      --bg-section: #1E293B;
+      --color-primary: #60A5FA;
+      --color-primary-rgb: 96, 165, 250;
+      --color-accent: #FBBF24;
+      --color-accent-rgb: 251, 191, 36;
+      --color-text: #F8FAFC;
+      --color-text-secondary: #94A3B8;
+      --color-border: #334155;
+      --nav-bg: rgba(15,23,42,0.95);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
     }
-    [data-theme="dark"] .nav-logo img { filter: brightness(1.5) invert(1); }
+    [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: var(--font-body); background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
     a { text-decoration: none; color: inherit; }
@@ -64,7 +66,7 @@
     /* Error Section */
     .error-section { flex: 1; display: flex; align-items: center; justify-content: center; padding: 7rem 1.5rem 4rem; position: relative; overflow: hidden; min-height: 100vh; background: var(--bg-primary); }
     .error-section::before { content: ''; position: absolute; top: 20%; right: -5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(var(--color-primary-rgb), 0.08) 0%, transparent 70%); border-radius: 50%; animation: float 8s ease-in-out infinite; }
-    .error-section::after { content: ''; position: absolute; bottom: 10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255, 140, 66, 0.06) 0%, transparent 70%); border-radius: 50%; animation: float 10s ease-in-out infinite reverse; }
+    .error-section::after { content: ''; position: absolute; bottom: 10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.06) 0%, transparent 70%); border-radius: 50%; animation: float 10s ease-in-out infinite reverse; }
     @keyframes float { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(0,-30px,0) scale(1.05); } }
     .error-content { text-align: center; position: relative; z-index: 1; max-width: 600px; }
     .error-code { font-family: var(--font-heading); font-size: clamp(6rem, 15vw, 12rem); font-weight: 900; line-height: 1; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; position: relative; }
@@ -75,11 +77,11 @@
     .error-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 12px; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
     .btn-primary { background: var(--color-primary); color: #FFFFFF; box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.35); }
-    .btn-primary:hover { background: #0D47A1; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(var(--color-primary-rgb), 0.4); }
+    .btn-primary:hover { background: #0F2A52; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(var(--color-primary-rgb), 0.4); }
     .btn-secondary { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
     .btn-secondary:hover { background: var(--color-primary); color: #FFFFFF; transform: translateY(-2px); }
-    .btn-accent { background: var(--color-accent); color: #FFFFFF; box-shadow: 0 4px 15px rgba(255,140,66,0.35); }
-    .btn-accent:hover { background: #BF5910; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,140,66,0.4); }
+    .btn-accent { background: var(--color-accent); color: #FFFFFF; box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.35); }
+    .btn-accent:hover { background: #D97706; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(var(--color-accent-rgb), 0.4); }
 
     /* Decorative elements */
     .error-decoration { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
@@ -104,7 +106,7 @@
   <link rel="icon" href="assets/images/new_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/new_logo.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1565C0">
+  <meta name="theme-color" content="#163B73">
 </head>
 <body>
 

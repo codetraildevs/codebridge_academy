@@ -37,14 +37,16 @@
   
   <!-- Critical CSS Inlined for Instant FCP & LCP -->
   <style>
-    :root { --bg-primary: #FFFFFF; --bg-section: #F5F7FA; --color-primary: #1565C0; --color-text: #0D1B2A; --font-body: 'Inter', sans-serif; --font-heading: 'Poppins', sans-serif; --hero-gradient: linear-gradient(135deg, #E3F0FF 0%, #F5F7FA 50%, #FFF3E8 100%); --color-border: #DDE5ED; }
+    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #163B73; --color-primary-rgb: 22,59,115; --color-text: #0F172A; --color-accent: #F28C28; --font-body: 'Inter', sans-serif; --font-heading: 'Poppins', sans-serif; --hero-gradient: linear-gradient(135deg, #EEF2FF 0%, #F8FAFC 40%, #FFF7ED 100%); --color-border: #E2E8F0; }
+    [data-theme="dark"] { --bg-primary: #0F172A; --bg-section: #1E293B; --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F8FAFC; --color-accent: #FBBF24; --color-border: #334155; --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E293B 100%); }
+    [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); }
     body { font-family: var(--font-body); margin: 0; background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; }
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 72px; background: var(--hero-gradient); position: relative; overflow: hidden; }
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
     .hero-title { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; }
     .hero-content { max-width: 580px; z-index: 1; position: relative; }
-    .highlight { background: linear-gradient(135deg, var(--color-primary), #FF8C42); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .navbar { position: fixed; top: 0; width: 100%; height: 72px; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; }
+    .highlight { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .navbar { position: fixed; top: 0; width: 100%; height: 72px; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; }
     .nav-logo img { height: 70px; width: auto; }
     .btn { display: inline-flex; align-items: center; padding: 0.85rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
     .btn-primary { background: var(--color-primary); color: white; }
@@ -57,7 +59,7 @@
   <link rel="icon" href="assets/images/new_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/new_logo.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1565C0">
+  <meta name="theme-color" content="#163B73">
 </head>
 <body>
 
@@ -78,9 +80,9 @@
       <ul class="nav-menu" id="navMenu">
         <li><a href="#about" class="nav-link" data-section="about">About</a></li>
         <li><a href="#programs" class="nav-link" data-section="programs">Programs</a></li>
-        <li><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
-        <li><a href="#audience" class="nav-link" data-section="audience">Who It's For</a></li>
+        <li><a href="#tech-stack" class="nav-link" data-section="tech-stack">Tech Stack</a></li>
         <li><a href="#internships" class="nav-link" data-section="internships">Internships</a></li>
+        <li><a href="#testimonials" class="nav-link" data-section="testimonials">Testimonials</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
       </ul>
 
@@ -553,7 +555,137 @@
 
 
   <!-- ============================================
-       9. CONTACT & LOCATION SECTION
+       8. TESTIMONIALS SECTION
+       ============================================ -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Success Stories</span>
+        <h2 class="section-title">What Our <span class="highlight">Graduates</span> Say</h2>
+        <p class="section-subtitle">Hear from our alumni who have transformed their careers through our programs.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="testimonial-quote">&ldquo;</div>
+          <p>CodeBridge Academy gave me the practical skills I needed to land my first internship. The hands-on projects and mentorship were game-changing.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JD</div>
+            <div>
+              <h5>Jean Damascene</h5>
+              <span>Web Development Graduate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="testimonial-quote">&ldquo;</div>
+          <p>Before joining, I struggled with theory-heavy learning. The real-world projects at CodeBridge helped me build confidence and a professional portfolio.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AM</div>
+            <div>
+              <h5>Alice Mukamana</h5>
+              <span>Full Stack Developer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="testimonial-quote">&ldquo;</div>
+          <p>The career readiness program was exactly what I needed. From CV writing to interview prep, they prepared me for the real job market.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DN</div>
+            <div>
+              <h5>David Niyonzima</h5>
+              <span>Software Engineer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       9. TECH STACK SECTION
+       ============================================ -->
+  <section class="section" id="tech-stack">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Technologies</span>
+        <h2 class="section-title">Tools &amp; Technologies <span class="highlight">You'll Master</span></h2>
+        <p class="section-subtitle">Industry-standard tools and frameworks we teach to prepare you for real-world development.</p>
+      </div>
+
+      <div class="tech-grid reveal">
+        <span class="tech-item"><i class="fa-brands fa-html5"></i> HTML5</span>
+        <span class="tech-item"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+        <span class="tech-item"><i class="fa-brands fa-js"></i> JavaScript</span>
+        <span class="tech-item"><i class="fa-brands fa-react"></i> React.js</span>
+        <span class="tech-item"><i class="fa-brands fa-node-js"></i> Node.js</span>
+        <span class="tech-item"><i class="fa-brands fa-php"></i> PHP</span>
+        <span class="tech-item"><i class="fa-brands fa-laravel"></i> Laravel</span>
+        <span class="tech-item"><i class="fa-solid fa-database"></i> MySQL</span>
+        <span class="tech-item"><i class="fa-solid fa-database"></i> MongoDB</span>
+        <span class="tech-item"><i class="fa-brands fa-git-alt"></i> Git / GitHub</span>
+        <span class="tech-item"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="tech-item"><i class="fa-brands fa-figma"></i> Figma</span>
+        <span class="tech-item"><i class="fa-brands fa-flutter"></i> Flutter</span>
+        <span class="tech-item"><i class="fa-solid fa-cloud"></i> DevOps Basics</span>
+      </div>
+
+      <div class="section-header reveal" style="margin-top: 3rem;">
+        <h2 class="section-title">Your <span class="highlight">Learning Journey</span></h2>
+        <p class="section-subtitle">From beginner to career-ready — a structured path designed for your success.</p>
+      </div>
+
+      <div class="journey-grid reveal">
+        <div class="journey-step">
+          <div class="journey-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h4>Learn Fundamentals</h4>
+          <p>Master HTML, CSS, JS and core programming concepts through interactive lessons.</p>
+        </div>
+        <div class="journey-step">
+          <div class="journey-icon"><i class="fa-solid fa-code"></i></div>
+          <h4>Build Projects</h4>
+          <p>Apply your skills to real-world projects that build your professional portfolio.</p>
+        </div>
+        <div class="journey-step">
+          <div class="journey-icon"><i class="fa-solid fa-users"></i></div>
+          <h4>Team Collaboration</h4>
+          <p>Work in teams using Git and agile practices, just like in a real dev shop.</p>
+        </div>
+        <div class="journey-step">
+          <div class="journey-icon"><i class="fa-solid fa-rocket"></i></div>
+          <h4>Launch Career</h4>
+          <p>Get career-ready with interview prep, CV optimization, and internship placement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       10. CONTACT & LOCATION SECTION
        ============================================ -->
   <section class="section section-alt" id="contact">
     <div class="container">
@@ -686,6 +818,11 @@
 
   <!-- Back to Top -->
   <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/250780494000" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
   <script src="js/script.js" defer></script>
 
