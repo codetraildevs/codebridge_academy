@@ -51,7 +51,6 @@
     .btn { display: inline-flex; align-items: center; padding: 0.85rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
     .btn-primary { background: var(--color-primary); color: white; }
     .nav-menu { display: flex; list-style: none; gap: 0.25rem; }
-    @media (max-width: 992px) { .nav-menu { display: none; } }
   </style>
 
   <!-- Main stylesheet (blocking — prevents CLS) -->
@@ -92,6 +91,7 @@
           <i class="fa-solid fa-moon"></i>
         </button>
         <a href="#" class="btn btn-primary nav-cta btn-register">Register Now</a>
+
         <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span>
           <span></span>
@@ -201,7 +201,7 @@
         <div class="about-image reveal-left">
           <div class="image-wrapper-creative">
             <img 
-              src="assets/images/about_section.png" 
+              src="./assets/images/about_section.png" 
               alt="CodeBridge Academy Training" 
               class="about-image-custom"
               width="600"

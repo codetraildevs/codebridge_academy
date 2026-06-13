@@ -110,6 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   /* ============================================
+     BACK TO TOP CLICK HANDLER
+     ============================================ */
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ============================================
      INTERSECTION OBSERVER (Scroll Reveal)
      ============================================ */
   const revealObserver = new IntersectionObserver((entries) => {
