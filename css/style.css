@@ -2429,7 +2429,7 @@ input.error, select.error, textarea.error {
 
 .fee-card {
   background: var(--brand-blue-light);
-  color: var(--color-text);
+  color: var(--brand-blue-dark);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
   margin-bottom: 0.5rem;
