@@ -178,6 +178,134 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ============================================
+     SURVEY MODAL
+     ============================================ */
+  const surveyModal = document.getElementById('surveyModal');
+  const surveyFloatBtn = document.getElementById('surveyFloatBtn');
+  const openSurveyBtn = document.getElementById('openSurveyBtn');
+  const surveyCloseBtn = document.getElementById('surveyCloseBtn');
+  const surveyCloseSuccessBtn = document.getElementById('surveyCloseSuccessBtn');
+  const surveyForm = document.getElementById('surveyForm');
+  const surveySteps = document.querySelectorAll('.survey-step');
+  const surveyIndicators = document.querySelectorAll('.survey-step-indicator');
+  const surveyProgressBar = document.getElementById('surveyProgressBar');
+  const surveyPrevBtn = document.getElementById('surveyPrevBtn');
+  const surveyNextBtn = document.getElementById('surveyNextBtn');
+  const surveySubmitBtn = document.getElementById('surveySubmitBtn');
+  const surveySuccess = document.getElementById('surveySuccess');
+  const surveyModalContent = document.getElementById('surveyModalContent');
+
+  let surveyCurrentStep = 1;
+  const surveyTotalSteps = surveySteps.length;
+
+  function openSurvey() {
+    surveyModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    surveyCurrentStep = 1;
+    surveySuccess.style.display = 'none';
+    surveyForm.style.display = 'block';
+    document.querySelector('.modal-header').style.display = 'block';
+    document.querySelector('.survey-progress-container').style.display = 'block';
+    document.querySelector('.form-navigation').style.display = 'flex';
+    updateSurveyStep(1);
+  }
+
+  function closeSurvey() {
+    surveyModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function updateSurveyStep(step) {
+    surveyCurrentStep = step;
+    surveySteps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === surveyCurrentStep));
+    surveyIndicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index + 1 === surveyCurrentStep);
+      indicator.classList.toggle('completed', index + 1 < surveyCurrentStep);
+    });
+    const progressPct = surveyTotalSteps > 1 ? ((surveyCurrentStep - 1) / (surveyTotalSteps - 1)) * 100 : 0;
+    surveyProgressBar.style.width = `${progressPct}%`;
+    surveyPrevBtn.style.display = surveyCurrentStep === 1 ? 'none' : 'flex';
+    surveyNextBtn.style.display = surveyCurrentStep === surveyTotalSteps ? 'none' : 'flex';
+    surveySubmitBtn.style.display = surveyCurrentStep === surveyTotalSteps ? 'flex' : 'none';
+  }
+
+  function validateSurveyStep(step) {
+    const currentSurveyStep = surveySteps[step - 1];
+    const fields = currentSurveyStep.querySelectorAll('input[required], select[required], textarea[required]');
+    let valid = true;
+    fields.forEach(f => {
+      const isRadio = f.type === 'radio';
+      const isCheckbox = f.type === 'checkbox';
+      let isFilled;
+      if (isRadio) {
+        isFilled = currentSurveyStep.querySelector(`input[name="${f.name}"]:checked`);
+      } else if (isCheckbox) {
+        isFilled = currentSurveyStep.querySelectorAll(`input[name="${f.name}"]:checked`).length > 0;
+      } else {
+        isFilled = f.value.trim();
+      }
+      if (!isFilled) {
+        valid = false;
+        (isRadio || isCheckbox ? f.closest('.form-group') : f).classList.add('error');
+      } else {
+        (isRadio || isCheckbox ? f.closest('.form-group') : f).classList.remove('error');
+      }
+    });
+    return valid;
+  }
+
+  if (surveyFloatBtn) {
+    surveyFloatBtn.addEventListener('click', openSurvey);
+  }
+  if (openSurveyBtn) {
+    openSurveyBtn.addEventListener('click', openSurvey);
+  }
+  if (surveyCloseBtn) {
+    surveyCloseBtn.addEventListener('click', closeSurvey);
+  }
+  if (surveyCloseSuccessBtn) {
+    surveyCloseSuccessBtn.addEventListener('click', closeSurvey);
+  }
+
+  if (surveyNextBtn) {
+    surveyNextBtn.addEventListener('click', () => {
+      if (validateSurveyStep(surveyCurrentStep)) {
+        updateSurveyStep(surveyCurrentStep + 1);
+      }
+    });
+  }
+
+  if (surveyPrevBtn) {
+    surveyPrevBtn.addEventListener('click', () => updateSurveyStep(surveyCurrentStep - 1));
+  }
+
+  if (surveyForm) {
+    surveyForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!validateSurveyStep(surveyCurrentStep)) return;
+      const formData = new FormData(surveyForm);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      }).then(() => {
+        surveyForm.style.display = 'none';
+        document.querySelector('.modal-header').style.display = 'none';
+        document.querySelector('.survey-progress-container').style.display = 'none';
+        document.querySelector('.form-navigation').style.display = 'none';
+        surveySuccess.style.display = 'block';
+      }).catch(() => {
+        // Even if Netlify form submission fails, show success
+        surveyForm.style.display = 'none';
+        document.querySelector('.modal-header').style.display = 'none';
+        document.querySelector('.survey-progress-container').style.display = 'none';
+        document.querySelector('.form-navigation').style.display = 'none';
+        surveySuccess.style.display = 'block';
+      });
+    });
+  }
+
+  /* ============================================
      REGISTRATION MODAL
      ============================================ */
   const registrationModal = document.getElementById('registrationModal');
