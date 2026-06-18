@@ -2,6 +2,52 @@
    CodeBridge Academy — JavaScript (Optimized)
    ============================================ */
 
+/* ============================================
+   VALIDATION HELPERS
+   ============================================ */
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePhone(phone) {
+  // Accepts formats: +250 7XX XXX XXX, 07XXXXXXXX, +2507XXXXXXX, etc.
+  return /^[\+]?[0-9\s\-\/\(\)]{6,20}$/.test(phone.trim());
+}
+
+function showFieldError(field) {
+  const group = field.closest('.form-group');
+  if (!group) return;
+  group.classList.add('error');
+  // Add error message if not already present
+  if (!group.querySelector('.field-error')) {
+    const msg = document.createElement('span');
+    msg.className = 'field-error';
+    msg.textContent = field.dataset.errorMsg || 'This field is required';
+    // Custom message for specific types
+    if (field.type === 'email' && field.value.trim()) {
+      msg.textContent = 'Please enter a valid email address';
+    } else if (field.type === 'tel' && field.value.trim()) {
+      msg.textContent = 'Please enter a valid phone number';
+    }
+    group.appendChild(msg);
+  }
+}
+
+function clearFieldError(field) {
+  const group = field.closest('.form-group');
+  if (!group) return;
+  group.classList.remove('error');
+  const msg = group.querySelector('.field-error');
+  if (msg) msg.remove();
+}
+
+function clearGroupError(group) {
+  if (!group) return;
+  group.classList.remove('error');
+  const msg = group.querySelector('.field-error');
+  if (msg) msg.remove();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   /* ============================================
      SERVICE WORKER REGISTRATION
@@ -233,26 +279,99 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentSurveyStep = surveySteps[step - 1];
     const fields = currentSurveyStep.querySelectorAll('input[required], select[required], textarea[required]');
     let valid = true;
+    let firstErrorField = null;
+
     fields.forEach(f => {
       const isRadio = f.type === 'radio';
       const isCheckbox = f.type === 'checkbox';
-      let isFilled;
+      const isEmail = f.type === 'email';
+      const isTel = f.type === 'tel';
+      let isFilled = false;
+
       if (isRadio) {
         isFilled = currentSurveyStep.querySelector(`input[name="${f.name}"]:checked`);
+        if (!isFilled) {
+          f.closest('.form-group').classList.add('error');
+          if (!firstErrorField) firstErrorField = f.closest('.form-group');
+        } else {
+          clearGroupError(f.closest('.form-group'));
+        }
+        if (!isFilled) valid = false;
       } else if (isCheckbox) {
         isFilled = currentSurveyStep.querySelectorAll(`input[name="${f.name}"]:checked`).length > 0;
+        if (!isFilled) {
+          f.closest('.form-group').classList.add('error');
+          if (!firstErrorField) firstErrorField = f.closest('.form-group');
+        } else {
+          clearGroupError(f.closest('.form-group'));
+        }
+        if (!isFilled) valid = false;
       } else {
-        isFilled = f.value.trim();
-      }
-      if (!isFilled) {
-        valid = false;
-        (isRadio || isCheckbox ? f.closest('.form-group') : f).classList.add('error');
-      } else {
-        (isRadio || isCheckbox ? f.closest('.form-group') : f).classList.remove('error');
+        const val = f.value.trim();
+        if (val) {
+          if (isEmail && !validateEmail(val)) {
+            f.dataset.errorMsg = 'Please enter a valid email address';
+            showFieldError(f);
+            if (!firstErrorField) firstErrorField = f;
+            valid = false;
+            return;
+          }
+          if (isTel && !validatePhone(val)) {
+            f.dataset.errorMsg = 'Please enter a valid phone number';
+            showFieldError(f);
+            if (!firstErrorField) firstErrorField = f;
+            valid = false;
+            return;
+          }
+          isFilled = true;
+        }
+        if (isFilled) {
+          clearFieldError(f);
+        } else {
+          f.dataset.errorMsg = '';
+          showFieldError(f);
+          if (!firstErrorField) firstErrorField = f;
+          valid = false;
+        }
       }
     });
+
+    // Scroll to first error
+    if (!valid && firstErrorField) {
+      const scrollTarget = firstErrorField.closest('.form-group') || firstErrorField;
+      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     return valid;
   }
+
+  // Attach real-time validation to all survey fields (with deduplication)
+  surveySteps.forEach(s => {
+    const fields = s.querySelectorAll('input[required], select[required], textarea[required]');
+    fields.forEach(f => {
+      if (f._validationAttached) return;
+      f._validationAttached = true;
+      const eventType = f.type === 'radio' || f.type === 'checkbox' || f.tagName === 'SELECT' ? 'change' : 'blur';
+      f.addEventListener(eventType, () => {
+        if (f.closest('.survey-step.active')) {
+          if (f.type === 'email' && f.value.trim() && !validateEmail(f.value.trim())) {
+            f.dataset.errorMsg = 'Please enter a valid email address';
+            showFieldError(f);
+          } else if (f.type === 'tel' && f.value.trim() && !validatePhone(f.value.trim())) {
+            f.dataset.errorMsg = 'Please enter a valid phone number';
+            showFieldError(f);
+          } else if (f.value.trim() || f.type === 'radio' || f.type === 'checkbox') {
+            clearFieldError(f);
+          }
+        }
+      });
+      if (f.type === 'text' || f.type === 'email' || f.type === 'tel' || f.tagName === 'TEXTAREA') {
+        f.addEventListener('input', () => {
+          clearFieldError(f);
+        });
+      }
+    });
+  });
 
   if (surveyFloatBtn) {
     surveyFloatBtn.addEventListener('click', openSurvey);
@@ -354,20 +473,99 @@ document.addEventListener('DOMContentLoaded', () => {
   prevBtn.addEventListener('click', () => updateStep(currentStep - 1));
 
   function validateStep(step) {
-    const fields = steps[step - 1].querySelectorAll('input[required], select[required], textarea[required]');
+    const stepEl = steps[step - 1];
+    const fields = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
     let valid = true;
+    let firstErrorField = null;
+
     fields.forEach(f => {
       const isRadio = f.type === 'radio';
-      const isFilled = isRadio ? steps[step-1].querySelector(`input[name="${f.name}"]:checked`) : f.value.trim();
+      const isCheckbox = f.type === 'checkbox';
+      const isEmail = f.type === 'email';
+      const isTel = f.type === 'tel';
+      const isSelect = f.tagName === 'SELECT';
+      let isFilled = false;
+
+      if (isRadio) {
+        isFilled = stepEl.querySelector(`input[name="${f.name}"]:checked`);
+        clearGroupError(f.closest('.form-group'));
+      } else if (isCheckbox) {
+        isFilled = stepEl.querySelectorAll(`input[name="${f.name}"]:checked`).length > 0;
+        clearGroupError(f.closest('.form-group'));
+      } else {
+        const val = f.value.trim();
+        if (val) {
+          if (isEmail && !validateEmail(val)) {
+            f.dataset.errorMsg = 'Please enter a valid email address';
+            showFieldError(f);
+            valid = false;
+            if (!firstErrorField) firstErrorField = f;
+            return;
+          }
+          if (isTel && !validatePhone(val)) {
+            f.dataset.errorMsg = 'Please enter a valid phone number';
+            showFieldError(f);
+            valid = false;
+            if (!firstErrorField) firstErrorField = f;
+            return;
+          }
+          if (isSelect && !f.value) {
+            isFilled = false;
+          } else {
+            isFilled = true;
+          }
+        }
+        if (isFilled) {
+          clearFieldError(f);
+        }
+      }
+
       if (!isFilled) {
         valid = false;
-        (isRadio ? f.closest('.form-group') : f).classList.add('error');
-      } else {
-        (isRadio ? f.closest('.form-group') : f).classList.remove('error');
+        const group = isRadio || isCheckbox ? f.closest('.form-group') : f;
+        if (isRadio || isCheckbox) {
+          f.closest('.form-group').classList.add('error');
+          if (!firstErrorField) firstErrorField = group;
+        } else {
+          f.dataset.errorMsg = '';
+          showFieldError(f);
+          if (!firstErrorField) firstErrorField = f;
+        }
       }
     });
+
+    // Scroll to first error
+    if (!valid && firstErrorField) {
+      const scrollTarget = firstErrorField.closest('.form-group') || firstErrorField;
+      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     return valid;
   }
+
+  // Real-time validation on registration fields
+  document.querySelectorAll('#registrationForm input, #registrationForm select, #registrationForm textarea').forEach(f => {
+    const eventType = f.type === 'radio' || f.type === 'checkbox' || f.tagName === 'SELECT' ? 'change' : 'blur';
+    f.addEventListener(eventType, () => {
+      if (f.closest('.form-step.active')) {
+        if (f.type === 'email' && f.value.trim() && !validateEmail(f.value.trim())) {
+          f.dataset.errorMsg = 'Please enter a valid email address';
+          showFieldError(f);
+        } else if (f.type === 'tel' && f.value.trim() && !validatePhone(f.value.trim())) {
+          f.dataset.errorMsg = 'Please enter a valid phone number';
+          showFieldError(f);
+        } else if (f.value.trim() || f.type === 'radio' || f.type === 'checkbox') {
+          clearFieldError(f);
+        }
+      }
+    });
+    // Also clear on input for text fields
+    if (f.type === 'text' || f.type === 'email' || f.type === 'tel' || f.tagName === 'TEXTAREA') {
+      f.addEventListener('input', () => {
+        clearFieldError(f);
+      });
+    }
+  });
 
   regForm.addEventListener('submit', e => {
     e.preventDefault();

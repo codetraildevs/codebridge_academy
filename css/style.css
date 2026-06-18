@@ -2497,6 +2497,20 @@ input.error, select.error, textarea.error {
   border-width: 0;
 }
 
+/* Field validation error message */
+.field-error {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-error);
+  margin-top: 0.35rem;
+  font-weight: 500;
+  animation: fadeIn 0.25s ease;
+}
+
+.form-group.error .field-error {
+  color: var(--color-error);
+}
+
 /* ============================================
    WHY QUALEXAS? SECTION
    ============================================ */
