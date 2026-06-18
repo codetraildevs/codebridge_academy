@@ -1072,26 +1072,26 @@
         <div class="form-step" data-step="2">
           <div class="form-group">
             <label for="fullName">Full Names *</label>
-            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" autocomplete="name">
           </div>
           <div class="form-group">
             <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required placeholder="example@email.com">
+            <input type="email" id="email" name="email" required placeholder="example@email.com" autocomplete="email">
           </div>
           <div class="form-group">
             <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" required placeholder="+250 7XX XXX XXX">
+            <input type="tel" id="phone" name="phone" required placeholder="+250 7XX XXX XXX" autocomplete="tel">
           </div>
           <div class="form-group">
             <label>Gender *</label>
-            <div class="radio-group">
+            <div class="radio-group" role="radiogroup" aria-label="Gender">
               <label class="radio-label"><input type="radio" name="gender" value="Male" required> Male</label>
               <label class="radio-label"><input type="radio" name="gender" value="Female"> Female</label>
             </div>
           </div>
           <div class="form-group">
             <label for="location">Location *</label>
-            <input type="text" id="location" name="location" required placeholder="e.g., Gikondo, Nyamirambo">
+            <input type="text" id="location" name="location" required placeholder="e.g., Gikondo, Nyamirambo" autocomplete="address-level2">
           </div>
         </div>
 
@@ -1099,7 +1099,7 @@
         <div class="form-step" data-step="3">
           <div class="form-group">
             <label>Current Status Level *</label>
-            <div class="radio-group vertical">
+            <div class="radio-group vertical" role="radiogroup" aria-label="Current Status Level">
               <label class="radio-label"><input type="radio" name="status" value="Secondary school student" required> Secondary school student</label>
               <label class="radio-label"><input type="radio" name="status" value="University student"> University student</label>
               <label class="radio-label"><input type="radio" name="status" value="Graduate"> Graduate</label>
@@ -1108,11 +1108,11 @@
           </div>
           <div class="form-group">
             <label for="organization">School / University / Company Name *</label>
-            <input type="text" id="organization" name="organization" required placeholder="Name of your institution">
+            <input type="text" id="organization" name="organization" required placeholder="Name of your institution" autocomplete="organization">
           </div>
           <div class="form-group">
-            <label>Current Class / Level / Year *</label>
-            <select name="level" required class="form-control">
+            <label for="level">Current Class / Level / Year *</label>
+            <select id="level" name="level" required class="form-control">
               <option value="" disabled selected>Select your level</option>
               <option value="L3">L3</option>
               <option value="L4">L4</option>
@@ -1129,7 +1129,7 @@
         <div class="form-step" data-step="4">
           <div class="form-group">
             <label>Which training program do you want to join? *</label>
-            <div class="radio-group vertical">
+            <div class="radio-group vertical" role="radiogroup" aria-label="Training program">
               <label class="radio-label"><input type="radio" name="program" value="Web Development Fundamentals" required> Web Development Fundamentals</label>
               <label class="radio-label"><input type="radio" name="program" value="Full Stack Development"> Full Stack Development</label>
               <label class="radio-label"><input type="radio" name="program" value="Career &amp; Internship Readiness"> Career &amp; Internship Readiness</label>
@@ -1137,7 +1137,7 @@
           </div>
           <div class="form-group">
             <label>Current skill level in software development *</label>
-            <div class="radio-group">
+            <div class="radio-group" role="radiogroup" aria-label="Current skill level">
               <label class="radio-label"><input type="radio" name="skillLevel" value="Beginner" required> Beginner</label>
               <label class="radio-label"><input type="radio" name="skillLevel" value="Intermediate"> Intermediate</label>
               <label class="radio-label"><input type="radio" name="skillLevel" value="Advanced"> Advanced</label>
@@ -1145,7 +1145,7 @@
           </div>
           <div class="form-group">
             <label>Technologies used (Select all that apply) *</label>
-            <div class="checkbox-grid">
+            <div class="checkbox-grid" role="group" aria-label="Technologies used">
               <label class="checkbox-label"><input type="checkbox" name="tech" value="HTML"> HTML</label>
               <label class="checkbox-label"><input type="checkbox" name="tech" value="CSS"> CSS</label>
               <label class="checkbox-label"><input type="checkbox" name="tech" value="Javascript"> Javascript</label>
@@ -1168,14 +1168,14 @@
           <div class="form-group inline">
             <div>
               <label>Do you have a laptop? *</label>
-              <div class="radio-group">
+              <div class="radio-group" role="radiogroup" aria-label="Has laptop">
                 <label class="radio-label"><input type="radio" name="hasLaptop" value="Yes" required> Yes</label>
                 <label class="radio-label"><input type="radio" name="hasLaptop" value="No"> No</label>
               </div>
             </div>
             <div>
               <label>Reliable internet? *</label>
-              <div class="radio-group">
+              <div class="radio-group" role="radiogroup" aria-label="Has reliable internet">
                 <label class="radio-label"><input type="radio" name="hasInternet" value="Yes" required> Yes</label>
                 <label class="radio-label"><input type="radio" name="hasInternet" value="No"> No</label>
               </div>
@@ -1183,7 +1183,7 @@
           </div>
           <div class="form-group">
             <label for="projects">Software projects before? Share links (optional)</label>
-            <input type="text" id="projects" name="projects" placeholder="GitHub link or project title">
+            <input type="text" id="projects" name="projects" placeholder="GitHub link or project title" autocomplete="url">
           </div>
           <div class="form-group">
             <label for="motivation">Why do you want to join? *</label>
@@ -1191,7 +1191,7 @@
           </div>
           <div class="form-group">
             <label>Main goals (Select all apply) *</label>
-            <div class="checkbox-grid">
+            <div class="checkbox-grid" role="group" aria-label="Main goals">
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Learn software development"> Learn software dev</label>
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Prepare for internship"> Prepare for internship</label>
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Improve practical skills"> Improve practical skills</label>
