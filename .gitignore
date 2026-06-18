@@ -6,3 +6,21 @@ updated_logo.jpeg
 # Ignore all Markdown files except README.md
 *.md
 !README.md
+
+# Generated QR codes (derived from students.json)
+qr_codes/
+
+# OS junk files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Personal docs
+docs/readme.txt
