@@ -488,49 +488,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (isRadio) {
         isFilled = stepEl.querySelector(`input[name="${f.name}"]:checked`);
-        clearGroupError(f.closest('.form-group'));
-      } else if (isCheckbox) {
-        isFilled = stepEl.querySelectorAll(`input[name="${f.name}"]:checked`).length > 0;
-        clearGroupError(f.closest('.form-group'));
-      } else {
-        const val = f.value.trim();
-        if (val) {
-          if (isEmail && !validateEmail(val)) {
-            f.dataset.errorMsg = 'Please enter a valid email address';
-            showFieldError(f);
-            valid = false;
-            if (!firstErrorField) firstErrorField = f;
-            return;
-          }
-          if (isTel && !validatePhone(val)) {
-            f.dataset.errorMsg = 'Please enter a valid phone number';
-            showFieldError(f);
-            valid = false;
-            if (!firstErrorField) firstErrorField = f;
-            return;
-          }
-          if (isSelect && !f.value) {
-            isFilled = false;
-          } else {
-            isFilled = true;
-          }
+        if (!isFilled) {
+          f.closest('.form-group').classList.add('error');
+          if (!firstErrorField) firstErrorField = f.closest('.form-group');
+          valid = false;
+        } else {
+          clearGroupError(f.closest('.form-group'));
         }
-        if (isFilled) {
-          clearFieldError(f);
-        }
+        return;
       }
 
-      if (!isFilled) {
-        valid = false;
-        const group = isRadio || isCheckbox ? f.closest('.form-group') : f;
-        if (isRadio || isCheckbox) {
+      if (isCheckbox) {
+        isFilled = stepEl.querySelectorAll(`input[name="${f.name}"]:checked`).length > 0;
+        if (!isFilled) {
           f.closest('.form-group').classList.add('error');
-          if (!firstErrorField) firstErrorField = group;
+          if (!firstErrorField) firstErrorField = f.closest('.form-group');
+          valid = false;
         } else {
-          f.dataset.errorMsg = '';
-          showFieldError(f);
-          if (!firstErrorField) firstErrorField = f;
+          clearGroupError(f.closest('.form-group'));
         }
+        return;
+      }
+
+      // Text/email/tel/select/textarea fields
+      const val = f.value.trim();
+      if (val) {
+        if (isEmail && !validateEmail(val)) {
+          f.dataset.errorMsg = 'Please enter a valid email address';
+          showFieldError(f);
+          valid = false;
+          if (!firstErrorField) firstErrorField = f;
+          return;
+        }
+        if (isTel && !validatePhone(val)) {
+          f.dataset.errorMsg = 'Please enter a valid phone number';
+          showFieldError(f);
+          valid = false;
+          if (!firstErrorField) firstErrorField = f;
+          return;
+        }
+        isFilled = isSelect ? !!f.value : true;
+      }
+
+      if (isFilled) {
+        clearFieldError(f);
+      } else {
+        f.dataset.errorMsg = '';
+        showFieldError(f);
+        if (!firstErrorField) firstErrorField = f;
+        valid = false;
       }
     });
 
