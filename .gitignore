@@ -2,3 +2,7 @@
 new_logo.png
 logo.png
 updated_logo.jpeg
+
+# Ignore all Markdown files except README.md
+*.md
+!README.md
