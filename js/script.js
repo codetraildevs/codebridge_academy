@@ -14,6 +14,12 @@ function validatePhone(phone) {
   return /^[\+]?[0-9\s\-\/\(\)]{6,20}$/.test(phone.trim());
 }
 
+function validateTextOnly(val) {
+  // Only letters (Unicode), spaces, hyphens, apostrophes, periods
+  // No numbers or special characters like @, #, $, %, etc.
+  return /^[\p{L}\s'.\-]+$/u.test(val.trim());
+}
+
 function showFieldError(field) {
   const group = field.closest('.form-group');
   if (!group) return;
@@ -323,6 +329,13 @@ document.addEventListener('DOMContentLoaded', () => {
             valid = false;
             return;
           }
+          if (f.dataset.textonly !== undefined && !validateTextOnly(val)) {
+            f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
+            showFieldError(f);
+            if (!firstErrorField) firstErrorField = f;
+            valid = false;
+            return;
+          }
           isFilled = true;
         }
         if (isFilled) {
@@ -359,6 +372,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showFieldError(f);
           } else if (f.type === 'tel' && f.value.trim() && !validatePhone(f.value.trim())) {
             f.dataset.errorMsg = 'Please enter a valid phone number';
+            showFieldError(f);
+          } else if (f.dataset.textonly !== undefined && f.value.trim() && !validateTextOnly(f.value.trim())) {
+            f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
             showFieldError(f);
           } else if (f.value.trim() || f.type === 'radio' || f.type === 'checkbox') {
             clearFieldError(f);
@@ -527,6 +543,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!firstErrorField) firstErrorField = f;
           return;
         }
+        if (f.dataset.textonly !== undefined && !validateTextOnly(val)) {
+          f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
+          showFieldError(f);
+          valid = false;
+          if (!firstErrorField) firstErrorField = f;
+          return;
+        }
         isFilled = isSelect ? !!f.value : true;
       }
 
@@ -559,6 +582,9 @@ document.addEventListener('DOMContentLoaded', () => {
           showFieldError(f);
         } else if (f.type === 'tel' && f.value.trim() && !validatePhone(f.value.trim())) {
           f.dataset.errorMsg = 'Please enter a valid phone number';
+          showFieldError(f);
+        } else if (f.dataset.textonly !== undefined && f.value.trim() && !validateTextOnly(f.value.trim())) {
+          f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
           showFieldError(f);
         } else if (f.value.trim() || f.type === 'radio' || f.type === 'checkbox') {
           clearFieldError(f);
