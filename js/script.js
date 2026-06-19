@@ -62,6 +62,37 @@ function clearGroupError(group) {
 }
 
 /* ============================================
+   BUTTON LOADING STATE
+   ============================================ */
+function setButtonLoading(btn, loading) {
+  if (!btn) return;
+  // Store original innerHTML on first load
+  if (!btn._originalHTML) {
+    btn._originalHTML = btn.innerHTML;
+  }
+  if (loading) {
+    btn.disabled = true;
+    if (!btn.querySelector('.btn-spinner')) {
+      btn.classList.add('btn-loading');
+      const spinner = document.createElement('span');
+      spinner.className = 'btn-spinner';
+      const textSpan = document.createElement('span');
+      textSpan.className = 'btn-text';
+      textSpan.textContent = btn.textContent.trim();
+      btn.innerHTML = '';
+      btn.appendChild(spinner);
+      btn.appendChild(textSpan);
+    }
+  } else {
+    btn.disabled = false;
+    btn.classList.remove('btn-loading');
+    if (btn._originalHTML) {
+      btn.innerHTML = btn._originalHTML;
+    }
+  }
+}
+
+/* ============================================
    PHONE HELPERS (with country code)
    ============================================ */
 function getFullPhone(field) {
@@ -522,6 +553,8 @@ document.addEventListener('DOMContentLoaded', () => {
     surveyForm.addEventListener('submit', e => {
       e.preventDefault();
       if (!validateSurveyStep(surveyCurrentStep)) return;
+      // Show loading state
+      setButtonLoading(surveySubmitBtn, true);
       const surveyPhoneField = document.getElementById('surveyPhone');
       if (surveyPhoneField) combinePhoneForSubmit(surveyPhoneField);
       const formData = new FormData(surveyForm);
@@ -530,12 +563,14 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
       }).then(() => {
+        setButtonLoading(surveySubmitBtn, false);
         surveyForm.style.display = 'none';
         document.querySelector('.modal-header').style.display = 'none';
         document.querySelector('.survey-progress-container').style.display = 'none';
         document.querySelector('.form-navigation').style.display = 'none';
         surveySuccess.style.display = 'block';
       }).catch(() => {
+        setButtonLoading(surveySubmitBtn, false);
         // Even if Netlify form submission fails, show success
         surveyForm.style.display = 'none';
         document.querySelector('.modal-header').style.display = 'none';
@@ -718,6 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
   regForm.addEventListener('submit', e => {
     e.preventDefault();
     if (!validateStep(currentStep)) return;
+    // Show loading state
+    setButtonLoading(submitBtn, true);
     // Combine country code with phone number before submission
     const phoneField = document.getElementById('phone');
     if (phoneField) combinePhoneForSubmit(phoneField);
@@ -727,10 +764,13 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
     }).then(() => {
+      setButtonLoading(submitBtn, false);
       registrationModal.classList.remove('active');
       successToast.classList.add('active');
       setTimeout(() => successToast.classList.remove('active'), 5000);
       regForm.reset();
+    }).catch(() => {
+      setButtonLoading(submitBtn, false);
     });
   });
 });
