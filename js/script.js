@@ -10,8 +10,15 @@ function validateEmail(email) {
 }
 
 function validatePhone(phone) {
-  // Accepts formats: +250 7XX XXX XXX, 07XXXXXXXX, +2507XXXXXXX, etc.
-  return /^[\+]?[0-9\s\-\/\(\)]{6,20}$/.test(phone.trim());
+  // Strip common separators: spaces, hyphens, dots, parentheses, slashes
+  const cleaned = phone.replace(/[\s\-\(\)\.\/]/g, '');
+  // Rwandan local format: 0788123456 (10 digits starting with 07)
+  if (/^07[0-9]{8}$/.test(cleaned)) return true;
+  // Rwandan international: +250788123456 (starts with +2507, 12 chars)
+  if (/^\+2507[0-9]{8}$/.test(cleaned)) return true;
+  // Allow other international numbers with valid country code
+  if (/^\+[1-9][0-9]{6,14}$/.test(cleaned)) return true;
+  return false;
 }
 
 function validateTextOnly(val) {
