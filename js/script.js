@@ -537,6 +537,16 @@ document.addEventListener('DOMContentLoaded', () => {
     surveyCloseSuccessBtn.addEventListener('click', closeSurvey);
   }
 
+  // Survey success "Learn More" link
+  const surveySuccessLearn = document.getElementById('surveySuccessLearn');
+  if (surveySuccessLearn) {
+    surveySuccessLearn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeSurvey();
+      document.getElementById('why-qualexas').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
   if (surveyNextBtn) {
     surveyNextBtn.addEventListener('click', () => {
       if (validateSurveyStep(surveyCurrentStep)) {
@@ -611,8 +621,16 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.style.display = currentStep === steps.length ? 'flex' : 'none';
   }
 
+  const registrationSuccessEl = document.getElementById('registrationSuccess');
+
   regButtons.forEach(btn => btn.addEventListener('click', (e) => {
     e.preventDefault();
+    // Reset modal visibility states for fresh open
+    regForm.style.display = 'block';
+    regForm.querySelector('.form-navigation').style.display = 'flex';
+    document.querySelector('#registrationModal .modal-header').style.display = 'block';
+    document.querySelector('#registrationModal .progress-container').style.display = 'block';
+    if (registrationSuccessEl) registrationSuccessEl.style.display = 'none';
     registrationModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     updateStep(1);
@@ -765,12 +783,33 @@ document.addEventListener('DOMContentLoaded', () => {
       body: new URLSearchParams(formData).toString(),
     }).then(() => {
       setButtonLoading(submitBtn, false);
-      registrationModal.classList.remove('active');
-      successToast.classList.add('active');
-      setTimeout(() => successToast.classList.remove('active'), 5000);
+      // Show success screen inside modal
+      regForm.style.display = 'none';
+      document.querySelector('#registrationModal .modal-header').style.display = 'none';
+      document.querySelector('#registrationModal .progress-container').style.display = 'none';
+      document.querySelector('#registrationModal .form-navigation').style.display = 'none';
+      document.getElementById('registrationSuccess').style.display = 'block';
       regForm.reset();
     }).catch(() => {
       setButtonLoading(submitBtn, false);
     });
   });
+
+  // Registration success screen interactions
+  const regSuccessClose = document.getElementById('regSuccessClose');
+  const regSuccessContact = document.getElementById('regSuccessContact');
+  if (regSuccessClose) {
+    regSuccessClose.addEventListener('click', () => {
+      registrationModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+  if (regSuccessContact) {
+    regSuccessContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      registrationModal.classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 });

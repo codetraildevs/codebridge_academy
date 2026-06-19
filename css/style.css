@@ -3194,16 +3194,18 @@ input.error, select.error, textarea.error {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* Survey success */
-.survey-success {
+/* ============================================
+   FORM SUCCESS SCREEN (shared)
+   ============================================ */
+.form-success {
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 2rem 0.5rem;
 }
 
-.survey-success-icon {
+.form-success-icon {
   font-size: 4rem;
   color: var(--color-success);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   animation: successBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -3213,19 +3215,92 @@ input.error, select.error, textarea.error {
   100% { transform: scale(1); }
 }
 
-.survey-success h3 {
+.form-success h3 {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--color-text);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
-.survey-success p {
+.form-success-message {
   font-size: 0.95rem;
   color: var(--color-text-secondary);
   line-height: 1.7;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto 2rem;
+}
+
+/* Success timeline */
+.success-timeline {
+  max-width: 420px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  border-radius: 50%;
+  background: var(--color-success);
+  margin-top: 5px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px rgba(var(--color-success), 0.15);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 22px;
+  width: 2px;
+  height: calc(100% - 22px + 1.25rem);
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.timeline-content strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.15rem;
+}
+
+.timeline-content span {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* Success action buttons */
+.success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.success-actions .btn {
+  min-width: 160px;
+  justify-content: center;
 }
 
 /* ============================================
