@@ -2497,6 +2497,73 @@ input.error, select.error, textarea.error {
   border-width: 0;
 }
 
+/* ============================================
+   PHONE INPUT GROUP
+   ============================================ */
+.phone-input-group {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+.phone-input-group .phone-code-select {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 110px;
+  padding: 0.85rem 0.5rem 0.85rem 0.75rem;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  background: var(--bg-section);
+  border: 1px solid var(--color-border);
+  border-right: none;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394A3B8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 1.5rem;
+}
+
+.phone-input-group .phone-code-select:focus {
+  border-color: var(--brand-blue);
+  background-color: var(--bg-card);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(var(--brand-blue-rgb), 0.1);
+  z-index: 1;
+  position: relative;
+}
+
+.phone-input-group input[type="tel"] {
+  flex: 1;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0 !important;
+  border-left: none;
+}
+
+.phone-input-group input[type="tel"]:focus {
+  z-index: 1;
+  position: relative;
+}
+
+.form-group.error .phone-input-group .phone-code-select {
+  border-color: var(--color-error);
+}
+
+.form-group.error .phone-input-group input[type="tel"] {
+  border-color: var(--color-error);
+}
+
+@media (max-width: 480px) {
+  .phone-input-group .phone-code-select {
+    min-width: 80px;
+    font-size: 0.82rem;
+    padding: 0.75rem 1.25rem 0.75rem 0.5rem;
+  }
+}
+
 /* Field validation error message */
 .field-error {
   display: block;

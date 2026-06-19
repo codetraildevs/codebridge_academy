@@ -62,6 +62,41 @@ function clearGroupError(group) {
 }
 
 /* ============================================
+   PHONE HELPERS (with country code)
+   ============================================ */
+function getFullPhone(field) {
+  // If a country code select exists in the same group, prepend it
+  const group = field.closest('.phone-input-group');
+  if (group) {
+    const codeSelect = group.querySelector('.phone-code-select');
+    if (codeSelect && codeSelect.value) {
+      const digitsOnly = field.value.replace(/[^0-9]/g, '');
+      // If number starts with 0 (local format like 07...), use as-is
+      if (digitsOnly.startsWith('0')) return digitsOnly;
+      // Otherwise prepend the country code
+      return codeSelect.value + digitsOnly;
+    }
+  }
+  return field.value.trim();
+}
+
+function combinePhoneForSubmit(field) {
+  // Update the phone value to include the country code for form submission
+  const group = field.closest('.phone-input-group');
+  if (group) {
+    const codeSelect = group.querySelector('.phone-code-select');
+    if (codeSelect && codeSelect.value) {
+      const digitsOnly = field.value.replace(/[^0-9]/g, '');
+      if (digitsOnly.startsWith('0')) {
+        field.value = digitsOnly;
+      } else if (digitsOnly) {
+        field.value = codeSelect.value + ' ' + field.value.trim();
+      }
+    }
+  }
+}
+
+/* ============================================
    PHONE FORMATTING
    ============================================ */
 function formatPhoneInput(input) {
@@ -391,20 +426,20 @@ document.addEventListener('DOMContentLoaded', () => {
             valid = false;
             return;
           }
-          if (isTel && !validatePhone(val)) {
-            f.dataset.errorMsg = 'Please enter a valid phone number';
-            showFieldError(f);
-            if (!firstErrorField) firstErrorField = f;
-            valid = false;
-            return;
-          }
-          if (f.dataset.textonly !== undefined && !validateTextOnly(val)) {
-            f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
-            showFieldError(f);
-            if (!firstErrorField) firstErrorField = f;
-            valid = false;
-            return;
-          }
+        if (isTel && !validatePhone(getFullPhone(f))) {
+          f.dataset.errorMsg = 'Please enter a valid phone number';
+          showFieldError(f);
+          if (!firstErrorField) firstErrorField = f;
+          valid = false;
+          return;
+        }
+        if (f.dataset.textonly !== undefined && !validateTextOnly(val)) {
+          f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
+          showFieldError(f);
+          if (!firstErrorField) firstErrorField = f;
+          valid = false;
+          return;
+        }
           isFilled = true;
         }
         if (isFilled) {
@@ -439,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (f.type === 'email' && f.value.trim() && !validateEmail(f.value.trim())) {
             f.dataset.errorMsg = 'Please enter a valid email address';
             showFieldError(f);
-          } else if (f.type === 'tel' && f.value.trim() && !validatePhone(f.value.trim())) {
+          } else if (f.type === 'tel' && f.value.trim() && !validatePhone(getFullPhone(f))) {
             f.dataset.errorMsg = 'Please enter a valid phone number';
             showFieldError(f);
           } else if (f.dataset.textonly !== undefined && f.value.trim() && !validateTextOnly(f.value.trim())) {
@@ -487,6 +522,8 @@ document.addEventListener('DOMContentLoaded', () => {
     surveyForm.addEventListener('submit', e => {
       e.preventDefault();
       if (!validateSurveyStep(surveyCurrentStep)) return;
+      const surveyPhoneField = document.getElementById('surveyPhone');
+      if (surveyPhoneField) combinePhoneForSubmit(surveyPhoneField);
       const formData = new FormData(surveyForm);
       fetch("/", {
         method: "POST",
@@ -605,7 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!firstErrorField) firstErrorField = f;
           return;
         }
-        if (isTel && !validatePhone(val)) {
+        if (isTel && !validatePhone(getFullPhone(f))) {
           f.dataset.errorMsg = 'Please enter a valid phone number';
           showFieldError(f);
           valid = false;
@@ -659,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (f.type === 'email' && f.value.trim() && !validateEmail(f.value.trim())) {
           f.dataset.errorMsg = 'Please enter a valid email address';
           showFieldError(f);
-        } else if (f.type === 'tel' && f.value.trim() && !validatePhone(f.value.trim())) {
+        } else if (f.type === 'tel' && f.value.trim() && !validatePhone(getFullPhone(f))) {
           f.dataset.errorMsg = 'Please enter a valid phone number';
           showFieldError(f);
         } else if (f.dataset.textonly !== undefined && f.value.trim() && !validateTextOnly(f.value.trim())) {
@@ -681,6 +718,9 @@ document.addEventListener('DOMContentLoaded', () => {
   regForm.addEventListener('submit', e => {
     e.preventDefault();
     if (!validateStep(currentStep)) return;
+    // Combine country code with phone number before submission
+    const phoneField = document.getElementById('phone');
+    if (phoneField) combinePhoneForSubmit(phoneField);
     const formData = new FormData(regForm);
     fetch("/", {
       method: "POST",
