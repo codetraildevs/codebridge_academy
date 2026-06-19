@@ -604,7 +604,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const submitBtn = document.getElementById('submitBtn');
-  const successToast = document.getElementById('successMessage');
 
   let currentStep = 1;
 
