@@ -61,6 +61,68 @@ function clearGroupError(group) {
   if (msg) msg.remove();
 }
 
+/* ============================================
+   PHONE FORMATTING
+   ============================================ */
+function formatPhoneInput(input) {
+  const start = input.selectionStart || 0;
+  const oldVal = input.value;
+
+  // Count raw digits before cursor in old value
+  let digitCount = 0;
+  for (let i = 0; i < start; i++) {
+    if (/[0-9]/.test(oldVal[i])) digitCount++;
+  }
+  const hadPlus = oldVal.substring(0, start).includes('+');
+
+  // Strip all non-digit, non-plus
+  let cleaned = oldVal.replace(/[^0-9+]/g, '');
+
+  // Determine format and apply
+  let formatted = '';
+  const isRwandanIntl = cleaned.startsWith('+250') && cleaned.length <= 13;
+  const isRwandanLocal = cleaned.startsWith('07') && cleaned.length <= 10;
+
+  if (isRwandanIntl) {
+    const d = cleaned.slice(1); // remove + for grouping
+    formatted = '+' + d.slice(0, 3);
+    if (d.length > 3) formatted += ' ' + d.slice(3, 6);
+    if (d.length > 6) formatted += ' ' + d.slice(6, 9);
+    if (d.length > 9) formatted += ' ' + d.slice(9, 12);
+  } else if (isRwandanLocal) {
+    formatted = cleaned.slice(0, 4);
+    if (cleaned.length > 4) formatted += ' ' + cleaned.slice(4, 7);
+    if (cleaned.length > 7) formatted += ' ' + cleaned.slice(7, 10);
+  } else {
+    // Generic: group every 3 digits
+    for (let i = 0; i < cleaned.length; i += 3) {
+      if (i > 0 && !(i === 1 && cleaned[0] === '+')) formatted += ' ';
+      formatted += cleaned.slice(i, i + 3);
+    }
+  }
+
+  if (formatted !== oldVal) {
+    input.value = formatted;
+    let pos;
+    if (start >= oldVal.length) {
+      // User was typing at the end — place cursor at the end of formatted value
+      pos = formatted.length;
+    } else {
+      // Mid-field edit — use digit-count approach to maintain position
+      pos = 0;
+      let found = 0;
+      while (pos < formatted.length && found < digitCount) {
+        if (/[0-9]/.test(formatted[pos])) found++;
+        pos++;
+      }
+      // If cursor was after the + and digitCount is 0, keep at position 1
+      if (digitCount === 0 && hadPlus && formatted.startsWith('+')) {
+        pos = 1;
+      }
+    }
+    input.setSelectionRange(pos, pos);
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   /* ============================================
      SERVICE WORKER REGISTRATION
@@ -577,6 +639,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     return valid;
+  }
+
+  // Real-time phone formatting
+  const phoneInput = document.getElementById('phone');
+  const surveyPhoneInput = document.getElementById('surveyPhone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', () => formatPhoneInput(phoneInput));
+  }
+  if (surveyPhoneInput) {
+    surveyPhoneInput.addEventListener('input', () => formatPhoneInput(surveyPhoneInput));
   }
 
   // Real-time validation on registration fields
