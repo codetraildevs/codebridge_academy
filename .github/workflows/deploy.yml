@@ -16,9 +16,8 @@ jobs:
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 22
-          # Optional: add your VPS host key fingerprint for extra security
-          # Get it by running: ssh-keyscan -H 159.198.36.184
-          # host_key: ${{ secrets.VPS_HOST_KEY }}
+          # SSH host key verification (prevents MITM attacks)
+          host_key: ${{ secrets.VPS_HOST_KEY }}
           script: |
             set -e
 
