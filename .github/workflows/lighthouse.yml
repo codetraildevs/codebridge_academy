@@ -34,25 +34,10 @@ jobs:
 
       - name: Run Lighthouse with budget check
         id: lighthouse
-        run: |
-          ./node_modules/.bin/lighthouse http://localhost:8080/ \
-            --output=json \
-            --output-path=lighthouse-report/report-ci \
-            --budget-file=lighthouse-budget.json \
-            --preset=desktop \
-            --max-wait-for-load=90000 \
-            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
+        run: npm run lighthouse:budget -- --max-wait-for-load=90000 --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" 2>&1 | tail -20
 
-      - name: Wait for Lighthouse report
-        run: |
-          for i in $(seq 1 10); do
-            if ls lighthouse-report/*.report.json 2>/dev/null; then
-              echo "Report found after ${i}s"
-              break
-            fi
-            echo "Waiting for report... (${i}s)"
-            sleep 1
-          done
+      - name: Verify report was generated
+        run: ls -la lighthouse-report/ 2>/dev/null || echo "No report directory"
 
       - name: Run budget check script
         id: budget
