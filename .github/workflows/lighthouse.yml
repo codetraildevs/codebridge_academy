@@ -34,18 +34,23 @@ jobs:
 
       - name: Run Lighthouse with budget check
         id: lighthouse
-        run: npm run lighthouse:budget
+        run: |
+          npm run lighthouse:budget 2>&1 || echo "LIGHTHOUSE_EXIT_CODE=$?"
 
       - name: Wait for report
         run: |
-          for i in 1 2 3 4 5; do
-            if ls lighthouse-report/*.report.json 2>/dev/null; then
+          echo "Checking for report files..."
+          for i in $(seq 1 15); do
+            FILES=$(ls lighthouse-report/*.report.json 2>/dev/null)
+            if [ -n "$FILES" ]; then
               echo "✅ Report ready after ${i}s"
+              echo "$FILES"
               break
             fi
             sleep 2
           done
-          ls -la lighthouse-report/ 2>/dev/null || echo "No report files found"
+          echo "--- lighthouse-report directory ---"
+          ls -la lighthouse-report/ 2>/dev/null || echo "(empty)"
 
       - name: Run budget check script
         id: budget
