@@ -40,7 +40,7 @@ jobs:
             --output-path=lighthouse-report/report-ci \
             --budget-file=lighthouse-budget.json \
             --max-wait-for-load=60000 \
-            --chrome-flags="--headless --no-sandbox"
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
 
       - name: Run budget check script
         id: budget
