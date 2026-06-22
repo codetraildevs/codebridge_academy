@@ -6,9 +6,9 @@
   "scripts": {
     "lighthouse": "lighthouse http://localhost:8080/ --view --output=json --output=html --output-path=lighthouse-report/report",
     "lighthouse:ci": "lighthouse http://localhost:8080/ --output=json --output=html --output-path=lighthouse-report/report --chrome-flags=\"--headless --no-sandbox\"",
-    "lighthouse:budget": "lighthouse http://localhost:8080/ --output=json --output-path=lighthouse-report/report --budget-file=lighthouse-budget.json --chrome-flags=\"--headless --no-sandbox\"",
-    "lighthouse:ci-full": "lighthouse http://localhost:8080/ --output=json --output=html --output-path=lighthouse-report/report-full --budget-file=lighthouse-budget.json --chrome-flags=\"--headless --no-sandbox\"",
-    "lighthouse:desktop": "lighthouse http://localhost:8080/ --preset=desktop --output=json --output=html --output-path=lighthouse-report/report-desktop --chrome-flags=\"--headless --no-sandbox\"",
+    "lighthouse:budget": "lighthouse http://localhost:8080/ --output=json --output-path=lighthouse-report/report --budget-file=lighthouse-budget.json --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",
+    "lighthouse:ci-full": "lighthouse http://localhost:8080/ --output=json --output=html --output-path=lighthouse-report/report-full --budget-file=lighthouse-budget.json --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",
+    "lighthouse:desktop": "lighthouse http://localhost:8080/ --preset=desktop --output=json --output=html --output-path=lighthouse-report/report-desktop --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",
     "perf:check": "node scripts/check-budget.js",
     "perf:audit": "npm run lighthouse:ci-full && npm run perf:check",
     "perf:audit-full": "npm run lighthouse:desktop && npm run lighthouse:ci-full && npm run perf:check"

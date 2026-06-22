@@ -34,10 +34,18 @@ jobs:
 
       - name: Run Lighthouse with budget check
         id: lighthouse
-        run: npm run lighthouse:budget -- --max-wait-for-load=90000 --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" 2>&1 | tail -20
+        run: npm run lighthouse:budget
 
-      - name: Verify report was generated
-        run: ls -la lighthouse-report/ 2>/dev/null || echo "No report directory"
+      - name: Wait for report
+        run: |
+          for i in 1 2 3 4 5; do
+            if ls lighthouse-report/*.report.json 2>/dev/null; then
+              echo "✅ Report ready after ${i}s"
+              break
+            fi
+            sleep 2
+          done
+          ls -la lighthouse-report/ 2>/dev/null || echo "No report files found"
 
       - name: Run budget check script
         id: budget
@@ -45,8 +53,8 @@ jobs:
 
       - name: Print Performance Summary
         run: |
-          REPORT="lighthouse-report/report-ci.report.json"
-          if [ -f "$REPORT" ]; then
+          REPORT=$(ls lighthouse-report/*.report.json 2>/dev/null | head -1)
+          if [ -n "$REPORT" ]; then
             node -e "
               const r = require('./$REPORT');
               const cats = ['performance','accessibility','best-practices','seo'];
