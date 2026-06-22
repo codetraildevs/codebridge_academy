@@ -99,12 +99,55 @@ To run the project locally:
 1. Use a local server (e.g., Live Server in VS Code).
 2. Assets will automatically fall back to local versions if the Netlify CDN is not available.
 
-## Deployment
+## CI/CD Pipeline
 
-The project is configured for deployment on Netlify.
-- `netlify.toml` handles the build configuration, caching headers (with glob patterns for nested paths).
-- Forms are automatically handled by Netlify Forms.
-- Image assets are served via Netlify Image CDN for optimized delivery.
+Two GitHub Actions workflows run automatically on every push to `main`:
+
+### 1. Deploy to VPS (auto-pull)
+
+Triggered on every push to `main`, this workflow SSHs into the production VPS and pulls the latest changes:
+
+1. **SSH** into `root@159.198.36.184` using the deploy key stored in `VPS_SSH_KEY` secret
+2. **Stash** any local changes on the server (in case of manual edits)
+3. **Git pull** `origin main` into `/var/www/codebridgeacademy`
+4. **Reload** nginx to serve the updated files
+
+**One-time setup required:**
+- Clone the repo on the VPS: `git clone <repo-url> /var/www/codebridgeacademy`
+- Add your SSH private key as a GitHub secret named `VPS_SSH_KEY` in the repo settings
+
+### 2. Lighthouse CI (performance budget)
+
+Triggered on every push and pull request to `main`, this workflow audits the site against a performance budget:
+
+- Runs Lighthouse in headless Chrome against the live site
+- Checks metrics against thresholds defined in `lighthouse-budget.json`:
+  - **FCP** ≤ 3.5s &nbsp;|&nbsp; **LCP** ≤ 7.0s &nbsp;|&nbsp; **TBT** ≤ 3.0s
+  - **CLS** ≤ 0.1 &nbsp;|&nbsp; **SI** ≤ 5.5s &nbsp;|&nbsp; **TTI** ≤ 7.0s
+  - **Total resources** ≤ 900 KB &nbsp;|&nbsp; **Images** ≤ 400 KB
+- Fails the workflow if budgets are exceeded (prevents performance regressions)
+- Uploads the full Lighthouse report as a build artifact
+
+### Run audits locally
+
+```bash
+# Full mobile audit with budget check
+npm run perf:audit
+
+# Desktop audit
+npm run lighthouse:desktop
+```
+
+> **Note:** Start a local server first — e.g. `npx serve -p 8080` or VS Code Live Server — since Lighthouse targets `http://localhost:8080/`.
+
+## Hosting
+
+The project is also configured for deployment on **Netlify** (for redundancy/backup):
+- `netlify.toml` handles build configuration and caching headers
+- Netlify Forms handle form submissions automatically
+- Images are served through Netlify Image CDN for optimized delivery
 
 ---
 © 2026 CodeBridge Academy. Bridging learning to real software careers.
+
+_Auto-deployed via GitHub Actions – last deploy: commit `c4daf28`_
