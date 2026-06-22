@@ -9,34 +9,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Write SSH key to runner
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: 159.198.36.184
           username: root
-          key: ${{ secrets.VPS_SSH_KEY }}
+          key_path: ~/.ssh/deploy_key
           port: 22
           script: |
             set -e
-
-            # --- First-time setup ---
-            # Run this once on the VPS before this workflow will work:
-            #   git clone <repo-url> /var/www/codebridgeacademy
-            # Then add your SSH deploy key to GitHub secrets as VPS_SSH_KEY
-
             echo "=== Pulling latest changes ==="
             cd /var/www/codebridgeacademy
-
-            # Stash any local changes (in case the server has manual edits)
             git stash --include-untracked || true
-
-            # Pull latest from main
             git pull origin main
-
-            # --- Reload web server ---
             systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
-
-            echo "=== Deploy complete ==="
+            echo "=== Deploy complete ===
 
       - name: Deployment Status
         run: echo "✅ Deployed main branch to VPS (159.198.36.184)"
