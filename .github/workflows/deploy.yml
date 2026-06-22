@@ -24,7 +24,7 @@ jobs:
             git stash --include-untracked || true
             git pull origin main
             systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
-            echo "=== Deploy complete ===
+            echo "=== Deploy complete ==="
 
       - name: Deployment Status
         run: echo "✅ Deployed main branch to VPS (159.198.36.184)"
