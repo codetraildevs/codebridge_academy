@@ -39,7 +39,7 @@ jobs:
             --output=json \
             --output-path=lighthouse-report/report-ci \
             --budget-file=lighthouse-budget.json \
-            --chrome-flags="--headless --no-sandbox"
+            --chrome-flags="--headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage"
 
       - name: Run budget check script
         id: budget
