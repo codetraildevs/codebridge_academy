@@ -29,6 +29,9 @@ jobs:
           sleep 3
           curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/
 
+      - name: Create output directory
+        run: mkdir -p lighthouse-report
+
       - name: Run Lighthouse with budget check
         id: lighthouse
         run: |
