@@ -1,15 +1,23 @@
-const CACHE_NAME = 'codebridge-v3';
+const CACHE_NAME = 'codebridge-v4';
 const ASSETS = [
   '/',
   '/index.html',
   '/404.html',
   '/verify.html',
   '/css/style.css',
+  '/css/projects.css',
   '/css/verify.css',
   '/js/script.js',
   '/js/verify.js',
   '/assets/images/codebridge_academy_logo.svg',
   '/assets/images/new_logo.png',
+  '/assets/images/about_section.webp',
+  '/assets/images/play_store_img.webp',
+  '/assets/images/play_store_icon.png',
+  '/assets/images/home_cdmis.webp',
+  '/assets/images/revenue_sharing_app.svg',
+  '/assets/images/job_exams_prep.svg',
+  '/assets/images/project_overwatch.svg',
   '/manifest.json'
 ];
 

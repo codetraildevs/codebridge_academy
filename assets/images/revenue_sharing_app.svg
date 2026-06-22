@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="chartGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6EE7B7"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#065F46"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="260" rx="14" fill="#0F172A"/>
+  <!-- Status bar -->
+  <rect x="0" y="0" width="400" height="36" rx="14" fill="#065F46"/>
+  <rect x="0" y="18" width="400" height="18" fill="#065F46"/>
+  <text x="20" y="23" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)" font-weight="700">9:41</text>
+  <rect x="340" y="16" width="18" height="10" rx="3" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+  <rect x="358" y="18" width="8" height="6" rx="1.5" fill="rgba(255,255,255,0.6)"/>
+  <circle cx="352" cy="21" r="2" fill="rgba(255,255,255,0.6)"/>
+  <text x="325" y="23" font-family="Arial, sans-serif" font-size="7" fill="rgba(255,255,255,0.6)">📶</text>
+  <!-- Header -->
+  <rect x="0" y="36" width="400" height="44" fill="#0a3d2e"/>
+  <text x="20" y="62" font-family="Arial, sans-serif" font-size="16" fill="#fff" font-weight="800">Revenue Sharing</text>
+  <circle cx="375" cy="58" r="14" fill="rgba(255,255,255,0.1)"/>
+  <text x="369" y="63" font-family="Arial, sans-serif" font-size="14" fill="#6EE7B7">👤</text>
+  <!-- Balance card -->
+  <rect x="16" y="90" width="368" height="56" rx="12" fill="url(#cardGrad)" filter="url(#cardShadow)"/>
+  <text x="28" y="110" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.7)" font-weight="600">Total Balance</text>
+  <text x="28" y="136" font-family="Arial, sans-serif" font-size="22" fill="#fff" font-weight="800">RWF 2,456,800</text>
+  <text x="360" y="136" font-family="Arial, sans-serif" font-size="11" fill="#A7F3D0" text-anchor="end">+12.5%</text>
+  <!-- Stats row -->
+  <g transform="translate(16, 158)">
+    <rect x="0" y="0" width="116" height="44" rx="8" fill="#1E293B" stroke="rgba(16,185,129,0.15)" stroke-width="1"/>
+    <text x="10" y="16" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">Active Tasks</text>
+    <text x="10" y="34" font-family="Arial, sans-serif" font-size="16" fill="#6EE7B7" font-weight="800">86</text>
+    <rect x="126" y="0" width="116" height="44" rx="8" fill="#1E293B" stroke="rgba(16,185,129,0.15)" stroke-width="1"/>
+    <text x="136" y="16" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">This Month</text>
+    <text x="136" y="34" font-family="Arial, sans-serif" font-size="16" fill="#34D399" font-weight="800">RWF 340K</text>
+    <rect x="252" y="0" width="116" height="44" rx="8" fill="#1E293B" stroke="rgba(16,185,129,0.15)" stroke-width="1"/>
+    <text x="262" y="16" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">Users</text>
+    <text x="262" y="34" font-family="Arial, sans-serif" font-size="16" fill="#A7F3D0" font-weight="800">1,247</text>
+  </g>
+  <!-- Weekly chart mini -->
+  <g transform="translate(16, 214)">
+    <rect x="0" y="0" width="230" height="34" rx="6" fill="#1E293B"/>
+    <text x="8" y="12" font-family="Arial, sans-serif" font-size="7" fill="rgba(255,255,255,0.3)">Weekly</text>
+    <rect x="8" y="18" width="20" height="10" rx="2" fill="url(#chartGreen)" opacity="0.6"/>
+    <rect x="34" y="14" width="20" height="14" rx="2" fill="url(#chartGreen)" opacity="0.7"/>
+    <rect x="60" y="10" width="20" height="18" rx="2" fill="url(#chartGreen)" opacity="0.9"/>
+    <rect x="86" y="16" width="20" height="12" rx="2" fill="url(#chartGreen)" opacity="0.65"/>
+    <rect x="112" y="20" width="20" height="8" rx="2" fill="url(#chartGreen)" opacity="0.5"/>
+    <rect x="138" y="12" width="20" height="16" rx="2" fill="url(#chartGreen)" opacity="0.8"/>
+    <rect x="164" y="8" width="20" height="20" rx="2" fill="url(#chartGreen)"/>
+    <rect x="190" y="15" width="20" height="13" rx="2" fill="url(#chartGreen)" opacity="0.55"/>
+  </g>
+  <!-- Bottom tabs -->
+  <rect x="0" y="238" width="400" height="22" fill="#0F172A"/>
+  <line x1="0" y1="238" x2="400" y2="238" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="40" y="254" font-family="Arial, sans-serif" font-size="9" fill="#10B981" text-anchor="middle" font-weight="700">● Dashboard</text>
+  <text x="120" y="254" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Tasks</text>
+  <text x="200" y="254" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Reports</text>
+  <text x="280" y="254" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">History</text>
+  <text x="360" y="254" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Settings</text>
+</svg>

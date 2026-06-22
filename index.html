@@ -27,7 +27,8 @@
   <!-- Preconnect to Font Origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Preload Critical Assets -->
   <link rel="preload" href="assets/images/codebridge_academy_logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
@@ -51,10 +52,18 @@
     .btn { display: inline-flex; align-items: center; padding: 0.85rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
     .btn-primary { background: var(--color-primary); color: white; }
     .nav-menu { display: flex; list-style: none; gap: 0.25rem; }
+  
+    .section { padding: 6rem 0; position: relative; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+    .section-alt { background-color: var(--bg-section); }
   </style>
 
-  <!-- Main stylesheet (blocking — prevents CLS) -->
+  <!-- Preload stylesheets for early discovery -->
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="css/projects.css" as="style">
+
+  <!-- Stylesheets (critical CSS inlined above for instant paint) -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/projects.css">
   <link rel="icon" href="assets/images/new_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/new_logo.png">
   <link rel="manifest" href="manifest.json">
@@ -79,6 +88,7 @@
       <ul class="nav-menu" id="navMenu">
         <li><a href="#about" class="nav-link" data-section="about">About</a></li>
         <li><a href="#programs" class="nav-link" data-section="programs">Programs</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
         <li><a href="#why-us" class="nav-link" data-section="why-us">Why Choose Us</a></li>
         <li><a href="#internships" class="nav-link" data-section="internships">Internships</a></li>
         <li><a href="#why-qualexas" class="nav-link" data-section="why-qualexas">Why Qualexas</a></li>
@@ -103,6 +113,8 @@
 
   <!-- Mobile overlay -->
   <div class="nav-overlay" id="navOverlay"></div>
+
+  <main>
 
   <!-- ============================================
        1. HERO SECTION
@@ -201,7 +213,7 @@
         <div class="about-image reveal-left">
           <div class="image-wrapper-creative">
             <img 
-              src="./assets/images/about_section.png" 
+              src="./assets/images/about_section.webp" 
               alt="CodeBridge Academy Training" 
               class="about-image-custom"
               width="600"
@@ -346,7 +358,231 @@
   </section>
 
   <!-- ============================================
-       4. WHY CHOOSE US
+       4. PROJECTS SECTION
+       ============================================ -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Work</span>
+        <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+                <p class="section-subtitle">Real-world applications built by our team — from mobile apps to full-stack enterprise systems.</p>
+        <div class="project-counter-row reveal">
+          <div class="project-counter-item">
+            <span class="stat-number" >50+</span>
+            <span class="stat-label">Total Projects Built</span>
+          </div>
+          <div class="project-counter-divider"></div>
+          <div class="project-counter-item">
+            <span class="stat-number" >50+</span>
+            <span class="stat-label">Students Trained</span>
+          </div>
+          <div class="project-counter-divider"></div>
+          <div class="project-counter-item">
+            <i class="fa-solid fa-globe"></i>
+            <span class="stat-label">Mobile + Web + Security</span>
+          </div>
+          <div class="project-counter-divider"></div>
+          <div class="project-counter-item">
+            <i class="fa-solid fa-code"></i>
+            <span class="stat-label">Full-Stack &amp; AI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Rwanda Traffic Rule -->
+        <div class="project-card reveal">
+          <div class="project-card-header">
+            <div class="project-icon" style="background: rgba(30, 58, 138, 0.1); color: #1E3A8A;">
+              <i class="fa-solid fa-traffic-light"></i>
+            </div>
+            <div class="project-links-top">
+              <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="project-badge project-badge-play project-badge-play-lg" title="Download on Play Store">
+                <i class="fa-brands fa-google-play"></i> <strong>Get it on Google Play</strong>
+              </a>
+              
+            </div>
+          </div>
+          <div class="project-image">
+            <img src="assets/images/play_store_img.webp" alt="Rwanda Traffic Rule app screenshot" loading="lazy" width="400" height="260">
+          </div>
+          <h3>Rwanda Traffic Rule</h3>
+          <p class="project-desc">A comprehensive Flutter mobile application for learning Rwandan traffic rules and preparing for the provisional driving license exam. Features hundreds of practice questions, realistic exam simulator, intelligent progress tracking, gamification with badges and streaks, and full offline support — available in English, French, and Kinyarwanda.</p>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Dart</span>
+            <span class="project-tag">BLoC</span>
+            <span class="project-tag">GoRouter</span>
+            <span class="project-tag">Localization</span>
+            <span class="project-tag">Offline</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-play-store">
+              <img src="assets/images/play_store_icon.png" alt="" style="height:20px;width:auto;display:inline;vertical-align:middle;margin-right:6px;"> Download from Google Play
+            </a>
+            
+          </div>
+        </div>
+
+        <!-- Project 2: CDIMS -->
+        <div class="project-card reveal">
+          <div class="project-card-header">
+            <div class="project-icon" style="background: rgba(22, 59, 115, 0.1); color: #163B73;">
+              <i class="fa-solid fa-church"></i>
+            </div>
+            <div class="project-links-top">
+              <a href="https://cyangugudims.com/auth/admin/login" target="_blank" rel="noopener noreferrer" class="project-badge project-badge-demo" title="View Demo Site">
+                <i class="fa-solid fa-eye"></i> Live Demo
+              </a>
+              
+            </div>
+          </div>
+          <div class="project-image">
+            <img src="assets/images/home_cdmis.webp" alt="CDIMS infrastructure management dashboard preview" loading="lazy" width="400" height="260">
+          </div>
+          <h3>CDIMS</h3>
+          <p class="project-desc">Diocese Infrastructure Management System — a full-stack web application for managing infrastructure maintenance requests, material procurement, and inventory management for the Catholic Diocese of Cyangugu. Features multi-role workflow (Site Engineer → Diocesan Engineer → Father → Storekeeper → Procurement), JWT authentication, and comprehensive stock tracking.</p>
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Express</span>
+            <span class="project-tag">React</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">Sequelize</span>
+            <span class="project-tag">JWT</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://cyangugudims.com/auth/admin/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-eye"></i> View Demo
+            </a>
+            
+          </div>
+        </div>
+
+        <!-- Project 3: Revenue Sharing App -->
+        <div class="project-card reveal">
+          <div class="project-card-header">
+            <div class="project-icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <div class="project-links-top">
+              <a href="https://github.com/ndayishimiyefidel/revenue_sharing_app" target="_blank" rel="noopener noreferrer" class="project-badge project-badge-gh" title="View on GitHub">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="project-image">
+            <img src="assets/images/revenue_sharing_app.svg" alt="Revenue Sharing App interface preview" loading="lazy" width="400" height="260">
+          </div>
+          <h3>Revenue Sharing App</h3>
+          <p class="project-desc">A Flutter application designed for managing revenue sharing by tracking user tasks and their associated earnings. Features include detailed task records with filtering by date and component, role-based access control, PDF and Excel report generation, and consolidated reporting with individual and grand total summaries.</p>
+          <div class="project-tags">
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Dart</span>
+            <span class="project-tag">PDF Reports</span>
+            <span class="project-tag">Excel Export</span>
+            <span class="project-tag">Role-Based Access</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/ndayishimiyefidel/revenue_sharing_app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <i class="fa-brands fa-github"></i> View Project
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: Job Exams Preparation -->
+        <div class="project-card reveal">
+          <div class="project-card-header">
+            <div class="project-icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;">
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+            <div class="project-links-top">
+              <a href="https://github.com/ndayishimiyefidel/job_exams_preparation" target="_blank" rel="noopener noreferrer" class="project-badge project-badge-gh" title="View on GitHub">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="project-image">
+            <img src="assets/images/job_exams_prep.svg" alt="Job Exams Preparation platform preview" loading="lazy" width="400" height="260">
+          </div>
+          <h3>Job Exams Preparation</h3>
+          <p class="project-desc">A comprehensive full-stack job exam preparation platform for practicing job-related MCQs. Features a PHP/MySQLi backend handling authentication, exam management, payment processing, and results tracking — paired with a Flutter frontend for Android/iOS/Web providing clean UI for timed/untimed exams, progress analytics, offline support, and study resource access (PDFs, videos, past papers).</p>
+          <div class="project-tags">
+            <span class="project-tag">PHP</span>
+            <span class="project-tag">MySQLi</span>
+            <span class="project-tag">Flutter</span>
+            <span class="project-tag">Dart</span>
+            <span class="project-tag">Payment Gateway</span>
+            <span class="project-tag">Offline</span>
+            <span class="project-tag">Bulk Upload</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/ndayishimiyefidel/job_exams_preparation" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <i class="fa-brands fa-github"></i> View Project
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 5: Project Overwatch -->
+        <div class="project-card reveal project-card-featured">
+          <div class="project-card-header">
+            <div class="project-icon" style="background: rgba(239, 68, 68, 0.1); color: #EF4444;">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="project-links-top">
+              <span class="project-badge project-badge-hackathon"><i class="fa-solid fa-trophy"></i> GDG Hackathon</span>
+              <a href="https://github.com/codetraildevs/project_overwatch" target="_blank" rel="noopener noreferrer" class="project-badge project-badge-gh" title="View on GitHub">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+          <div class="project-image">
+            <img src="assets/images/project_overwatch.svg" alt="Project Overwatch SOC dashboard preview" loading="lazy" width="400" height="260">
+          </div>
+          <h3>Project Overwatch</h3>
+          <p class="project-desc">An AI-Agent Cyber Exposure &amp; Intelligence Platform designed to secure Rwanda&#39;s FinTech ecosystem. Built for a GDG Hackathon, this MVP backend provides an enterprise SOC dashboard with real-time threat mapping (Kigali, Musanze, Rubavu), vulnerability management, AI-powered remediation in English &amp; Kinyarwanda, and a Zero-Trust pipeline ensuring raw IP addresses never reach the frontend.</p>
+          <div class="project-tags">
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Express</span>
+            <span class="project-tag">AI Agent</span>
+            <span class="project-tag">Zero-Trust</span>
+            <span class="project-tag">Cybersecurity</span>
+            <span class="project-tag">Swagger</span>
+            <span class="project-tag">Joi</span>
+          </div>
+          <div class="project-visual-preview">
+            <div class="overwatch-preview">
+              <div class="overwatch-preview-header">
+                <span class="preview-dot red"></span>
+                <span class="preview-dot yellow"></span>
+                <span class="preview-dot green"></span>
+                <span class="preview-title">Overwatch Dashboard</span>
+              </div>
+              <div class="overwatch-preview-body">
+                <div class="preview-map">
+                  <div class="map-marker kigali"><span>Kigali</span><span class="threat-badge">12</span></div>
+                  <div class="map-marker musanze"><span>Musanze</span><span class="threat-badge">5</span></div>
+                  <div class="map-marker rubavu"><span>Rubavu</span><span class="threat-badge">8</span></div>
+                </div>
+                <div class="preview-stats">
+                  <div class="preview-stat"><span class="stat-val">47</span><span class="stat-lbl">Threats</span></div>
+                  <div class="preview-stat"><span class="stat-val">82</span><span class="stat-lbl">Risk Score</span></div>
+                  <div class="preview-stat"><span class="stat-val">3</span><span class="stat-lbl">Cities</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/codetraildevs/project_overwatch" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <i class="fa-brands fa-github"></i> View Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================================
+       5. WHY CHOOSE US
        ============================================ -->
   <section class="section section-alt" id="why-us">
     <div class="container">
@@ -392,7 +628,7 @@
   </section>
 
   <!-- ============================================
-       5. TARGET AUDIENCE
+       6. TARGET AUDIENCE
        ============================================ -->
   <section class="section" id="audience">
     <div class="container">
@@ -451,7 +687,7 @@
 
 
   <!-- ============================================
-       7. INTERNSHIPS
+       8. INTERNSHIPS
        ============================================ -->
   <section class="section" id="internships">
     <div class="container">
@@ -552,7 +788,7 @@
 
 
   <!-- ============================================
-       8. WHY QUALEXAS? SECTION
+       9. WHY QUALEXAS? SECTION
        ============================================ -->
   <section class="section section-alt" id="why-qualexas">
     <div class="container">
@@ -707,7 +943,7 @@
   </section>
 
   <!-- ============================================
-       9. TESTIMONIALS SECTION
+       10. TESTIMONIALS SECTION
        ============================================ -->
   <section class="section section-alt" id="testimonials">
     <div class="container">
@@ -731,7 +967,7 @@
           <div class="testimonial-author">
             <div class="testimonial-avatar">JD</div>
             <div>
-              <h5>Jean Damascene</h5>
+              <p class="testimonial-name">Jean Damascene</p>
               <span>Web Development Graduate</span>
             </div>
           </div>
@@ -750,7 +986,7 @@
           <div class="testimonial-author">
             <div class="testimonial-avatar">AM</div>
             <div>
-              <h5>Alice Mukamana</h5>
+              <p class="testimonial-name">Alice Mukamana</p>
               <span>Full Stack Developer</span>
             </div>
           </div>
@@ -769,7 +1005,7 @@
           <div class="testimonial-author">
             <div class="testimonial-avatar">DN</div>
             <div>
-              <h5>David Niyonzima</h5>
+              <p class="testimonial-name">David Niyonzima</p>
               <span>Software Engineer</span>
             </div>
           </div>
@@ -779,7 +1015,7 @@
   </section>
 
   <!-- ============================================
-       10. TECH STACK SECTION
+       11. TECH STACK SECTION
        ============================================ -->
   <section class="section" id="tech-stack">
     <div class="container">
@@ -814,22 +1050,22 @@
       <div class="journey-grid reveal">
         <div class="journey-step">
           <div class="journey-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-          <h4>Learn Fundamentals</h4>
+          <h3>Learn Fundamentals</h3>
           <p>Master HTML, CSS, JS and core programming concepts through interactive lessons.</p>
         </div>
         <div class="journey-step">
           <div class="journey-icon"><i class="fa-solid fa-code"></i></div>
-          <h4>Build Projects</h4>
+          <h3>Build Projects</h3>
           <p>Apply your skills to real-world projects that build your professional portfolio.</p>
         </div>
         <div class="journey-step">
           <div class="journey-icon"><i class="fa-solid fa-users"></i></div>
-          <h4>Team Collaboration</h4>
+          <h3>Team Collaboration</h3>
           <p>Work in teams using Git and agile practices, just like in a real dev shop.</p>
         </div>
         <div class="journey-step">
           <div class="journey-icon"><i class="fa-solid fa-rocket"></i></div>
-          <h4>Launch Career</h4>
+          <h3>Launch Career</h3>
           <p>Get career-ready with interview prep, CV optimization, and internship placement.</p>
         </div>
       </div>
@@ -837,7 +1073,7 @@
   </section>
 
   <!-- ============================================
-       11. CONTACT & LOCATION SECTION
+       12. CONTACT & LOCATION SECTION
        ============================================ -->
   <section class="section section-alt" id="contact">
     <div class="container">
@@ -913,8 +1149,10 @@
     </div>
   </section>
 
-  <!-- ============================================
-       12. FOOTER
+    </main>
+
+<!-- ============================================
+       13. FOOTER
        ============================================ -->
   <footer class="footer" id="footer">
     <div class="container">
@@ -936,6 +1174,7 @@
           <ul>
             <li><a href="#about">About Us</a></li>
             <li><a href="#programs">Programs</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#why-us">Why Choose Us</a></li>
             <li><a href="#internships">Internships</a></li>
             <li><a href="#why-qualexas">Why Qualexas</a></li>
@@ -1037,13 +1276,13 @@
             </div>
 
             <div class="fees-section">
-              <h5>Training Fees (Per Month):</h5>
+              <h4>Training Fees (Per Month):</h4>
               <div class="fee-card">🎓 TVET Students (L3, L4, L5): <strong>30,000 RWF</strong></div>
               <div class="fee-card">💻 Uni, Graduates &amp; Pros: <strong>50,000 RWF</strong></div>
             </div>
 
             <div class="discounts-section">
-              <h5>Special Discounts:</h5>
+              <h4>Special Discounts:</h4>
               <ul>
                 <li>Get <strong>10% off</strong> if you already have coding experience (GitHub required).</li>
                 <li>Get <strong>10% off</strong> if you refer someone who registers and pays.</li>
@@ -1051,13 +1290,13 @@
             </div>
 
             <div class="payment-methods">
-              <h5>Payment Methods:</h5>
+              <h4>Payment Methods:</h4>
               <p><i class="fa-solid fa-mobile-screen"></i> <strong>MoMo:</strong> 0780494000 (Fidèle NDAYISHIMIYE)</p>
               <p><i class="fa-solid fa-building-columns"></i> <strong>Bank:</strong> Equity 4002113119763 (Fidèle NDAYISHIMIYE)</p>
             </div>
 
             <div class="gains-section">
-              <h5>What You Will Gain:</h5>
+              <h4>What You Will Gain:</h4>
               <div class="gains-grid">
                 <span><i class="fa-solid fa-check-circle"></i> Real Projects</span>
                 <span><i class="fa-solid fa-check-circle"></i> Portfolio</span>
@@ -1205,8 +1444,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="projects">Software projects before? Share links (optional)</label>
-            <input type="text" id="projects" name="projects" placeholder="GitHub link or project title" autocomplete="url">
+            <label for="projects_link">Software projects before? Share links (optional)</label>
+            <input type="text" id="projects_link" name="projects" placeholder="GitHub link or project title" autocomplete="url">
           </div>
           <div class="form-group">
             <label for="motivation">Why do you want to join? *</label>

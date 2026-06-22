@@ -1,5 +1,12 @@
 # CodeBridge Academy — Software Career Training
 
+<div align="center">
+
+[![Deploy to VPS](https://github.com/codetraildevs/codebridge_academy/actions/workflows/deploy.yml/badge.svg)](https://github.com/codetraildevs/codebridge_academy/actions/workflows/deploy.yml)
+[![Lighthouse CI](https://github.com/codetraildevs/codebridge_academy/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/codetraildevs/codebridge_academy/actions/workflows/lighthouse.yml)
+
+</div>
+
 CodeBridge Academy is a modern, high-performance web platform for a software training academy in Kigali, Rwanda. The site is optimized for production with Netlify features, high-performance image delivery, and a fully accessible design.
 
 ## Features

@@ -379,18 +379,6 @@ input, textarea, select {
   border-radius: var(--radius-lg);
 }
 
-.btn-outline-light {
-  border: 2px solid rgba(255,255,255,0.3);
-  color: white;
-  background: transparent;
-}
-
-.btn-outline-light:hover {
-  border-color: white;
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-3px);
-}
-
 /* ============================================
    NAVBAR (Premium)
    ============================================ */
@@ -1290,7 +1278,7 @@ input, textarea, select {
   font-size: 1.1rem;
 }
 
-.testimonial-author h5 {
+.testimonial-name {
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--color-text);
@@ -1345,7 +1333,7 @@ input, textarea, select {
   transform: scale(1.1) rotate(-5deg);
 }
 
-.journey-step h4 {
+.journey-step h3 {
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
@@ -1541,10 +1529,7 @@ input, textarea, select {
   transform: translateY(-3px);
 }
 
-.contact-logo {
-  margin-top: 1.5rem;
-  text-align: center;
-}
+
 
 .contact-logo img {
   width: 100px;
@@ -1865,6 +1850,16 @@ input, textarea, select {
     padding: 4rem 0;
   }
 
+  /* Hide large decorative elements that cause overflow on mobile */
+  .hero::after {
+    display: none;
+  }
+
+  .shape-blob,
+  .shape-dots {
+    display: none;
+  }
+
   .nav-menu {
     position: fixed;
     top: 0;
@@ -1895,6 +1890,16 @@ input, textarea, select {
 
   .nav-cta {
     display: none;
+  }
+
+  .navbar {
+    overflow: hidden;
+  }
+
+  .nav-logo img {
+    height: 50px;
+    max-width: 160px;
+    width: auto;
   }
 
   .hamburger {
@@ -1949,10 +1954,6 @@ input, textarea, select {
     gap: 1.5rem;
   }
 
-  .contact-form {
-    padding: 1.5rem;
-  }
-
   .whatsapp-float {
     bottom: 1rem;
     right: 1rem;
@@ -1966,6 +1967,10 @@ input, textarea, select {
     right: 1rem;
     width: 44px;
     height: 44px;
+  }
+
+  .map-wrapper iframe {
+    min-height: 280px;
   }
 }
 
@@ -1996,6 +2001,76 @@ input, textarea, select {
   }
 }
 
+@media (max-width: 400px) {
+  .nav-logo {
+    max-width: 50%;
+  }
+
+  .nav-logo img {
+    height: 40px;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-description {
+    font-size: 0.92rem;
+  }
+
+  .hero-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .qualexas-intro-content {
+    padding: 1.5rem;
+  }
+
+  .vision-content {
+    padding: 2rem 1.25rem;
+  }
+
+  .qualexas-cta {
+    padding: 2rem 1.25rem;
+  }
+
+  .contact-item {
+    padding: 0.75rem;
+  }
+
+  .map-wrapper iframe {
+    min-height: 200px;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .program-card,
+  .project-card {
+    padding: 1.25rem;
+  }
+
+  .why-card {
+    padding: 1.25rem;
+  }
+
+  .testimonial-card {
+    padding: 1.25rem;
+  }
+}
+
 /* ============================================
    UTILITY CLASSES
    ============================================ */
@@ -2010,7 +2085,7 @@ input, textarea, select {
 .card-wide { grid-column: 1 / -1; max-width: 600px; margin: 0 auto; }
 .program-desc { font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.7; }
 .flex-col-card { display: flex; flex-direction: column; }
-.flex-grow-desc { margin-bottom: 1.5rem; flex-grow: 1; }
+
 .btn-full-width { width: 100%; justify-content: center; }
 .map-iframe { border: 0; border-radius: var(--radius-lg); width: 100%; }
 .social-links-header { font-size: 0.9rem; font-weight: 700; color: var(--color-text); margin-bottom: 0.75rem; }
@@ -2324,51 +2399,6 @@ input.error, select.error, textarea.error {
   justify-content: center;
 }
 
-.toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  z-index: 3000;
-  background: var(--bg-card);
-  border-radius: var(--radius-full);
-  padding: 0.75rem 2rem;
-  box-shadow: var(--shadow-xl);
-  border: 1px solid var(--color-border);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  visibility: hidden;
-}
-
-.toast.active {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.toast-content {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.toast i {
-  font-size: 1.5rem;
-  color: var(--color-success);
-}
-
-.toast h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-
-.toast p {
-  font-size: 0.82rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 0;
-}
-
 @media (max-width: 768px) {
   .modal-content {
     padding: 2rem 1.5rem;
@@ -2456,7 +2486,7 @@ input.error, select.error, textarea.error {
   margin-bottom: 1.5rem;
 }
 
-.fees-section h5, .discounts-section h5, .payment-methods h5, .gains-section h5 {
+.fees-section h4, .discounts-section h4, .payment-methods h4, .gains-section h4 {
   font-size: 1rem;
   margin-bottom: 0.75rem;
   color: var(--color-text);
@@ -2522,17 +2552,7 @@ input.error, select.error, textarea.error {
   }
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
+
 
 /* ============================================
    PHONE INPUT GROUP

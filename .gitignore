@@ -1,3 +1,19 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Generated Lighthouse reports (re-generated on each audit)
+lighthouse-report/*.report.json
+lighthouse-report/*.report.html
+lighthouse-report/report*.html
+lighthouse-report/report*.json
+
+# Keep the budget config (needed for CI)
+!lighthouse-budget.json
+
+# Temp scripts from Codebuff sessions
+*.mjs
+
 # Unused Assets
 new_logo.png
 logo.png
@@ -21,6 +37,12 @@ desktop.ini
 *.swp
 *.swo
 *~
+
+# Temp/backup files from editing sessions
+original_*
+projects_*.html
+*.ps1
+nul
 
 # Personal docs
 docs/readme.txt

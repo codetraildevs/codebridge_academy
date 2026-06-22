@@ -1,0 +1,66 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start local server
+        run: |
+          npx serve -p 8080 --no-clipboard --no-request-logging &
+          sleep 3
+          curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/
+
+      - name: Run Lighthouse with budget check
+        id: lighthouse
+        run: |
+          npx lighthouse http://localhost:8080/ \
+            --output=json \
+            --output-path=lighthouse-report/report-ci \
+            --budget-file=lighthouse-budget.json \
+            --chrome-flags="--headless --no-sandbox"
+
+      - name: Run budget check script
+        id: budget
+        run: node scripts/check-budget.js
+
+      - name: Print Performance Summary
+        run: |
+          REPORT="lighthouse-report/report-ci.report.json"
+          if [ -f "$REPORT" ]; then
+            node -e "
+              const r = require('./$REPORT');
+              const cats = ['performance','accessibility','best-practices','seo'];
+              console.log('=== Lighthouse Scores ===');
+              cats.forEach(c => {
+                const s = r.categories[c];
+                if (s) console.log(c + ': ' + (s.score * 100).toFixed(0) + '/100');
+              });
+            "
+          fi
+
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report/
+          retention-days: 7

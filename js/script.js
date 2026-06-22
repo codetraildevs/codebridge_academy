@@ -364,6 +364,12 @@ document.addEventListener('DOMContentLoaded', () => {
     counterObserver.observe(heroStats);
   }
 
+  // Projects counter
+  const projectCounterRow = document.querySelector('.project-counter-row');
+  if (projectCounterRow) {
+    counterObserver.observe(projectCounterRow);
+  }
+
   /* ============================================
      SURVEY MODAL
      ============================================ */

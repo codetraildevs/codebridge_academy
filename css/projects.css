@@ -1,0 +1,503 @@
+/* ============================================
+   PROJECTS SECTION
+   ============================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 2rem 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-orange));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.project-links-top {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.project-badge-gh {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.project-badge-gh:hover {
+  background: #24292e;
+  color: #fff;
+  border-color: #24292e;
+  transform: translateY(-2px);
+}
+
+.project-badge-play {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.project-badge-play:hover {
+  background: #10B981;
+  color: #fff;
+  border-color: #10B981;
+  transform: translateY(-2px);
+}
+
+.project-badge-demo {
+  background: rgba(var(--brand-orange-rgb), 0.1);
+  color: var(--brand-orange);
+  border: 1px solid rgba(var(--brand-orange-rgb), 0.2);
+}
+
+.project-badge-demo:hover {
+  background: var(--brand-orange);
+  color: #fff;
+  border-color: var(--brand-orange);
+  transform: translateY(-2px);
+}
+
+.project-badge-hackathon {
+  background: rgba(245, 158, 11, 0.1);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+[data-theme="dark"] .project-badge-gh {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .project-badge-gh:hover {
+  background: #fff;
+  color: #0F172A;
+  border-color: #fff;
+}
+
+.project-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-tag {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--bg-section);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  transition: all 0.25s ease;
+}
+
+.project-card:hover .project-tag {
+  background: rgba(var(--brand-blue-rgb), 0.06);
+  color: var(--brand-blue);
+  border-color: rgba(var(--brand-blue-rgb), 0.2);
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-sm {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.78rem;
+  border-radius: var(--radius-sm);
+  gap: 0.4rem;
+}
+
+/* ============================================
+   PROJECTS - IMAGE THUMBNAILS
+   ============================================ */
+.project-image {
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--bg-section);
+  position: relative;
+  aspect-ratio: 20 / 13;
+  transition: all 0.3s ease;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.15));
+  pointer-events: none;
+}
+
+/* Project Overwatch Preview Visual */
+.project-visual-preview {
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: #0F172A;
+}
+
+.overwatch-preview {
+  font-family: 'Courier New', monospace;
+}
+
+.overwatch-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.preview-dot.red { background: #EF4444; }
+.preview-dot.yellow { background: #F59E0B; }
+.preview-dot.green { background: #10B981; }
+
+.preview-title {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  margin-left: auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.overwatch-preview-body {
+  padding: 1rem;
+}
+
+.preview-map {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  min-height: 60px;
+}
+
+.map-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  padding: 0.4rem 0.6rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+
+.map-marker::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  margin-bottom: 2px;
+}
+
+.map-marker .threat-badge {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.preview-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.preview-stat {
+  text-align: center;
+}
+
+.preview-stat .stat-val {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #60A5FA;
+  line-height: 1.2;
+}
+
+.preview-stat .stat-lbl {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-card-featured {
+  border-color: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.08);
+}
+
+.project-card-featured:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.12);
+}
+
+/* ============================================
+   PROJECTS - RESPONSIVE
+   ============================================ */
+@media (max-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card-header {
+    flex-direction: column;
+  }
+
+  .project-links-top {
+    justify-content: flex-start;
+  }
+
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .project-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    padding: 1.5rem;
+  }
+}
+
+/* ============================================
+   PROJECTS - ANIMATED COUNTER
+   ============================================ */
+.project-counter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.project-counter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.project-counter-item .stat-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  background: linear-gradient(135deg, var(--brand-blue), var(--brand-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  min-width: 2ch;
+  text-align: right;
+}
+
+.project-counter-item .stat-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.project-counter-item i {
+  font-size: 1.2rem;
+  color: var(--brand-blue);
+  opacity: 0.6;
+}
+
+.project-counter-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-border);
+}
+
+@media (max-width: 600px) {
+  .project-counter-row {
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .project-counter-divider {
+    width: 40px;
+    height: 1px;
+  }
+  .project-counter-item .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* ============================================
+   PROJECTS - PLAY STORE PROMINENT BADGE
+   ============================================ */
+.project-badge-play-lg {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.06));
+  border-width: 1.5px;
+  gap: 0.5rem;
+}
+
+.project-badge-play-lg i {
+  font-size: 1rem;
+}
+
+.project-badge-play-lg strong {
+  font-weight: 700;
+}
+
+.project-badge-play-lg:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.btn-play-store {
+  background: linear-gradient(135deg, #10B981, #059669) !important;
+  border: none !important;
+  padding: 0.7rem 1.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease !important;
+}
+
+.btn-play-store:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35) !important;
+}
+
+.btn-play-store i {
+  font-size: 1.1rem;
+}
