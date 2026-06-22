@@ -25,7 +25,7 @@ jobs:
 
       - name: Start local server
         run: |
-          npx serve -p 8080 --no-clipboard --no-request-logging &
+          cd /home/runner/work/codebridge_academy/codebridge_academy && python3 -m http.server 8080 &
           sleep 3
           curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/
 
