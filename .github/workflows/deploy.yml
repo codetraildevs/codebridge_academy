@@ -9,18 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Write SSH key to runner
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: 159.198.36.184
           username: root
-          key_path: ~/.ssh/deploy_key
+          key: ${{ secrets.VPS_SSH_KEY }}
           port: 22
           script: |
             set -e
