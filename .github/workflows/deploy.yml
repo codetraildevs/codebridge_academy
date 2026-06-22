@@ -16,8 +16,8 @@ jobs:
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 22
-          # SSH host key verification (prevents MITM attacks)
-          host_key: ${{ secrets.VPS_HOST_KEY }}
+          # SSH host key fingerprint verification (prevents MITM attacks)
+          fingerprint: ${{ secrets.VPS_HOST_KEY }}
           script: |
             set -e
 
