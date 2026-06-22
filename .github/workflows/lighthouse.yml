@@ -39,9 +39,8 @@ jobs:
             --output=json \
             --output-path=lighthouse-report/report-ci \
             --budget-file=lighthouse-budget.json \
+            --preset=desktop \
             --max-wait-for-load=90000 \
-            --disable-network-throttling \
-            --disable-cpu-throttling \
             --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
 
       - name: Run budget check script
