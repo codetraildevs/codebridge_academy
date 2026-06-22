@@ -43,3 +43,25 @@ jobs:
 
       - name: Deployment Status
         run: echo "✅ Deployed main branch to VPS (159.198.36.184)"
+
+      - name: Send email notification
+        if: always()
+        uses: dawidd6/action-send-mail@v4
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: |
+            ${{ job.status == 'success' && '✅' || '❌' }} Deploy to VPS — CodeBridge Academy (${{ github.sha }})
+          to: ${{ secrets.NOTIFY_EMAIL }}
+          from: CodeBridge CI <${{ secrets.SMTP_USERNAME }}>
+          body: |
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.triggering_actor }}
+            Status: ${{ job.status }}
+            Workflow: ${{ github.workflow }}
+            
+            View run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
