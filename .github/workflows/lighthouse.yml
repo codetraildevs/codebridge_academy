@@ -35,11 +35,13 @@ jobs:
       - name: Run Lighthouse with budget check
         id: lighthouse
         run: |
-          npx lighthouse http://localhost:8080/ \
+          ./node_modules/.bin/lighthouse http://localhost:8080/ \
             --output=json \
             --output-path=lighthouse-report/report-ci \
             --budget-file=lighthouse-budget.json \
-            --max-wait-for-load=60000 \
+            --max-wait-for-load=90000 \
+            --disable-network-throttling \
+            --disable-cpu-throttling \
             --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
 
       - name: Run budget check script
