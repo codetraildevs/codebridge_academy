@@ -43,6 +43,17 @@ jobs:
             --max-wait-for-load=90000 \
             --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage"
 
+      - name: Wait for Lighthouse report
+        run: |
+          for i in $(seq 1 10); do
+            if ls lighthouse-report/*.report.json 2>/dev/null; then
+              echo "Report found after ${i}s"
+              break
+            fi
+            echo "Waiting for report... (${i}s)"
+            sleep 1
+          done
+
       - name: Run budget check script
         id: budget
         run: node scripts/check-budget.js
