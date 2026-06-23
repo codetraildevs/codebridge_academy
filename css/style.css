@@ -3241,6 +3241,42 @@ input.error, select.error, textarea.error {
 }
 
 /* ============================================
+   ACCESSIBILITY — Screen-reader-only utility
+   ============================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================
+   ACCESSIBILITY — fieldset reset for form-groups
+   ============================================ */
+fieldset.form-group {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  min-width: 0;
+}
+
+fieldset.form-group > legend {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+/* ============================================
    FORM SUCCESS SCREEN (shared)
    ============================================ */
 .form-success {

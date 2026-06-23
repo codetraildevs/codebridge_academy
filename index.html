@@ -1323,6 +1323,7 @@
           <div class="form-group">
             <label for="phone">Phone Number *</label>
             <div class="phone-input-group">
+              <label for="phoneCode" class="sr-only">Country code</label>
               <select id="phoneCode" name="phoneCode" class="phone-code-select" aria-label="Country code">
                 <option value="+250" selected>🇷🇼 RW +250</option>
                 <option value="+256">🇺🇬 UG +256</option>
@@ -1345,13 +1346,13 @@
               <input type="tel" id="phone" name="phone" required placeholder="7XX XXX XXX" autocomplete="tel">
             </div>
           </div>
-          <div class="form-group">
-            <label>Gender *</label>
+          <fieldset class="form-group">
+            <legend>Gender *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Gender">
               <label class="radio-label"><input type="radio" name="gender" value="Male" required> Male</label>
               <label class="radio-label"><input type="radio" name="gender" value="Female"> Female</label>
             </div>
-          </div>
+          </fieldset>
           <div class="form-group">
             <label for="location">Location *</label>
             <input type="text" id="location" name="location" required placeholder="e.g., Gikondo, Nyamirambo" autocomplete="address-level2" data-textonly="true">
@@ -1360,15 +1361,15 @@
 
         <!-- Step 3: Education & Status -->
         <div class="form-step" data-step="3">
-          <div class="form-group">
-            <label>Current Status Level *</label>
+          <fieldset class="form-group">
+            <legend>Current Status Level *</legend>
             <div class="radio-group vertical" role="radiogroup" aria-label="Current Status Level">
               <label class="radio-label"><input type="radio" name="status" value="Secondary school student" required> Secondary school student</label>
               <label class="radio-label"><input type="radio" name="status" value="University student"> University student</label>
               <label class="radio-label"><input type="radio" name="status" value="Graduate"> Graduate</label>
               <label class="radio-label"><input type="radio" name="status" value="Other"> Other</label>
             </div>
-          </div>
+          </fieldset>
           <div class="form-group">
             <label for="organization">School / University / Company Name *</label>
             <input type="text" id="organization" name="organization" required placeholder="Name of your institution" autocomplete="organization" data-textonly="true">
@@ -1390,24 +1391,24 @@
 
         <!-- Step 4: Training & Skills -->
         <div class="form-step" data-step="4">
-          <div class="form-group">
-            <label>Which training program do you want to join? *</label>
+          <fieldset class="form-group">
+            <legend>Which training program do you want to join? *</legend>
             <div class="radio-group vertical" role="radiogroup" aria-label="Training program">
               <label class="radio-label"><input type="radio" name="program" value="Web Development Fundamentals" required> Web Development Fundamentals</label>
               <label class="radio-label"><input type="radio" name="program" value="Full Stack Development"> Full Stack Development</label>
               <label class="radio-label"><input type="radio" name="program" value="Career &amp; Internship Readiness"> Career &amp; Internship Readiness</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Current skill level in software development *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>Current skill level in software development *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Current skill level">
               <label class="radio-label"><input type="radio" name="skillLevel" value="Beginner" required> Beginner</label>
               <label class="radio-label"><input type="radio" name="skillLevel" value="Intermediate"> Intermediate</label>
               <label class="radio-label"><input type="radio" name="skillLevel" value="Advanced"> Advanced</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Technologies used (Select all that apply) *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>Technologies used (Select all that apply) *</legend>
             <div class="checkbox-grid" role="group" aria-label="Technologies used">
               <label class="checkbox-label"><input type="checkbox" name="tech" value="HTML"> HTML</label>
               <label class="checkbox-label"><input type="checkbox" name="tech" value="CSS"> CSS</label>
@@ -1423,21 +1424,21 @@
               <label class="checkbox-label"><input type="checkbox" name="tech" value="Flutter"> Flutter</label>
               <label class="checkbox-label"><input type="checkbox" name="tech" value="None yet"> None yet</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Step 5: Background & Goals -->
         <div class="form-step" data-step="5">
-          <div class="form-group inline">
+          <fieldset class="form-group inline">
             <div>
-              <label>Do you have a laptop? *</label>
+              <legend>Do you have a laptop? *</legend>
               <div class="radio-group" role="radiogroup" aria-label="Has laptop">
                 <label class="radio-label"><input type="radio" name="hasLaptop" value="Yes" required> Yes</label>
                 <label class="radio-label"><input type="radio" name="hasLaptop" value="No"> No</label>
               </div>
             </div>
             <div>
-              <label>Reliable internet? *</label>
+              <legend>Reliable internet? *</legend>
               <div class="radio-group" role="radiogroup" aria-label="Has reliable internet">
                 <label class="radio-label"><input type="radio" name="hasInternet" value="Yes" required> Yes</label>
                 <label class="radio-label"><input type="radio" name="hasInternet" value="No"> No</label>
@@ -1452,15 +1453,15 @@
             <label for="motivation">Why do you want to join? *</label>
             <textarea id="motivation" name="motivation" required placeholder="Tell us your motivation..."></textarea>
           </div>
-          <div class="form-group">
-            <label>Main goals (Select all apply) *</label>
+          <fieldset class="form-group">
+            <legend>Main goals (Select all apply) *</legend>
             <div class="checkbox-grid" role="group" aria-label="Main goals">
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Learn software development"> Learn software dev</label>
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Prepare for internship"> Prepare for internship</label>
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Improve practical skills"> Improve practical skills</label>
               <label class="checkbox-label"><input type="checkbox" name="goals" value="Build real projects"> Build real projects</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <div class="form-navigation">
@@ -1575,6 +1576,7 @@
           <div class="form-group">
             <label for="surveyPhone">Phone Number (Optional)</label>
             <div class="phone-input-group">
+              <label for="surveyPhoneCode" class="sr-only">Country code</label>
               <select id="surveyPhoneCode" name="surveyPhoneCode" class="phone-code-select" aria-label="Country code">
                 <option value="+250" selected>🇷🇼 +250</option>
                 <option value="+256">🇺🇬 +256</option>
@@ -1605,8 +1607,8 @@
             <label for="surveyDistrict">District *</label>
             <input type="text" id="surveyDistrict" name="surveyDistrict" required placeholder="e.g., Kicukiro, Gasabo" autocomplete="address-level2" aria-label="District" data-textonly="true">
           </div>
-          <div class="form-group">
-            <label>Institution Type *</label>
+          <fieldset class="form-group">
+            <legend>Institution Type *</legend>
             <div class="radio-group vertical" role="radiogroup" aria-label="Institution Type">
               <label class="radio-label"><input type="radio" name="surveyInstType" value="TVET School" required> TVET School</label>
               <label class="radio-label"><input type="radio" name="surveyInstType" value="University"> University</label>
@@ -1617,9 +1619,9 @@
               <label class="radio-label"><input type="radio" name="surveyInstType" value="Certification Body"> Certification Body</label>
               <label class="radio-label"><input type="radio" name="surveyInstType" value="Other"> Other</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Occupation *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>Occupation *</legend>
             <div class="radio-group vertical" role="radiogroup" aria-label="Occupation">
               <label class="radio-label"><input type="radio" name="surveyOccupation" value="Student" required> Student</label>
               <label class="radio-label"><input type="radio" name="surveyOccupation" value="Graduate"> Graduate</label>
@@ -1632,23 +1634,23 @@
               <label class="radio-label"><input type="radio" name="surveyOccupation" value="School Administrator"> School Administrator</label>
               <label class="radio-label"><input type="radio" name="surveyOccupation" value="Other"> Other</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Step 2: Current Assessment Challenges -->
         <div class="survey-step" data-step="2">
           <h4 class="survey-step-title">Section 2: Current Assessment Challenges</h4>
-          <div class="form-group">
-            <label>1. How are practical assessments currently conducted in your institution? *</label>
+          <fieldset class="form-group">
+            <legend>1. How are practical assessments currently conducted in your institution? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Current assessment method">
               <label class="radio-label"><input type="radio" name="s2q1" value="Paper-Based" required> Paper-Based</label>
               <label class="radio-label"><input type="radio" name="s2q1" value="Digital"> Digital</label>
               <label class="radio-label"><input type="radio" name="s2q1" value="Both"> Both</label>
               <label class="radio-label"><input type="radio" name="s2q1" value="Not Sure"> Not Sure</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>2. What are the biggest challenges in practical assessments? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. What are the biggest challenges in practical assessments? *</legend>
             <div class="checkbox-grid" role="group" aria-label="Biggest challenges">
               <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Manual marking"> Manual marking</label>
               <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Delayed results"> Delayed results</label>
@@ -1660,9 +1662,9 @@
               <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Limited competency verification"> Limited competency verification</label>
               <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Other"> Other</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>3. How satisfied are you with the current practical assessment process? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. How satisfied are you with the current practical assessment process? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Satisfaction level">
               <label class="radio-label"><input type="radio" name="s2q3" value="1" required> 1 — Very Dissatisfied</label>
               <label class="radio-label"><input type="radio" name="s2q3" value="2"> 2 — Dissatisfied</label>
@@ -1670,9 +1672,9 @@
               <label class="radio-label"><input type="radio" name="s2q3" value="4"> 4 — Satisfied</label>
               <label class="radio-label"><input type="radio" name="s2q3" value="5"> 5 — Very Satisfied</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>4. How often do practical assessments fail to reflect actual competency? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>4. How often do practical assessments fail to reflect actual competency? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Assessment failure frequency">
               <label class="radio-label"><input type="radio" name="s2q4" value="Never" required> Never</label>
               <label class="radio-label"><input type="radio" name="s2q4" value="Rarely"> Rarely</label>
@@ -1680,22 +1682,22 @@
               <label class="radio-label"><input type="radio" name="s2q4" value="Often"> Often</label>
               <label class="radio-label"><input type="radio" name="s2q4" value="Very Often"> Very Often</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Step 3: Competency Verification -->
         <div class="survey-step" data-step="3">
           <h4 class="survey-step-title">Section 3: Competency Verification</h4>
-          <div class="form-group">
-            <label>1. Do certificates and grades always reflect actual skills and competence? *</label>
+          <fieldset class="form-group">
+            <legend>1. Do certificates and grades always reflect actual skills and competence? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Certificates reflect skills">
               <label class="radio-label"><input type="radio" name="s3q1" value="Yes" required> Yes</label>
               <label class="radio-label"><input type="radio" name="s3q1" value="No"> No</label>
               <label class="radio-label"><input type="radio" name="s3q1" value="Not Sure"> Not Sure</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>2. How important is competency verification? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. How important is competency verification? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Competency verification importance">
               <label class="radio-label"><input type="radio" name="s3q2" value="1" required> 1 — Not Important</label>
               <label class="radio-label"><input type="radio" name="s3q2" value="2"> 2</label>
@@ -1703,9 +1705,9 @@
               <label class="radio-label"><input type="radio" name="s3q2" value="4"> 4</label>
               <label class="radio-label"><input type="radio" name="s3q2" value="5"> 5 — Very Important</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>3. Which competencies should be assessed? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. Which competencies should be assessed? *</legend>
             <div class="checkbox-grid" role="group" aria-label="Competencies to assess">
               <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Technical Skills"> Technical Skills</label>
               <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Problem Solving"> Problem Solving</label>
@@ -1715,22 +1717,22 @@
               <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Critical Thinking"> Critical Thinking</label>
               <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Workplace Readiness"> Workplace Readiness</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Step 4: Digital Assessment -->
         <div class="survey-step" data-step="4">
           <h4 class="survey-step-title">Section 4: Digital Assessment</h4>
-          <div class="form-group">
-            <label>1. Would your institution benefit from digital practical assessments? *</label>
+          <fieldset class="form-group">
+            <legend>1. Would your institution benefit from digital practical assessments? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Digital assessment benefit">
               <label class="radio-label"><input type="radio" name="s4q1" value="Yes" required> Yes</label>
               <label class="radio-label"><input type="radio" name="s4q1" value="No"> No</label>
               <label class="radio-label"><input type="radio" name="s4q1" value="Not Sure"> Not Sure</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>2. Which features would be most valuable? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. Which features would be most valuable? *</legend>
             <div class="checkbox-grid" role="group" aria-label="Valuable features">
               <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Online Practical Exams"> Online Practical Exams</label>
               <label class="checkbox-label"><input type="checkbox" name="s4q2" value="AI Assessment"> AI Assessment</label>
@@ -1741,9 +1743,9 @@
               <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Anti-Cheating Tools"> Anti-Cheating Tools</label>
               <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Skills Analytics"> Skills Analytics</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>3. How important is reducing examination malpractice? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. How important is reducing examination malpractice? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Malpractice reduction importance">
               <label class="radio-label"><input type="radio" name="s4q3" value="1" required> 1 — Not Important</label>
               <label class="radio-label"><input type="radio" name="s4q3" value="2"> 2</label>
@@ -1751,14 +1753,14 @@
               <label class="radio-label"><input type="radio" name="s4q3" value="4"> 4</label>
               <label class="radio-label"><input type="radio" name="s4q3" value="5"> 5 — Very Important</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Step 5: Employer & Workforce Readiness -->
         <div class="survey-step" data-step="5">
           <h4 class="survey-step-title">Section 5: Employer &amp; Workforce Readiness</h4>
-          <div class="form-group">
-            <label>1. How do you currently evaluate technical skills during recruitment? *</label>
+          <fieldset class="form-group">
+            <legend>1. How do you currently evaluate technical skills during recruitment? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Recruitment evaluation method">
               <label class="radio-label"><input type="radio" name="s5q1" value="CV Review" required> CV Review</label>
               <label class="radio-label"><input type="radio" name="s5q1" value="Interview"> Interview</label>
@@ -1766,15 +1768,15 @@
               <label class="radio-label"><input type="radio" name="s5q1" value="Technical Assessment"> Technical Assessment</label>
               <label class="radio-label"><input type="radio" name="s5q1" value="Portfolio Review"> Portfolio Review</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>2. Would you use a platform that objectively measures candidate competencies? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. Would you use a platform that objectively measures candidate competencies? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Objective platform interest">
               <label class="radio-label"><input type="radio" name="s5q2" value="Yes" required> Yes</label>
               <label class="radio-label"><input type="radio" name="s5q2" value="No"> No</label>
               <label class="radio-label"><input type="radio" name="s5q2" value="Maybe"> Maybe</label>
             </div>
-          </div>
+          </fieldset>
           <div class="form-group">
             <label>3. Which areas are most difficult to assess during recruitment? *</label>
             <div class="checkbox-grid" role="group" aria-label="Difficult recruitment areas">
@@ -1790,8 +1792,8 @@
         <!-- Step 6: Qualexas Validation -->
         <div class="survey-step" data-step="6">
           <h4 class="survey-step-title">Section 6: Qualexas Validation</h4>
-          <div class="form-group">
-            <label>1. How valuable would a platform combining Practical Assessment, AI Evaluation, Oral Defense, Competency Verification, and Digital Certification be for your institution? *</label>
+          <fieldset class="form-group">
+            <legend>1. How valuable would a platform combining Practical Assessment, AI Evaluation, Oral Defense, Competency Verification, and Digital Certification be for your institution? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Qualexas platform value">
               <label class="radio-label"><input type="radio" name="s6q1" value="1" required> 1 — Not Valuable</label>
               <label class="radio-label"><input type="radio" name="s6q1" value="2"> 2</label>
@@ -1799,17 +1801,17 @@
               <label class="radio-label"><input type="radio" name="s6q1" value="4"> 4</label>
               <label class="radio-label"><input type="radio" name="s6q1" value="5"> 5 — Extremely Valuable</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>2. Would you be interested in piloting Qualexas? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. Would you be interested in piloting Qualexas? *</legend>
             <div class="radio-group" role="radiogroup" aria-label="Pilot interest">
               <label class="radio-label"><input type="radio" name="s6q2" value="Yes" required> Yes</label>
               <label class="radio-label"><input type="radio" name="s6q2" value="No"> No</label>
               <label class="radio-label"><input type="radio" name="s6q2" value="Maybe"> Maybe</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label>3. Which trades or fields should be supported? *</label>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. Which trades or fields should be supported? *</legend>
             <div class="checkbox-grid three-cols" role="group" aria-label="Trades or fields">
               <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Software Development"> Software Development</label>
               <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Computer Networking"> Computer Networking</label>
@@ -1827,7 +1829,7 @@
               <label class="checkbox-label"><input type="checkbox" name="s6q3" value="University Programs"> University Programs</label>
               <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Professional Certifications"> Professional Certifications</label>
             </div>
-          </div>
+          </fieldset>
         </div>
 
         <!-- Step 7: Open Feedback -->
