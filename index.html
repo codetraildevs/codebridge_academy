@@ -24,9 +24,10 @@
   <!-- Canonical Link -->
   <link rel="canonical" href="https://codebridgecademy.com/">
 
-  <!-- Preconnect to Font Origins -->
+  <!-- Preconnect to Font & CDN Origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
@@ -58,12 +59,16 @@
   </style>
 
   <!-- Preload stylesheets for early discovery -->
-  <link rel="preload" href="css/style.css" as="style">
-  <link rel="preload" href="css/projects.css" as="style">
+  <link rel="preload" href="css/style.css" as="style" fetchpriority="low">
+  <link rel="preload" href="css/projects.css" as="style" fetchpriority="low">
 
-  <!-- Stylesheets (critical CSS inlined above for instant paint) -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/projects.css">
+  <!-- Stylesheets (critical CSS inlined above for instant paint; non-blocking) -->
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/projects.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+  </noscript>
   <link rel="icon" href="assets/images/update_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/update_logo.png">
   <link rel="manifest" href="manifest.json">
@@ -419,7 +424,7 @@
           </div>
           <div class="project-actions">
             <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-play-store">
-              <img src="assets/images/play_store_icon.png" alt="" style="height:20px;width:auto;display:inline;vertical-align:middle;margin-right:6px;"> Download from Google Play
+              <img src="assets/images/play_store_icon.png" alt="" width="20" height="20" style="display:inline;vertical-align:middle;margin-right:6px;"> Download from Google Play
             </a>
             
           </div>
