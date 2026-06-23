@@ -32,7 +32,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Preload Critical Assets -->
-  <link rel="preload" href="assets/images/update_logo.png" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/images/update_logo.webp" as="image" fetchpriority="high" type="image/webp">
 
   <!-- FontAwesome (Deferred) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
@@ -78,12 +78,15 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#hero" class="nav-logo">
-        <img 
-          src="assets/images/update_logo.png" 
-          alt="CodeBridge Academy Logo" 
-          width="200" 
-          height="70" 
-          fetchpriority="high">
+        <picture>
+          <source srcset="assets/images/update_logo.webp" type="image/webp">
+          <img 
+            src="assets/images/update_logo.png" 
+            alt="CodeBridge Academy Logo" 
+            width="200" 
+            height="70" 
+            fetchpriority="high">
+        </picture>
       </a>
 
       <ul class="nav-menu" id="navMenu">
@@ -420,7 +423,10 @@
           </div>
           <div class="project-actions">
             <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-play-store">
-              <img src="assets/images/play_store_icon.png" alt="" width="20" height="20" style="display:inline;vertical-align:middle;margin-right:6px;"> Download from Google Play
+              <picture>
+                <source srcset="assets/images/play_store_icon.webp" type="image/webp">
+                <img src="assets/images/play_store_icon.png" alt="" width="20" height="20" style="display:inline;vertical-align:middle;margin-right:6px;">
+              </picture> Download from Google Play
             </a>
             
           </div>
@@ -1161,12 +1167,15 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img 
-              src="assets/images/update_logo.png" 
-              alt="CodeBridge Academy Logo" 
-              width="200" 
-              height="70" 
-              loading="lazy">
+            <picture>
+              <source srcset="assets/images/update_logo.webp" type="image/webp">
+              <img 
+                src="assets/images/update_logo.png" 
+                alt="CodeBridge Academy Logo" 
+                width="200" 
+                height="70" 
+                loading="lazy">
+            </picture>
           </div>
           <p>Bridging learning to real software careers. We provide practical, project-based software development training that prepares students and professionals for the tech industry. Through our Qualexas research initiative, we are transforming competency assessment and workforce readiness in Rwanda.</p>
         </div>

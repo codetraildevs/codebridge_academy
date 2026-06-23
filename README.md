@@ -53,7 +53,8 @@ CodeBridge Academy is a modern, high-performance web platform for a software tra
 │
 ├── assets/images/
 │   ├── codebridge_academy_logo.svg   # Brand logo
-│   ├── update_logo.png                  # Favicon / OG image
+│   ├── update_logo.webp                  # Favicon / OG image (WebP)
+│   ├── update_logo.png                   # Favicon / OG image (PNG fallback)
 │   ├── about_section.png             # About section image
 │   ├── hero_section.png              # Hero section image
 │   ├── logo.png                      # Legacy logo
