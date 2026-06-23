@@ -9,7 +9,6 @@ const ASSETS = [
   '/css/verify.css',
   '/js/script.js',
   '/js/verify.js',
-  '/assets/images/codebridge_academy_logo.svg',
   '/assets/images/new_logo.png',
   '/assets/images/about_section.webp',
   '/assets/images/play_store_img.webp',

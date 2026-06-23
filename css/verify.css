@@ -29,7 +29,7 @@
 }
 
 [data-theme="dark"] .verify-logo {
-  filter: brightness(1.3) invert(0.85);
+  /* PNG logo renders correctly in both themes — no filter needed */
 }
 
 /* Accessibility: Focus Styles */

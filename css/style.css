@@ -119,7 +119,7 @@
 }
 
 [data-theme="dark"] .nav-logo img {
-  filter: brightness(1.3) invert(0.85);
+  /* PNG logo renders correctly in both themes — no filter needed */
 }
 
 [data-theme="dark"] .program-tag {
@@ -462,6 +462,11 @@ input, textarea, select {
   height: 3px;
   background: var(--color-primary);
   border-radius: var(--radius-full);
+}
+
+/* Mobile nav Register link (hidden on desktop, shown in hamburger menu) */
+.nav-mobile-register {
+  display: none;
 }
 
 .nav-actions {
@@ -1888,13 +1893,32 @@ input, textarea, select {
     font-size: 1rem;
   }
 
-  .nav-cta {
-    display: none;
+  .nav-mobile-register {
+    display: block;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    width: 100%;
   }
 
-  .navbar {
-    overflow: hidden;
+  .nav-mobile-register a {
+    background: var(--color-primary);
+    color: #fff !important;
+    text-align: center;
+    border-radius: var(--radius-md);
+    font-weight: 700;
   }
+
+  .nav-mobile-register a:hover {
+    background: var(--color-primary-dark);
+  }
+
+  .nav-cta {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.75rem;
+  }
+
+
 
   .nav-logo img {
     height: 50px;
@@ -3064,6 +3088,8 @@ input.error, select.error, textarea.error {
   font-size: 0.85rem;
   white-space: nowrap;
   animation: surveyFloatPulse 3s ease-in-out infinite;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .survey-float:hover {

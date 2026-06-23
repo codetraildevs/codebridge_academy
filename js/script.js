@@ -397,9 +397,9 @@ document.addEventListener('DOMContentLoaded', () => {
     surveyCurrentStep = 1;
     surveySuccess.style.display = 'none';
     surveyForm.style.display = 'block';
-    document.querySelector('.modal-header').style.display = 'block';
-    document.querySelector('.survey-progress-container').style.display = 'block';
-    document.querySelector('.form-navigation').style.display = 'flex';
+    surveyModal.querySelector('.modal-header').style.display = 'block';
+    surveyModal.querySelector('.survey-progress-container').style.display = 'block';
+    surveyModal.querySelector('.form-navigation').style.display = 'flex';
     updateSurveyStep(1);
   }
 
@@ -530,11 +530,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const openSurveyMobile = (e) => {
+    e.preventDefault();
+    openSurvey();
+  };
+
   if (surveyFloatBtn) {
     surveyFloatBtn.addEventListener('click', openSurvey);
+    surveyFloatBtn.addEventListener('touchend', openSurveyMobile);
   }
   if (openSurveyBtn) {
     openSurveyBtn.addEventListener('click', openSurvey);
+    openSurveyBtn.addEventListener('touchend', openSurveyMobile);
   }
   if (surveyCloseBtn) {
     surveyCloseBtn.addEventListener('click', closeSurvey);
@@ -581,17 +588,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }).then(() => {
         setButtonLoading(surveySubmitBtn, false);
         surveyForm.style.display = 'none';
-        document.querySelector('.modal-header').style.display = 'none';
-        document.querySelector('.survey-progress-container').style.display = 'none';
-        document.querySelector('.form-navigation').style.display = 'none';
+        surveyModal.querySelector('.modal-header').style.display = 'none';
+        surveyModal.querySelector('.survey-progress-container').style.display = 'none';
+        surveyModal.querySelector('.form-navigation').style.display = 'none';
         surveySuccess.style.display = 'block';
       }).catch(() => {
         setButtonLoading(surveySubmitBtn, false);
         // Even if Netlify form submission fails, show success
         surveyForm.style.display = 'none';
-        document.querySelector('.modal-header').style.display = 'none';
-        document.querySelector('.survey-progress-container').style.display = 'none';
-        document.querySelector('.form-navigation').style.display = 'none';
+        surveyModal.querySelector('.modal-header').style.display = 'none';
+        surveyModal.querySelector('.survey-progress-container').style.display = 'none';
+        surveyModal.querySelector('.form-navigation').style.display = 'none';
         surveySuccess.style.display = 'block';
       });
     });

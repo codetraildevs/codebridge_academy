@@ -31,7 +31,7 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- Preload Critical Assets -->
-  <link rel="preload" href="assets/images/codebridge_academy_logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+  <link rel="preload" href="assets/images/new_logo.png" as="image" fetchpriority="high">
 
   <!-- FontAwesome (Deferred) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
@@ -40,7 +40,7 @@
   <style>
     :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #163B73; --color-primary-rgb: 22,59,115; --color-text: #0F172A; --color-accent: #F28C28; --font-body: 'Inter', sans-serif; --font-heading: 'Poppins', sans-serif; --hero-gradient: linear-gradient(135deg, #EEF2FF 0%, #F8FAFC 40%, #FFF7ED 100%); --color-border: #E2E8F0; }
     [data-theme="dark"] { --bg-primary: #0F172A; --bg-section: #1E293B; --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F8FAFC; --color-accent: #FBBF24; --color-border: #334155; --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E293B 100%); }
-    [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); }
+    /* [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); } — PNG logo renders correctly in both themes */
     body { font-family: var(--font-body); margin: 0; background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; }
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 72px; background: var(--hero-gradient); position: relative; overflow: hidden; }
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
@@ -78,7 +78,7 @@
     <div class="container">
       <a href="#hero" class="nav-logo">
         <img 
-          src="assets/images/codebridge_academy_logo.svg" 
+          src="assets/images/new_logo.png" 
           alt="CodeBridge Academy Logo" 
           width="200" 
           height="70" 
@@ -94,6 +94,7 @@
         <li><a href="#why-qualexas" class="nav-link" data-section="why-qualexas">Why Qualexas</a></li>
         <li><a href="#tech-stack" class="nav-link" data-section="tech-stack">Tech Stack</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+        <li class="nav-mobile-register"><a href="#" class="nav-link btn-register">Register Now</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -1160,7 +1161,7 @@
         <div class="footer-brand">
           <div class="footer-logo">
             <img 
-              src="assets/images/codebridge_academy_logo.svg" 
+              src="assets/images/new_logo.png" 
               alt="CodeBridge Academy Logo" 
               width="200" 
               height="70" 
