@@ -16,7 +16,7 @@ lighthouse-report/report*.json
 # Unused logo variants (not actively used)
 logo.png
 updated_logo.jpeg
-
+new_logo.png
 # Ignore all Markdown files except README.md
 *.md
 !README.md
