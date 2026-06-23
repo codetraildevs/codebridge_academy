@@ -1,9 +1,14 @@
 {
   "devDependencies": {
+    "csso-cli": "^4.0.2",
     "lighthouse": "^13.4.0",
-    "sharp": "^0.35.2"
+    "sharp": "^0.35.2",
+    "terser": "^5.48.0"
   },
   "scripts": {
+    "build:css": "csso css/style.css --output css/style.min.css && csso css/projects.css --output css/projects.min.css",
+    "build:js": "terser js/script.js --output js/script.min.js",
+    "build": "npm run build:css && npm run build:js",
     "lighthouse": "lighthouse http://localhost:8080/ --view --output=json --output=html --output-path=lighthouse-report/report",
     "lighthouse:ci": "lighthouse http://localhost:8080/ --output=json --output=html --output-path=lighthouse-report/report --chrome-flags=\"--headless --no-sandbox\"",
     "lighthouse:budget": "lighthouse http://localhost:8080/ --output=json --output-path=lighthouse-report/report.report.json --budget-file=lighthouse-budget.json --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",
