@@ -13,8 +13,7 @@ lighthouse-report/report*.json
 # Temp scripts from Codebuff sessions
 *.mjs
 
-# Unused Assets
-new_logo.png
+# Unused logo variants (not actively used)
 logo.png
 updated_logo.jpeg
 
