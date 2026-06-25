@@ -2355,6 +2355,18 @@ input.error, select.error, textarea.error {
   border-color: var(--color-error) !important;
 }
 
+.form-submit-error {
+  display: none;
+  margin: 1rem 0 0;
+  padding: 0.95rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--color-error);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 1px solid rgba(239, 68, 68, 0.18);
+}
+
 .radio-group {
   display: flex;
   gap: 1.5rem;

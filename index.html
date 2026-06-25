@@ -1240,7 +1240,7 @@
   <!-- Google reCAPTCHA v3 -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LfN-TMtAAAAALVuQjC3-gBQ18LqLa4Aw0QEQE3L"></script>
 
-  <script src="js/script.min.js" defer></script>
+  <script src="js/script.js" defer></script>
 
   <!-- ============================================
        REGISTRATION MODAL (Multi-step)
@@ -1478,6 +1478,7 @@
           </fieldset>
         </div>
 
+        <div class="form-submit-error" style="display: none;"></div>
         <div class="form-navigation">
           <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
           <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
@@ -1862,6 +1863,7 @@
         </div>
 
         <!-- Navigation -->
+        <div class="form-submit-error" style="display: none;"></div>
         <div class="form-navigation">
           <button type="button" class="btn btn-secondary" id="surveyPrevBtn" style="display: none;">
             <i class="fa-solid fa-arrow-left"></i> Previous

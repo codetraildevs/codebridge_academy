@@ -61,6 +61,29 @@ function clearGroupError(group) {
   if (msg) msg.remove();
 }
 
+function showSubmitError(form, message) {
+  if (!form) return;
+  let errorEl = form.querySelector('.form-submit-error');
+  if (!errorEl) {
+    errorEl = document.createElement('div');
+    errorEl.className = 'form-submit-error';
+    const nav = form.querySelector('.form-navigation');
+    if (nav) form.insertBefore(errorEl, nav);
+    else form.appendChild(errorEl);
+  }
+  errorEl.textContent = message || 'An unexpected error occurred. Please try again.';
+  errorEl.style.display = 'block';
+}
+
+function clearSubmitError(form) {
+  if (!form) return;
+  const errorEl = form.querySelector('.form-submit-error');
+  if (errorEl) {
+    errorEl.style.display = 'none';
+    errorEl.textContent = '';
+  }
+}
+
 /* ============================================
    BUTTON LOADING STATE
    ============================================ */
@@ -568,6 +591,7 @@ function formatPhoneInput(input) {
   if (surveyForm) {
     surveyForm.addEventListener('submit', async e => {
       e.preventDefault();
+      clearSubmitError(surveyForm);
       if (!validateSurveyStep(surveyCurrentStep)) return;
       setButtonLoading(surveySubmitBtn, true);
 
@@ -579,6 +603,12 @@ function formatPhoneInput(input) {
         }
       } catch (err) {
         console.error('reCAPTCHA error:', err);
+      }
+
+      if (!recaptchaToken) {
+        showSubmitError(surveyForm, 'Unable to verify reCAPTCHA. Please refresh the page and try again.');
+        setButtonLoading(surveySubmitBtn, false);
+        return;
       }
 
       const formData = new FormData(surveyForm);
@@ -611,7 +641,10 @@ function formatPhoneInput(input) {
       try {
         const response = await fetch(SUPABASE_EDGE_FN, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          },
           body: JSON.stringify({
             form_type: 'survey',
             data: data,
@@ -620,22 +653,28 @@ function formatPhoneInput(input) {
         });
 
         if (!response.ok) {
-          const errText = await response.text();
+          let errText = await response.text();
+          try {
+            const errJson = JSON.parse(errText);
+            errText = errJson.error?.message || errJson.message || errText;
+          } catch (_err) {}
           console.error('Submit error:', errText);
+          showSubmitError(surveyForm, `Submission failed: ${errText}`);
+          return;
         }
+
+        surveyForm.style.display = 'none';
+        surveyModal.querySelector('.modal-header').style.display = 'none';
+        surveyModal.querySelector('.survey-progress-container').style.display = 'none';
+        surveyModal.querySelector('.form-navigation').style.display = 'none';
+        surveySuccess.style.display = 'block';
+        surveyForm.reset();
       } catch (err) {
         console.error('Network error:', err);
+        showSubmitError(surveyForm, 'Network error while submitting. Please try again.');
+      } finally {
+        setButtonLoading(surveySubmitBtn, false);
       }
-
-      setButtonLoading(surveySubmitBtn, false);
-
-      // Show success screen
-      surveyForm.style.display = 'none';
-      surveyModal.querySelector('.modal-header').style.display = 'none';
-      surveyModal.querySelector('.survey-progress-container').style.display = 'none';
-      surveyModal.querySelector('.form-navigation').style.display = 'none';
-      surveySuccess.style.display = 'block';
-      surveyForm.reset();
     });
   }
 
@@ -817,6 +856,7 @@ function formatPhoneInput(input) {
 
   regForm.addEventListener('submit', async e => {
     e.preventDefault();
+    clearSubmitError(regForm);
     if (!validateStep(currentStep)) return;
     setButtonLoading(submitBtn, true);
 
@@ -828,6 +868,12 @@ function formatPhoneInput(input) {
       }
     } catch (err) {
       console.error('reCAPTCHA error:', err);
+    }
+
+    if (!recaptchaToken) {
+      showSubmitError(regForm, 'Unable to verify reCAPTCHA. Please refresh the page and try again.');
+      setButtonLoading(submitBtn, false);
+      return;
     }
 
     const formData = new FormData(regForm);
@@ -854,31 +900,35 @@ function formatPhoneInput(input) {
     try {
       const response = await fetch(SUPABASE_EDGE_FN, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          form_type: 'registration',
-          data: data,
-          recaptcha_token: recaptchaToken
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
         })
       });
 
       if (!response.ok) {
-        const errText = await response.text();
+        let errText = await response.text();
+        try {
+          const errJson = JSON.parse(errText);
+          errText = errJson.error?.message || errJson.message || errText;
+        } catch (_err) {}
         console.error('Submit error:', errText);
+        showSubmitError(regForm, `Submission failed: ${errText}`);
+        return;
       }
+
+      regForm.style.display = 'none';
+      document.querySelector('#registrationModal .modal-header').style.display = 'none';
+      document.querySelector('#registrationModal .progress-container').style.display = 'none';
+      document.querySelector('#registrationModal .form-navigation').style.display = 'none';
+      document.getElementById('registrationSuccess').style.display = 'block';
+      regForm.reset();
     } catch (err) {
       console.error('Network error:', err);
+      showSubmitError(regForm, 'Network error while submitting. Please try again.');
+    } finally {
+      setButtonLoading(submitBtn, false);
     }
-
-    setButtonLoading(submitBtn, false);
-
-    // Show success screen
-    regForm.style.display = 'none';
-    document.querySelector('#registrationModal .modal-header').style.display = 'none';
-    document.querySelector('#registrationModal .progress-container').style.display = 'none';
-    document.querySelector('#registrationModal .form-navigation').style.display = 'none';
-    document.getElementById('registrationSuccess').style.display = 'block';
-    regForm.reset();
   });
 
   // Registration success screen interactions
