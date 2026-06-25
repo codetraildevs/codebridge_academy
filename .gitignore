@@ -32,6 +32,11 @@ desktop.ini
 # Editor / IDE files
 .vscode/
 .idea/
+
+# Environment variables
+.env
+.env.local
+.env.*
 *.swp
 *.swo
 *~

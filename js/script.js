@@ -188,8 +188,15 @@ function formatPhoneInput(input) {
     }
     input.setSelectionRange(pos, pos);
   }
-}
-document.addEventListener('DOMContentLoaded', () => {
+}  /* ============================================
+     SUPABASE CLIENT INITIALIZATION
+     ============================================ */
+  const SUPABASE_URL = 'https://siruvivfrinoyudbotko.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcnV2aXZmcmlub3l1ZGJvdGtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNjA1MDMsImV4cCI6MjA5NzkzNjUwM30.hxLb3o1YkfSRbrPqHST20ANWkVVbalrE6xplmy8mstU';
+  const { createClient } = supabase;
+  const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  document.addEventListener('DOMContentLoaded', () => {
   /* ============================================
      SERVICE WORKER REGISTRATION
      ============================================ */
@@ -573,34 +580,55 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (surveyForm) {
-    surveyForm.addEventListener('submit', e => {
+    surveyForm.addEventListener('submit', async e => {
       e.preventDefault();
       if (!validateSurveyStep(surveyCurrentStep)) return;
-      // Show loading state
       setButtonLoading(surveySubmitBtn, true);
-      const surveyPhoneField = document.getElementById('surveyPhone');
-      if (surveyPhoneField) combinePhoneForSubmit(surveyPhoneField);
+
       const formData = new FormData(surveyForm);
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-      }).then(() => {
-        setButtonLoading(surveySubmitBtn, false);
-        surveyForm.style.display = 'none';
-        surveyModal.querySelector('.modal-header').style.display = 'none';
-        surveyModal.querySelector('.survey-progress-container').style.display = 'none';
-        surveyModal.querySelector('.form-navigation').style.display = 'none';
-        surveySuccess.style.display = 'block';
-      }).catch(() => {
-        setButtonLoading(surveySubmitBtn, false);
-        // Even if Netlify form submission fails, show success
-        surveyForm.style.display = 'none';
-        surveyModal.querySelector('.modal-header').style.display = 'none';
-        surveyModal.querySelector('.survey-progress-container').style.display = 'none';
-        surveyModal.querySelector('.form-navigation').style.display = 'none';
-        surveySuccess.style.display = 'block';
-      });
+      const data = {
+        full_name: formData.get('surveyFullName'),
+        email: formData.get('surveyEmail'),
+        phone_code: formData.get('surveyPhoneCode'),
+        phone: formData.get('surveyPhone') || null,
+        institution: formData.get('surveyInstitution'),
+        district: formData.get('surveyDistrict'),
+        institution_type: formData.get('surveyInstType'),
+        occupation: formData.get('surveyOccupation'),
+        s2q1: formData.get('s2q1'),
+        s2q2: formData.getAll('s2q2'),
+        s2q3: formData.get('s2q3'),
+        s2q4: formData.get('s2q4'),
+        s3q1: formData.get('s3q1'),
+        s3q2: formData.get('s3q2'),
+        s3q3: formData.getAll('s3q3'),
+        s4q1: formData.get('s4q1'),
+        s4q2: formData.getAll('s4q2'),
+        s4q3: formData.get('s4q3'),
+        s5q1: formData.get('s5q1'),
+        s5q2: formData.get('s5q2'),
+        s6q1: formData.get('s6q1'),
+        s6q2: formData.getAll('s6q2'),
+        s7q1: formData.get('s7q1') || null
+      };
+
+      const { error } = await supabaseClient
+        .from('survey_responses')
+        .insert([data]);
+
+      setButtonLoading(surveySubmitBtn, false);
+
+      if (error) {
+        console.error('Supabase insert error:', error);
+      }
+
+      // Show success screen
+      surveyForm.style.display = 'none';
+      surveyModal.querySelector('.modal-header').style.display = 'none';
+      surveyModal.querySelector('.survey-progress-container').style.display = 'none';
+      surveyModal.querySelector('.form-navigation').style.display = 'none';
+      surveySuccess.style.display = 'block';
+      surveyForm.reset();
     });
   }
 
@@ -780,31 +808,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  regForm.addEventListener('submit', e => {
+  regForm.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validateStep(currentStep)) return;
-    // Show loading state
     setButtonLoading(submitBtn, true);
-    // Combine country code with phone number before submission
-    const phoneField = document.getElementById('phone');
-    if (phoneField) combinePhoneForSubmit(phoneField);
+
     const formData = new FormData(regForm);
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    }).then(() => {
-      setButtonLoading(submitBtn, false);
-      // Show success screen inside modal
-      regForm.style.display = 'none';
-      document.querySelector('#registrationModal .modal-header').style.display = 'none';
-      document.querySelector('#registrationModal .progress-container').style.display = 'none';
-      document.querySelector('#registrationModal .form-navigation').style.display = 'none';
-      document.getElementById('registrationSuccess').style.display = 'block';
-      regForm.reset();
-    }).catch(() => {
-      setButtonLoading(submitBtn, false);
-    });
+    const data = {
+      full_name: formData.get('fullName'),
+      email: formData.get('email'),
+      phone_code: formData.get('phoneCode'),
+      phone: formData.get('phone'),
+      gender: formData.get('gender'),
+      location: formData.get('location'),
+      status: formData.get('status'),
+      organization: formData.get('organization'),
+      level: formData.get('level'),
+      program: formData.get('program'),
+      skill_level: formData.get('skillLevel'),
+      tech: formData.getAll('tech'),
+      has_laptop: formData.get('hasLaptop'),
+      has_internet: formData.get('hasInternet'),
+      projects: formData.get('projects') || null,
+      motivation: formData.get('motivation'),
+      goals: formData.getAll('goals')
+    };
+
+    const { error } = await supabaseClient
+      .from('registrations')
+      .insert([data]);
+
+    setButtonLoading(submitBtn, false);
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+    }
+
+    // Show success screen
+    regForm.style.display = 'none';
+    document.querySelector('#registrationModal .modal-header').style.display = 'none';
+    document.querySelector('#registrationModal .progress-container').style.display = 'none';
+    document.querySelector('#registrationModal .form-navigation').style.display = 'none';
+    document.getElementById('registrationSuccess').style.display = 'block';
+    regForm.reset();
   });
 
   // Registration success screen interactions
