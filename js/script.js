@@ -111,22 +111,6 @@ function getFullPhone(field) {
   return field.value.trim();
 }
 
-function combinePhoneForSubmit(field) {
-  // Update the phone value to include the country code for form submission
-  const group = field.closest('.phone-input-group');
-  if (group) {
-    const codeSelect = group.querySelector('.phone-code-select');
-    if (codeSelect && codeSelect.value) {
-      const digitsOnly = field.value.replace(/[^0-9]/g, '');
-      if (digitsOnly.startsWith('0')) {
-        field.value = digitsOnly;
-      } else if (digitsOnly) {
-        field.value = codeSelect.value + ' ' + field.value.trim();
-      }
-    }
-  }
-}
-
 /* ============================================
    PHONE FORMATTING
    ============================================ */
@@ -193,6 +177,8 @@ function formatPhoneInput(input) {
      ============================================ */
   const SUPABASE_URL = 'https://siruvivfrinoyudbotko.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcnV2aXZmcmlub3l1ZGJvdGtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNjA1MDMsImV4cCI6MjA5NzkzNjUwM30.hxLb3o1YkfSRbrPqHST20ANWkVVbalrE6xplmy8mstU';
+  const SUPABASE_EDGE_FN = 'https://siruvivfrinoyudbotko.supabase.co/functions/v1/submit-form';
+  const RECAPTCHA_SITE_KEY = '6LfN-TMtAAAAALVuQjC3-gBQ18LqLa4Aw0QEQE3L';
   const { createClient } = supabase;
   const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -585,6 +571,16 @@ function formatPhoneInput(input) {
       if (!validateSurveyStep(surveyCurrentStep)) return;
       setButtonLoading(surveySubmitBtn, true);
 
+      // Get reCAPTCHA v3 token
+      let recaptchaToken = '';
+      try {
+        if (typeof grecaptcha !== 'undefined') {
+          recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'survey_submit' });
+        }
+      } catch (err) {
+        console.error('reCAPTCHA error:', err);
+      }
+
       const formData = new FormData(surveyForm);
       const data = {
         full_name: formData.get('surveyFullName'),
@@ -612,15 +608,26 @@ function formatPhoneInput(input) {
         s7q1: formData.get('s7q1') || null
       };
 
-      const { error } = await supabaseClient
-        .from('survey_responses')
-        .insert([data]);
+      try {
+        const response = await fetch(SUPABASE_EDGE_FN, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            form_type: 'survey',
+            data: data,
+            recaptcha_token: recaptchaToken
+          })
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          console.error('Submit error:', errText);
+        }
+      } catch (err) {
+        console.error('Network error:', err);
+      }
 
       setButtonLoading(surveySubmitBtn, false);
-
-      if (error) {
-        console.error('Supabase insert error:', error);
-      }
 
       // Show success screen
       surveyForm.style.display = 'none';
@@ -813,6 +820,16 @@ function formatPhoneInput(input) {
     if (!validateStep(currentStep)) return;
     setButtonLoading(submitBtn, true);
 
+    // Get reCAPTCHA v3 token
+    let recaptchaToken = '';
+    try {
+      if (typeof grecaptcha !== 'undefined') {
+        recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'register_submit' });
+      }
+    } catch (err) {
+      console.error('reCAPTCHA error:', err);
+    }
+
     const formData = new FormData(regForm);
     const data = {
       full_name: formData.get('fullName'),
@@ -834,15 +851,26 @@ function formatPhoneInput(input) {
       goals: formData.getAll('goals')
     };
 
-    const { error } = await supabaseClient
-      .from('registrations')
-      .insert([data]);
+    try {
+      const response = await fetch(SUPABASE_EDGE_FN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'registration',
+          data: data,
+          recaptcha_token: recaptchaToken
+        })
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        console.error('Submit error:', errText);
+      }
+    } catch (err) {
+      console.error('Network error:', err);
+    }
 
     setButtonLoading(submitBtn, false);
-
-    if (error) {
-      console.error('Supabase insert error:', error);
-    }
 
     // Show success screen
     regForm.style.display = 'none';
