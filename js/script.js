@@ -642,8 +642,7 @@ function formatPhoneInput(input) {
         const response = await fetch(SUPABASE_EDGE_FN, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             form_type: 'survey',
@@ -901,8 +900,12 @@ function formatPhoneInput(input) {
       const response = await fetch(SUPABASE_EDGE_FN, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          form_type: 'registration',
+          data: data,
+          recaptcha_token: recaptchaToken
         })
       });
 

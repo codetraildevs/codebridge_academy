@@ -29,23 +29,28 @@ async function verifyRecaptcha(token: string): Promise<{ success: boolean; score
   return { success: result.success, score: result.score || 0 };
 }
 
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
 serve(async (req: Request) => {
   try {
     // Handle CORS preflight
     if (req.method === "OPTIONS") {
       return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        },
+        headers: CORS_HEADERS,
       });
     }
 
     if (req.method !== "POST") {
       return new Response(JSON.stringify({ error: "Method not allowed" }), {
         status: 405,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...CORS_HEADERS,
+        },
       });
     }
 
@@ -55,14 +60,20 @@ serve(async (req: Request) => {
     if (!payload.form_type || !payload.data || !payload.recaptcha_token) {
       return new Response(JSON.stringify({ error: "Missing required fields: form_type, data, recaptcha_token" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...CORS_HEADERS,
+        },
       });
     }
 
     if (payload.form_type !== "registration" && payload.form_type !== "survey") {
       return new Response(JSON.stringify({ error: "form_type must be 'registration' or 'survey'" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...CORS_HEADERS,
+        },
       });
     }
 
@@ -72,7 +83,10 @@ serve(async (req: Request) => {
       console.warn(`reCAPTCHA failed: success=${verification.success}, score=${verification.score}`);
       return new Response(JSON.stringify({ error: "reCAPTCHA verification failed. Please try again." }), {
         status: 403,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...CORS_HEADERS,
+        },
       });
     }
 
@@ -90,7 +104,10 @@ serve(async (req: Request) => {
       console.error("Supabase insert error:", error);
       return new Response(JSON.stringify({ error: "Database insert failed" }), {
         status: 500,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...CORS_HEADERS,
+        },
       });
     }
 
@@ -98,14 +115,17 @@ serve(async (req: Request) => {
       status: 201,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        ...CORS_HEADERS,
       },
     });
   } catch (err) {
     console.error("Unexpected error:", err);
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...CORS_HEADERS,
+      },
     });
   }
 });
