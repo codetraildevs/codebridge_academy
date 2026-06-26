@@ -1234,9 +1234,6 @@
     <span>Take Research Survey</span>
   </button>
 
-  <!-- Supabase JS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script src="js/script.js" defer></script>
 
   <!-- ============================================
@@ -1710,9 +1707,9 @@
             <legend>2. How important is competency verification? *</legend>
             <div class="radio-group" role="radiogroup">
               <label class="radio-label"><input type="radio" name="s3q2" value="1" required> 1 — Not Important</label>
-              <label class="radio-label"><input type="radio" name="s3q2" value="2"> 2</label>
+              <label class="radio-label"><input type="radio" name="s3q2" value="2"> 2 — Slightly Important</label>
               <label class="radio-label"><input type="radio" name="s3q2" value="3"> 3 — Neutral</label>
-              <label class="radio-label"><input type="radio" name="s3q2" value="4"> 4</label>
+              <label class="radio-label"><input type="radio" name="s3q2" value="4"> 4 — Important</label>
               <label class="radio-label"><input type="radio" name="s3q2" value="5"> 5 — Very Important</label>
             </div>
           </fieldset>
@@ -1758,9 +1755,9 @@
             <legend>3. How important is reducing examination malpractice? *</legend>
             <div class="radio-group" role="radiogroup">
               <label class="radio-label"><input type="radio" name="s4q3" value="1" required> 1 — Not Important</label>
-              <label class="radio-label"><input type="radio" name="s4q3" value="2"> 2</label>
+              <label class="radio-label"><input type="radio" name="s4q3" value="2"> 2 — Slightly Important</label>
               <label class="radio-label"><input type="radio" name="s4q3" value="3"> 3 — Neutral</label>
-              <label class="radio-label"><input type="radio" name="s4q3" value="4"> 4</label>
+              <label class="radio-label"><input type="radio" name="s4q3" value="4"> 4 — Important</label>
               <label class="radio-label"><input type="radio" name="s4q3" value="5"> 5 — Very Important</label>
             </div>
           </fieldset>
@@ -1771,12 +1768,13 @@
           <h4 class="survey-step-title">Section 5: Employer &amp; Workforce Readiness</h4>
           <fieldset class="form-group">
             <legend>1. How do you currently evaluate technical skills during recruitment? *</legend>
-            <div class="radio-group" role="radiogroup">
-              <label class="radio-label"><input type="radio" name="s5q1" value="CV Review" required> CV Review</label>
-              <label class="radio-label"><input type="radio" name="s5q1" value="Interview"> Interview</label>
-              <label class="radio-label"><input type="radio" name="s5q1" value="Practical Test"> Practical Test</label>
-              <label class="radio-label"><input type="radio" name="s5q1" value="Technical Assessment"> Technical Assessment</label>
-              <label class="radio-label"><input type="radio" name="s5q1" value="Portfolio Review"> Portfolio Review</label>
+            <p class="field-hint">Select all that apply</p>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="CV Review"> CV Review</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Interview"> Interview</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Practical Test"> Practical Test</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Technical Assessment"> Technical Assessment</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Portfolio Review"> Portfolio Review</label>
             </div>
           </fieldset>
           <fieldset class="form-group">
@@ -1806,9 +1804,9 @@
             <legend>1. How valuable would a platform combining Practical Assessment, AI Evaluation, Oral Defense, Competency Verification, and Digital Certification be for your institution? *</legend>
             <div class="radio-group" role="radiogroup">
               <label class="radio-label"><input type="radio" name="s6q1" value="1" required> 1 — Not Valuable</label>
-              <label class="radio-label"><input type="radio" name="s6q1" value="2"> 2</label>
+              <label class="radio-label"><input type="radio" name="s6q1" value="2"> 2 — Slightly Valuable</label>
               <label class="radio-label"><input type="radio" name="s6q1" value="3"> 3 — Neutral</label>
-              <label class="radio-label"><input type="radio" name="s6q1" value="4"> 4</label>
+              <label class="radio-label"><input type="radio" name="s6q1" value="4"> 4 — Valuable</label>
               <label class="radio-label"><input type="radio" name="s6q1" value="5"> 5 — Extremely Valuable</label>
             </div>
           </fieldset>

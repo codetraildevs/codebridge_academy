@@ -201,8 +201,6 @@ function formatPhoneInput(input) {
   const SUPABASE_URL = 'https://siruvivfrinoyudbotko.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcnV2aXZmcmlub3l1ZGJvdGtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNjA1MDMsImV4cCI6MjA5NzkzNjUwM30.hxLb3o1YkfSRbrPqHST20ANWkVVbalrE6xplmy8mstU';
   const SUPABASE_EDGE_FN = 'https://siruvivfrinoyudbotko.supabase.co/functions/v1/submit-form';
-  const { createClient } = supabase;
-  const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   document.addEventListener('DOMContentLoaded', () => {
   /* ============================================
@@ -614,7 +612,7 @@ function formatPhoneInput(input) {
         s4q1: formData.get('s4q1'),
         s4q2: formData.getAll('s4q2'),
         s4q3: formData.get('s4q3'),
-        s5q1: formData.get('s5q1'),
+        s5q1: formData.getAll('s5q1'),
         s5q2: formData.get('s5q2'),
         s6q1: formData.get('s6q1'),
         s6q2: formData.getAll('s6q2'),
