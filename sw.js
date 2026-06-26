@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v4';
+const CACHE_NAME = 'codebridge-v5';
 const ASSETS = [
   '/',
   '/index.html',
@@ -56,6 +56,11 @@ function isHTMLNavigation(request) {
 
 // Fetch: Network-first for HTML pages, Cache-first for static assets
 self.addEventListener('fetch', (event) => {
+  // Skip non-GET requests — Cache API only supports GET/HEAD for put()
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   // HTML pages: try network first, fall back to cache
   if (isHTMLNavigation(event.request)) {
     event.respondWith(

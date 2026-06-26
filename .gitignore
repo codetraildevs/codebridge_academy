@@ -21,6 +21,9 @@ new_logo.png
 *.md
 !README.md
 
+# Generated Playwright test report
+/test-report/
+
 # Generated QR codes (derived from students.json)
 qr_codes/
 

@@ -1,6 +1,8 @@
 {
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "csso-cli": "^4.0.2",
+    "http-server": "^14.1.1",
     "lighthouse": "^13.4.0",
     "sharp": "^0.35.2",
     "terser": "^5.48.0"
@@ -16,6 +18,11 @@
     "lighthouse:desktop": "lighthouse http://localhost:8080/ --preset=desktop --output=json --output=html --output-path=lighthouse-report/report-desktop --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",
     "perf:check": "node scripts/check-budget.js",
     "perf:audit": "npm run lighthouse:ci-full && npm run perf:check",
-    "perf:audit-full": "npm run lighthouse:desktop && npm run lighthouse:ci-full && npm run perf:check"
-  }
+    "perf:audit-full": "npm run lighthouse:desktop && npm run lighthouse:ci-full && npm run perf:check",
+    "test": "npx playwright test",
+    "test:unit": "npx playwright test tests/unit",
+    "test:e2e": "npx playwright test tests/e2e",
+    "test:api": "npx playwright test tests/api"
+  },
+  "dependencies": {}
 }
