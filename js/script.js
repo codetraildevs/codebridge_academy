@@ -201,7 +201,6 @@ function formatPhoneInput(input) {
   const SUPABASE_URL = 'https://siruvivfrinoyudbotko.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcnV2aXZmcmlub3l1ZGJvdGtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNjA1MDMsImV4cCI6MjA5NzkzNjUwM30.hxLb3o1YkfSRbrPqHST20ANWkVVbalrE6xplmy8mstU';
   const SUPABASE_EDGE_FN = 'https://siruvivfrinoyudbotko.supabase.co/functions/v1/submit-form';
-  const RECAPTCHA_SITE_KEY = '6LfN-TMtAAAAALVuQjC3-gBQ18LqLa4Aw0QEQE3L';
   const { createClient } = supabase;
   const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -595,22 +594,6 @@ function formatPhoneInput(input) {
       if (!validateSurveyStep(surveyCurrentStep)) return;
       setButtonLoading(surveySubmitBtn, true);
 
-      // Get reCAPTCHA v3 token
-      let recaptchaToken = '';
-      try {
-        if (typeof grecaptcha !== 'undefined') {
-          recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'survey_submit' });
-        }
-      } catch (err) {
-        console.error('reCAPTCHA error:', err);
-      }
-
-      if (!recaptchaToken) {
-        showSubmitError(surveyForm, 'Unable to verify reCAPTCHA. Please refresh the page and try again.');
-        setButtonLoading(surveySubmitBtn, false);
-        return;
-      }
-
       const formData = new FormData(surveyForm);
       const data = {
         full_name: formData.get('surveyFullName'),
@@ -642,12 +625,12 @@ function formatPhoneInput(input) {
         const response = await fetch(SUPABASE_EDGE_FN, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
           },
           body: JSON.stringify({
             form_type: 'survey',
-            data: data,
-            recaptcha_token: recaptchaToken
+            data: data
           })
         });
 
@@ -859,22 +842,6 @@ function formatPhoneInput(input) {
     if (!validateStep(currentStep)) return;
     setButtonLoading(submitBtn, true);
 
-    // Get reCAPTCHA v3 token
-    let recaptchaToken = '';
-    try {
-      if (typeof grecaptcha !== 'undefined') {
-        recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'register_submit' });
-      }
-    } catch (err) {
-      console.error('reCAPTCHA error:', err);
-    }
-
-    if (!recaptchaToken) {
-      showSubmitError(regForm, 'Unable to verify reCAPTCHA. Please refresh the page and try again.');
-      setButtonLoading(submitBtn, false);
-      return;
-    }
-
     const formData = new FormData(regForm);
     const data = {
       full_name: formData.get('fullName'),
@@ -900,13 +867,13 @@ function formatPhoneInput(input) {
       const response = await fetch(SUPABASE_EDGE_FN, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
         },
         body: JSON.stringify({
-          form_type: 'registration',
-          data: data,
-          recaptcha_token: recaptchaToken
-        })
+            form_type: 'registration',
+            data: data
+          })
       });
 
       if (!response.ok) {
