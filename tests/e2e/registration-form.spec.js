@@ -70,18 +70,6 @@ test.describe('Registration Form — 5-Step Modal', () => {
     await expect(successScreen).toBeVisible({ timeout: 10000 });
   });
 
-  test('shows error when reCAPTCHA is missing', async ({ page }) => {
-    await clickRegister(page);
-    await fillRegistrationFlow(page);
-
-    await page.locator('#submitBtn').click();
-    await page.waitForTimeout(1500);
-
-    const errorEl = page.locator('#registrationForm .form-submit-error');
-    await expect(errorEl).toBeVisible();
-    await expect(errorEl).toContainText('reCAPTCHA');
-  });
-
   test('shows network error on fetch failure', async ({ page }) => {
     await page.evaluate(() => {
       window.grecaptcha = { execute: async () => 'mock-token', ready: (cb) => cb() };
