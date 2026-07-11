@@ -380,6 +380,508 @@ input, textarea, select {
 }
 
 /* ============================================
+   NAV-TOP-BANNER (Bootcamp Holiday — Promotional & Highly Visible)
+   ============================================ */
+.nav-top-banner {
+  position: relative;
+  background: linear-gradient(135deg, #0F2A52 0%, #163B73 30%, #1a4a8a 60%, #163B73 100%);
+  color: #fff;
+  overflow: hidden;
+  max-height: 44px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animated floating particles */
+.banner-bg-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+.p1 { top: 10%; left: 5%; animation-delay: 0s; width: 4px; height: 4px; }
+.p2 { top: 60%; left: 20%; animation-delay: 1s; width: 5px; height: 5px; }
+.p3 { top: 30%; left: 50%; animation-delay: 2s; width: 3px; height: 3px; background: rgba(251,191,36,0.2); }
+.p4 { top: 70%; left: 70%; animation-delay: 3s; width: 6px; height: 6px; background: rgba(242,140,40,0.15); }
+.p5 { top: 20%; left: 85%; animation-delay: 0.5s; width: 4px; height: 4px; }
+.p6 { top: 50%; left: 92%; animation-delay: 2.5s; width: 5px; height: 5px; background: rgba(251,191,36,0.2); }
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+  25% { transform: translateY(-8px) translateX(3px); opacity: 0.8; }
+  50% { transform: translateY(-4px) translateX(-2px); opacity: 0.6; }
+  75% { transform: translateY(-12px) translateX(4px); opacity: 0.9; }
+}
+
+/* Animated shine overlay */
+.banner-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.05) 30%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.05) 70%,
+    transparent 100%
+  );
+  animation: bannerShine 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes bannerShine {
+  0% { left: -60%; }
+  25% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Bold animated bottom border glow */
+.nav-top-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(251, 191, 36, 0.6) 20%,
+    rgba(242, 140, 40, 0.9) 50%, 
+    rgba(251, 191, 36, 0.6) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: borderGlow 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 0%; opacity: 0.8; }
+  50% { background-position: 100% 0%; opacity: 1; }
+}
+
+.nav-top-banner.closed {
+  max-height: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.nav-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 3;
+}
+
+.nav-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.nav-banner-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Badge with gold accent */
+.nav-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.5rem 0.15rem 0.4rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(251, 191, 36, 0.08));
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  letter-spacing: 0.2px;
+}
+
+.badge-pulse {
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background: #FBBF24;
+  animation: badgePulse 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes badgePulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.5);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 0 5px rgba(251, 191, 36, 0);
+    transform: scale(1.4);
+  }
+}
+
+.nav-banner-badge i {
+  color: #FBBF24;
+  font-size: 0.7rem;
+}
+
+/* Description text */
+.nav-banner-desc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nav-banner-desc i {
+  opacity: 0.6;
+  font-size: 0.65rem;
+}
+
+.banner-dot {
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.seats-highlight {
+  color: #FBBF24;
+  font-weight: 700;
+  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.seats-highlight i {
+  font-size: 0.6rem;
+  animation: flameFlicker 1s ease-in-out infinite alternate;
+}
+
+@keyframes flameFlicker {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Hot Deal badge */
+.nav-banner-hot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.12rem 0.45rem;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(239, 68, 68, 0.1));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #FCA5A5;
+  white-space: nowrap;
+  animation: hotPulse 2s ease-in-out infinite;
+}
+
+@keyframes hotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.06); }
+}
+
+.nav-banner-hot i {
+  font-size: 0.65rem;
+  color: #EF4444;
+  animation: flameFlicker 1s ease-in-out infinite alternate;
+}
+
+/* Start date badge */
+.banner-start-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+}
+
+.banner-start-date i {
+  color: #FBBF24;
+  font-size: 0.65rem;
+}
+
+/* ===== PROMINENT COUNTDOWN TIMER ===== */
+.nav-banner-countdown {
+  display: flex;
+  align-items: center;
+}
+
+.banner-countdown-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.banner-cd-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 28px;
+}
+
+.banner-cd-value {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  font-family: var(--font-heading);
+  background: rgba(255,255,255,0.12);
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+  min-width: 26px;
+  text-align: center;
+  display: block;
+  transition: all 0.2s ease;
+  position: relative;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* Digit change animation */
+.banner-cd-value.digit-change {
+  animation: digitFlip 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(242, 140, 40, 0.35);
+  color: #FBBF24;
+  border-color: rgba(242, 140, 40, 0.3);
+}
+
+@keyframes digitFlip {
+  0% { transform: translateY(-5px) scaleY(0.9); opacity: 0.6; }
+  50% { transform: translateY(2px) scaleY(1.08); opacity: 1; }
+  100% { transform: translateY(0) scaleY(1); opacity: 1; }
+}
+
+.banner-cd-item .banner-cd-label {
+  font-size: 0.48rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-top: 0.05rem;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.banner-cd-sep {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: rgba(251, 191, 36, 0.5);
+  margin-bottom: 0.6rem;
+  margin-left: 0.05rem;
+  margin-right: 0.05rem;
+}
+
+/* Banner CTA button — bold orange gradient */
+.btn-banner-cta {
+  padding: 0.25rem 0.8rem !important;
+  font-size: 0.68rem !important;
+  border-radius: 6px !important;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #F28C28 0%, #D97706 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 12px rgba(242, 140, 40, 0.4) !important;
+  min-height: 0 !important;
+  line-height: 1.4 !important;
+  font-family: var(--font-heading);
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+  gap: 0.35rem !important;
+}
+
+.btn-banner-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-banner-cta:hover::before {
+  left: 100%;
+}
+
+.btn-banner-cta:hover {
+  transform: translateY(-1px) scale(1.04) !important;
+  box-shadow: 0 4px 18px rgba(242, 140, 40, 0.55) !important;
+}
+
+.btn-banner-cta:active {
+  transform: translateY(0) scale(0.97) !important;
+}
+
+.btn-banner-cta i {
+  font-size: 0.6rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-banner-cta:hover i {
+  transform: translateX(3px);
+}
+
+/* Close button */
+.nav-banner-close {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.nav-banner-close i {
+  transition: transform 0.3s ease;
+}
+
+.nav-banner-close:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+
+.nav-banner-close:hover i {
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Expiration state */
+.nav-top-banner.expired .banner-cd-value {
+  color: #F87171;
+  background: rgba(248, 113, 113, 0.15);
+  border-color: rgba(248, 113, 113, 0.2);
+}
+
+.nav-top-banner.expired .banner-shine,
+.nav-top-banner.expired .banner-bg-particles {
+  display: none;
+}
+
+/* ============================================
+   RESPONSIVE — Nav-Banner
+   ============================================ */
+@media (max-width: 992px) {
+  .nav-banner-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.2rem 0;
+  }
+  .nav-banner-left {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-banner-desc {
+    display: none;
+  }
+  .banner-start-date {
+    display: none;
+  }
+  .nav-banner-hot {
+    display: none;
+  }
+  .nav-top-banner {
+    max-height: none;
+  }
+  .banner-cd-item {
+    min-width: 24px;
+  }
+  .banner-cd-value {
+    font-size: 0.85rem;
+    min-width: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-banner-badge {
+    font-size: 0.62rem;
+    padding: 0.12rem 0.35rem 0.12rem 0.3rem;
+  }
+  .badge-pulse {
+    width: 5px;
+    height: 5px;
+    min-width: 5px;
+  }
+  .banner-cd-item {
+    min-width: 20px;
+  }
+  .banner-cd-value {
+    font-size: 0.78rem;
+    min-width: 18px;
+    padding: 0.06rem 0.2rem;
+  }
+  .banner-cd-sep {
+    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
+  }
+  .banner-cd-label {
+    font-size: 0.42rem;
+  }
+  .btn-banner-cta {
+    font-size: 0.62rem !important;
+    padding: 0.18rem 0.55rem !important;
+  }
+  .nav-banner-close {
+    width: 18px;
+    height: 18px;
+  }
+  .particle {
+    display: none;
+  }
+  .banner-countdown-timer {
+    gap: 0;
+  }
+}/* ============================================
    NAVBAR (Premium)
    ============================================ */
 .navbar {
@@ -393,6 +895,8 @@ input, textarea, select {
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--color-border);
   transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar.scrolled {
@@ -2578,7 +3082,222 @@ input.error, select.error, textarea.error {
   }
 }
 
+/* ============================================
+   HOLIDAY PACKAGE CARDS (in modal)
+   ============================================ */
+.holiday-packages {
+  margin-bottom: 1.5rem;
+}
 
+.package-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.package-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 0.85rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.package-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.package-card:hover::before {
+  opacity: 0.4;
+}
+
+/* Highlighted Professional package */
+.package-highlight {
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 2px rgba(var(--brand-orange-rgb), 0.15), var(--shadow-md);
+  transform: scale(1.04);
+  z-index: 1;
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(var(--brand-orange-rgb), 0.03) 100%);
+}
+
+.package-highlight::before {
+  background: linear-gradient(90deg, var(--brand-orange), var(--brand-orange-dark));
+  opacity: 1;
+  height: 4px;
+}
+
+.package-highlight:hover {
+  transform: scale(1.04) translateY(-3px);
+  box-shadow: 0 0 0 3px rgba(var(--brand-orange-rgb), 0.2), var(--shadow-lg);
+}
+
+.package-badge {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-full);
+  background: var(--accent-gradient);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.package-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+}
+
+.package-name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 0.15rem;
+}
+
+.package-duration {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.package-price {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--brand-blue);
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.package-highlight .package-price {
+  color: var(--brand-orange);
+}
+
+.package-price .price-currency {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  vertical-align: super;
+}
+
+.package-highlight .package-price .price-currency {
+  color: var(--brand-orange);
+}
+
+.package-includes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.package-includes li {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  padding: 0.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1.3;
+}
+
+.package-includes li i {
+  color: var(--color-success);
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .package-cards {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .package-highlight {
+    transform: none;
+  }
+  .package-highlight:hover {
+    transform: translateY(-3px);
+  }
+  .package-card {
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* ============================================
+   PRICE DISPLAY (in Step 4 Duration)
+   ============================================ */
+.price-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: rgba(var(--brand-orange-rgb), 0.06);
+  border: 1px solid rgba(var(--brand-orange-rgb), 0.2);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  animation: fadeIn 0.3s ease;
+}
+
+.price-display-icon {
+  color: var(--brand-orange);
+  font-size: 1rem;
+}
+
+.price-display-label {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.price-display-package {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.price-display-sep {
+  color: var(--color-border);
+  font-weight: 300;
+}
+
+.price-display-amount {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--brand-orange);
+}
 
 /* ============================================
    PHONE INPUT GROUP

@@ -217,6 +217,84 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
+     COUNTDOWN TIMER
+     ============================================ */
+  function startCountdown() {
+    // Bootcamp starts: July 27, 2026
+    const deadline = new Date('2026-07-27T09:00:00').getTime();
+    let isFirstUpdate = true;
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = deadline - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);          const dEl = document.getElementById('countdown-days');
+      const hEl = document.getElementById('countdown-hours');
+      const mEl = document.getElementById('countdown-minutes');
+      const sEl = document.getElementById('countdown-seconds');
+
+      function updateDigit(el, value) {
+        if (!el) return;
+        const padded = String(value).padStart(2, '0');
+        if (el.textContent !== padded) {
+          el.textContent = padded;
+          // Skip animation on first update (prevents simultaneous flash on load)
+          if (isFirstUpdate) return;
+          // Add animation class
+          el.classList.remove('digit-change');
+          // Force reflow
+          void el.offsetWidth;
+          el.classList.add('digit-change');
+        }
+      }
+
+      updateDigit(dEl, days);
+      updateDigit(hEl, hours);
+      updateDigit(mEl, minutes);
+      updateDigit(sEl, seconds);
+
+      isFirstUpdate = false;
+
+      if (distance < 0) {
+        const bar = document.getElementById('announcementBar');
+        if (bar) {
+          bar.classList.add('expired');
+          const cd = document.getElementById('announcementCountdown');
+          if (cd) cd.innerHTML = '<span style="color:#F87171;font-weight:700;">Registration Closed</span>';
+        }
+        clearInterval(timerInterval);
+      }
+    }
+
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+  }
+
+  startCountdown();
+
+  /* ============================================
+     ANNOUNCEMENT BAR DISMISSAL
+     ============================================ */
+  const announcementClose = document.getElementById('announcementClose');
+  const announcementBar = document.getElementById('announcementBar');
+  if (announcementClose && announcementBar) {
+    announcementClose.addEventListener('click', () => {
+      announcementBar.classList.add('closed');
+      // Adjust navbar top if needed
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        navbar.style.top = '0';
+      }
+      setTimeout(() => {
+        announcementBar.style.display = 'none';
+      }, 400);
+    });
+  }
+
+  /* ============================================
      THEME TOGGLE
      ============================================ */
   const themeToggle = document.getElementById('themeToggle');
@@ -685,6 +763,10 @@ function formatPhoneInput(input) {
     prevBtn.style.display = currentStep === 1 ? 'none' : 'flex';
     nextBtn.style.display = currentStep === steps.length ? 'none' : 'flex';
     submitBtn.style.display = currentStep === steps.length ? 'flex' : 'none';
+    // Update price display when entering Step 4 (duration step)
+    if (currentStep === 4 && typeof updatePriceDisplay === 'function') {
+      updatePriceDisplay();
+    }
   }
 
   const registrationSuccessEl = document.getElementById('registrationSuccess');
@@ -700,6 +782,10 @@ function formatPhoneInput(input) {
     registrationModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     updateStep(1);
+    // Reset dynamic tech checkboxes when modal opens
+    if (typeof updateTechCheckboxes === 'function') {
+      updateTechCheckboxes(null);
+    }
   }));
 
   closeModal.addEventListener('click', () => {
@@ -740,11 +826,17 @@ function formatPhoneInput(input) {
       }
 
       if (isCheckbox) {
+        // For dynamically populated tech checkboxes, check if any checkbox with this name is checked
         isFilled = stepEl.querySelectorAll(`input[name="${f.name}"]:checked`).length > 0;
         if (!isFilled) {
-          f.closest('.form-group').classList.add('error');
-          if (!firstErrorField) firstErrorField = f.closest('.form-group');
-          valid = false;
+          // Only show error if there are checkboxes present (i.e., a program was selected)
+          const totalCheckboxes = stepEl.querySelectorAll(`input[name="${f.name}"]`).length;
+          if (totalCheckboxes > 0) {
+            f.closest('.form-group').classList.add('error');
+            if (!firstErrorField) firstErrorField = f.closest('.form-group');
+            valid = false;
+          }
+          // If no checkboxes present (no program selected yet), skip validation
         } else {
           clearGroupError(f.closest('.form-group'));
         }
@@ -797,14 +889,338 @@ function formatPhoneInput(input) {
     return valid;
   }
 
+  /* ============================================
+     DYNAMIC PRICE DISPLAY (based on Duration)
+     ============================================ */
+  const durationSelect = document.getElementById('duration');
+  const priceDisplay = document.getElementById('priceDisplay');
+  const priceDisplayPackage = document.getElementById('priceDisplayPackage');
+  const priceDisplayAmount = document.getElementById('priceDisplayAmount');
+
+  const PRICE_MAP = {
+    '4 Weeks':  { name: 'Starter',     amount: '60,000 RWF' },
+    '8 Weeks':  { name: 'Professional', amount: '110,000 RWF' },
+    '12 Weeks': { name: 'Advanced',    amount: '150,000 RWF' }
+  };
+
+  function updatePriceDisplay() {
+    if (!durationSelect || !priceDisplay) return;
+    const val = durationSelect.value;
+    if (val && PRICE_MAP[val]) {
+      priceDisplay.style.display = 'flex';
+      if (priceDisplayPackage) priceDisplayPackage.textContent = PRICE_MAP[val].name;
+      if (priceDisplayAmount) priceDisplayAmount.textContent = PRICE_MAP[val].amount;
+    } else {
+      priceDisplay.style.display = 'none';
+    }
+  }
+
+  if (durationSelect) {
+    durationSelect.addEventListener('change', updatePriceDisplay);
+  }
+
+  /* ============================================
+     DYNAMIC TECH CHECKBOXES (based on selected Program)
+     ============================================ */
+  const programRadios = document.querySelectorAll('input[name="program"]');
+  const techCheckboxes = document.getElementById('techCheckboxes');
+  const techContainer = document.getElementById('techContainer');
+  const techRequiredMark = document.getElementById('techRequiredMark');
+  const techPrompt = document.getElementById('techPrompt');
+
+  const TECH_MAP = {
+    'Software Development': [
+      'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Tailwind CSS',
+      'React.js', 'Next.js', 'Node.js', 'Express.js',
+      'PHP', 'Laravel', 'Python', 'Django', 'Flask',
+      'MYSQL', 'PostgreSQL', 'MongoDB', 'Firebase',
+      'Git/GitHub', 'TypeScript', 'REST APIs', 'GraphQL',
+      'Docker', 'CI/CD (GitHub Actions)', 'AWS/Cloud Basics',
+      'Figma', 'Flutter', 'Dart',
+      '---', 'None of these'
+    ],
+    'Networking': [
+      'Cisco IOS', 'Routing & Switching', 'TCP/IP Protocols',
+      'Subnetting & CIDR', 'DNS/DHCP', 'VLAN & Trunking',
+      'STP & EtherChannel', 'OSPF', 'BGP', 'MPLS',
+      'Firewalls (ASA, pfSense)', 'VPN (IPsec, SSL)',
+      'Network Security', 'Wireshark', 'Network Monitoring (Nagios, Zabbix)',
+      'SDN (Cisco ACI, SD-WAN)', 'Network Automation (Python/Ansible)',
+      'Cisco Packet Tracer', 'Linux Networking',
+      'Cable & Fiber Optics', 'Structured Cabling',
+      '---', 'None of these'
+    ],
+    'CSA': [
+      'Kali Linux', 'Linux Security (Ubuntu/CentOS)',
+      'Network Security', 'Firewalls & IDS/IPS',
+      'Wireshark', 'Nmap', 'Metasploit', 'Burp Suite',
+      'OWASP Top 10', 'Web Application Security',
+      'Penetration Testing', 'Vulnerability Management',
+      'Incident Response & Forensics', 'Digital Forensics (Autopsy)',
+      'SIEM (Splunk, ELK)', 'Cryptography',
+      'Python for Security', 'Malware Analysis',
+      'Risk Management & Compliance', 'Cloud Security (AWS/Azure)',
+      '---', 'None of these'
+    ],
+    'Electronics': [
+      'Arduino', 'ESP32/ESP8266', 'Raspberry Pi',
+      'Embedded C/C++', 'Microcontrollers (AVR, PIC, STM32)',
+      'Circuit Design (Proteus, KiCad)', 'PCB Design (Altium, Eagle)',
+      'Analog & Digital Circuits', 'Sensors & Actuators',
+      'I2C / SPI / UART Protocols', 'Signal Processing',
+      'IoT Protocols (MQTT, HTTP, CoAP)', 'Soldering & Prototyping',
+      'Power Electronics', 'PLC Programming',
+      'VHDL / Verilog (FPGA)', 'Control Systems',
+      'Battery & Power Management', 'Multimeter & Oscilloscope',
+      '---', 'None of these'
+    ]
+  };
+
+  function updateTechCheckboxes(program) {
+    if (!techCheckboxes || !techContainer) return;
+    // Clear existing checkboxes (keep the prompt)
+    const labels = techCheckboxes.querySelectorAll('.checkbox-label');
+    labels.forEach(l => l.remove());
+
+    if (!program || !TECH_MAP[program]) {
+      // No program selected — show prompt
+      if (techPrompt) techPrompt.style.display = 'block';
+      // Remove required from all tech checkboxes since none exist
+      if (techContainer) techContainer.querySelectorAll('input[name="tech"]').forEach(inp => inp.required = false);
+      return;
+    }
+
+    // Hide prompt
+    if (techPrompt) techPrompt.style.display = 'none';
+
+    // Populate checkboxes for the selected program
+    const techs = TECH_MAP[program];
+    const firstRealTech = techs.find(t => t !== '---' && t !== 'None of these');
+    techs.forEach(tech => {
+      // Handle visual separator
+      if (tech === '---') {
+        const sep = document.createElement('div');
+        sep.className = 'tech-separator';
+        sep.style.cssText = 'grid-column:1/-1;border-top:1px dashed var(--color-border);margin:0.25rem 0 0;width:100%;';
+        techCheckboxes.insertBefore(sep, techPrompt);
+        return;
+      }
+
+      const label = document.createElement('label');
+      label.className = 'checkbox-label';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.name = 'tech';
+      input.value = tech;
+
+      // Handle 'None of these' option
+      if (tech === 'None of these') {
+        label.style.cssText = 'font-style:italic;color:var(--color-text-secondary);';
+        input.addEventListener('change', function() {
+          if (this.checked) {
+            // Uncheck all other checkboxes
+            techCheckboxes.querySelectorAll('input[name="tech"]').forEach(inp => {
+              if (inp !== this) inp.checked = false;
+            });
+            // Clear any error
+            if (techContainer) clearGroupError(techContainer);
+          }
+        });
+      } else {
+        // For regular techs, keep 'None of these' unchecked
+        input.addEventListener('change', function() {
+          if (this.checked) {
+            const noneCheckbox = techCheckboxes.querySelector('input[value="None of these"]');
+            if (noneCheckbox) noneCheckbox.checked = false;
+          }
+        });
+      }
+
+      // Make first real tech checkbox required (so at least one must be checked)
+      if (tech === firstRealTech) input.required = true;
+
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(' ' + tech));
+      // Insert before the prompt
+      if (techPrompt) {
+        techCheckboxes.insertBefore(label, techPrompt);
+      } else {
+        techCheckboxes.appendChild(label);
+      }
+    });
+
+    // Re-attach validation listeners to new checkboxes
+    techCheckboxes.querySelectorAll('input[name="tech"]').forEach(f => {
+      if (f._validationAttached) return;
+      f._validationAttached = true;
+      f.addEventListener('change', () => {
+        if (f.closest('.form-step.active')) {
+          const stepEl = steps[currentStep - 1];
+          const checkedAny = stepEl.querySelectorAll('input[name="tech"]:checked').length > 0;
+          if (checkedAny) {
+            clearGroupError(f.closest('.form-group'));
+          }
+        }
+      });
+    });
+  }
+
+  // Track previous program for safe revert on cancel
+  let _prevTechProgram = null;
+  let _isTechSwitching = false;
+
+  // Initialize with the currently selected program (if any)
+  const initiallyCheckedProg = document.querySelector('input[name="program"]:checked');
+  if (initiallyCheckedProg) _prevTechProgram = initiallyCheckedProg.value;
+
+  // Attach event listeners to program radio buttons
+  programRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (!radio.checked) return;
+
+      // If this is a revert from cancel, skip the confirmation
+      if (_isTechSwitching) {
+        _isTechSwitching = false;
+        return;
+      }
+
+      const techCheckboxesList = techCheckboxes ? techCheckboxes.querySelectorAll('input[name="tech"]:checked') : [];
+      // Filter out 'None of these' — that's not a real tech selection
+      const hasRealTechSelected = Array.from(techCheckboxesList).some(inp => inp.value !== 'None of these');
+
+      if (hasRealTechSelected) {
+        // A program with selected techs is already active — confirm before switching
+        const oldProgram = _prevTechProgram;
+
+        // Create custom confirmation dialog
+        const confirmBox = document.createElement('div');
+        confirmBox.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);animation:fadeIn 0.2s ease;';
+
+        const confirmInner = document.createElement('div');
+        confirmInner.style.cssText = 'background:var(--bg-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:2rem;max-width:420px;width:90%;box-shadow:var(--shadow-xl);text-align:center;animation:fadeInUp 0.25s ease;';
+
+        confirmInner.innerHTML = `
+          <div style="font-size:2.5rem;margin-bottom:0.75rem;">🔄</div>
+          <h4 style="font-family:var(--font-heading);font-size:1.1rem;font-weight:800;color:var(--color-text);margin-bottom:0.5rem;">Switch Program?</h4>
+          <p style="font-size:0.88rem;color:var(--color-text-secondary);line-height:1.6;margin-bottom:1.5rem;">
+            You have already selected technologies for <strong>${oldProgram || 'the current program'}</strong>.
+            Switching to <strong>${radio.value}</strong> will clear your current selections.
+          </p>
+          <div style="display:flex;gap:0.75rem;justify-content:center;">
+            <button type="button" class="btn btn-secondary" id="switchCancelBtn" style="flex:1;justify-content:center;">Cancel</button>
+            <button type="button" class="btn btn-primary" id="switchConfirmBtn" style="flex:1;justify-content:center;">Switch</button>
+          </div>
+        `;
+
+        confirmBox.appendChild(confirmInner);
+        document.body.appendChild(confirmBox);
+
+        const cancelBtn = confirmBox.querySelector('#switchCancelBtn');
+        const confirmBtn = confirmBox.querySelector('#switchConfirmBtn');
+
+        const cleanup = () => {
+          document.removeEventListener('keydown', escHandler);
+          if (confirmBox.parentNode) document.body.removeChild(confirmBox);
+        };
+
+        cancelBtn.addEventListener('click', () => {
+          // Revert to the old program without triggering another confirmation
+          _isTechSwitching = true;
+          const oldRadio = Array.from(programRadios).find(r => r.value === oldProgram);
+          if (oldRadio) oldRadio.checked = true;
+          _prevTechProgram = oldProgram; // restore tracker
+          cleanup();
+        });
+
+        confirmBtn.addEventListener('click', () => {
+          updateTechCheckboxes(radio.value);
+          _prevTechProgram = radio.value; // update tracker on successful switch
+          if (techContainer) clearGroupError(techContainer);
+          cleanup();
+        });
+
+        // Click outside to cancel
+        confirmBox.addEventListener('click', (e) => {
+          if (e.target === confirmBox) {
+            cancelBtn.click();
+          }
+        });
+
+        // Keyboard: Escape to cancel
+        const escHandler = (e) => {
+          if (e.key === 'Escape') {
+            cancelBtn.click();
+          }
+        };
+        document.addEventListener('keydown', escHandler);
+
+        return; // Don't proceed with the switch yet
+      }
+
+      // No real techs selected — switch immediately
+      updateTechCheckboxes(radio.value);
+      _prevTechProgram = radio.value; // update tracker
+      if (techContainer) clearGroupError(techContainer);
+    });
+  });
+
+
+
   // Real-time phone formatting
   const phoneInput = document.getElementById('phone');
   const surveyPhoneInput = document.getElementById('surveyPhone');
+  const parentPhoneFormInput = document.getElementById('parentPhone');
   if (phoneInput) {
     phoneInput.addEventListener('input', () => formatPhoneInput(phoneInput));
   }
   if (surveyPhoneInput) {
     surveyPhoneInput.addEventListener('input', () => formatPhoneInput(surveyPhoneInput));
+  }
+  if (parentPhoneFormInput) {
+    parentPhoneFormInput.addEventListener('input', () => formatPhoneInput(parentPhoneFormInput));
+  }
+
+  /* ============================================
+     PARENT INFO CONDITIONAL (Age < 16)
+     ============================================ */
+  const ageGroupSelect = document.getElementById('ageGroup');
+  const parentNameInput = document.getElementById('parentName');
+  const parentPhoneInput = document.getElementById('parentPhone');
+
+  function updateParentRequirement() {
+    if (!ageGroupSelect || !parentNameInput) return;
+    const ageVal = ageGroupSelect.value;
+    const isUnder16 = ageVal === '12-15';
+
+    if (isUnder16) {
+      parentNameInput.required = true;
+      parentNameInput.setAttribute('data-error-msg', 'Parent/Guardian name is required for applicants under 16');
+      if (parentPhoneInput) {
+        parentPhoneInput.required = true;
+        parentPhoneInput.setAttribute('data-error-msg', 'Parent/Guardian phone is required for applicants under 16');
+      }
+    } else {
+      parentNameInput.required = false;
+      parentNameInput.removeAttribute('data-error-msg');
+      clearFieldError(parentNameInput);
+      if (parentPhoneInput) {
+        parentPhoneInput.required = false;
+        parentPhoneInput.removeAttribute('data-error-msg');
+        clearFieldError(parentPhoneInput);
+      }
+    }
+
+    // Add/remove visual indicator
+    const parentSection = document.getElementById('parentInfoSection');
+    if (parentSection) {
+      parentSection.classList.toggle('required-active', isUnder16);
+    }
+  }
+
+  if (ageGroupSelect) {
+    ageGroupSelect.addEventListener('change', updateParentRequirement);
+    // Run on initial load in case there's a pre-selected value
+    updateParentRequirement();
   }
 
   // Real-time validation on registration fields
@@ -847,17 +1263,26 @@ function formatPhoneInput(input) {
       phone_code: formData.get('phoneCode'),
       phone: formData.get('phone'),
       gender: formData.get('gender'),
+      age_group: formData.get('ageGroup'),
       location: formData.get('location'),
       status: formData.get('status'),
       organization: formData.get('organization'),
       level: formData.get('level'),
+      education_level: formData.get('educationLevel'),
+      experience_level: formData.get('experienceLevel'),
+      parent_name: formData.get('parentName') || null,
+      parent_phone_code: formData.get('parentPhoneCode') || null,
+      parent_phone: formData.get('parentPhone') || null,
       program: formData.get('program'),
+      duration: formData.get('duration'),
+      schedule: formData.get('schedule'),
       skill_level: formData.get('skillLevel'),
       tech: formData.getAll('tech'),
       has_laptop: formData.get('hasLaptop'),
       has_internet: formData.get('hasInternet'),
       projects: formData.get('projects') || null,
       motivation: formData.get('motivation'),
+      career_goals: formData.get('careerGoals'),
       goals: formData.getAll('goals')
     };
 

@@ -43,12 +43,12 @@
     [data-theme="dark"] { --bg-primary: #0F172A; --bg-section: #1E293B; --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F8FAFC; --color-accent: #FBBF24; --color-border: #334155; --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E293B 100%); }
     /* [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); } — PNG logo renders correctly in both themes */
     body { font-family: var(--font-body); margin: 0; background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; }
-    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 72px; background: var(--hero-gradient); position: relative; overflow: hidden; }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 112px; background: var(--hero-gradient); position: relative; overflow: hidden; }
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
     .hero-title { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; }
     .hero-content { max-width: 580px; z-index: 1; position: relative; }
     .highlight { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .navbar { position: fixed; top: 0; width: 100%; height: 72px; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; }
+    .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; flex-direction: column; }
     .nav-logo img { height: 70px; width: auto; }
     .btn { display: inline-flex; align-items: center; padding: 0.85rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
     .btn-primary { background: var(--color-primary); color: white; }
@@ -72,10 +72,72 @@
 </head>
 <body>
 
+
   <!-- ============================================
        NAVBAR
        ============================================ -->
-  <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar">
+        <!-- ============================================
+         BOOTCAMP HOLIDAY BANNER — Promotional (at top of navigation)
+         ============================================ -->
+    <div class="nav-top-banner" id="announcementBar">
+      <div class="banner-bg-particles">
+        <span class="particle p1"></span><span class="particle p2"></span><span class="particle p3"></span>
+        <span class="particle p4"></span><span class="particle p5"></span><span class="particle p6"></span>
+      </div>
+      <div class="banner-shine"></div>
+      <div class="container nav-banner-inner">
+        <div class="nav-banner-left">
+          <span class="nav-banner-badge">
+            <span class="badge-pulse"></span>
+            <i class="fa-solid fa-gift"></i>
+            <span class="badge-text">Holiday Tech Bootcamp 2026</span>
+          </span>
+          <span class="nav-banner-desc">
+            <i class="fa-regular fa-clock"></i>
+            <span>Students Aged 12+</span>
+            <span class="banner-dot"></span>
+            <strong class="seats-highlight"><i class="fa-solid fa-fire"></i> Limited Seats</strong>
+          </span>
+          <span class="nav-banner-hot">
+            <i class="fa-solid fa-fire"></i> Hot Deal
+          </span>
+        </div>
+        <div class="nav-banner-right">
+          <div class="nav-banner-countdown" id="announcementCountdown">
+            <div class="banner-countdown-timer">
+              <div class="banner-cd-item">
+                <span class="banner-cd-value" id="countdown-days">00</span>
+                <span class="banner-cd-label">Days</span>
+              </div>
+              <span class="banner-cd-sep">:</span>
+              <div class="banner-cd-item">
+                <span class="banner-cd-value" id="countdown-hours">00</span>
+                <span class="banner-cd-label">Hrs</span>
+              </div>
+              <span class="banner-cd-sep">:</span>
+              <div class="banner-cd-item">
+                <span class="banner-cd-value" id="countdown-minutes">00</span>
+                <span class="banner-cd-label">Min</span>
+              </div>
+              <span class="banner-cd-sep">:</span>
+              <div class="banner-cd-item">
+                <span class="banner-cd-value" id="countdown-seconds">00</span>
+                <span class="banner-cd-label">Sec</span>
+              </div>
+            </div>
+          </div>
+          <span class="banner-start-date"><i class="fa-regular fa-calendar"></i> Opens 27 July</span>
+          <a href="#" class="btn btn-banner-cta btn-register">
+            <span>Register Now</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button type="button" class="nav-banner-close" id="announcementClose" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <a href="#hero" class="nav-logo">
         <picture>
@@ -1234,7 +1296,7 @@
     <span>Take Research Survey</span>
   </button>
 
-  <script src="js/script.js" defer></script>
+  <script src="js/script.js?v=2" defer></script>
 
   <!-- ============================================
        REGISTRATION MODAL (Multi-step)
@@ -1279,15 +1341,58 @@
                 <i class="fa-solid fa-calendar-star"></i>
                 <div>
                   <strong>Training Start Date:</strong>
-                  <p>24 June 2026</p>
+                  <p>27 July 2026</p>
                 </div>
               </div>
             </div>
 
-            <div class="fees-section">
-              <h4>Training Fees (Per Month):</h4>
-              <div class="fee-card">🎓 TVET Students (L3, L4, L5): <strong>30,000 RWF</strong></div>
-              <div class="fee-card">💻 Uni, Graduates &amp; Pros: <strong>50,000 RWF</strong></div>
+            <!-- Holiday Bootcamp Packages -->
+            <div class="holiday-packages">
+              <h4 style="font-size:1.1rem;font-weight:800;color:var(--brand-blue);margin-bottom:1rem;">🎄 Holiday Bootcamp Packages</h4>
+              <div class="package-cards">
+                <!-- Package 1: Starter -->
+                <div class="package-card" data-package="starter" data-duration="4 Weeks" data-price="60,000">
+                  <div class="package-label">Package 1</div>
+                  <h5 class="package-name">Starter</h5>
+                  <div class="package-duration">4 Weeks</div>
+                  <div class="package-price"><span class="price-currency">RWF</span> 60,000</div>
+                  <ul class="package-includes">
+                    <li><i class="fa-solid fa-check"></i> Training</li>
+                    <li><i class="fa-solid fa-check"></i> Projects</li>
+                    <li><i class="fa-solid fa-check"></i> Certificate</li>
+                    <li><i class="fa-solid fa-check"></i> Community</li>
+                  </ul>
+                </div>
+                <!-- Package 2: Professional (Highlighted) -->
+                <div class="package-card package-highlight" data-package="professional" data-duration="8 Weeks" data-price="110,000">
+                  <div class="package-badge">Most Popular</div>
+                  <div class="package-label">Package 2</div>
+                  <h5 class="package-name">Professional</h5>
+                  <div class="package-duration">8 Weeks</div>
+                  <div class="package-price"><span class="price-currency">RWF</span> 110,000</div>
+                  <ul class="package-includes">
+                    <li><i class="fa-solid fa-check"></i> Everything in Starter</li>
+                    <li><i class="fa-solid fa-check"></i> Mentorship</li>
+                    <li><i class="fa-solid fa-check"></i> Portfolio</li>
+                    <li><i class="fa-solid fa-check"></i> Career Guidance</li>
+                    <li><i class="fa-solid fa-check"></i> Hackathon Participation</li>
+                  </ul>
+                </div>
+                <!-- Package 3: Advanced -->
+                <div class="package-card" data-package="advanced" data-duration="12 Weeks" data-price="150,000">
+                  <div class="package-label">Package 3</div>
+                  <h5 class="package-name">Advanced</h5>
+                  <div class="package-duration">12 Weeks</div>
+                  <div class="package-price"><span class="price-currency">RWF</span> 150,000</div>
+                  <ul class="package-includes">
+                    <li><i class="fa-solid fa-check"></i> Everything in Professional</li>
+                    <li><i class="fa-solid fa-check"></i> Advanced Projects</li>
+                    <li><i class="fa-solid fa-check"></i> Internship Recommendation</li>
+                    <li><i class="fa-solid fa-check"></i> Interview Preparation</li>
+                    <li><i class="fa-solid fa-check"></i> Professional Mentorship</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div class="discounts-section">
@@ -1308,9 +1413,11 @@
               <h4>What You Will Gain:</h4>
               <div class="gains-grid">
                 <span><i class="fa-solid fa-check-circle"></i> Real Projects</span>
-                <span><i class="fa-solid fa-check-circle"></i> Portfolio</span>
+                <span><i class="fa-solid fa-check-circle"></i> Portfolio Building</span>
                 <span><i class="fa-solid fa-check-circle"></i> Teamwork</span>
                 <span><i class="fa-solid fa-check-circle"></i> Career Ready</span>
+                <span><i class="fa-solid fa-check-circle"></i> Certificate</span>
+                <span><i class="fa-solid fa-check-circle"></i> Mentorship</span>
               </div>
             </div>
 
@@ -1365,9 +1472,19 @@
             <label for="location">Location *</label>
             <input type="text" id="location" name="location" required placeholder="e.g., Gikondo, Nyamirambo" autocomplete="address-level2" data-textonly="true">
           </div>
+          <div class="form-group">
+            <label for="ageGroup">Age Group *</label>
+            <select id="ageGroup" name="ageGroup" required class="form-control">
+              <option value="" disabled selected>Select your age group</option>
+              <option value="12-15">12&ndash;15</option>
+              <option value="16-18">16&ndash;18</option>
+              <option value="19-25">19&ndash;25</option>
+              <option value="25+">25+</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Step 3: Education & Status -->
+        <!-- Step 3: Education & Background -->
         <div class="form-step" data-step="3">
           <fieldset class="form-group">
             <legend>Current Status Level *</legend>
@@ -1386,6 +1503,7 @@
             <label for="level">Current Class / Level / Year *</label>
             <select id="level" name="level" required class="form-control">
               <option value="" disabled selected>Select your level</option>
+              <option value="O Level">O Level</option>
               <option value="L3">L3</option>
               <option value="L4">L4</option>
               <option value="L5">L5</option>
@@ -1395,6 +1513,66 @@
               <option value="Working Professional">Working Professional</option>
             </select>
           </div>
+          <div class="form-group">
+            <label for="educationLevel">Education Level *</label>
+            <select id="educationLevel" name="educationLevel" required class="form-control">
+              <option value="" disabled selected>Select your education level</option>
+              <option value="Secondary">Secondary School</option>
+              <option value="Certificate">Certificate</option>
+              <option value="Diploma">Diploma</option>
+              <option value="Bachelor">Bachelor</option>
+              <option value="Master">Master</option>
+              <option value="PhD">PhD</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="experienceLevel">Experience Level *</label>
+            <select id="experienceLevel" name="experienceLevel" required class="form-control">
+              <option value="" disabled selected>Select your experience level</option>
+              <option value="Beginner">Beginner (No experience)</option>
+              <option value="Intermediate">Intermediate (Some projects)</option>
+              <option value="Advanced">Advanced (Can build independently)</option>
+            </select>
+          </div>
+          
+          <!-- Parent/Guardian Information (Required if under 16) -->
+          <div id="parentInfoSection" class="parent-info-section">
+            <h4 style="font-size:0.9rem;font-weight:700;color:var(--color-text);margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:1px solid var(--color-border);">
+              <i class="fa-solid fa-shield-halved"></i> Parent / Guardian Information
+              <span style="font-size:0.75rem;font-weight:500;color:var(--color-text-secondary);"> (Required if under 16)</span>
+            </h4>
+            <div class="form-group">
+              <label for="parentName">Parent/Guardian Full Name</label>
+              <input type="text" id="parentName" name="parentName" placeholder="Enter parent or guardian full name" autocomplete="name" data-textonly="true">
+            </div>
+            <div class="form-group">
+              <label for="parentPhone">Parent/Guardian Phone</label>
+              <div class="phone-input-group">
+                <label for="parentPhoneCode" class="sr-only">Country code</label>
+                <select id="parentPhoneCode" name="parentPhoneCode" class="phone-code-select" aria-label="Country code">
+                  <option value="+250" selected>&#x1F1F7;&#x1F1FC; RW +250</option>
+                  <option value="+256">&#x1F1FA;&#x1F1EC; UG +256</option>
+                  <option value="+254">&#x1F1F0;&#x1F1EA; KE +254</option>
+                  <option value="+255">&#x1F1F9;&#x1F1FF; TZ +255</option>
+                  <option value="+257">&#x1F1E7;&#x1F1ED; BI +257</option>
+                  <option value="+243">&#x1F1E8;&#x1F1E9; CD +243</option>
+                  <option value="+251">&#x1F1EA;&#x1F1F9; ET +251</option>
+                  <option value="+211">&#x1F1F8;&#x1F1F8; SS +211</option>
+                  <option value="+27">&#x1F1FF;&#x1F1E6; ZA +27</option>
+                  <option value="+234">&#x1F1F3;&#x1F1EC; NG +234</option>
+                  <option value="+20">&#x1F1EA;&#x1F1EC; EG +20</option>
+                  <option value="+44">&#x1F1EC;&#x1F1E7; GB +44</option>
+                  <option value="+1">&#x1F1FA;&#x1F1F8; US +1</option>
+                  <option value="+33">&#x1F1EB;&#x1F1F7; FR +33</option>
+                  <option value="+49">&#x1F1E9;&#x1F1EA; DE +49</option>
+                  <option value="+86">&#x1F1E8;&#x1F1F3; CN +86</option>
+                  <option value="+91">&#x1F1EE;&#x1F1F3; IN +91</option>
+                </select>
+                <input type="tel" id="parentPhone" name="parentPhone" placeholder="7XX XXX XXX" autocomplete="tel">
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Step 4: Training & Skills -->
@@ -1402,9 +1580,35 @@
           <fieldset class="form-group">
             <legend>Which training program do you want to join? *</legend>
             <div class="radio-group vertical" role="radiogroup">
-              <label class="radio-label"><input type="radio" name="program" value="Web Development Fundamentals" required> Web Development Fundamentals</label>
-              <label class="radio-label"><input type="radio" name="program" value="Full Stack Development"> Full Stack Development</label>
-              <label class="radio-label"><input type="radio" name="program" value="Career &amp; Internship Readiness"> Career &amp; Internship Readiness</label>
+              <label class="radio-label"><input type="radio" name="program" value="Software Development" required> Software Development</label>
+              <label class="radio-label"><input type="radio" name="program" value="Networking"> Networking</label>
+              <label class="radio-label"><input type="radio" name="program" value="CSA"> CSA (Computer System Architecture)</label>
+              <label class="radio-label"><input type="radio" name="program" value="Electronics"> Electronics</label>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="duration">Duration *</label>
+            <select id="duration" name="duration" required class="form-control">
+              <option value="" disabled selected>Select duration</option>
+              <option value="4 Weeks">4 Weeks</option>
+              <option value="8 Weeks">8 Weeks</option>
+              <option value="12 Weeks">12 Weeks</option>
+            </select>
+            <div id="priceDisplay" class="price-display" style="display:none;">
+              <span class="price-display-icon"><i class="fa-solid fa-tag"></i></span>
+              <span class="price-display-label">You selected:</span>
+              <span class="price-display-package" id="priceDisplayPackage"></span>
+              <span class="price-display-sep">&mdash;</span>
+              <span class="price-display-amount" id="priceDisplayAmount"></span>
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <legend>Preferred Schedule *</legend>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Morning" required> Morning</label>
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Afternoon"> Afternoon</label>
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Weekend"> Weekend</label>
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Online"> Online</label>
             </div>
           </fieldset>
           <fieldset class="form-group">
@@ -1415,22 +1619,13 @@
               <label class="radio-label"><input type="radio" name="skillLevel" value="Advanced"> Advanced</label>
             </div>
           </fieldset>
-          <fieldset class="form-group">
-            <legend>Technologies used (Select all that apply) *</legend>
-            <div class="checkbox-grid" role="group">
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="HTML"> HTML</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="CSS"> CSS</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="Javascript"> Javascript</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="React.js"> React.js</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="Node.js"> Node.js</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="PHP"> PHP</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="Laravel"> Laravel</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="MYSQL"> MYSQL</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="MongoDB"> MongoDB</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="Git/GitHub"> Git/GitHub</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="Figma"> Figma</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="Flutter"> Flutter</label>
-              <label class="checkbox-label"><input type="checkbox" name="tech" value="None yet"> None yet</label>
+          <fieldset class="form-group" id="techContainer">
+            <legend>Technologies used (Select all that apply) <span id="techRequiredMark" style="color:red;">*</span></legend>
+            <div class="checkbox-grid" id="techCheckboxes" role="group">
+              <!-- Populated dynamically by JS based on selected program -->
+              <p id="techPrompt" style="font-size:0.82rem;color:var(--color-text-secondary);margin:0.5rem 0;grid-column:1/-1;">
+                <i class="fa-solid fa-arrow-up"></i> Select a training program above to see relevant technologies
+              </p>
             </div>
           </fieldset>
         </div>
@@ -1456,6 +1651,10 @@
           <div class="form-group">
             <label for="projects_link">Software projects before? Share links (optional)</label>
             <input type="text" id="projects_link" name="projects" placeholder="GitHub link or project title" autocomplete="url">
+          </div>
+          <div class="form-group">
+            <label for="careerGoals">Career Goals *</label>
+            <textarea id="careerGoals" name="careerGoals" required placeholder="Tell us about your career aspirations in tech..."></textarea>
           </div>
           <div class="form-group">
             <label for="motivation">Why do you want to join? *</label>

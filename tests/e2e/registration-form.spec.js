@@ -137,6 +137,7 @@ async function fillRegistrationFlow(page) {
   await page.locator('#email').fill('jean@example.com');
   await page.locator('#phone').fill('788123456');
   await page.locator('input[name="gender"][value="Male"]').check();
+  await page.locator('#ageGroup').selectOption('16-18');
   await page.locator('#location').fill('Gikondo');
   await page.locator('#nextBtn').click();
   await page.waitForSelector('.form-step[data-step="3"].active', { timeout: 5000 });
@@ -144,10 +145,14 @@ async function fillRegistrationFlow(page) {
   await page.locator('input[name="status"][value="University student"]').check();
   await page.locator('#organization').fill('University of Rwanda');
   await page.locator('#level').selectOption('L3');
+  await page.locator('#educationLevel').selectOption('Bachelor');
+  await page.locator('#experienceLevel').selectOption('Beginner');
   await page.locator('#nextBtn').click();
   await page.waitForSelector('.form-step[data-step="4"].active', { timeout: 5000 });
 
-  await page.locator('input[name="program"][value="Web Development Fundamentals"]').check();
+  await page.locator('input[name="program"][value="Software Development"]').check();
+  await page.locator('#duration').selectOption('8 Weeks');
+  await page.locator('input[name="schedule"][value="Morning"]').check();
   await page.locator('input[name="skillLevel"][value="Beginner"]').check();
   await page.locator('input[name="tech"][value="HTML"]').check();
   await page.locator('input[name="tech"][value="CSS"]').check();
@@ -156,5 +161,6 @@ async function fillRegistrationFlow(page) {
 
   await page.locator('input[name="hasLaptop"][value="Yes"]').check();
   await page.locator('input[name="hasInternet"][value="Yes"]').check();
+  await page.locator('#careerGoals').fill('I want to become a full-stack developer and build impactful solutions');
   await page.locator('#motivation').fill('I want to become a professional developer');
 }

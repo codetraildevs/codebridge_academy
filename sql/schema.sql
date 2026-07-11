@@ -22,21 +22,32 @@ CREATE TABLE IF NOT EXISTS registrations (
   gender TEXT NOT NULL,
   location TEXT NOT NULL,
 
-  -- Step 3: Education & Status
+  -- Step 2: Age Group
+  age_group TEXT,
+
+  -- Step 3: Education & Background
   status TEXT NOT NULL,
   organization TEXT NOT NULL,
   level TEXT NOT NULL,
+  education_level TEXT,
+  experience_level TEXT,
+  parent_name TEXT,
+  parent_phone_code TEXT DEFAULT '+250',
+  parent_phone TEXT,
 
-  -- Step 4: Training & Skills
+  -- Step 4: Program Selection
   program TEXT NOT NULL,
+  duration TEXT,
+  schedule TEXT,
   skill_level TEXT NOT NULL,
   tech JSONB DEFAULT '[]'::jsonb,
 
-  -- Step 5: Background & Goals
+  -- Step 5: Goals & Background
   has_laptop TEXT NOT NULL,
   has_internet TEXT NOT NULL,
   projects TEXT,
   motivation TEXT NOT NULL,
+  career_goals TEXT,
   goals JSONB DEFAULT '[]'::jsonb
 );
 

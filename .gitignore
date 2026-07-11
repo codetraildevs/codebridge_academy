@@ -50,5 +50,11 @@ projects_*.html
 *.ps1
 nul
 
+# Helper scripts from development
+scripts/
+
+# Test artifacts (screenshots, videos)
+test-results/
+
 # Personal docs
 docs/readme.txt
