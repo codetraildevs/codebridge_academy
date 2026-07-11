@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS survey_responses (
   s4q3 TEXT NOT NULL,
 
   -- Step 5: Employer & Workforce Readiness
-  s5q1 TEXT NOT NULL,
+  s5q1 JSONB DEFAULT '[]'::jsonb,
   s5q2 TEXT NOT NULL,
 
   -- Step 6: Qualexas Validation

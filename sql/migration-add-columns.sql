@@ -72,11 +72,45 @@ ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s3q3 JSONB DEFAULT '[]'::j
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s4q1 TEXT;
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s4q2 JSONB DEFAULT '[]'::jsonb;
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s4q3 TEXT;
-ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s5q1 TEXT;
+ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s5q1 JSONB DEFAULT '[]'::jsonb;
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s5q2 TEXT;
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s6q1 TEXT;
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s6q2 JSONB DEFAULT '[]'::jsonb;
 ALTER TABLE survey_responses ADD COLUMN IF NOT EXISTS s7q1 TEXT;
+
+-- ============================================
+-- ROW LEVEL SECURITY (ensure anonymous submissions work)
+-- ============================================
+-- If the table was created without these policies,
+-- form submissions will be blocked by Supabase default deny.
+
+ALTER TABLE registrations ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY IF NOT EXISTS "Allow anonymous insert for registrations"
+  ON registrations
+  FOR INSERT
+  TO anon
+  WITH CHECK (true);
+
+CREATE POLICY IF NOT EXISTS "Allow authenticated select for registrations"
+  ON registrations
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
+ALTER TABLE survey_responses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY IF NOT EXISTS "Allow anonymous insert for survey_responses"
+  ON survey_responses
+  FOR INSERT
+  TO anon
+  WITH CHECK (true);
+
+CREATE POLICY IF NOT EXISTS "Allow authenticated select for survey_responses"
+  ON survey_responses
+  FOR SELECT
+  TO authenticated
+  USING (true);
 
 -- ============================================
 -- VERIFICATION: List all columns in both tables
