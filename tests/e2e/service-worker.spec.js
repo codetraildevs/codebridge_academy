@@ -10,21 +10,17 @@ test.describe('Service Worker — Fetch Handler', () => {
     await page.setViewportSize({ width: 1280, height: 800 });
   });
 
-  test('registers service worker successfully', async ({ page }) => {
+  test('registers service worker successfully', async ({ page, context }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
 
-    const registration = await page.waitForFunction(async () => {
-      try {
-        const reg = await navigator.serviceWorker.getRegistration('/');
-        return reg && reg.active ? reg.active.scriptURL : null;
-      } catch {
-        return null;
-      }
-    }, { timeout: 15000 });
+    // Wait for the async SW registration in script.js to complete
+    await page.waitForTimeout(3000);
 
-    const swUrl = await registration.jsonValue();
-    expect(swUrl).toContain('sw.js');
+    // Check via Playwright's context-level service workers API
+    const workers = context.serviceWorkers();
+    expect(workers.length).toBeGreaterThan(0);
+    expect(workers[0].url()).toContain('sw.js');
   });
 
   test('caches static assets on install', async ({ page }) => {
@@ -85,24 +81,15 @@ test.describe('Service Worker — Fetch Handler', () => {
   });
 
   test('handles form submission POST without SW error', async ({ page }) => {
-    // Block reCAPTCHA CDN so grecaptcha stays undefined
-    await page.route('**/recaptcha/**', route => route.abort('blockedbyclient'));
-
     // Collect console errors/warnings
     const consoleErrors = [];
     page.on('console', msg => {
       if (msg.type() === 'error') consoleErrors.push(msg.text());
     });
 
-    // Save original fetch + set up mocks via addInitScript (runs before page scripts)
+    // Mock Edge Function via addInitScript (runs before page scripts)
     await page.addInitScript(() => {
       window.__originalFetch = window.fetch.bind(window);
-      // Mock reCAPTCHA
-      window.grecaptcha = {
-        execute: async () => 'mock-recaptcha-token',
-        ready: (cb) => cb(),
-      };
-      // Mock Edge Function via window.fetch override (reliable with SW)
       window.fetch = async (url, opts) => {
         if (typeof url === 'string' && url.includes('submit-form')) {
           return new Response(JSON.stringify({ success: true }), {
@@ -150,6 +137,7 @@ async function fillAllSteps(page) {
   await page.locator('#email').fill('test@example.com');
   await page.locator('#phone').fill('788123456');
   await page.locator('input[name="gender"][value="Male"]').check();
+  await page.locator('#ageGroup').selectOption('19-25');
   await page.locator('#location').fill('Kigali');
   await page.locator('#nextBtn').click();
   await page.waitForSelector('.form-step[data-step="3"].active', { timeout: 5000 });
@@ -157,16 +145,24 @@ async function fillAllSteps(page) {
   await page.locator('input[name="status"][value="University student"]').check();
   await page.locator('#organization').fill('University of Rwanda');
   await page.locator('#level').selectOption('L3');
+  await page.locator('#educationLevel').selectOption('Bachelor');
+  await page.locator('#experienceLevel').selectOption('Beginner');
   await page.locator('#nextBtn').click();
   await page.waitForSelector('.form-step[data-step="4"].active', { timeout: 5000 });
 
-  await page.locator('input[name="program"][value="Web Development Fundamentals"]').check();
+  await page.locator('input[name="program"][value="Software Development"]').check();
+  await page.locator('#duration').selectOption('8 Weeks');
+  await page.locator('input[name="schedule"][value="Morning"]').check();
   await page.locator('input[name="skillLevel"][value="Beginner"]').check();
   await page.locator('input[name="tech"][value="HTML"]').check();
+  await page.locator('input[name="tech"][value="CSS"]').check();
   await page.locator('#nextBtn').click();
   await page.waitForSelector('.form-step[data-step="5"].active', { timeout: 5000 });
 
   await page.locator('input[name="hasLaptop"][value="Yes"]').check();
   await page.locator('input[name="hasInternet"][value="Yes"]').check();
+  await page.locator('#careerGoals').fill('I want to become a developer');
   await page.locator('#motivation').fill('Testing SW');
+  await page.locator('input[name="goals"][value="Learn software development"]').check();
+  await page.locator('input[name="goals"][value="Build real projects"]').check();
 }
