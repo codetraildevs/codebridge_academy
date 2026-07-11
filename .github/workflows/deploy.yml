@@ -9,6 +9,23 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Supabase SQL Migration
+        if: hashFiles('sql/migration-add-columns.sql') != ''
+        env:
+          SUPABASE_DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL }}
+        run: |
+          if [ -z "$SUPABASE_DATABASE_URL" ]; then
+            echo "⚠️  SUPABASE_DATABASE_URL secret not set — skipping migration"
+            exit 0
+          fi
+          echo "=== Installing PostgreSQL client ==="
+          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+          echo "=== Running SQL migration ==="
+          psql "$SUPABASE_DATABASE_URL" -f sql/migration-add-columns.sql
+          echo "✅ Migration complete"
+
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
         with:
