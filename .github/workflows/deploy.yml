@@ -30,7 +30,7 @@ jobs:
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: 159.198.36.184
-          username: root
+          username: deployer
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 22
           fingerprint: ${{ secrets.VPS_HOST_KEY }}
@@ -40,7 +40,7 @@ jobs:
             cd /var/www/codebridgeacademy
             git stash --include-untracked || true
             git pull origin main
-            systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
+            sudo systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
             echo "=== Deploy complete ==="
 
       - name: Deployment Status

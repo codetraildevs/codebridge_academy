@@ -108,14 +108,15 @@ Two GitHub Actions workflows run automatically on every push to `main`:
 
 Triggered on every push to `main`, this workflow SSHs into the production VPS and pulls the latest changes:
 
-1. **SSH** into `root@159.198.36.184` using the deploy key stored in `VPS_SSH_KEY` secret
+1. **SSH** into `deployer@159.198.36.184` using the deploy key stored in `VPS_SSH_KEY` secret
 2. **Stash** any local changes on the server (in case of manual edits)
 3. **Git pull** `origin main` into `/var/www/codebridgeacademy`
-4. **Reload** nginx to serve the updated files
+4. **Reload** nginx to serve the updated files (`sudo systemctl reload nginx`)
 
 **One-time setup required:**
 - Clone the repo on the VPS: `git clone <repo-url> /var/www/codebridgeacademy`
 - Add your SSH private key as a GitHub secret named `VPS_SSH_KEY` in the repo settings
+- Add your SSH public key as a **deploy key** in GitHub repo settings with write access
 
 ### 2. Lighthouse CI (performance budget)
 

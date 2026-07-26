@@ -17,9 +17,10 @@ lighthouse-report/report*.json
 logo.png
 updated_logo.jpeg
 new_logo.png
-# Ignore all Markdown files except README.md
+# Ignore all Markdown files except README.md and deployment guide
 *.md
 !README.md
+!docs/vps-deployment-guide.md
 
 # Generated Playwright test report
 /test-report/
