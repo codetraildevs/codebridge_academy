@@ -31,15 +31,15 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.2.2
         with:
-          host: 159.198.36.184
-          username: deployer
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          port: 22
+          port: ${{ secrets.VPS_PORT }}
           fingerprint: ${{ secrets.VPS_HOST_KEY }}
           script: |
             set -e
             echo "=== Pulling latest changes ==="
-            cd /var/www/codebridgeacademy
+            cd ${{ secrets.DEPLOY_PATH }}
             git stash --include-untracked || true
             git pull origin main
             sudo systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
