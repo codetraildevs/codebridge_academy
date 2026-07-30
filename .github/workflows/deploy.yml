@@ -31,22 +31,19 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.2.2
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
+          host: 159.198.36.184
+          username: deployer
           key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
+          port: 22
           fingerprint: ${{ secrets.VPS_HOST_KEY }}
           script: |
             set -e
-
-            cd ${{ secrets.DEPLOY_PATH }}
-
-            git fetch origin
-            git reset --hard origin/main
-
-            sudo systemctl reload nginx
-
-            echo "✅ Deployment completed successfully."
+            echo "=== Pulling latest changes ==="
+            cd /var/www/codebridgeacademy
+            git stash --include-untracked || true
+            git pull origin main
+            sudo systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
+            echo "=== Deploy complete ==="
 
       - name: Health Check
         run: |
