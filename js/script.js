@@ -269,8 +269,8 @@ function formatPhoneInput(input) {
       }
     }
 
-    updateTimer();
     const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
   }
 
   startCountdown();
