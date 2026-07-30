@@ -35,7 +35,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
-          fingerprint: ${{ secrets.VPS_HOST_KEY }}
           script: |
             set -e
             echo "=== Pulling latest changes ==="
