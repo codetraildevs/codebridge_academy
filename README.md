@@ -4,7 +4,7 @@
 
 [![Deploy to VPS](https://github.com/codetraildevs/codebridge_academy/actions/workflows/deploy.yml/badge.svg)](https://github.com/codetraildevs/codebridge_academy/actions/workflows/deploy.yml)
 [![Lighthouse CI](https://github.com/codetraildevs/codebridge_academy/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/codetraildevs/codebridge_academy/actions/workflows/lighthouse.yml)
-[![Playwright Tests](https://img.shields.io/badge/Playwright-59%20unit%20tests%20passing-brightgreen?logo=playwright)](https://github.com/codetraildevs/codebridge_academy/tree/main/tests)
+[![Playwright Tests](https://github.com/codetraildevs/codebridge_academy/actions/workflows/tests.yml/badge.svg)](https://github.com/codetraildevs/codebridge_academy/actions/workflows/tests.yml)
 
 </div>
 
