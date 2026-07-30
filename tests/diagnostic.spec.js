@@ -6,7 +6,7 @@ const { test, expect } = require('@playwright/test');
 test.describe('Diagnostic', () => {
   test('can connect and find right buttons', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
-    await page.goto('http://localhost:8081/');
+    await page.goto('http://localhost:8080/');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(2000);
 
