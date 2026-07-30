@@ -152,4 +152,4 @@ The project is also configured for deployment on **Netlify** (for redundancy/bac
 ---
 © 2026 CodeBridge Academy. Bridging learning to real software careers.
 
-_Auto-deployed via GitHub Actions – last deploy: commit `c4daf28`_
+_Auto-deployed via GitHub Actions – last deploy: commit `01e1145`_
