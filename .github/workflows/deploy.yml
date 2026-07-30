@@ -1,13 +1,15 @@
-name: Deploy to VPS
+name: Deploy Website
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -26,44 +28,34 @@ jobs:
           psql "$SUPABASE_DATABASE_URL" -f sql/migration-add-columns.sql
           echo "✅ Migration complete"
 
-      - name: Deploy via SSH
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.2.2
         with:
-          host: 159.198.36.184
-          username: deployer
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          port: 22
+          port: ${{ secrets.VPS_PORT }}
           fingerprint: ${{ secrets.VPS_HOST_KEY }}
           script: |
             set -e
-            echo "=== Pulling latest changes ==="
-            cd /var/www/codebridgeacademy
-            git stash --include-untracked || true
-            git pull origin main
-            sudo systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
-            echo "=== Deploy complete ==="
 
-      - name: Deployment Status
-        run: echo "✅ Deployed main branch to VPS (159.198.36.184)"
+            cd ${{ secrets.DEPLOY_PATH }}
 
-      - name: Send email notification
-        if: always()
-        uses: dawidd6/action-send-mail@v4
-        with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: |
-            ${{ job.status == 'success' && '✅' || '❌' }} Deploy to VPS — CodeBridge Academy (${{ github.sha }})
-          to: ${{ secrets.NOTIFY_EMAIL }}
-          from: CodeBridge CI <${{ secrets.SMTP_USERNAME }}>
-          body: |
-            Repository: ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
-            Commit: ${{ github.sha }}
-            Author: ${{ github.triggering_actor }}
-            Status: ${{ job.status }}
-            Workflow: ${{ github.workflow }}
-            
-            View run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            git fetch origin
+            git reset --hard origin/main
+
+            sudo systemctl reload nginx
+
+            echo "✅ Deployment completed successfully."
+
+      - name: Health Check
+        run: |
+          echo "=== Waiting for nginx to reload ==="
+          sleep 5
+          echo "=== Checking site health ==="
+          STATUS=$(curl -sf -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 30 https://codebridgecademy.com/)
+          if [ "$STATUS" -ne 200 ]; then
+            echo "❌ Health check failed — site returned HTTP $STATUS"
+            exit 1
+          fi
+          echo "✅ Health check passed — site is responding with HTTP 200"

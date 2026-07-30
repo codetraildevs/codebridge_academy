@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v8';
+const CACHE_NAME = 'codebridge-v9';
 const ASSETS = [
   '/',
   '/index.html',
@@ -44,57 +44,30 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Helper: Is this a navigation request for an HTML page?
-function isHTMLNavigation(request) {
-  return (
-    request.mode === 'navigate' ||
-    (request.method === 'GET' &&
-      request.headers.get('Accept') &&
-      request.headers.get('Accept').includes('text/html'))
-  );
+// Helper: Network-first strategy with cache fallback
+function networkFirstWithCacheFallback(request) {
+  return fetch(request)
+    .then((networkResponse) => {
+      // Cache the fresh response for offline use
+      const cloned = networkResponse.clone();
+      caches.open(CACHE_NAME).then((cache) => {
+        cache.put(request, cloned);
+      });
+      return networkResponse;
+    })
+    .catch(() => {
+      // Network failed — serve from cache
+      return caches.match(request);
+    });
 }
 
-// Fetch: Network-first for HTML pages, Cache-first for static assets
+// Fetch: Network-first for all requests, cache as fallback
 self.addEventListener('fetch', (event) => {
   // Skip non-GET requests — Cache API only supports GET/HEAD for put()
   if (event.request.method !== 'GET') {
     return;
   }
 
-  // HTML pages: try network first, fall back to cache
-  if (isHTMLNavigation(event.request)) {
-    event.respondWith(
-      fetch(event.request)
-        .then((networkResponse) => {
-          // Update cache with the fresh response
-          const cloned = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, cloned);
-          });
-          return networkResponse;
-        })
-        .catch(() => {
-          // Network failed — serve from cache
-          return caches.match(event.request);
-        })
-    );
-    return;
-  }
-
-  // Static assets (CSS, JS, images, manifest): cache-first
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).then((networkResponse) => {
-        // Cache new static assets
-        const cloned = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, cloned);
-        });
-        return networkResponse;
-      });
-    })
-  );
+  // All requests: try network first, fall back to cache
+  event.respondWith(networkFirstWithCacheFallback(event.request));
 });
