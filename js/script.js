@@ -220,8 +220,8 @@ function formatPhoneInput(input) {
      COUNTDOWN TIMER
      ============================================ */
   function startCountdown() {
-    // Bootcamp starts: July 27, 2026
-    const deadline = new Date('2026-08-04T09:00:00').getTime();
+    // Registration extended to: September 7, 2026
+    const deadline = new Date('2026-09-07T09:00:00').getTime();
     let isFirstUpdate = true;
 
     function updateTimer() {
