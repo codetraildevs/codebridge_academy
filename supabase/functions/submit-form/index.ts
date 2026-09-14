@@ -6,7 +6,7 @@ import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 interface FormPayload {
-  form_type: "registration" | "survey";
+  form_type: "registration" | "survey" | "project_quote";
   data: Record<string, unknown>;
 }
 
@@ -51,8 +51,8 @@ serve(async (req: Request) => {
       });
     }
 
-    if (payload.form_type !== "registration" && payload.form_type !== "survey") {
-      return new Response(JSON.stringify({ error: "form_type must be 'registration' or 'survey'" }), {
+    if (payload.form_type !== "registration" && payload.form_type !== "survey" && payload.form_type !== "project_quote") {
+      return new Response(JSON.stringify({ error: "form_type must be 'registration', 'survey', or 'project_quote'" }), {
         status: 400,
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,10 @@ serve(async (req: Request) => {
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     // Insert into the appropriate table
-    const tableName = payload.form_type === "registration" ? "registrations" : "survey_responses";
+    const tableName =
+      payload.form_type === "registration" ? "registrations" :
+      payload.form_type === "project_quote" ? "project_quotes" :
+      "survey_responses";
 
     const { error } = await supabase
       .from(tableName)

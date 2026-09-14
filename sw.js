@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v10';
+const CACHE_NAME = 'codebridge-v12';
 const ASSETS = [
   '/',
   '/index.html',
@@ -6,6 +6,7 @@ const ASSETS = [
   '/verify.html',
   '/css/style.min.css',
   '/css/projects.min.css',
+  '/css/services.min.css',
   '/css/verify.css',
   '/js/script.min.js',
   '/js/verify.js',

@@ -220,8 +220,8 @@ function formatPhoneInput(input) {
      COUNTDOWN TIMER
      ============================================ */
   function startCountdown() {
-    // Registration extended to: September 7, 2026
-    const deadline = new Date('2026-09-07T09:00:00').getTime();
+    // Registration extended to: October 14, 2026
+    const deadline = new Date('2026-10-14T09:00:00').getTime();
     let isFirstUpdate = true;
 
     function updateTimer() {
@@ -1339,6 +1339,179 @@ function formatPhoneInput(input) {
       registrationModal.classList.remove('active');
       document.body.style.overflow = '';
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  /* ============================================
+     PROJECT QUOTE MODAL (Software Development)
+     ============================================ */
+  const quoteModal = document.getElementById('quoteModal');
+  const quoteCloseBtn = document.getElementById('quoteCloseBtn');
+  const quoteForm = document.getElementById('quoteForm');
+  const quoteSubmitBtn = document.getElementById('quoteSubmitBtn');
+  const quoteSuccess = document.getElementById('quoteSuccess');
+  const quoteCloseSuccessBtn = document.getElementById('quoteCloseSuccessBtn');
+  const openQuoteFormBtn = document.getElementById('openQuoteFormBtn');
+
+  function openQuoteModal() {
+    if (!quoteModal) return;
+    quoteModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (quoteForm) quoteForm.style.display = 'block';
+    if (quoteSuccess) quoteSuccess.style.display = 'none';
+    const qHeader = quoteModal.querySelector('.modal-header');
+    if (qHeader) qHeader.style.display = 'block';
+    const qNav = quoteModal.querySelector('.form-navigation');
+    if (qNav) qNav.style.display = 'flex';
+  }
+
+  function closeQuoteModal() {
+    if (!quoteModal) return;
+    quoteModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (openQuoteFormBtn) {
+    openQuoteFormBtn.addEventListener('click', openQuoteModal);
+    openQuoteFormBtn.addEventListener('touchend', (e) => { e.preventDefault(); openQuoteModal(); });
+  }
+  if (quoteCloseBtn) quoteCloseBtn.addEventListener('click', closeQuoteModal);
+  if (quoteCloseSuccessBtn) quoteCloseSuccessBtn.addEventListener('click', closeQuoteModal);
+  if (quoteModal) {
+    quoteModal.addEventListener('click', (e) => {
+      if (e.target === quoteModal) closeQuoteModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && quoteModal && quoteModal.classList.contains('active')) closeQuoteModal();
+  });
+
+  // Deep-link support: #project-quote opens the quote modal after scroll anchor
+  window.addEventListener('load', () => {
+    if (window.location.hash === '#project-quote') openQuoteModal();
+  });
+
+  function validateQuoteForm() {
+    if (!quoteForm) return false;
+    const fields = quoteForm.querySelectorAll('input[required], select[required], textarea[required]');
+    let valid = true;
+    let firstErrorField = null;
+    fields.forEach(f => {
+      const val = f.value.trim();
+      let isFilled = !!val;
+      if (isFilled && f.type === 'email' && !validateEmail(val)) {
+        f.dataset.errorMsg = 'Please enter a valid email address';
+        showFieldError(f);
+        if (!firstErrorField) firstErrorField = f;
+        valid = false;
+        return;
+      }
+      if (isFilled && f.type === 'tel' && !validatePhone(val)) {
+        f.dataset.errorMsg = 'Please enter a valid phone number';
+        showFieldError(f);
+        if (!firstErrorField) firstErrorField = f;
+        valid = false;
+        return;
+      }
+      if (isFilled && f.dataset.textonly !== undefined && !validateTextOnly(val)) {
+        f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
+        showFieldError(f);
+        if (!firstErrorField) firstErrorField = f;
+        valid = false;
+        return;
+      }
+      if (isFilled) {
+        clearFieldError(f);
+      } else {
+        f.dataset.errorMsg = '';
+        showFieldError(f);
+        if (!firstErrorField) firstErrorField = f;
+        valid = false;
+      }
+    });
+    if (!valid && firstErrorField) {
+      const scrollTarget = firstErrorField.closest('.form-group') || firstErrorField;
+      scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return valid;
+  }
+
+  // Live validation feedback
+  if (quoteForm) {
+    quoteForm.querySelectorAll('input, select, textarea').forEach(f => {
+      f.addEventListener('blur', () => {
+        const val = f.value.trim();
+        if (!val) return;
+        if (f.type === 'email' && !validateEmail(val)) {
+          f.dataset.errorMsg = 'Please enter a valid email address';
+          showFieldError(f);
+        } else if (f.type === 'tel' && val && !validatePhone(val)) {
+          f.dataset.errorMsg = 'Please enter a valid phone number';
+          showFieldError(f);
+        } else if (f.dataset.textonly !== undefined && !validateTextOnly(val)) {
+          f.dataset.errorMsg = 'Please enter letters and spaces only (no numbers or special characters)';
+          showFieldError(f);
+        } else {
+          clearFieldError(f);
+        }
+      });
+      f.addEventListener('input', () => clearFieldError(f));
+    });
+  }
+
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      clearSubmitError(quoteForm);
+      if (!validateQuoteForm()) return;
+      setButtonLoading(quoteSubmitBtn, true);
+
+      const formData = new FormData(quoteForm);
+      const data = {
+        full_name: formData.get('fullName'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || null,
+        organization: formData.get('organization') || null,
+        service: formData.get('service'),
+        budget: formData.get('budget') || null,
+        message: formData.get('message')
+      };
+
+      try {
+        const response = await fetch(SUPABASE_EDGE_FN, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          },
+          body: JSON.stringify({
+            form_type: 'project_quote',
+            data: data
+          })
+        });
+
+        if (!response.ok) {
+          let errText = await response.text();
+          try {
+            const errJson = JSON.parse(errText);
+            errText = errJson.error?.message || errJson.message || errText;
+          } catch (_err) {}
+          console.error('Quote submit error:', errText);
+          showSubmitError(quoteForm, `Submission failed: ${errText}`);
+          return;
+        }
+
+        quoteForm.style.display = 'none';
+        quoteModal.querySelector('.modal-header').style.display = 'none';
+        quoteModal.querySelector('.form-navigation').style.display = 'none';
+        quoteSuccess.style.display = 'block';
+        quoteForm.reset();
+      } catch (err) {
+        console.error('Network error:', err);
+        showSubmitError(quoteForm, 'Network error while submitting. Please try again.');
+      } finally {
+        setButtonLoading(quoteSubmitBtn, false);
+      }
     });
   }
 });

@@ -8,7 +8,7 @@
     "terser": "^5.48.0"
   },
   "scripts": {
-    "build:css": "csso css/style.css --output css/style.min.css && csso css/projects.css --output css/projects.min.css",
+    "build:css": "csso css/style.css --output css/style.min.css && csso css/projects.css --output css/projects.min.css && csso css/services.css --output css/services.min.css",
     "build:js": "terser js/script.js --output js/script.min.js",
     "build": "npm run build:css && npm run build:js",
     "lighthouse": "lighthouse http://localhost:8080/ --view --output=json --output=html --output-path=lighthouse-report/report",
