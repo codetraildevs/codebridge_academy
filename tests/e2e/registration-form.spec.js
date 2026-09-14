@@ -92,7 +92,9 @@ test.describe('Registration Form — 5-Step Modal', () => {
 // ============================================
 
 async function clickRegister(page) {
-  const btn = page.locator('.nav-cta.btn-register');
+  // Updated selector to match the refactored announcement bar UI
+  // Changed from .nav-cta.btn-register to .announcement-cta
+  const btn = page.locator('.announcement-cta');
   await expect(btn).toBeVisible({ timeout: 10000 });
   await btn.scrollIntoViewIfNeeded();
   await btn.click({ force: true });
