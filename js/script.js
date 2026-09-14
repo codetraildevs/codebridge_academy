@@ -320,62 +320,71 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
-     MOBILE MENU
+     TUBELIGHT NAVBAR — Active Tab + Scroll Spy
      ============================================ */
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('navMenu');
-  const navOverlay = document.getElementById('navOverlay');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  const toggleMobileMenu = () => {
-    const active = hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active', active);
-    navOverlay.classList.toggle('active', active);
-    document.body.style.overflow = active ? 'hidden' : '';
-  };
-
-  const closeMobileMenu = () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-    navOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  };
-
-  hamburger.addEventListener('click', toggleMobileMenu);
-  navOverlay.addEventListener('click', closeMobileMenu);
-  navLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-
-  /* ============================================
-     SCROLL HANDLERS (Optimized & Throttled)
-     ============================================ */
+  const tubelightNav = document.getElementById('tubelightNav');
+  const tubelightItems = document.querySelectorAll('.dreelio-pill-link');
+  const tubelightIndicator = document.getElementById('tubelightIndicator');
   const navbar = document.getElementById('navbar');
   const backToTop = document.getElementById('backToTop');
   const sections = document.querySelectorAll('section[id]');
-  
+
+  // Move indicator to active tab
+  function moveIndicator(item) {
+    if (!item || !tubelightIndicator) return;
+    const navRect = tubelightNav.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    tubelightIndicator.style.left = (itemRect.left - navRect.left) + 'px';
+    tubelightIndicator.style.width = itemRect.width + 'px';
+  }
+
+  // Set active tab
+  function setActiveTab(sectionId) {
+    let targetItem = null;
+    tubelightItems.forEach(item => {
+      const isActive = item.dataset.section === sectionId;
+      item.classList.toggle('active', isActive);
+      if (isActive) targetItem = item;
+    });
+    if (targetItem) moveIndicator(targetItem);
+  }
+
+  // Click handlers for nav items
+  tubelightItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = item.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      setActiveTab(item.dataset.section);
+    });
+  });
+
+  // Scroll spy + navbar background
   let lastScrollY = window.scrollY;
   let ticking = false;
 
   function updateScrollState() {
     const scrollY = window.scrollY;
-    
-    // Navbar
+
+    // Navbar background
     navbar.classList.toggle('scrolled', scrollY > 50);
-    
+
     // Back to top
     backToTop.classList.toggle('visible', scrollY > 500);
 
-    // Active Nav Highlighting (Simple version for less work)
-    let current = "";
+    // Active section detection
+    let current = '';
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       if (scrollY >= sectionTop - 150) {
-        current = section.getAttribute("id");
+        current = section.getAttribute('id');
       }
     });
 
-    navLinks.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("data-section") === current);
-    });
+    if (current) setActiveTab(current);
 
     ticking = false;
   }
@@ -387,6 +396,23 @@ function formatPhoneInput(input) {
     }
   }, { passive: true });
 
+  // Position indicator on load and resize
+  window.addEventListener('load', () => {
+    const activeItem = document.querySelector('.dreelio-pill-link.active');
+    if (activeItem) moveIndicator(activeItem);
+  });
+
+  window.addEventListener('resize', () => {
+    const activeItem = document.querySelector('.dreelio-pill-link.active');
+    if (activeItem) moveIndicator(activeItem);
+  });
+
+  // Initial indicator position
+  setTimeout(() => {
+    const activeItem = document.querySelector('.dreelio-pill-link.active');
+    if (activeItem) moveIndicator(activeItem);
+  }, 100);
+
   /* ============================================
      BACK TO TOP CLICK HANDLER
      ============================================ */
@@ -396,6 +422,7 @@ function formatPhoneInput(input) {
 
   /* ============================================
      INTERSECTION OBSERVER (Scroll Reveal)
+     Matches Sample's Reveal component: margin '-60px', once: true
      ============================================ */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -404,9 +431,9 @@ function formatPhoneInput(input) {
         revealObserver.unobserve(entry.target); // Reveal only once
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
     revealObserver.observe(el);
   });
 
@@ -1524,5 +1551,61 @@ function formatPhoneInput(input) {
         setButtonLoading(quoteSubmitBtn, false);
       }
     });
+  }
+
+  /* ============================================
+     SCROLL-REVEAL ANIMATIONS
+     ============================================ */
+  const revealElements = document.querySelectorAll(
+    '.scroll-reveal-text, .scroll-reveal-up, .scroll-fade-up'
+  );
+
+  if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  }
+
+  /* Hero text reveals immediately (above the fold) */
+  setTimeout(() => {
+    document.querySelectorAll('.hero .scroll-reveal-text, .hero .scroll-reveal-up, .hero .scroll-fade-up').forEach(el => {
+      el.classList.add('revealed');
+    });
+    /* Reveal floating badges */
+    document.querySelectorAll('.gallery-float').forEach(el => {
+      el.classList.add('revealed');
+    });
+    /* Reveal gallery container with 3D tilt */
+    const gc = document.getElementById('galleryContainer');
+    if (gc) gc.classList.add('revealed');
+  }, 400);
+
+  /* Gallery scroll — scale + fade editor on scroll (Dreelio-style) */
+  const galleryContainer = document.getElementById('galleryContainer');
+  if (galleryContainer) {
+    const heroSection = document.getElementById('hero');
+    const heroTop = heroSection.offsetTop;
+    const heroHeight = heroSection.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const progress = Math.min(Math.max((scrollY - heroTop) / (heroHeight * 0.5), 0), 1);
+      const scale = 1 - progress * 0.15;
+      const opacity = 1 - progress * 0.7;
+      const translateY = -32 - progress * 40;
+      const rotateX = 8 - progress * 8;
+      galleryContainer.style.transform = `perspective(1000px) translateY(${translateY}px) rotateX(${rotateX}deg) scale(${scale})`;
+      galleryContainer.style.opacity = opacity;
+    }, { passive: true });
   }
 });

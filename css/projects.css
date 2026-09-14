@@ -8,11 +8,13 @@
 }
 
 .project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: 2rem 2rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.44, 0, 0.56, 1);
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
@@ -20,25 +22,28 @@
   overflow: hidden;
 }
 
+/* Bottom accent bar — matches Sample */
 .project-card::before {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 4px;
   background: var(--brand-blue);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-medium);
+  border-color: transparent;
 }
 
 .project-card:hover::before {
-  opacity: 1;
+  transform: scaleX(1);
 }
 
 .project-card-header {
@@ -166,7 +171,7 @@
 
 .project-tag {
   padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 500;
   background: var(--bg-section);

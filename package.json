@@ -20,6 +20,7 @@
     "perf:audit": "npm run lighthouse:ci-full && npm run perf:check",
     "perf:audit-full": "npm run lighthouse:desktop && npm run lighthouse:ci-full && npm run perf:check",
     "test": "npx playwright test",
+    "dev": "http-server . -p 8080 -c-1",
     "test:unit": "npx playwright test tests/unit",
     "test:e2e": "npx playwright test tests/e2e",
     "test:api": "npx playwright test tests/api"

@@ -28,8 +28,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
   <!-- Preload Critical Assets -->
   <link rel="preload" href="assets/images/update_logo.webp" as="image" fetchpriority="high" type="image/webp">
@@ -39,22 +39,13 @@
   
   <!-- Critical CSS Inlined for Instant FCP & LCP -->
   <style>
-    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #163B73; --color-primary-rgb: 22,59,115; --color-text: #0F172A; --color-accent: #163B73; --font-body: 'Inter', sans-serif; --font-heading: 'Inter', sans-serif; --hero-gradient: #F8FAFC; --color-border: #E2E8F0; }
-    [data-theme="dark"] { --bg-primary: #0F172A; --bg-section: #1E293B; --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F8FAFC; --color-accent: #60A5FA; --color-border: #334155; --hero-gradient: #0F172A; }
-    /* [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); } — PNG logo renders correctly in both themes */
-    body { font-family: var(--font-body); margin: 0; background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; }
-    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 112px; background: var(--hero-gradient); position: relative; overflow: hidden; }
-    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .hero-title { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; }
-    .hero-content { max-width: 580px; z-index: 1; position: relative; }
+    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #0057B8; --color-primary-rgb: 0,87,184; --color-text: #0F172A; --color-text-secondary: #64748B; --color-accent: #FF7A00; --font-body: 'Inter', sans-serif; --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif; --color-border: #E2E8F0; --color-eyebrow: #64748B; --glass-bg: rgba(255,255,255,0.7); --glass-border: rgba(226,232,240,0.6); --page-gradient: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%); }
+    [data-theme="dark"] { --bg-primary: #0A0A0A; --bg-section: rgba(20,20,20,0.8); --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F5F5F5; --color-text-secondary: #A0A0A0; --color-accent: #60A5FA; --color-border: rgba(42,42,42,0.6); --color-eyebrow: #c9a882; --glass-bg: rgba(26,26,26,0.7); --glass-border: rgba(42,42,42,0.4); --page-gradient: linear-gradient(180deg, #0A0A0A 0%, #0f0f0f 50%, #0A0A0A 100%); }
+    body { font-family: var(--font-body); background: var(--page-gradient); background-attachment: fixed; color: var(--color-text); -webkit-font-smoothing: antialiased; margin: 0; }
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
     .highlight { color: var(--color-primary); }
-    .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; flex-direction: column; }
-    .nav-logo img { height: 70px; width: auto; }
-    .btn { display: inline-flex; align-items: center; padding: 0.85rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
-    .btn-primary { background: var(--color-primary); color: white; }
-    .nav-menu { display: flex; list-style: none; gap: 0.25rem; }
-  
-    .section { padding: 6rem 0; position: relative; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+    .navbar { position: fixed; top: 0; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 1000; }
+    .section { padding: 4rem 0; position: relative; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
     .section-alt { background-color: var(--bg-section); }
   </style>
 
@@ -70,7 +61,7 @@
   <link rel="icon" href="assets/images/update_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/images/update_logo.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#163B73">
+  <meta name="theme-color" content="#0057B8">
 </head>
 <body>
 
@@ -82,104 +73,98 @@
         <!-- ============================================
          BOOTCAMP HOLIDAY BANNER — Promotional (at top of navigation)
          ============================================ -->
-    <div class="nav-top-banner" id="announcementBar">
-      <div class="banner-bg-particles">
-        <span class="particle p1"></span><span class="particle p2"></span><span class="particle p3"></span>
-        <span class="particle p4"></span><span class="particle p5"></span><span class="particle p6"></span>
-      </div>
-      <div class="banner-shine"></div>
-      <div class="container nav-banner-inner">
-        <div class="nav-banner-left">
-          <span class="nav-banner-badge">
-            <span class="badge-pulse"></span>
-            <i class="fa-solid fa-gift"></i>
-            <span class="badge-text">Holiday Tech Bootcamp 2026</span>
+    <div class="announcement-bar" id="announcementBar">
+      <div class="announcement-inner">
+        <div class="announcement-content">
+          <span class="announcement-badge">
+            <span class="announcement-dot"></span>
+            Holiday Tech Bootcamp 2026
           </span>
-          <span class="nav-banner-desc">
-            <i class="fa-regular fa-clock"></i>
-            <span>Students Aged 12+</span>
-            <span class="banner-dot"></span>
-            <strong class="seats-highlight"><i class="fa-solid fa-fire"></i> Limited Seats</strong>
+          <span class="announcement-separator">|</span>
+          <span class="announcement-text">
+            Students Aged 12+ &middot; <strong>Limited Seats</strong>
           </span>
-          <span class="nav-banner-hot">
-            <i class="fa-solid fa-fire"></i> Hot Deal
+          <span class="announcement-separator">|</span>
+          <span class="announcement-date">
+            <i class="fa-regular fa-calendar"></i> Extended to 14 Oct 2026
           </span>
         </div>
-        <div class="nav-banner-right">
-          <div class="nav-banner-countdown" id="announcementCountdown">
-            <div class="banner-countdown-timer">
-              <div class="banner-cd-item">
-                <span class="banner-cd-value" id="countdown-days">00</span>
-                <span class="banner-cd-label">Days</span>
-              </div>
-              <span class="banner-cd-sep">:</span>
-              <div class="banner-cd-item">
-                <span class="banner-cd-value" id="countdown-hours">00</span>
-                <span class="banner-cd-label">Hrs</span>
-              </div>
-              <span class="banner-cd-sep">:</span>
-              <div class="banner-cd-item">
-                <span class="banner-cd-value" id="countdown-minutes">00</span>
-                <span class="banner-cd-label">Min</span>
-              </div>
-              <span class="banner-cd-sep">:</span>
-              <div class="banner-cd-item">
-                <span class="banner-cd-value" id="countdown-seconds">00</span>
-                <span class="banner-cd-label">Sec</span>
-              </div>
-            </div>
+        <div class="announcement-actions">
+          <div class="announcement-countdown" id="announcementCountdown">
+            <div class="cd-box"><span class="cd-val" id="countdown-days">00</span><span class="cd-lbl">d</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-box"><span class="cd-val" id="countdown-hours">00</span><span class="cd-lbl">h</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-box"><span class="cd-val" id="countdown-minutes">00</span><span class="cd-lbl">m</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-box"><span class="cd-val" id="countdown-seconds">00</span><span class="cd-lbl">s</span></div>
           </div>
-          <span class="banner-start-date"><i class="fa-regular fa-calendar"></i> Extended to 14 October 2026</span>
-          <a href="#" class="btn btn-banner-cta btn-register">
-            <span>Register Now</span>
+          <a href="#project-quote" class="announcement-cta">
+            Register Now
             <i class="fa-solid fa-arrow-right"></i>
           </a>
-          <button type="button" class="nav-banner-close" id="announcementClose" aria-label="Close">
+          <button type="button" class="announcement-close" id="announcementClose" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
     </div>
-    <div class="container">
-      <a href="#hero" class="nav-logo">
-        <picture>
-          <source srcset="assets/images/update_logo.webp" type="image/webp">
-          <img 
-            src="assets/images/update_logo.png" 
-            alt="CodeBridge Academy Logo" 
-            width="200" 
-            height="70" 
-            fetchpriority="high">
-        </picture>
+
+    <!-- Dreelio-style single floating pill navbar -->
+    <div class="dreelio-pill" id="dreelioNav">
+      <a href="#hero" class="dreelio-pill-logo">
+        <img 
+          src="assets/images/Horizontal_logo.png" 
+          alt="CodeBridge Academy Logo" 
+          width="180" 
+          height="40" 
+          fetchpriority="high">
       </a>
 
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#hero" class="nav-link" data-section="hero">Home</a></li>
-        <li><a href="#software-dev" class="nav-link" data-section="software-dev">Software Development</a></li>
-        <li><a href="#programs" class="nav-link" data-section="programs">Training</a></li>
-        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-        <li class="nav-mobile-register"><a href="#" class="nav-link btn-register">Register Now</a></li>
-      </ul>
+      <div class="dreelio-pill-links" id="tubelightNav">
+        <a href="#about" class="dreelio-pill-link" data-section="about">
+          <span class="dreelio-pill-label">About</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-user"></i></span>
+        </a>
+        <a href="#programs" class="dreelio-pill-link" data-section="programs">
+          <span class="dreelio-pill-label">Programs</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+        </a>
+        <a href="#projects" class="dreelio-pill-link" data-section="projects">
+          <span class="dreelio-pill-label">Projects</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-diagram-project"></i></span>
+        </a>
+        <a href="#why-us" class="dreelio-pill-link" data-section="why-us">
+          <span class="dreelio-pill-label">Why Us</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-circle-check"></i></span>
+        </a>
+        <a href="#internships" class="dreelio-pill-link" data-section="internships">
+          <span class="dreelio-pill-label">Internships</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-briefcase"></i></span>
+        </a>
+        <a href="#why-qualexas" class="dreelio-pill-link" data-section="why-qualexas">
+          <span class="dreelio-pill-label">Qualexas</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+        </a>
+        <a href="#tech-stack" class="dreelio-pill-link" data-section="tech-stack">
+          <span class="dreelio-pill-label">Tech Stack</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-layer-group"></i></span>
+        </a>
+        <a href="#contact" class="dreelio-pill-link" data-section="contact">
+          <span class="dreelio-pill-label">Contact</span>
+          <span class="dreelio-pill-icon"><i class="fa-solid fa-envelope"></i></span>
+        </a>
+        <div class="dreelio-pill-indicator" id="tubelightIndicator"></div>
+      </div>
 
-      <div class="nav-actions">
+      <div class="dreelio-pill-actions">
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <a href="#project-quote" class="btn btn-primary nav-cta js-start-project">Start a Project</a>
-
-        <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <a href="#" class="btn btn-primary dreelio-pill-cta js-start-project">Register Now</a>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile overlay -->
-  <div class="nav-overlay" id="navOverlay"></div>
 
   <main>
 
@@ -187,77 +172,108 @@
        1. HERO SECTION
        ============================================ -->
   <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-content reveal-left">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Software Development &amp; Technology Training
-        </div>
-        <h1 class="hero-title">
-          <span class="highlight">Building Digital Solutions.</span> Developing Future Professionals.
-        </h1>
-        <p class="hero-description">
-          CodeBridge Academy combines professional software development with practical technology training to help businesses build reliable digital solutions and help developers build real-world careers.
-        </p>
-        <div class="hero-buttons">
-          <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
-            Start a Project <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <a href="#programs" class="btn btn-secondary btn-lg">
-            Explore Training
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Projects Built</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Learners Trained</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">Multiple</div>
-            <div class="stat-label">Technology Domains</div>
-          </div>
-        </div>
+    <div class="hero-content-center">
+      <h1 class="hero-matrix-title">
+        <span class="scroll-reveal-text" data-delay="0"><span>Building</span></span> <span class="scroll-reveal-text" data-delay="1"><span>Digital</span></span> <span class="scroll-reveal-text highlight" data-delay="2"><span>Solutions.</span></span><br><span class="scroll-reveal-text" data-delay="3"><span>Developing</span></span> <span class="scroll-reveal-text" data-delay="4"><span>Future</span></span> <span class="scroll-reveal-text highlight" data-delay="5"><span>Professionals.</span></span>
+      </h1>
+
+      <p class="hero-matrix-subtitle scroll-fade-up">
+        CodeBridge Academy combines professional software development with practical technology training to help businesses build reliable digital solutions and help developers build real-world careers.
+      </p>
+
+      <div class="hero-buttons scroll-fade-up" data-delay="200">
+        <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
+          Start a Project <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#programs" class="btn btn-secondary btn-lg">
+          Explore Training
+        </a>
       </div>
 
-      <div class="hero-visual reveal-right">
-        <div class="hero-image-wrapper">
-          <!-- Code Editor Card -->
-          <div class="hero-code-card">
-            <div class="code-header">
-              <span class="code-dot red"></span>
-              <span class="code-dot yellow"></span>
-              <span class="code-dot green"></span>
-            </div>
-            <div class="code-body">
-              <div><span class="comment">// Professional software development</span></div>
-              <div><span class="keyword">const</span> solution = {</div>
-              <div>&nbsp;&nbsp;idea: <span class="string">"Your Business Problem"</span>,</div>
-              <div>&nbsp;&nbsp;stack: [<span class="string">"Web"</span>, <span class="string">"Mobile"</span>, <span class="string">"Cloud"</span>],</div>
-              <div>&nbsp;&nbsp;tested: <span class="keyword">true</span>,</div>
-              <div>&nbsp;&nbsp;deployed: <span class="keyword">true</span>,</div>
-              <div>&nbsp;&nbsp;maintained: <span class="keyword">true</span></div>
-              <div>};</div>
-              <br>
-              <div><span class="function">deliver</span>(solution);</div>
-            </div>
-          </div>
-
-          <!-- Supporting capability cards -->
-          <div class="float-card float-card-1">
-            <div class="fc-icon"><i class="fa-solid fa-diagram-project"></i></div>
-            <span>Web · Mobile · Enterprise</span>
-          </div>
-          <div class="float-card float-card-2">
-            <div class="fc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-            <span>Training &amp; Mentorship</span>
-          </div>
-        </div>
+      <div class="hero-trust-bar scroll-fade-up" data-delay="400">
+        <span class="trust-item"><i class="fa-solid fa-check-circle"></i> 50+ Projects Built</span>
+        <span class="trust-divider"></span>
+        <span class="trust-item"><i class="fa-solid fa-check-circle"></i> 500+ Learners Trained</span>
+        <span class="trust-divider"></span>
+        <span class="trust-item"><i class="fa-solid fa-check-circle"></i> Multiple Tech Domains</span>
       </div>
     </div>
+
+      <div class="hero-gallery">
+        <!-- Floating tech badges -->
+        <div class="gallery-float gallery-float-1">
+          <i class="fa-brands fa-react"></i>
+          <span>React</span>
+        </div>
+        <div class="gallery-float gallery-float-2">
+          <i class="fa-brands fa-node-js"></i>
+          <span>Node.js</span>
+        </div>
+        <div class="gallery-float gallery-float-3">
+          <i class="fa-brands fa-python"></i>
+          <span>Python</span>
+        </div>
+        <div class="gallery-float gallery-float-4">
+          <i class="fa-solid fa-database"></i>
+          <span>MySQL</span>
+        </div>
+
+        <!-- Main code editor (scales on scroll) -->
+        <div class="gallery-container" id="galleryContainer">
+          <div class="hero-code-editor">
+            <div class="editor-titlebar">
+              <div class="editor-dots">
+                <span class="editor-dot red"></span>
+                <span class="editor-dot yellow"></span>
+                <span class="editor-dot green"></span>
+              </div>
+              <div class="editor-tabs">
+                <span class="editor-tab active">
+                  <i class="fa-solid fa-code"></i>
+                  student.ts
+                </span>
+                <span class="editor-tab">
+                  <i class="fa-solid fa-file-code"></i>
+                  career.ts
+                </span>
+              </div>
+              <div class="editor-actions">
+                <i class="fa-solid fa-copy"></i>
+                <i class="fa-solid fa-expand"></i>
+              </div>
+            </div>
+            <div class="editor-body">
+              <div class="editor-gutter">
+                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+              </div>
+              <div class="editor-code">
+                <pre><code><span class="kw">const</span> <span class="var">student</span> <span class="op">=</span> <span class="punct">{</span>
+  <span class="prop">name</span><span class="punct">:</span> <span class="str">"Future Developer"</span><span class="punct">,</span>
+  <span class="prop">academy</span><span class="punct">:</span> <span class="str">"CodeBridge"</span><span class="punct">,</span>
+  <span class="prop">skills</span><span class="punct">:</span> <span class="punct">[</span><span class="str">"HTML"</span><span class="punct">,</span> <span class="str">"CSS"</span><span class="punct">,</span> <span class="str">"JS"</span><span class="punct">,</span> <span class="str">"React"</span><span class="punct">],</span>
+  <span class="prop">level</span><span class="punct">:</span> <span class="str">"ready"</span><span class="punct">,</span>
+<span class="punct">};</span>
+
+<span class="kw">async function</span> <span class="fn">launchCareer</span><span class="punct">(</span><span class="var">dev</span><span class="punct">)</span> <span class="punct">{</span>
+  <span class="kw">const</span> <span class="var">portfolio</span> <span class="op">=</span> <span class="kw">await</span> <span class="fn">buildProjects</span><span class="punct">(</span><span class="var">dev</span><span class="punct">);</span>
+  <span class="kw">const</span> <span class="var">internship</span> <span class="op">=</span> <span class="kw">await</span> <span class="fn">prepareForInternship</span><span class="punct">(</span><span class="var">dev</span><span class="punct">);</span>
+  <span class="kw">return</span> <span class="punct">{</span> <span class="var">portfolio</span><span class="punct">,</span> <span class="var">internship</span><span class="punct">,</span> <span class="prop">careerReady</span><span class="punct">:</span> <span class="bool">true</span> <span class="punct">};</span>
+<span class="punct">}</span>
+
+<span class="fn">launchCareer</span><span class="punct">(</span><span class="var">student</span><span class="punct">);</span>
+<span class="cmt">// → 🚀 Career launched!</span></code></pre>
+              </div>
+            </div>
+            <div class="editor-statusbar">
+              <span><i class="fa-solid fa-circle-check"></i> TypeScript</span>
+              <span>UTF-8</span>
+              <span>Ln 15, Col 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
 
   <!-- ============================================
@@ -266,8 +282,8 @@
   <section class="section section-alt" id="about">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">About Us</span>
-        <h2 class="section-title">What is CodeBridge Academy?</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">About Us</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">What is CodeBridge Academy?</h2></div>
         <p class="section-subtitle">CodeBridge Academy is a software development company and practical technology training academy in Kigali — building digital solutions for organizations while preparing learners for real-world software careers through hands-on projects and mentorship.</p>
       </div>
 
@@ -574,8 +590,8 @@
   <section class="section" id="programs">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Our Programs</span>
-        <h2 class="section-title">Training Programs</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Our Programs</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Training Programs</h2></div>
         <p class="section-subtitle">Structured learning paths designed to take you from fundamentals to career-ready full stack development.</p>
       </div>
 
@@ -596,7 +612,7 @@
         </div>
 
         <!-- Full Stack Development -->
-        <div class="program-card reveal">
+        <div class="program-card program-card-highlight reveal">
           <div class="program-icon"><i class="fa-solid fa-layer-group"></i></div>
           <h3>Full Stack Development</h3>
           <div class="program-tags">
@@ -637,8 +653,8 @@
   <section class="section section-alt" id="projects">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Our Work</span>
-        <h2 class="section-title">Solutions We Have <span class="highlight">Built</span></h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Our Work</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Solutions We Have <span class="highlight">Built</span></h2></div>
                 <p class="section-subtitle">Real-world applications built by our team — from mobile apps to full-stack enterprise systems.</p>
         <div class="project-counter-row reveal">
           <div class="project-counter-item">
@@ -712,7 +728,7 @@
         <!-- Project 2: CDIMS -->
         <div class="project-card reveal">
           <div class="project-card-header">
-            <div class="project-icon" style="background: rgba(22, 59, 115, 0.1); color: #163B73;">
+            <div class="project-icon" style="background: rgba(0, 87, 184, 0.1); color: #0057B8;">
               <i class="fa-solid fa-church"></i>
             </div>
             <div class="project-links-top">
@@ -904,8 +920,8 @@
   <section class="section section-alt" id="why-us">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Why CodeBridge</span>
-        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Why CodeBridge</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Why Choose Us?</h2></div>
         <p class="section-subtitle">We go beyond teaching code — we build careers. Here's what sets CodeBridge Academy apart.</p>
       </div>
 
@@ -950,8 +966,8 @@
   <section class="section" id="audience">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Who It's For</span>
-        <h2 class="section-title">Who Is CodeBridge Academy For?</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Who It's For</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Who Is CodeBridge Academy For?</h2></div>
         <p class="section-subtitle">Our training programs are designed for anyone ready to start or advance their software development journey.</p>
       </div>
 
@@ -1009,8 +1025,8 @@
   <section class="section" id="internships">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Opportunities</span>
-        <h2 class="section-title">We Offer Internships For</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Opportunities</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">We Offer Internships For</h2></div>
         <p class="section-subtitle">Gain practical experience and launch your career with our specialized internship programs tailored for all levels.</p>
       </div>
 
@@ -1110,8 +1126,8 @@
   <section class="section section-alt" id="why-qualexas">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Innovation &amp; Research</span>
-        <h2 class="section-title">Qualexas — <span class="highlight">Competency Intelligence Platform</span></h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Innovation &amp; Research</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Qualexas — <span class="highlight">Competency Intelligence Platform</span></h2></div>
         <p class="section-subtitle">Transforming Competency Assessment, Skills Verification, and Workforce Readiness in Rwanda and Beyond.</p>
       </div>
 
@@ -1268,8 +1284,8 @@
   <section class="section section-alt" id="testimonials">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Success Stories</span>
-        <h2 class="section-title">What Our <span class="highlight">Graduates</span> Say</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Success Stories</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">What Our <span class="highlight">Graduates</span> Say</h2></div>
         <p class="section-subtitle">Hear from our alumni who have transformed their careers through our programs.</p>
       </div>
 
@@ -1340,8 +1356,8 @@
   <section class="section" id="tech-stack">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Technologies</span>
-        <h2 class="section-title">Tools &amp; Technologies <span class="highlight">You'll Master</span></h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Technologies</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Tools &amp; Technologies <span class="highlight">You'll Master</span></h2></div>
         <p class="section-subtitle">Industry-standard tools and frameworks we teach to prepare you for real-world development.</p>
       </div>
 
@@ -1398,8 +1414,8 @@
   <section class="section section-alt" id="contact">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Find Us</span>
-        <h2 class="section-title">Contact &amp; Location</h2>
+        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Find Us</span></div>
+        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Contact &amp; Location</h2></div>
         <p class="section-subtitle">Visit us, call us, or reach out online — we'd love to connect with you.</p>
       </div>
 
@@ -1494,26 +1510,25 @@
         </div>
 
         <div class="footer-col">
-          <h3>Company</h3>
+          <h3>Quick Links</h3>
           <ul>
-            <li><a href="#software-dev">Software Development</a></li>
-            <li><a href="#programs">Training</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#programs">Programs</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#internships">Internships</a></li>
+            <li><a href="#why-qualexas">Why Qualexas</a></li>
+            <li><a href="#tech-stack">Tech Stack</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h3>Services</h3>
+          <h3>Programs</h3>
           <ul>
-            <li><a href="#software-dev">Web App Development</a></li>
-            <li><a href="#software-dev">Mobile App Development</a></li>
-            <li><a href="#software-dev">Business Management Systems</a></li>
-            <li><a href="#software-dev">School Management Systems</a></li>
-            <li><a href="#software-dev">E-commerce Platforms</a></li>
-            <li><a href="#software-dev">Cloud &amp; DevOps</a></li>
-            <li><a href="#project-quote">Request a Quote</a></li>
+            <li><a href="#programs">Web Fundamentals</a></li>
+            <li><a href="#programs">Full Stack Dev</a></li>
+            <li><a href="#programs">Career Readiness</a></li>
           </ul>
         </div>
 
