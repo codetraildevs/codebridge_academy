@@ -1386,10 +1386,21 @@ function formatPhoneInput(input) {
     if (e.key === 'Escape' && quoteModal && quoteModal.classList.contains('active')) closeQuoteModal();
   });
 
-  // Deep-link support: #project-quote opens the quote modal after scroll anchor
-  window.addEventListener('load', () => {
-    if (window.location.hash === '#project-quote') openQuoteModal();
+  // All "Start a Project" buttons open the quote modal
+  document.querySelectorAll('.js-start-project').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openQuoteModal();
+    });
   });
+
+  // Deep-link support: #project-quote opens the quote modal (direct links
+  // and in-page hash changes)
+  const handleQuoteHash = () => {
+    if (window.location.hash === '#project-quote') openQuoteModal();
+  };
+  window.addEventListener('hashchange', handleQuoteHash);
+  window.addEventListener('load', handleQuoteHash);
 
   function validateQuoteForm() {
     if (!quoteForm) return false;

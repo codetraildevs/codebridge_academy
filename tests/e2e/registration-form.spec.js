@@ -92,7 +92,9 @@ test.describe('Registration Form — 5-Step Modal', () => {
 // ============================================
 
 async function clickRegister(page) {
-  const btn = page.locator('.nav-cta.btn-register');
+  // The nav CTA is now "Start a Project" (quote form); registration is
+  // opened via the announcement banner's "Register Now" button.
+  const btn = page.locator('.btn-banner-cta.btn-register');
   await expect(btn).toBeVisible({ timeout: 10000 });
   await btn.scrollIntoViewIfNeeded();
   await btn.click({ force: true });

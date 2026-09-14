@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v12';
+const CACHE_NAME = 'codebridge-v13';
 const ASSETS = [
   '/',
   '/index.html',

@@ -106,7 +106,8 @@ test.describe('Service Worker — Fetch Handler', () => {
     await page.waitForTimeout(2000);
 
     // Open and fill registration form
-    const registerBtn = page.locator('.nav-cta.btn-register');
+    // (nav CTA is now "Start a Project"; registration opens via the banner button)
+    const registerBtn = page.locator('.btn-banner-cta.btn-register');
     await expect(registerBtn).toBeVisible({ timeout: 10000 });
     await registerBtn.scrollIntoViewIfNeeded();
     await registerBtn.click({ force: true });

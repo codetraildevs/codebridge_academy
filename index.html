@@ -28,8 +28,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
   <!-- Preload Critical Assets -->
   <link rel="preload" href="assets/images/update_logo.webp" as="image" fetchpriority="high" type="image/webp">
@@ -39,15 +39,15 @@
   
   <!-- Critical CSS Inlined for Instant FCP & LCP -->
   <style>
-    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #163B73; --color-primary-rgb: 22,59,115; --color-text: #0F172A; --color-accent: #F28C28; --font-body: 'Inter', sans-serif; --font-heading: 'Poppins', sans-serif; --hero-gradient: linear-gradient(135deg, #EEF2FF 0%, #F8FAFC 40%, #FFF7ED 100%); --color-border: #E2E8F0; }
-    [data-theme="dark"] { --bg-primary: #0F172A; --bg-section: #1E293B; --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F8FAFC; --color-accent: #FBBF24; --color-border: #334155; --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E293B 100%); }
+    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #163B73; --color-primary-rgb: 22,59,115; --color-text: #0F172A; --color-accent: #163B73; --font-body: 'Inter', sans-serif; --font-heading: 'Inter', sans-serif; --hero-gradient: #F8FAFC; --color-border: #E2E8F0; }
+    [data-theme="dark"] { --bg-primary: #0F172A; --bg-section: #1E293B; --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F8FAFC; --color-accent: #60A5FA; --color-border: #334155; --hero-gradient: #0F172A; }
     /* [data-theme="dark"] .nav-logo img { filter: brightness(1.3) invert(0.85); } — PNG logo renders correctly in both themes */
     body { font-family: var(--font-body); margin: 0; background: var(--bg-primary); color: var(--color-text); -webkit-font-smoothing: antialiased; }
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 112px; background: var(--hero-gradient); position: relative; overflow: hidden; }
     .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
     .hero-title { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.25rem; }
     .hero-content { max-width: 580px; z-index: 1; position: relative; }
-    .highlight { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .highlight { color: var(--color-primary); }
     .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 1000; border-bottom: 1px solid var(--color-border); display: flex; flex-direction: column; }
     .nav-logo img { height: 70px; width: auto; }
     .btn { display: inline-flex; align-items: center; padding: 0.85rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; transition: 0.3s; }
@@ -154,14 +154,11 @@
       </a>
 
       <ul class="nav-menu" id="navMenu">
-        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-        <li><a href="#software-dev" class="nav-link nav-link-highlight" data-section="software-dev">Software Dev</a></li>
-        <li><a href="#programs" class="nav-link" data-section="programs">Programs</a></li>
+        <li><a href="#hero" class="nav-link" data-section="hero">Home</a></li>
+        <li><a href="#software-dev" class="nav-link" data-section="software-dev">Software Development</a></li>
+        <li><a href="#programs" class="nav-link" data-section="programs">Training</a></li>
         <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-        <li><a href="#why-us" class="nav-link" data-section="why-us">Why Choose Us</a></li>
-        <li><a href="#internships" class="nav-link" data-section="internships">Internships</a></li>
-        <li><a href="#why-qualexas" class="nav-link" data-section="why-qualexas">Why Qualexas</a></li>
-        <li><a href="#tech-stack" class="nav-link" data-section="tech-stack">Tech Stack</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
         <li class="nav-mobile-register"><a href="#" class="nav-link btn-register">Register Now</a></li>
       </ul>
@@ -170,7 +167,7 @@
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <a href="#software-dev" class="btn btn-primary nav-cta">Start Your Project</a>
+        <a href="#project-quote" class="btn btn-primary nav-cta js-start-project">Start a Project</a>
 
         <button type="button" class="hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span>
@@ -194,38 +191,34 @@
       <div class="hero-content reveal-left">
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          Enrollment Open — 2026 Cohort
+          Software Development &amp; Technology Training
         </div>
         <h1 class="hero-title">
-          <span class="highlight">We Build Professional Software Solutions</span> That Solve Real Business Problems
+          <span class="highlight">Building Digital Solutions.</span> Developing Future Professionals.
         </h1>
-        <p class="hero-slogan">Bridging learning to real software careers — and businesses to real software solutions.</p>
         <p class="hero-description">
-          From idea to deployment, CodeBridge Academy designs, develops, tests, deploys, and maintains reliable web, mobile, and business software solutions using modern technologies. We are also a leading software development training company in Rwanda, equipping students and professionals with hands-on development skills.
+          CodeBridge Academy combines professional software development with practical technology training to help businesses build reliable digital solutions and help developers build real-world careers.
         </p>
         <div class="hero-buttons">
-          <a href="#software-dev" class="btn btn-primary btn-lg">
-            Start Your Project <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <a href="#project-quote" class="btn btn-accent btn-lg">
-            <i class="fa-solid fa-file-invoice-dollar"></i> Request a Project Quote
+          <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
+            Start a Project <i class="fa-solid fa-arrow-right"></i>
           </a>
           <a href="#programs" class="btn btn-secondary btn-lg">
-            Explore Training Programs
+            Explore Training
           </a>
         </div>
         <div class="hero-stats">
           <div class="stat-item">
             <div class="stat-number">50+</div>
-            <div class="stat-label">Projects Delivered</div>
+            <div class="stat-label">Projects Built</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">500+</div>
-            <div class="stat-label">Students Trained</div>
+            <div class="stat-label">Learners Trained</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">95%</div>
-            <div class="stat-label">Client Satisfaction</div>
+            <div class="stat-number">Multiple</div>
+            <div class="stat-label">Technology Domains</div>
           </div>
         </div>
       </div>
@@ -240,30 +233,27 @@
               <span class="code-dot green"></span>
             </div>
             <div class="code-body">
-              <div><span class="comment">// Your journey starts here</span></div>
-              <div><span class="keyword">const</span> student = {</div>
-              <div>&nbsp;&nbsp;name: <span class="string">"Future Developer"</span>,</div>
-              <div>&nbsp;&nbsp;academy: <span class="string">"CodeBridge"</span>,</div>
-              <div>&nbsp;&nbsp;skills: [<span class="string">"HTML"</span>, <span class="string">"CSS"</span>, <span class="string">"JS"</span>],</div>
-              <div>&nbsp;&nbsp;ready: <span class="keyword">true</span></div>
+              <div><span class="comment">// Professional software development</span></div>
+              <div><span class="keyword">const</span> solution = {</div>
+              <div>&nbsp;&nbsp;idea: <span class="string">"Your Business Problem"</span>,</div>
+              <div>&nbsp;&nbsp;stack: [<span class="string">"Web"</span>, <span class="string">"Mobile"</span>, <span class="string">"Cloud"</span>],</div>
+              <div>&nbsp;&nbsp;tested: <span class="keyword">true</span>,</div>
+              <div>&nbsp;&nbsp;deployed: <span class="keyword">true</span>,</div>
+              <div>&nbsp;&nbsp;maintained: <span class="keyword">true</span></div>
               <div>};</div>
               <br>
-              <div><span class="function">launchCareer</span>(student);</div>
+              <div><span class="function">deliver</span>(solution);</div>
             </div>
           </div>
 
-          <!-- Floating cards -->
+          <!-- Supporting capability cards -->
           <div class="float-card float-card-1">
-            <div class="fc-icon"><i class="fa-solid fa-rocket"></i></div>
-            <span>Idea to Deployment</span>
-          </div>
-          <div class="float-card float-card-2">
-            <div class="fc-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="fc-icon"><i class="fa-solid fa-diagram-project"></i></div>
             <span>Web · Mobile · Enterprise</span>
           </div>
-          <div class="float-card float-card-3">
-            <div class="fc-icon"><i class="fa-solid fa-circle-check"></i></div>
-            <span>Maintained &amp; Supported</span>
+          <div class="float-card float-card-2">
+            <div class="fc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <span>Training &amp; Mentorship</span>
           </div>
         </div>
       </div>
@@ -278,7 +268,7 @@
       <div class="section-header reveal">
         <span class="section-label">About Us</span>
         <h2 class="section-title">What is CodeBridge Academy?</h2>
-        <p class="section-subtitle">CodeBridge Academy is a practical software training academy that prepares learners for internships, jobs, and real-world software careers through hands-on projects, mentorship, and career-readiness support.</p>
+        <p class="section-subtitle">CodeBridge Academy is a software development company and practical technology training academy in Kigali — building digital solutions for organizations while preparing learners for real-world software careers through hands-on projects and mentorship.</p>
       </div>
 
       <!-- Company Profile -->
@@ -374,19 +364,16 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">Software Development</span>
-        <h2 class="section-title">Professional <span class="highlight">Software Development Services</span></h2>
-        <p class="section-subtitle">CodeBridge Academy is a professional software development partner for businesses, organizations, startups, schools, and individuals — delivering reliable, production-ready software built with modern technologies.</p>
+        <h2 class="section-title">Professional <span class="highlight">Software Development</span></h2>
+        <p class="section-subtitle">We design and develop reliable digital solutions for businesses, organizations, startups, and institutions — from concept and UI/UX design to development, testing, deployment, and maintenance.</p>
       </div>
 
       <div class="sdev-intro reveal">
         <h3 class="sdev-tagline">We Build Professional Software Solutions That Solve Real Business Problems</h3>
         <p class="sdev-subline">From idea to deployment, CodeBridge Academy designs, develops, tests, deploys, and maintains reliable web, mobile, and business software solutions using modern technologies.</p>
         <div class="sdev-cta-row">
-          <a href="#project-quote" class="btn btn-primary btn-lg">
-            <i class="fa-solid fa-file-invoice-dollar"></i> Request a Project Quote
-          </a>
-          <a href="#project-quote" class="btn btn-accent btn-lg">
-            Start Your Project <i class="fa-solid fa-arrow-right"></i>
+          <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
+            Discuss Your Project <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -399,12 +386,12 @@
       <div class="sdev-services-grid">
         <div class="sdev-service-card reveal">
           <div class="sdev-service-icon"><i class="fa-solid fa-globe"></i></div>
-          <h4>Custom Web Application Development</h4>
+          <h4>Custom Web Applications</h4>
           <p>Fast, secure, and scalable web applications tailored to your workflows — from internal tools to customer-facing platforms.</p>
         </div>
         <div class="sdev-service-card reveal">
           <div class="sdev-service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-          <h4>Mobile App Development</h4>
+          <h4>Mobile Applications</h4>
           <p>Android, iOS, and cross-platform mobile apps built with Flutter — published to the Play Store and App Store.</p>
         </div>
         <div class="sdev-service-card reveal">
@@ -424,7 +411,7 @@
         </div>
         <div class="sdev-service-card reveal">
           <div class="sdev-service-icon"><i class="fa-solid fa-database"></i></div>
-          <h4>Database Design &amp; Development</h4>
+          <h4>Database Systems</h4>
           <p>Well-structured, optimized databases that keep your data consistent, secure, and fast to query.</p>
         </div>
         <div class="sdev-service-card reveal">
@@ -444,7 +431,7 @@
         </div>
         <div class="sdev-service-card reveal">
           <div class="sdev-service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h4>System Maintenance &amp; Technical Support</h4>
+          <h4>Software Maintenance &amp; Support</h4>
           <p>Ongoing maintenance, monitoring, bug fixes, and feature upgrades to keep your software reliable.</p>
         </div>
         <div class="sdev-service-card reveal">
@@ -467,45 +454,39 @@
       <div class="sdev-process reveal">
         <div class="sdev-step">
           <div class="sdev-step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <div class="sdev-step-num">1</div>
+          <div class="sdev-step-num">01</div>
           <h4>Discover</h4>
-          <p>We learn your business goals, users, and requirements before writing a single line of code.</p>
+          <p>Understand the business problem and requirements.</p>
         </div>
         <div class="sdev-step">
           <div class="sdev-step-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-          <div class="sdev-step-num">2</div>
+          <div class="sdev-step-num">02</div>
           <h4>Plan</h4>
-          <p>Scope, timelines, budget, and architecture are agreed upfront — no surprises later.</p>
+          <p>Define architecture, technology, scope, and roadmap.</p>
         </div>
         <div class="sdev-step">
           <div class="sdev-step-icon"><i class="fa-solid fa-pen-ruler"></i></div>
-          <div class="sdev-step-num">3</div>
+          <div class="sdev-step-num">03</div>
           <h4>Design</h4>
-          <p>Wireframes and polished UI/UX designs you review and approve before development begins.</p>
+          <p>Create UI/UX and system workflows.</p>
         </div>
         <div class="sdev-step">
           <div class="sdev-step-icon"><i class="fa-solid fa-code"></i></div>
-          <div class="sdev-step-num">4</div>
+          <div class="sdev-step-num">04</div>
           <h4>Develop</h4>
-          <p>Agile sprints with regular demos so you see working software early and often.</p>
+          <p>Build the frontend, backend, database, APIs, and integrations.</p>
         </div>
         <div class="sdev-step">
           <div class="sdev-step-icon"><i class="fa-solid fa-vial"></i></div>
-          <div class="sdev-step-num">5</div>
+          <div class="sdev-step-num">05</div>
           <h4>Test</h4>
-          <p>Rigorous functional, security, and performance testing across devices and browsers.</p>
+          <p>Perform functional, security, performance, and usability testing.</p>
         </div>
         <div class="sdev-step">
           <div class="sdev-step-icon"><i class="fa-solid fa-rocket"></i></div>
-          <div class="sdev-step-num">6</div>
+          <div class="sdev-step-num">06</div>
           <h4>Deploy</h4>
-          <p>Cloud deployment with monitoring, backups, and a smooth handover of your live product.</p>
-        </div>
-        <div class="sdev-step">
-          <div class="sdev-step-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
-          <div class="sdev-step-num">7</div>
-          <h4>Maintain</h4>
-          <p>Long-term support, updates, and improvements as your business grows.</p>
+          <p>Deploy the solution and provide ongoing maintenance.</p>
         </div>
       </div>
 
@@ -577,7 +558,7 @@
         <p>Tell us about your idea and receive a free, no-obligation quote within 48 hours.</p>
         <div class="sdev-quote-buttons">
           <button type="button" class="btn btn-primary btn-lg" id="openQuoteFormBtn">
-            <i class="fa-solid fa-file-invoice-dollar"></i> Request a Project Quote
+            <i class="fa-solid fa-comments"></i> Discuss Your Project
           </button>
           <a href="#contact" class="btn btn-outline-light btn-lg">
             <i class="fa-solid fa-envelope"></i> Contact Us Directly
@@ -657,17 +638,17 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">Our Work</span>
-        <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        <h2 class="section-title">Solutions We Have <span class="highlight">Built</span></h2>
                 <p class="section-subtitle">Real-world applications built by our team — from mobile apps to full-stack enterprise systems.</p>
         <div class="project-counter-row reveal">
           <div class="project-counter-item">
             <span class="stat-number" >50+</span>
-            <span class="stat-label">Total Projects Built</span>
+            <span class="stat-label">Projects Built</span>
           </div>
           <div class="project-counter-divider"></div>
           <div class="project-counter-item">
-            <span class="stat-number" >50+</span>
-            <span class="stat-label">Students Trained</span>
+            <span class="stat-number" >500+</span>
+            <span class="stat-label">Learners Trained</span>
           </div>
           <div class="project-counter-divider"></div>
           <div class="project-counter-item">
@@ -700,7 +681,8 @@
             <img src="assets/images/play_store_img.webp" alt="Rwanda Traffic Rule app screenshot" loading="lazy" width="400" height="260">
           </div>
           <h3>Rwanda Traffic Rule</h3>
-          <p class="project-desc">A comprehensive Flutter mobile application for learning Rwandan traffic rules and preparing for the provisional driving license exam. Features hundreds of practice questions, realistic exam simulator, intelligent progress tracking, gamification with badges and streaks, and full offline support — available in English, French, and Kinyarwanda.</p>
+          <p class="project-problem"><strong>Problem:</strong> Learner drivers had no structured way to study Rwandan traffic rules and prepare for the provisional driving license exam.</p>
+          <p class="project-desc"><strong>Solution:</strong> A comprehensive Flutter mobile application for learning Rwandan traffic rules and preparing for the provisional driving license exam. Features hundreds of practice questions, realistic exam simulator, intelligent progress tracking, gamification with badges and streaks, and full offline support — available in English, French, and Kinyarwanda.</p>
           <div class="project-tags">
             <span class="project-tag">Flutter</span>
             <span class="project-tag">Dart</span>
@@ -709,12 +691,19 @@
             <span class="project-tag">Localization</span>
             <span class="project-tag">Offline</span>
           </div>
+          <ul class="project-features">
+            <li><i class="fa-solid fa-check"></i> Exam simulator with real timing</li>
+            <li><i class="fa-solid fa-check"></i> English, French &amp; Kinyarwanda</li>
+            <li><i class="fa-solid fa-check"></i> Full offline support</li>
+            <li><i class="fa-solid fa-check"></i> Progress tracking &amp; streaks</li>
+          </ul>
+          <p class="project-platform"><strong>Platform:</strong> Mobile — Android (Google Play)</p>
           <div class="project-actions">
             <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-play-store">
               <picture>
                 <source srcset="assets/images/play_store_icon.webp" type="image/webp">
                 <img src="assets/images/play_store_icon.png" alt="" width="20" height="20" style="display:inline;vertical-align:middle;margin-right:6px;">
-              </picture> Download from Google Play
+              </picture> View Case Study
             </a>
             
           </div>
@@ -737,7 +726,8 @@
             <img src="assets/images/home_cdmis.webp" alt="CDIMS infrastructure management dashboard preview" loading="lazy" width="400" height="260">
           </div>
           <h3>CDIMS</h3>
-          <p class="project-desc">Diocese Infrastructure Management System — a full-stack web application for managing infrastructure maintenance requests, material procurement, and inventory management for the Catholic Diocese of Cyangugu. Features multi-role workflow (Site Engineer → Diocesan Engineer → Father → Storekeeper → Procurement), JWT authentication, and comprehensive stock tracking.</p>
+          <p class="project-problem"><strong>Problem:</strong> The Catholic Diocese of Cyangugu managed infrastructure maintenance requests and inventory manually across many sites, causing delays and lost records.</p>
+          <p class="project-desc"><strong>Solution:</strong> Diocese Infrastructure Management System — a full-stack web application for managing infrastructure maintenance requests, material procurement, and inventory management for the Catholic Diocese of Cyangugu. Features multi-role workflow (Site Engineer → Diocesan Engineer → Father → Storekeeper → Procurement), JWT authentication, and comprehensive stock tracking.</p>
           <div class="project-tags">
             <span class="project-tag">Node.js</span>
             <span class="project-tag">Express</span>
@@ -746,9 +736,16 @@
             <span class="project-tag">Sequelize</span>
             <span class="project-tag">JWT</span>
           </div>
+          <ul class="project-features">
+            <li><i class="fa-solid fa-check"></i> Five-role approval workflow</li>
+            <li><i class="fa-solid fa-check"></i> JWT authentication</li>
+            <li><i class="fa-solid fa-check"></i> Real-time stock tracking</li>
+            <li><i class="fa-solid fa-check"></i> Procurement &amp; inventory reports</li>
+          </ul>
+          <p class="project-platform"><strong>Platform:</strong> Web — Enterprise System</p>
           <div class="project-actions">
             <a href="https://cyangugudims.com/auth/admin/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-              <i class="fa-solid fa-eye"></i> View Demo
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Case Study
             </a>
             
           </div>
@@ -770,7 +767,8 @@
             <img src="assets/images/revenue_sharing_app.svg" alt="Revenue Sharing App interface preview" loading="lazy" width="400" height="260">
           </div>
           <h3>Revenue Sharing App</h3>
-          <p class="project-desc">A Flutter application designed for managing revenue sharing by tracking user tasks and their associated earnings. Features include detailed task records with filtering by date and component, role-based access control, PDF and Excel report generation, and consolidated reporting with individual and grand total summaries.</p>
+          <p class="project-problem"><strong>Problem:</strong> Teams needed a transparent, accountable way to track individual task earnings and calculate revenue shares without manual spreadsheets.</p>
+          <p class="project-desc"><strong>Solution:</strong> A Flutter application designed for managing revenue sharing by tracking user tasks and their associated earnings. Features include detailed task records with filtering by date and component, role-based access control, PDF and Excel report generation, and consolidated reporting with individual and grand total summaries.</p>
           <div class="project-tags">
             <span class="project-tag">Flutter</span>
             <span class="project-tag">Dart</span>
@@ -778,9 +776,16 @@
             <span class="project-tag">Excel Export</span>
             <span class="project-tag">Role-Based Access</span>
           </div>
+          <ul class="project-features">
+            <li><i class="fa-solid fa-check"></i> Task &amp; earnings tracking</li>
+            <li><i class="fa-solid fa-check"></i> PDF &amp; Excel report exports</li>
+            <li><i class="fa-solid fa-check"></i> Date/component filtering</li>
+            <li><i class="fa-solid fa-check"></i> Consolidated grand totals</li>
+          </ul>
+          <p class="project-platform"><strong>Platform:</strong> Mobile — Android &amp; iOS</p>
           <div class="project-actions">
             <a href="https://github.com/ndayishimiyefidel/revenue_sharing_app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-              <i class="fa-brands fa-github"></i> View Project
+              <i class="fa-brands fa-github"></i> View Case Study
             </a>
           </div>
         </div>
@@ -801,7 +806,8 @@
             <img src="assets/images/job_exams_prep.svg" alt="Job Exams Preparation platform preview" loading="lazy" width="400" height="260">
           </div>
           <h3>Job Exams Preparation</h3>
-          <p class="project-desc">A comprehensive full-stack job exam preparation platform for practicing job-related MCQs. Features a PHP/MySQLi backend handling authentication, exam management, payment processing, and results tracking — paired with a Flutter frontend for Android/iOS/Web providing clean UI for timed/untimed exams, progress analytics, offline support, and study resource access (PDFs, videos, past papers).</p>
+          <p class="project-problem"><strong>Problem:</strong> Job seekers in Rwanda had no single platform for practicing real past exam questions across industries, with access to study resources.</p>
+          <p class="project-desc"><strong>Solution:</strong> A comprehensive full-stack job exam preparation platform for practicing job-related MCQs. Features a PHP/MySQLi backend handling authentication, exam management, payment processing, and results tracking — paired with a Flutter frontend for Android/iOS/Web providing clean UI for timed/untimed exams, progress analytics, offline support, and study resource access (PDFs, videos, past papers).</p>
           <div class="project-tags">
             <span class="project-tag">PHP</span>
             <span class="project-tag">MySQLi</span>
@@ -811,9 +817,16 @@
             <span class="project-tag">Offline</span>
             <span class="project-tag">Bulk Upload</span>
           </div>
+          <ul class="project-features">
+            <li><i class="fa-solid fa-check"></i> Timed &amp; untimed exam modes</li>
+            <li><i class="fa-solid fa-check"></i> Payment gateway integration</li>
+            <li><i class="fa-solid fa-check"></i> Progress analytics</li>
+            <li><i class="fa-solid fa-check"></i> Offline study resources</li>
+          </ul>
+          <p class="project-platform"><strong>Platform:</strong> Mobile &amp; Web — Android/iOS/Web</p>
           <div class="project-actions">
             <a href="https://github.com/ndayishimiyefidel/job_exams_preparation" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-              <i class="fa-brands fa-github"></i> View Project
+              <i class="fa-brands fa-github"></i> View Case Study
             </a>
           </div>
         </div>
@@ -835,7 +848,8 @@
             <img src="assets/images/project_overwatch.svg" alt="Project Overwatch SOC dashboard preview" loading="lazy" width="400" height="260">
           </div>
           <h3>Project Overwatch</h3>
-          <p class="project-desc">An AI-Agent Cyber Exposure &amp; Intelligence Platform designed to secure Rwanda&#39;s FinTech ecosystem. Built for a GDG Hackathon, this MVP backend provides an enterprise SOC dashboard with real-time threat mapping (Kigali, Musanze, Rubavu), vulnerability management, AI-powered remediation in English &amp; Kinyarwanda, and a Zero-Trust pipeline ensuring raw IP addresses never reach the frontend.</p>
+          <p class="project-problem"><strong>Problem:</strong> Rwanda's growing FinTech ecosystem lacked accessible cyber exposure monitoring and AI-assisted threat remediation.</p>
+          <p class="project-desc"><strong>Solution:</strong> An AI-Agent Cyber Exposure &amp; Intelligence Platform designed to secure Rwanda&#39;s FinTech ecosystem. Built for a GDG Hackathon, this MVP backend provides an enterprise SOC dashboard with real-time threat mapping (Kigali, Musanze, Rubavu), vulnerability management, AI-powered remediation in English &amp; Kinyarwanda, and a Zero-Trust pipeline ensuring raw IP addresses never reach the frontend.</p>
           <div class="project-tags">
             <span class="project-tag">Node.js</span>
             <span class="project-tag">Express</span>
@@ -845,6 +859,13 @@
             <span class="project-tag">Swagger</span>
             <span class="project-tag">Joi</span>
           </div>
+          <ul class="project-features">
+            <li><i class="fa-solid fa-check"></i> Real-time threat mapping</li>
+            <li><i class="fa-solid fa-check"></i> AI remediation in EN &amp; KIN</li>
+            <li><i class="fa-solid fa-check"></i> Zero-Trust data pipeline</li>
+            <li><i class="fa-solid fa-check"></i> Enterprise SOC dashboard</li>
+          </ul>
+          <p class="project-platform"><strong>Platform:</strong> Web — AI Security Platform</p>
           <div class="project-visual-preview">
             <div class="overwatch-preview">
               <div class="overwatch-preview-header">
@@ -869,7 +890,7 @@
           </div>
           <div class="project-actions">
             <a href="https://github.com/codetraildevs/project_overwatch" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-              <i class="fa-brands fa-github"></i> View Project
+              <i class="fa-brands fa-github"></i> View Case Study
             </a>
           </div>
         </div>
@@ -1089,8 +1110,8 @@
   <section class="section section-alt" id="why-qualexas">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-label">Research Initiative</span>
-        <h2 class="section-title">Why <span class="highlight">Qualexas</span>?</h2>
+        <span class="section-label">Innovation &amp; Research</span>
+        <h2 class="section-title">Qualexas — <span class="highlight">Competency Intelligence Platform</span></h2>
         <p class="section-subtitle">Transforming Competency Assessment, Skills Verification, and Workforce Readiness in Rwanda and Beyond.</p>
       </div>
 
@@ -1219,7 +1240,7 @@
       </div>
 
       <!-- Future Vision -->
-      <div class="qualexas-vision reveal">
+      <div class="qualexas-vision reveal" id="qualexas-vision">
         <div class="vision-content">
           <span class="section-label">Future Vision</span>
           <h3>Becoming a Competency Intelligence Ecosystem</h3>
@@ -1231,9 +1252,12 @@
       <div class="qualexas-cta reveal">
         <h3>Help Shape the Future of Competency Assessment</h3>
         <p>Your participation in our research survey will directly contribute to building a platform that transforms how practical skills are assessed, verified, and recognized across Rwanda.</p>
-        <button type="button" class="btn btn-primary btn-lg" id="openSurveyBtn">
-          <i class="fa-solid fa-clipboard-list"></i> Take Research Survey
-        </button>
+        <div class="qualexas-cta-buttons">
+          <button type="button" class="btn btn-primary btn-lg" id="openSurveyBtn">
+            <i class="fa-solid fa-clipboard-list"></i> Take Research Survey
+          </button>
+          <a href="#qualexas-vision" class="btn btn-secondary btn-lg">Learn More</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1465,20 +1489,17 @@
                 loading="lazy">
             </picture>
           </div>
+          <p class="footer-tagline">Software Development &amp; Technology Training</p>
           <p>CodeBridge Academy is a software development company and technology training academy in Kigali, Rwanda. We design, develop, test, deploy, and maintain professional web, mobile, and business software solutions — and train the developers who build them. Through our Qualexas research initiative, we are transforming competency assessment and workforce readiness in Rwanda.</p>
         </div>
 
         <div class="footer-col">
-          <h3>Quick Links</h3>
+          <h3>Company</h3>
           <ul>
-            <li><a href="#about">About Us</a></li>
             <li><a href="#software-dev">Software Development</a></li>
-            <li><a href="#programs">Programs</a></li>
+            <li><a href="#programs">Training</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#why-us">Why Choose Us</a></li>
-            <li><a href="#internships">Internships</a></li>
-            <li><a href="#why-qualexas">Why Qualexas</a></li>
-            <li><a href="#tech-stack">Tech Stack</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -1497,16 +1518,6 @@
         </div>
 
         <div class="footer-col">
-          <h3>Programs</h3>
-          <ul>
-            <li><a href="#programs">Web Fundamentals</a></li>
-            <li><a href="#programs">Full Stack Dev</a></li>
-            <li><a href="#programs">Career Readiness</a></li>
-
-          </ul>
-        </div>
-
-        <div class="footer-col">
           <h3>Contact</h3>
           <ul>
             <li><a href="mailto:info.codebridgeacademy@gmail.com">info.codebridgeacademy@gmail.com</a></li>
@@ -1517,7 +1528,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 <a href="#hero">CodeBridge Academy</a>. All rights reserved. | Software Development &amp; Technology Training.</p>
+        <p>&copy; 2026 CodeBridge Academy. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -1533,7 +1544,7 @@
   <!-- Floating Survey Button -->
   <button type="button" class="survey-float" id="surveyFloatBtn" aria-label="Take Research Survey">
     <i class="fa-solid fa-clipboard-list"></i>
-    <span>Take Research Survey</span>
+    <span>Qualexas Survey</span>
   </button>
 
   <script src="js/script.min.js" defer></script>
