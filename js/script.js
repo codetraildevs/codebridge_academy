@@ -1707,4 +1707,20 @@ function formatPhoneInput(input) {
     const items = techTrack.innerHTML;
     techTrack.innerHTML = items + items;
   }
+
+  /* ============================================
+     PROJECT SCROLL — arrow buttons
+     ============================================ */
+  const projectContainer = document.querySelector('[data-project-container]');
+  const projectLeft = document.querySelector('[data-project-left]');
+  const projectRight = document.querySelector('[data-project-right]');
+  if (projectContainer && projectLeft && projectRight) {
+    const scrollAmount = 400;
+    projectLeft.addEventListener('click', () => {
+      projectContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    projectRight.addEventListener('click', () => {
+      projectContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  }
 });

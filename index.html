@@ -838,263 +838,145 @@
       <div class="section-header reveal">
         <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Our Work</span></div>
         <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Solutions We Have <span class="highlight">Built</span></h2></div>
-                <p class="section-subtitle">Real-world applications built by our team — from mobile apps to full-stack enterprise systems.</p>
-        <div class="project-counter-row reveal">
-          <div class="project-counter-item">
-            <span class="stat-number" >50+</span>
-            <span class="stat-label">Projects Built</span>
-          </div>
-          <div class="project-counter-divider"></div>
-          <div class="project-counter-item">
-            <span class="stat-number" >500+</span>
-            <span class="stat-label">Learners Trained</span>
-          </div>
-          <div class="project-counter-divider"></div>
-          <div class="project-counter-item">
-            <i class="fa-solid fa-globe"></i>
-            <span class="stat-label">Mobile + Web + Security</span>
-          </div>
-          <div class="project-counter-divider"></div>
-          <div class="project-counter-item">
-            <i class="fa-solid fa-code"></i>
-            <span class="stat-label">Full-Stack &amp; AI</span>
-          </div>
-        </div>
+        <p class="section-subtitle">Real-world applications built by our team — from mobile apps to full-stack enterprise systems.</p>
       </div>
 
-      <div class="projects-grid">
-        <!-- Project 1: Rwanda Traffic Rule -->
-        <div class="project-card reveal">
-          <div class="project-card-header">
-            <div class="project-icon" style="background: rgba(30, 58, 138, 0.1); color: #1E3A8A;">
-              <i class="fa-solid fa-traffic-light"></i>
+      <div class="project-scroll-wrapper">
+        <button class="project-scroll-btn project-scroll-left" data-project-left aria-label="Scroll left">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="project-scroll-container" data-project-container>
+          <!-- Project 1 -->
+          <div class="project-mcard">
+            <div class="project-mcard-image">
+              <img src="assets/images/play_store_img.webp" alt="Rwanda Traffic Rule app" loading="lazy">
             </div>
-            <div class="project-links-top">
-              <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="project-badge project-badge-play project-badge-play-lg" title="Download on Play Store">
-                <i class="fa-brands fa-google-play"></i> <strong>Get it on Google Play</strong>
+            <div class="project-mcard-body">
+              <h3>Rwanda Traffic Rule</h3>
+              <p>Flutter mobile app for learning Rwandan traffic rules and preparing for the provisional driving license exam.</p>
+              <div class="project-mcard-tags">
+                <span>Flutter</span><span>Dart</span><span>BLoC</span>
+              </div>
+              <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="project-mcard-cta">
+                <span>View Case Study</span>
+                <i class="fa-solid fa-arrow-right"></i>
               </a>
-              
             </div>
           </div>
-          <div class="project-image">
-            <img src="assets/images/play_store_img.webp" alt="Rwanda Traffic Rule app screenshot" loading="lazy" width="400" height="260">
+          <!-- Project 2 -->
+          <div class="project-mcard">
+            <div class="project-mcard-image">
+              <img src="assets/images/home_cdmis.webp" alt="CDIMS dashboard" loading="lazy">
+            </div>
+            <div class="project-mcard-body">
+              <h3>CDIMS</h3>
+              <p>Diocese Infrastructure Management System — full-stack web app for managing maintenance requests and inventory.</p>
+              <div class="project-mcard-tags">
+                <span>Node.js</span><span>React</span><span>MySQL</span>
+              </div>
+              <a href="#" class="project-mcard-cta">
+                <span>View Case Study</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
-          <h3>Rwanda Traffic Rule</h3>
-          <p class="project-problem"><strong>Problem:</strong> Learner drivers had no structured way to study Rwandan traffic rules and prepare for the provisional driving license exam.</p>
-          <p class="project-desc"><strong>Solution:</strong> A comprehensive Flutter mobile application for learning Rwandan traffic rules and preparing for the provisional driving license exam. Features hundreds of practice questions, realistic exam simulator, intelligent progress tracking, gamification with badges and streaks, and full offline support — available in English, French, and Kinyarwanda.</p>
-          <div class="project-tags">
-            <span class="project-tag">Flutter</span>
-            <span class="project-tag">Dart</span>
-            <span class="project-tag">BLoC</span>
-            <span class="project-tag">GoRouter</span>
-            <span class="project-tag">Localization</span>
-            <span class="project-tag">Offline</span>
+          <!-- Project 3 -->
+          <div class="project-mcard">
+            <div class="project-mcard-image">
+              <img src="assets/images/placeholder.svg" alt="Revenue Sharing App" loading="lazy">
+            </div>
+            <div class="project-mcard-body">
+              <h3>Revenue Sharing App</h3>
+              <p>Flutter application for managing revenue sharing by tracking user tasks and their associated earnings.</p>
+              <div class="project-mcard-tags">
+                <span>Flutter</span><span>Dart</span><span>PDF</span>
+              </div>
+              <a href="#" class="project-mcard-cta">
+                <span>View Case Study</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
-          <ul class="project-features">
-            <li><i class="fa-solid fa-check"></i> Exam simulator with real timing</li>
-            <li><i class="fa-solid fa-check"></i> English, French &amp; Kinyarwanda</li>
-            <li><i class="fa-solid fa-check"></i> Full offline support</li>
-            <li><i class="fa-solid fa-check"></i> Progress tracking &amp; streaks</li>
-          </ul>
-          <p class="project-platform"><strong>Platform:</strong> Mobile — Android (Google Play)</p>
-          <div class="project-actions">
-            <a href="https://play.google.com/store/apps/details?id=com.trafficrules.rwanda.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm btn-play-store">
-              <picture>
-                <source srcset="assets/images/play_store_icon.webp" type="image/webp">
-                <img src="assets/images/play_store_icon.png" alt="" width="20" height="20" style="display:inline;vertical-align:middle;margin-right:6px;">
-              </picture> View Case Study
-            </a>
-            
+          <!-- Project 4 -->
+          <div class="project-mcard">
+            <div class="project-mcard-image">
+              <img src="assets/images/placeholder.svg" alt="Job Exams Preparation" loading="lazy">
+            </div>
+            <div class="project-mcard-body">
+              <h3>Job Exams Preparation</h3>
+              <p>Full-stack job exam preparation platform for practicing job-related MCQs with payment integration.</p>
+              <div class="project-mcard-tags">
+                <span>PHP</span><span>Flutter</span><span>MySQLi</span>
+              </div>
+              <a href="#" class="project-mcard-cta">
+                <span>View Case Study</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Project 5 -->
+          <div class="project-mcard">
+            <div class="project-mcard-image">
+              <img src="assets/images/placeholder.svg" alt="Project Overwatch" loading="lazy">
+            </div>
+            <div class="project-mcard-body">
+              <h3>Project Overwatch</h3>
+              <p>AI-Agent Cyber Exposure &amp; Intelligence Platform built for a GDG Hackathon to secure Rwanda's FinTech ecosystem.</p>
+              <div class="project-mcard-tags">
+                <span>Node.js</span><span>AI Agent</span><span>Cybersecurity</span>
+              </div>
+              <a href="#" class="project-mcard-cta">
+                <span>View Case Study</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
           </div>
         </div>
-
-        <!-- Project 2: CDIMS -->
-        <div class="project-card reveal">
-          <div class="project-card-header">
-            <div class="project-icon" style="background: rgba(0, 87, 184, 0.1); color: #0057B8;">
-              <i class="fa-solid fa-church"></i>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/home_cdmis.webp" alt="CDIMS infrastructure management dashboard preview" loading="lazy" width="400" height="260">
-          </div>
-          <h3>CDIMS</h3>
-          <p class="project-problem"><strong>Problem:</strong> The Catholic Diocese of Cyangugu managed infrastructure maintenance requests and inventory manually across many sites, causing delays and lost records.</p>
-          <p class="project-desc"><strong>Solution:</strong> Diocese Infrastructure Management System — a full-stack web application for managing infrastructure maintenance requests, material procurement, and inventory management for the Catholic Diocese of Cyangugu. Features multi-role workflow (Site Engineer → Diocesan Engineer → Father → Storekeeper → Procurement), JWT authentication, and comprehensive stock tracking.</p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express</span>
-            <span class="project-tag">React</span>
-            <span class="project-tag">MySQL</span>
-            <span class="project-tag">Sequelize</span>
-            <span class="project-tag">JWT</span>
-          </div>
-          <ul class="project-features">
-            <li><i class="fa-solid fa-check"></i> Five-role approval workflow</li>
-            <li><i class="fa-solid fa-check"></i> JWT authentication</li>
-            <li><i class="fa-solid fa-check"></i> Real-time stock tracking</li>
-            <li><i class="fa-solid fa-check"></i> Procurement &amp; inventory reports</li>
-          </ul>
-          <p class="project-platform"><strong>Platform:</strong> Web — Enterprise System</p>
-          <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Case Study
-            </a>
-            
-          </div>
-        </div>
-
-        <!-- Project 3: Revenue Sharing App -->
-        <div class="project-card reveal">
-          <div class="project-card-header">
-            <div class="project-icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;">
-              <i class="fa-solid fa-hand-holding-dollar"></i>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/placeholder.svg" alt="Revenue Sharing App interface preview" loading="lazy" width="400" height="260">
-          </div>
-          <h3>Revenue Sharing App</h3>
-          <p class="project-problem"><strong>Problem:</strong> Teams needed a transparent, accountable way to track individual task earnings and calculate revenue shares without manual spreadsheets.</p>
-          <p class="project-desc"><strong>Solution:</strong> A Flutter application designed for managing revenue sharing by tracking user tasks and their associated earnings. Features include detailed task records with filtering by date and component, role-based access control, PDF and Excel report generation, and consolidated reporting with individual and grand total summaries.</p>
-          <div class="project-tags">
-            <span class="project-tag">Flutter</span>
-            <span class="project-tag">Dart</span>
-            <span class="project-tag">PDF Reports</span>
-            <span class="project-tag">Excel Export</span>
-            <span class="project-tag">Role-Based Access</span>
-          </div>
-          <ul class="project-features">
-            <li><i class="fa-solid fa-check"></i> Task &amp; earnings tracking</li>
-            <li><i class="fa-solid fa-check"></i> PDF &amp; Excel report exports</li>
-            <li><i class="fa-solid fa-check"></i> Date/component filtering</li>
-            <li><i class="fa-solid fa-check"></i> Consolidated grand totals</li>
-          </ul>
-          <p class="project-platform"><strong>Platform:</strong> Mobile — Android &amp; iOS</p>
-          <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Case Study
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 4: Job Exams Preparation -->
-        <div class="project-card reveal">
-          <div class="project-card-header">
-            <div class="project-icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;">
-              <i class="fa-solid fa-file-lines"></i>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/placeholder.svg" alt="Job Exams Preparation platform preview" loading="lazy" width="400" height="260">
-          </div>
-          <h3>Job Exams Preparation</h3>
-          <p class="project-problem"><strong>Problem:</strong> Job seekers in Rwanda had no single platform for practicing real past exam questions across industries, with access to study resources.</p>
-          <p class="project-desc"><strong>Solution:</strong> A comprehensive full-stack job exam preparation platform for practicing job-related MCQs. Features a PHP/MySQLi backend handling authentication, exam management, payment processing, and results tracking — paired with a Flutter frontend for Android/iOS/Web providing clean UI for timed/untimed exams, progress analytics, offline support, and study resource access (PDFs, videos, past papers).</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span>
-            <span class="project-tag">MySQLi</span>
-            <span class="project-tag">Flutter</span>
-            <span class="project-tag">Dart</span>
-            <span class="project-tag">Payment Gateway</span>
-            <span class="project-tag">Offline</span>
-            <span class="project-tag">Bulk Upload</span>
-          </div>
-          <ul class="project-features">
-            <li><i class="fa-solid fa-check"></i> Timed &amp; untimed exam modes</li>
-            <li><i class="fa-solid fa-check"></i> Payment gateway integration</li>
-            <li><i class="fa-solid fa-check"></i> Progress analytics</li>
-            <li><i class="fa-solid fa-check"></i> Offline study resources</li>
-          </ul>
-          <p class="project-platform"><strong>Platform:</strong> Mobile &amp; Web — Android/iOS/Web</p>
-          <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Case Study
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 5: Project Overwatch -->
-        <div class="project-card reveal project-card-featured">
-          <div class="project-card-header">
-            <div class="project-icon" style="background: rgba(239, 68, 68, 0.1); color: #EF4444;">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <div class="project-links-top">
-              <span class="project-badge project-badge-hackathon"><i class="fa-solid fa-trophy"></i> GDG Hackathon</span>
-            </div>
-          </div>
-          <div class="project-image">
-            <img src="assets/images/placeholder.svg" alt="Project Overwatch SOC dashboard preview" loading="lazy" width="400" height="260">
-          </div>
-          <h3>Project Overwatch</h3>
-          <p class="project-problem"><strong>Problem:</strong> Rwanda's growing FinTech ecosystem lacked accessible cyber exposure monitoring and AI-assisted threat remediation.</p>
-          <p class="project-desc"><strong>Solution:</strong> An AI-Agent Cyber Exposure &amp; Intelligence Platform designed to secure Rwanda&#39;s FinTech ecosystem. Built for a GDG Hackathon, this MVP backend provides an enterprise SOC dashboard with real-time threat mapping (Kigali, Musanze, Rubavu), vulnerability management, AI-powered remediation in English &amp; Kinyarwanda, and a Zero-Trust pipeline ensuring raw IP addresses never reach the frontend.</p>
-          <div class="project-tags">
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Express</span>
-            <span class="project-tag">AI Agent</span>
-            <span class="project-tag">Zero-Trust</span>
-            <span class="project-tag">Cybersecurity</span>
-            <span class="project-tag">Swagger</span>
-            <span class="project-tag">Joi</span>
-          </div>
-          <ul class="project-features">
-            <li><i class="fa-solid fa-check"></i> Real-time threat mapping</li>
-            <li><i class="fa-solid fa-check"></i> AI remediation in EN &amp; KIN</li>
-            <li><i class="fa-solid fa-check"></i> Zero-Trust data pipeline</li>
-            <li><i class="fa-solid fa-check"></i> Enterprise SOC dashboard</li>
-          </ul>
-          <p class="project-platform"><strong>Platform:</strong> Web — AI Security Platform</p>
-          <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Case Study
-            </a>
-          </div>
-        </div>
+        <button class="project-scroll-btn project-scroll-right" data-project-right aria-label="Scroll right">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
       </div>
     </div>
   </section>
 
 <!-- ============================================
-       5. WHY CHOOSE US
+       5. WHY CHOOSE US — Animated Card Stack
        ============================================ -->
-  <section class="section section-alt" id="why-us">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Why CodeBridge</span></div>
-        <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Why Choose Us?</h2></div>
-        <p class="section-subtitle">We go beyond teaching code — we build careers. Here's what sets CodeBridge Academy apart.</p>
-      </div>
-
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fa-solid fa-hammer"></i></div>
+  <section class="why-stack-section" id="why-us">
+    <div class="why-stack-header">
+      <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Why CodeBridge</span></div>
+      <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Why Choose Us?</h2></div>
+      <p class="section-subtitle">We go beyond teaching code — we build careers. Here's what sets CodeBridge Academy apart.</p>
+    </div>
+    <div class="why-stack-viewport">
+      <div class="why-stack-track">
+        <div class="why-stack-card" data-index="0">
+          <div class="why-stack-icon"><i class="fa-solid fa-hammer"></i></div>
           <h3>Hands-On Learning</h3>
           <p>Every lesson involves writing real code and building functional applications.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="why-stack-card" data-index="1">
+          <div class="why-stack-icon"><i class="fa-solid fa-laptop-code"></i></div>
           <h3>Real-World Projects</h3>
           <p>Build complete projects that you can showcase in your portfolio to employers.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fa-solid fa-people-arrows"></i></div>
+        <div class="why-stack-card" data-index="2">
+          <div class="why-stack-icon"><i class="fa-solid fa-people-arrows"></i></div>
           <h3>Mentorship &amp; Guidance</h3>
           <p>Get personal mentorship from experienced developers throughout your journey.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <div class="why-stack-card" data-index="3">
+          <div class="why-stack-icon"><i class="fa-solid fa-bullseye"></i></div>
           <h3>Internship Preparation</h3>
           <p>We prepare you for real internship applications with practical guidance and support.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fa-solid fa-folder-open"></i></div>
+        <div class="why-stack-card" data-index="4">
+          <div class="why-stack-icon"><i class="fa-solid fa-folder-open"></i></div>
           <h3>Portfolio Development</h3>
           <p>Graduate with a professional portfolio that demonstrates your capabilities.</p>
         </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+        <div class="why-stack-card" data-index="5">
+          <div class="why-stack-icon"><i class="fa-solid fa-user-graduate"></i></div>
           <h3>For All Levels</h3>
           <p>Whether you're a student or a professional, our programs are designed for your growth.</p>
         </div>

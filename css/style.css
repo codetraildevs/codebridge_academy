@@ -2524,7 +2524,7 @@ input, textarea, select {
 }
 
 /* ============================================
-   WHY CHOOSE US (Premium)
+   WHY CHOOSE US
    ============================================ */
 .why-grid {
   display: grid;
@@ -2546,7 +2546,6 @@ input, textarea, select {
   overflow: hidden;
 }
 
-/* Bottom accent bar */
 .why-card::after {
   content: '';
   position: absolute;
@@ -2590,7 +2589,7 @@ input, textarea, select {
   transform: rotate(5deg) scale(1.08);
 }
 
-.why-card h4 {
+.why-card h3 {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
@@ -3421,7 +3420,6 @@ input, textarea, select {
     display: none;
   }
 
-  .why-grid,
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
@@ -3605,7 +3603,6 @@ input, textarea, select {
     font-size: 0.75rem;
   }
 
-  .why-grid,
   .testimonials-grid {
     grid-template-columns: 1fr !important;
   }
@@ -3741,11 +3738,6 @@ input, textarea, select {
     padding: 1.25rem;
   }
 
-  .why-card {
-    padding: 1.25rem;
-  }
-}
-
 /* ============================================
    UTILITY CLASSES
    ============================================ */
@@ -3778,12 +3770,6 @@ input, textarea, select {
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: 0.35rem;
-}
-
-.why-card p.focus-areas-text {
-  font-size: 0.82rem;
-  line-height: 1.5;
-  margin-bottom: 0;
 }
 
 /* ============================================
