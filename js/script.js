@@ -1692,11 +1692,10 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
-     SERVICES MARQUEE — duplicate track for infinite loop
+     SERVICES MARQUEE — duplicate tracks for infinite loop
      ============================================ */
-  const sdevTrack = document.querySelector('[data-sdev-marquee] .sdev-services-track');
-  if (sdevTrack) {
-    const cards = sdevTrack.innerHTML;
-    sdevTrack.innerHTML = cards + cards;
-  }
+  document.querySelectorAll('[data-sdev-marquee] .sdev-services-track').forEach(track => {
+    const cards = track.innerHTML;
+    track.innerHTML = cards + cards;
+  });
 });

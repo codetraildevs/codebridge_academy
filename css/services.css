@@ -12,6 +12,9 @@
 /* --- Services Marquee --- */
 .sdev-services-marquee-mask {
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   overflow: hidden;
@@ -28,6 +31,10 @@
   animation: sdev-marquee-scroll 40s linear infinite;
 }
 
+.sdev-marquee-reverse .sdev-services-track {
+  animation: sdev-marquee-scroll-reverse 40s linear infinite;
+}
+
 .sdev-services-marquee:hover .sdev-services-track {
   animation-play-state: paused;
 }
@@ -35,6 +42,11 @@
 @keyframes sdev-marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@keyframes sdev-marquee-scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 /* --- Marquee Card --- */
@@ -313,7 +325,8 @@
    ACCESSIBILITY — REDUCED MOTION
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
-  .sdev-services-track {
+  .sdev-services-track,
+  .sdev-marquee-reverse .sdev-services-track {
     animation: none;
   }
 
