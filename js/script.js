@@ -1690,4 +1690,13 @@ function formatPhoneInput(input) {
     });
     handleCvScroll();
   }
+
+  /* ============================================
+     SERVICES MARQUEE — duplicate track for infinite loop
+     ============================================ */
+  const sdevTrack = document.querySelector('[data-sdev-marquee] .sdev-services-track');
+  if (sdevTrack) {
+    const cards = sdevTrack.innerHTML;
+    sdevTrack.innerHTML = cards + cards;
+  }
 });

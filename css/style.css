@@ -11,9 +11,9 @@
   --brand-blue-rgb: 0, 87, 184;
   --brand-blue-dark: #003D82;
   --brand-blue-light: #E0F0FF;
-  --brand-orange: #FF7A00;
-  --brand-orange-rgb: 255, 122, 0;
-  --brand-orange-dark: #CC6200;
+  --brand-orange: #F3761A;
+  --brand-orange-rgb: 243, 118, 26;
+  --brand-orange-dark: #D66815;
   --brand-orange-light: #FFF4E6;
 
   /* --- Light Theme --- */
@@ -92,7 +92,7 @@
   --color-primary: #005CFF;
   --color-primary-rgb: 0, 92, 255;
   --color-primary-dark: #0047CC;
-  --color-accent: #FF7A00;
+  --color-accent: #F3761A;
   --color-accent-rgb: 255, 122, 0;
   --color-border: #27272A;
   --color-border-hover: #3F3F46;
@@ -113,7 +113,7 @@
   --page-gradient: linear-gradient(180deg, #000000 0%, #080808 50%, #000000 100%);
   --color-eyebrow: #A1A1AA;
   --cta-gradient: #005CFF;
-  --accent-gradient: #FF7A00;
+  --accent-gradient: #F3761A;
   --card-gradient: none;
   --overlay: rgba(0,0,0,0.8);
   --code-bg: #111111;
@@ -274,7 +274,7 @@ input, textarea, select {
 }
 
 .section-title .highlight {
-  background: linear-gradient(135deg, var(--brand-blue), #4a7fd4);
+  background: linear-gradient(135deg, var(--brand-orange), #F9A825);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -366,6 +366,14 @@ input, textarea, select {
 
 .btn-primary:active {
   transform: translateY(0);
+}
+
+.btn-orange {
+  background: var(--brand-orange) !important;
+}
+
+.btn-orange:hover {
+  background: var(--brand-orange-dark) !important;
 }
 
 .btn-secondary {
@@ -493,7 +501,7 @@ input, textarea, select {
 .announcement-dot {
   width: 6px;
   height: 6px;
-  background: #FF7A00;
+  background: #F3761A;
   border-radius: 50%;
   animation: dotPulse 2s ease-in-out infinite;
 }
@@ -516,7 +524,7 @@ input, textarea, select {
 }
 
 .announcement-text strong {
-  color: #FF7A00;
+  color: #F3761A;
 }
 
 .announcement-date {
@@ -1756,7 +1764,7 @@ input, textarea, select {
 }
 
 .about-panel-1 .highlight {
-  color: #F97710;
+  color: #F3761A;
 }
 
 .about-panel-1 .about-hero-sub {
@@ -1791,7 +1799,7 @@ input, textarea, select {
 }
 
 .about-panel-2 .about-small-label {
-  color: #F97710;
+  color: #F3761A;
 }
 
 .about-panel-2 .about-pill {

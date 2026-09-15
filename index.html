@@ -512,76 +512,188 @@
       </div>
 
       <div class="sdev-cta-row reveal" style="text-align:center; margin-bottom:2.5rem;">
-        <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
+        <a href="#project-quote" class="btn btn-primary btn-lg js-start-project btn-orange">
           Discuss Your Project <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
-      <!-- 1. Services -->
+      <!-- 1. Services (Marquee style) -->
       <div class="section-sub-header reveal">
         <h3 class="sub-header-title">Our Services</h3>
         <p>End-to-end software services tailored to your business, institution, or startup.</p>
       </div>
-      <div class="sdev-services-grid">
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-globe"></i></div>
-          <h4>Custom Web Applications</h4>
-          <p>Fast, secure, and scalable web applications tailored to your workflows — from internal tools to customer-facing platforms.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-          <h4>Mobile Applications</h4>
-          <p>Android, iOS, and cross-platform mobile apps built with Flutter — published to the Play Store and App Store.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-layer-group"></i></div>
-          <h4>Full-Stack Software Development</h4>
-          <p>Complete frontend, backend, and database solutions delivered by one accountable team.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-briefcase"></i></div>
-          <h4>Business Management Systems</h4>
-          <p>Digital systems for stock, sales, HR, finance, and operations that replace spreadsheets and paperwork.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-plug"></i></div>
-          <h4>API Development &amp; Integration</h4>
-          <p>REST APIs, third-party integrations (payments, SMS, maps), and secure data exchange between your systems.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-database"></i></div>
-          <h4>Database Systems</h4>
-          <p>Well-structured, optimized databases that keep your data consistent, secure, and fast to query.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-          <h4>E-commerce Platforms</h4>
-          <p>Online stores with payments, inventory, and order management — ready to sell from day one.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-school"></i></div>
-          <h4>School &amp; Institution Management Systems</h4>
-          <p>Student records, fees, exams, timetables, and communication — one platform for your whole institution.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-building"></i></div>
-          <h4>Enterprise Software Solutions</h4>
-          <p>Robust, role-based enterprise systems with workflows, reporting, and audit trails that scale with you.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h4>Software Maintenance &amp; Support</h4>
-          <p>Ongoing maintenance, monitoring, bug fixes, and feature upgrades to keep your software reliable.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-          <h4>Cloud Deployment &amp; DevOps</h4>
-          <p>Cloud hosting, CI/CD pipelines, backups, and monitoring for smooth, stress-free releases.</p>
-        </div>
-        <div class="sdev-service-card reveal">
-          <div class="sdev-service-icon"><i class="fa-solid fa-pen-ruler"></i></div>
-          <h4>UI/UX Design and Development</h4>
-          <p>Modern, intuitive interfaces designed in Figma and built to convert visitors into users.</p>
+      <div class="sdev-services-marquee-mask">
+        <div class="sdev-services-marquee" data-sdev-marquee>
+          <div class="sdev-services-track">
+            <!-- Card 1 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-globe"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Custom Web Applications</p>
+                    <p class="sdev-mcard-role">Full-Stack Development</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Fast, secure, and scalable web applications tailored to your workflows — from internal tools to customer-facing platforms.</p>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Mobile Applications</p>
+                    <p class="sdev-mcard-role">iOS &amp; Android</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Android, iOS, and cross-platform mobile apps built with Flutter — published to the Play Store and App Store.</p>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-layer-group"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Full-Stack Software Development</p>
+                    <p class="sdev-mcard-role">End-to-End Delivery</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Complete frontend, backend, and database solutions delivered by one accountable team.</p>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-briefcase"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Business Management Systems</p>
+                    <p class="sdev-mcard-role">Digital Operations</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Digital systems for stock, sales, HR, finance, and operations that replace spreadsheets and paperwork.</p>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-plug"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">API Development &amp; Integration</p>
+                    <p class="sdev-mcard-role">Connectivity</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">REST APIs, third-party integrations (payments, SMS, maps), and secure data exchange between your systems.</p>
+              </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-database"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Database Systems</p>
+                    <p class="sdev-mcard-role">Data Architecture</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Well-structured, optimized databases that keep your data consistent, secure, and fast to query.</p>
+              </div>
+            </div>
+            <!-- Card 7 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-cart-shopping"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">E-commerce Platforms</p>
+                    <p class="sdev-mcard-role">Online Stores</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Online stores with payments, inventory, and order management — ready to sell from day one.</p>
+              </div>
+            </div>
+            <!-- Card 8 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-school"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">School &amp; Institution Management</p>
+                    <p class="sdev-mcard-role">Education Tech</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Student records, fees, exams, timetables, and communication — one platform for your whole institution.</p>
+              </div>
+            </div>
+            <!-- Card 9 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-building"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Enterprise Software Solutions</p>
+                    <p class="sdev-mcard-role">Enterprise Grade</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Robust, role-based enterprise systems with workflows, reporting, and audit trails that scale with you.</p>
+              </div>
+            </div>
+            <!-- Card 10 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Software Maintenance &amp; Support</p>
+                    <p class="sdev-mcard-role">Ongoing Care</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Ongoing maintenance, monitoring, bug fixes, and feature upgrades to keep your software reliable.</p>
+              </div>
+            </div>
+            <!-- Card 11 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">Cloud Deployment &amp; DevOps</p>
+                    <p class="sdev-mcard-role">Infrastructure</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Cloud hosting, CI/CD pipelines, backups, and monitoring for smooth, stress-free releases.</p>
+              </div>
+            </div>
+            <!-- Card 12 -->
+            <div class="sdev-service-mcard">
+              <div class="sdev-mcard-inner">
+                <div class="sdev-mcard-head">
+                  <div class="sdev-mcard-avatar"><i class="fa-solid fa-pen-ruler"></i></div>
+                  <div class="sdev-mcard-meta">
+                    <p class="sdev-mcard-name">UI/UX Design and Development</p>
+                    <p class="sdev-mcard-role">Design &amp; Prototyping</p>
+                  </div>
+                  <i class="fa-solid fa-quote-right sdev-mcard-quote"></i>
+                </div>
+                <p class="sdev-mcard-text">Modern, intuitive interfaces designed in Figma and built to convert visitors into users.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
