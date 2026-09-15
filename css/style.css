@@ -2407,127 +2407,120 @@ input, textarea, select {
 /* ============================================
    PROGRAMS SECTION (Premium)
    ============================================ */
-.programs-grid {
+/* --- Pricing Cards (Programs) --- */
+.pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
+  align-items: start;
 }
 
-.program-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-2xl);
-  padding: 1.5rem;
-  position: relative;
+.pricing-card {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.44, 0, 0.56, 1);
-  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
 }
 
-/* Bottom accent bar */
-.program-card::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--brand-blue);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.program-card:hover {
+.pricing-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-elevation-medium);
-  border-color: transparent;
 }
 
-.program-card:hover::before {
-  transform: scaleX(1);
+.pricing-card-featured {
+  border-color: var(--brand-orange);
 }
 
-.program-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-xl);
+.pricing-card-header {
+  padding: 2rem 1.5rem 1rem;
+}
+
+.pricing-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.pricing-card-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.pricing-card-body {
+  padding: 0 1.5rem 1.5rem;
+  flex: 1;
+}
+
+.pricing-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pricing-card-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.pricing-card-features li i {
+  color: var(--brand-orange);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.pricing-card-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.program-card:nth-child(1) .program-icon {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3B82F6;
-}
-
-.program-card:nth-child(2) .program-icon {
-  background: rgba(var(--brand-blue-rgb), 0.1);
-  color: var(--brand-blue);
-}
-
-.program-card:nth-child(3) .program-icon {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10B981;
-}
-
-.program-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--color-text);
-}
-
-.program-card .program-tags {
-  display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.program-tag {
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  font-size: 0.78rem;
-  font-weight: 500;
-  background: var(--bg-section);
-  color: var(--color-text-secondary);
+  padding: 1rem 1.5rem;
+  margin: 0 1.5rem 1.5rem;
   border: 1px solid var(--color-border);
-  transition: all 0.25s ease;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.program-card:hover .program-tag {
-  background: rgba(var(--brand-blue-rgb), 0.06);
-  color: var(--brand-blue);
-  border-color: rgba(var(--brand-blue-rgb), 0.2);
+.pricing-card-cta:hover {
+  background: var(--color-text);
+  color: #fff;
+  border-color: var(--color-text);
 }
 
-.program-card .btn {
-  width: 100%;
-  justify-content: center;
+.pricing-card-featured .pricing-card-cta {
+  background: var(--brand-orange);
+  color: #fff;
+  border-color: var(--brand-orange);
 }
 
-/* Program card highlight (Dreelio-style selected card) */
-.program-card-highlight {
-  border: 3px solid var(--brand-blue);
-  background: linear-gradient(180deg, rgba(0,87,184,0.06) 0%, var(--glass-bg) 100%);
-  transform: scale(1.02);
-  box-shadow: var(--shadow-card-hover);
+.pricing-card-featured .pricing-card-cta:hover {
+  background: var(--brand-orange-dark);
+  border-color: var(--brand-orange-dark);
 }
 
-.program-card-highlight:hover {
-  transform: scale(1.02) translateY(-4px);
-  box-shadow: var(--shadow-xl);
-}
-
-[data-theme="dark"] .program-card-highlight {
-  border-color: rgba(0,92,255,0.5);
-  background: linear-gradient(180deg, rgba(0,92,255,0.08) 0%, var(--glass-bg) 100%);
+/* Pricing responsive */
+@media (max-width: 992px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
 }
 
 /* ============================================
@@ -2897,40 +2890,73 @@ input, textarea, select {
 /* ============================================
    TECH STACK WE TEACH
    ============================================ */
-.tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  max-width: 800px;
-  margin: 0 auto;
+/* --- Tech Marquee --- */
+.tech-marquee-section {
+  margin-bottom: 4rem;
 }
 
-.tech-item {
+.tech-marquee-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.tech-marquee-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.tech-marquee-sub {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+}
+
+.tech-marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  overflow: hidden;
+}
+
+.tech-marquee-row {
+  overflow: hidden;
+}
+
+.tech-marquee-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: tech-marquee-scroll 30s linear infinite;
+}
+
+.tech-marquee-row:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes tech-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tech-tile {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.65rem 1.1rem;
-  background: var(--bg-card);
-  border: 1px solid rgba(224, 224, 224, 0.6);
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--bg-primary);
+  font-size: 1.6rem;
   color: var(--color-text);
-  box-shadow: var(--shadow-card);
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all 0.3s ease;
 }
 
-.tech-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevation-medium);
-  border-color: var(--brand-blue);
-  color: var(--brand-blue);
-}
-
-.tech-item i {
-  font-size: 1.2rem;
-  color: var(--brand-blue);
+.tech-tile:hover {
+  border-color: var(--brand-orange);
+  color: var(--brand-orange);
 }
 
 /* ============================================
@@ -3395,7 +3421,6 @@ input, textarea, select {
     display: none;
   }
 
-  .programs-grid,
   .why-grid,
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -3580,7 +3605,6 @@ input, textarea, select {
     font-size: 0.75rem;
   }
 
-  .programs-grid,
   .why-grid,
   .testimonials-grid {
     grid-template-columns: 1fr !important;
@@ -3649,9 +3673,10 @@ input, textarea, select {
     align-items: center;
   }
 
-  .tech-item {
-    font-size: 0.8rem;
-    padding: 0.5rem 1rem;
+  .tech-tile {
+    width: 52px;
+    height: 52px;
+    font-size: 1.3rem;
   }
 }
 
@@ -3711,7 +3736,7 @@ input, textarea, select {
     gap: 1.5rem;
   }
 
-  .program-card,
+  .pricing-card,
   .project-card {
     padding: 1.25rem;
   }

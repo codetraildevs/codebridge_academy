@@ -1698,4 +1698,13 @@ function formatPhoneInput(input) {
     const cards = track.innerHTML;
     track.innerHTML = cards + cards;
   });
+
+  /* ============================================
+     TECH MARQUEE — duplicate track for infinite loop
+     ============================================ */
+  const techTrack = document.querySelector('[data-tech-track]');
+  if (techTrack) {
+    const items = techTrack.innerHTML;
+    techTrack.innerHTML = items + items;
+  }
 });
