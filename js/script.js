@@ -1615,4 +1615,79 @@ function formatPhoneInput(input) {
       galleryContainer.style.opacity = opacity;
     }, { passive: true });
   }
+
+  /* ============================================
+     CORE VALUES — Horizontal scroll (weevolveit style)
+     ============================================ */
+  const cvWrapper = document.getElementById('core-values');
+  const cvRail = document.querySelector('[data-cv-rail]');
+  const cvTrack = document.querySelector('[data-cv-track]');
+  const cvProgress = document.querySelector('[data-cv-progress]');
+  const cvIntro = document.querySelector('[data-cv-intro]');
+  const cvBar = document.querySelector('[data-cv-bar]');
+  const cvSlides = document.querySelectorAll('.cv-slide');
+  const cvDots = document.querySelectorAll('.cv-dot');
+  const cvLabels = document.querySelectorAll('.cv-label');
+
+  if (cvWrapper && cvRail && cvTrack) {
+    const totalSlides = cvSlides.length;
+    const slideWidth = window.innerWidth;
+
+    // Set track width
+    cvTrack.style.width = `${totalSlides * slideWidth}px`;
+
+    const handleCvScroll = () => {
+      const rect = cvWrapper.getBoundingClientRect();
+      const wrapperTop = cvWrapper.offsetTop;
+      const wrapperHeight = cvWrapper.offsetHeight;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Calculate progress through the section (0 to 1)
+      const sectionProgress = Math.min(Math.max((scrollY - wrapperTop) / (wrapperHeight - windowHeight), 0), 1);
+
+      // Show/hide rail and progress
+      if (rect.top <= 0 && rect.bottom >= windowHeight) {
+        cvRail.classList.add('cv-rail-active');
+        cvProgress.classList.add('cv-progress-active');
+        if (cvIntro) cvIntro.style.opacity = '0';
+      } else {
+        cvRail.classList.remove('cv-rail-active');
+        cvProgress.classList.remove('cv-progress-active');
+        if (cvIntro) cvIntro.style.opacity = '1';
+      }
+
+      // Move track horizontally
+      const maxTranslate = (totalSlides - 1) * slideWidth;
+      const translateX = -sectionProgress * maxTranslate;
+      cvTrack.style.transform = `translate3d(${translateX}px, 0, 0)`;
+
+      // Update progress bar
+      const activeSlide = Math.round(sectionProgress * (totalSlides - 1));
+      const barWidth = 95;
+      const barGap = 10;
+      if (cvBar) {
+        cvBar.setAttribute('x', activeSlide * (barWidth + barGap));
+        cvBar.setAttribute('width', barWidth);
+      }
+
+      // Update dots
+      cvDots.forEach((dot, i) => {
+        dot.classList.toggle('cv-dot-active', i === activeSlide);
+      });
+
+      // Update labels
+      cvLabels.forEach((label, i) => {
+        label.classList.toggle('cv-label-active', i === activeSlide);
+      });
+    };
+
+    window.addEventListener('scroll', handleCvScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      const newWidth = window.innerWidth;
+      cvTrack.style.width = `${totalSlides * newWidth}px`;
+      handleCvScroll();
+    });
+    handleCvScroll();
+  }
 });

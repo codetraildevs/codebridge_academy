@@ -1804,34 +1804,57 @@ input, textarea, select {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Panel 3: Mission/Vision — dark blue */
+/* Panel 3: Mission/Vision — white */
 .about-panel-3 {
-  background: #0D4A99;
+  background: #FFFFFF;
   z-index: 3;
-  color: #FFFFFF;
+  color: #0F172A;
 }
 
 .about-panel-3 .about-mv-title {
-  color: #FFFFFF;
+  color: #0F172A;
 }
 
 .about-panel-3 .about-mv-text {
-  color: rgba(255, 255, 255, 0.8);
+  color: #64748B;
 }
 
+/* Glowing cards — 21st.dev style */
 .about-panel-3 .about-mv-card {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: #FFFFFF;
+  border: 1px solid #1453C1;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(20, 83, 193, 0.08);
+}
+
+.about-panel-3 .about-mv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #1453C1, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .about-panel-3 .about-mv-card:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: #1453C1;
+  box-shadow: 0 0 30px rgba(20, 83, 193, 0.2), 0 0 60px rgba(20, 83, 193, 0.1);
+  transform: translateY(-4px);
+}
+
+.about-panel-3 .about-mv-card:hover::before {
+  opacity: 1;
 }
 
 .about-panel-3 .about-mv-icon {
-  background: rgba(255, 255, 255, 0.12);
-  color: #FFFFFF;
+  background: rgba(20, 83, 193, 0.1);
+  color: #1453C1;
 }
 
 /* Shared panel styles */
@@ -1998,6 +2021,255 @@ input, textarea, select {
 .about-mv-text {
   font-size: 0.85rem;
   line-height: 1.7;
+}
+
+/* ============================================
+   CORE VALUES (Horizontal scroll — weevolveit style)
+   ============================================ */
+.core-values-wrapper {
+  position: relative;
+  height: 600vh;
+  background: #B2D0ED;
+}
+
+.cv-intro {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  padding: 2rem;
+}
+
+.cv-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(15, 23, 42, 0.5);
+  margin-bottom: 1.25rem;
+}
+
+.cv-intro-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 1rem;
+}
+
+.cv-intro-sub {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: rgba(15, 23, 42, 0.7);
+  max-width: 480px;
+}
+
+.cv-intro-dots {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.cv-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.15);
+  transition: background 0.3s ease;
+}
+
+.cv-dot-active {
+  background: #0F172A;
+}
+
+/* Horizontal rail */
+.cv-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.cv-rail-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cv-track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+.cv-slide {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 8vw;
+}
+
+.cv-watermark {
+  position: absolute;
+  left: 6vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: clamp(200px, 50vh, 500px);
+  font-weight: 800;
+  line-height: 1;
+  color: #0F172A;
+  opacity: 0.06;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cv-slide-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin-left: 15vw;
+}
+
+.cv-slide-title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 8vw, 80px);
+  font-weight: 800;
+  line-height: 1;
+  color: #0F172A;
+  margin-bottom: 1.5rem;
+}
+
+.cv-slide-line {
+  width: 120px;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.cv-slide-tagline {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: rgba(15, 23, 42, 0.7);
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.cv-slide-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cv-slide-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.cv-bullet-dash {
+  display: inline-block;
+  width: 12px;
+  height: 1px;
+  background: #0F172A;
+  opacity: 0.4;
+  margin-top: 0.7em;
+  flex-shrink: 0;
+}
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.cv-bullet-dash {
+  display: inline-block;
+  width: 12px;
+  height: 1px;
+  background: var(--color-text);
+  opacity: 0.4;
+  margin-top: 0.7em;
+  flex-shrink: 0;
+}
+
+/* Progress indicator */
+.cv-progress {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cv-progress-active {
+  opacity: 1;
+}
+
+.cv-progress-svg {
+  width: 254px;
+  max-width: 64vw;
+  display: block;
+}
+
+.cv-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 254px;
+  max-width: 64vw;
+  margin-top: 0.25rem;
+}
+
+.cv-label {
+  font-family: var(--font-body);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(15, 23, 42, 0.35);
+  transition: color 0.3s ease;
+}
+
+.cv-label-active {
+  color: #0F172A;
+}
+
+/* Core Values responsive */
+@media (max-width: 768px) {
+  .cv-slide {
+    padding: 0 6vw;
+  }
+
+  .cv-slide-content {
+    margin-left: 0;
+  }
+
+  .cv-watermark {
+    font-size: clamp(100px, 25vh, 200px);
+    left: 2vw;
+  }
+
+  .cv-slide-title {
+    font-size: clamp(28px, 10vw, 50px);
+  }
 }
 
 /* About Responsive */

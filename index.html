@@ -333,12 +333,7 @@
             <h3 class="about-two-col-title">Practical skills, real projects, career readiness.</h3>
             <p>CodeBridge Academy is a practical software development training academy focused on preparing learners for internships, employment, freelance work, and continuous professional growth in the technology sector.</p>
             <p>The academy bridges the gap between classroom learning and workplace expectations through hands-on projects, mentorship, portfolio building, and career-readiness training.</p>
-            <div class="about-two-col-tags">
-              <span class="about-pill">Web Development</span>
-              <span class="about-pill">Mobile Apps</span>
-              <span class="about-pill">Career Training</span>
-              <span class="about-pill">Mentorship</span>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -369,57 +364,138 @@
   </div>
 
   <!-- ============================================
-       CORE VALUES (separate from About)
+       CORE VALUES (Horizontal scroll — weevolveit style)
        ============================================ -->
-  <section class="section" id="core-values">
-    <div class="container">
-      <div class="about-values-header reveal">
-        <span class="about-small-label">Core Values</span>
-        <h3 class="about-values-title">What guides everything we do</h3>
+  <section id="core-values" class="core-values-wrapper">
+    <!-- Intro overlay -->
+    <div class="cv-intro" data-cv-intro>
+      <span class="cv-eyebrow">[ Our Values ]</span>
+      <h2 class="cv-intro-title">What guides everything we do</h2>
+      <p class="cv-intro-sub">Six principles that shape how we teach, build, and grow together.</p>
+      <div class="cv-intro-dots">
+        <span class="cv-dot cv-dot-active"></span>
+        <span class="cv-dot"></span>
+        <span class="cv-dot"></span>
+        <span class="cv-dot"></span>
+        <span class="cv-dot"></span>
+        <span class="cv-dot"></span>
       </div>
-      <div class="about-values-grid reveal">
-        <div class="about-value-item">
-          <div class="about-value-num">01</div>
-          <div class="about-value-content">
-            <h4>Practical Learning</h4>
-            <p>Skills grow through doing, not only through theory.</p>
+    </div>
+
+    <!-- Horizontal track -->
+    <div class="cv-rail" data-cv-rail>
+      <div class="cv-track" data-cv-track>
+        <!-- Slide 01 -->
+        <article class="cv-slide" aria-label="Value 01">
+          <span class="cv-watermark" aria-hidden="true">01</span>
+          <div class="cv-slide-content">
+            <h2 class="cv-slide-title">Practical Learning</h2>
+            <div class="cv-slide-line"></div>
+            <p class="cv-slide-tagline">Skills grow through doing, not only through theory.</p>
+            <ul class="cv-slide-bullets">
+              <li><span class="cv-bullet-dash"></span><span>Real projects from day one</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Portfolio-driven curriculum</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Learn by building, not memorizing</span></li>
+            </ul>
           </div>
-        </div>
-        <div class="about-value-item">
-          <div class="about-value-num">02</div>
-          <div class="about-value-content">
-            <h4>Excellence</h4>
-            <p>Quality work, discipline, and continuous improvement.</p>
+        </article>
+
+        <!-- Slide 02 -->
+        <article class="cv-slide" aria-label="Value 02">
+          <span class="cv-watermark" aria-hidden="true">02</span>
+          <div class="cv-slide-content">
+            <h2 class="cv-slide-title">Excellence</h2>
+            <div class="cv-slide-line"></div>
+            <p class="cv-slide-tagline">Quality work, discipline, and continuous improvement.</p>
+            <ul class="cv-slide-bullets">
+              <li><span class="cv-bullet-dash"></span><span>High standards in every project</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Code reviews and feedback loops</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Never settle for good enough</span></li>
+            </ul>
           </div>
-        </div>
-        <div class="about-value-item">
-          <div class="about-value-num">03</div>
-          <div class="about-value-content">
-            <h4>Innovation</h4>
-            <p>Creative problem-solving and modern development practices.</p>
+        </article>
+
+        <!-- Slide 03 -->
+        <article class="cv-slide" aria-label="Value 03">
+          <span class="cv-watermark" aria-hidden="true">03</span>
+          <div class="cv-slide-content">
+            <h2 class="cv-slide-title">Innovation</h2>
+            <div class="cv-slide-line"></div>
+            <p class="cv-slide-tagline">Creative problem-solving and modern development practices.</p>
+            <ul class="cv-slide-bullets">
+              <li><span class="cv-bullet-dash"></span><span>Explore new tools and frameworks</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Think differently about problems</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Embrace change as growth</span></li>
+            </ul>
           </div>
-        </div>
-        <div class="about-value-item">
-          <div class="about-value-num">04</div>
-          <div class="about-value-content">
-            <h4>Growth</h4>
-            <p>Supporting learners from beginner to professional.</p>
+        </article>
+
+        <!-- Slide 04 -->
+        <article class="cv-slide" aria-label="Value 04">
+          <span class="cv-watermark" aria-hidden="true">04</span>
+          <div class="cv-slide-content">
+            <h2 class="cv-slide-title">Growth</h2>
+            <div class="cv-slide-line"></div>
+            <p class="cv-slide-tagline">Supporting learners from beginner to professional.</p>
+            <ul class="cv-slide-bullets">
+              <li><span class="cv-bullet-dash"></span><span>Structured learning paths</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Mentorship at every stage</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Career advancement support</span></li>
+            </ul>
           </div>
-        </div>
-        <div class="about-value-item">
-          <div class="about-value-num">05</div>
-          <div class="about-value-content">
-            <h4>Integrity</h4>
-            <p>Honesty, responsibility, and professionalism.</p>
+        </article>
+
+        <!-- Slide 05 -->
+        <article class="cv-slide" aria-label="Value 05">
+          <span class="cv-watermark" aria-hidden="true">05</span>
+          <div class="cv-slide-content">
+            <h2 class="cv-slide-title">Integrity</h2>
+            <div class="cv-slide-line"></div>
+            <p class="cv-slide-tagline">Honesty, responsibility, and professionalism.</p>
+            <ul class="cv-slide-bullets">
+              <li><span class="cv-bullet-dash"></span><span>Transparent communication</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Own your work and mistakes</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Build trust through action</span></li>
+            </ul>
           </div>
-        </div>
-        <div class="about-value-item">
-          <div class="about-value-num">06</div>
-          <div class="about-value-content">
-            <h4>Collaboration</h4>
-            <p>Teamwork, mentorship, and communication help developers grow.</p>
+        </article>
+
+        <!-- Slide 06 -->
+        <article class="cv-slide" aria-label="Value 06">
+          <span class="cv-watermark" aria-hidden="true">06</span>
+          <div class="cv-slide-content">
+            <h2 class="cv-slide-title">Collaboration</h2>
+            <div class="cv-slide-line"></div>
+            <p class="cv-slide-tagline">Teamwork, mentorship, and communication help developers grow.</p>
+            <ul class="cv-slide-bullets">
+              <li><span class="cv-bullet-dash"></span><span>Pair programming and team projects</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Peer learning communities</span></li>
+              <li><span class="cv-bullet-dash"></span><span>Build together, grow together</span></li>
+            </ul>
           </div>
-        </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Progress indicator -->
+    <div class="cv-progress" data-cv-progress>
+      <svg viewBox="0 0 600 40" class="cv-progress-svg">
+        <rect x="0" y="18" width="95" height="1.5" fill="rgba(15,23,42,0.15)"/>
+        <rect x="105" y="18" width="95" height="1.5" fill="rgba(15,23,42,0.15)"/>
+        <rect x="210" y="18" width="95" height="1.5" fill="rgba(15,23,42,0.15)"/>
+        <rect x="315" y="18" width="95" height="1.5" fill="rgba(15,23,42,0.15)"/>
+        <rect x="420" y="18" width="95" height="1.5" fill="rgba(15,23,42,0.15)"/>
+        <rect x="525" y="18" width="75" height="1.5" fill="rgba(15,23,42,0.15)"/>
+        <!-- Active bar -->
+        <rect x="0" y="18" width="95" height="1.5" fill="#0F172A" data-cv-bar/>
+      </svg>
+      <div class="cv-progress-labels">
+        <span class="cv-label cv-label-active">Practical</span>
+        <span class="cv-label">Excellence</span>
+        <span class="cv-label">Innovation</span>
+        <span class="cv-label">Growth</span>
+        <span class="cv-label">Integrity</span>
+        <span class="cv-label">Collaboration</span>
       </div>
     </div>
   </section>
