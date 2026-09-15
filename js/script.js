@@ -1723,4 +1723,67 @@ function formatPhoneInput(input) {
       projectContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
   }
+
+  /* ============================================
+     WHY CHOOSE US — Animated Card Stack
+     ============================================ */
+  const whyViewport = document.querySelector('.why-stack-viewport');
+  const whyCards = document.querySelectorAll('.why-stack-card');
+  if (whyViewport && whyCards.length) {
+    let ticking = false;
+
+    function updateWhyCards() {
+      const rect = whyViewport.getBoundingClientRect();
+      const sectionHeight = whyViewport.offsetHeight;
+      const winH = window.innerHeight;
+      const scrolled = -rect.top;
+      const maxScroll = sectionHeight - winH;
+      const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
+
+      const total = whyCards.length;
+
+      whyCards.forEach((card, i) => {
+        const cardEnter = i / (total + 0.5);
+        const cardFullyIn = (i + 1) / (total + 0.5);
+
+        let opacity = 0;
+        let translateY = 100;
+        let rotate = -8 + i * -2;
+        const scale = 1 - (total - 1 - i) * 0.04;
+
+        if (progress < cardEnter) {
+          opacity = 0;
+          translateY = 100;
+        } else if (progress >= cardEnter && progress <= cardFullyIn) {
+          const t = (progress - cardEnter) / (cardFullyIn - cardEnter);
+          const ease = 1 - Math.pow(1 - t, 3);
+          opacity = ease;
+          translateY = 100 - ease * 100;
+          rotate = rotate + (8 - rotate) * ease;
+        } else {
+          opacity = 1;
+          translateY = 0;
+          rotate = 0;
+        }
+
+        const yOffset = (total - 1 - i) * 14;
+
+        card.style.transform = `translateY(${translateY + yOffset}px) rotate(${rotate}deg) scale(${scale})`;
+        card.style.opacity = opacity;
+        card.style.zIndex = i + 1;
+        card.style.filter = `drop-shadow(0 ${4 + i * 2}px ${12 + i * 3}px rgba(0,0,0,${0.06 + i * 0.01}))`;
+      });
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateWhyCards);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateWhyCards();
+  }
 });

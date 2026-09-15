@@ -2514,6 +2514,15 @@ input, textarea, select {
   border-color: var(--brand-orange-dark);
 }
 
+.pricing-card-body .focus-areas-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
 /* Pricing responsive */
 @media (max-width: 992px) {
   .pricing-grid {
@@ -2524,82 +2533,130 @@ input, textarea, select {
 }
 
 /* ============================================
-   WHY CHOOSE US
+   WHY CHOOSE US — Animated Card Stack
    ============================================ */
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.why-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-2xl);
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: var(--shadow-card);
-  transition: all 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+.why-stack-section {
   position: relative;
-  overflow: hidden;
-}
-
-.why-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
   background: var(--brand-blue);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.why-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevation-medium);
-  border-color: transparent;
+.why-stack-viewport {
+  position: relative;
+  height: 400vh;
 }
 
-.why-card:hover::after {
-  transform: scaleX(1);
-}
-
-.why-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-xl);
-  background: rgba(var(--brand-blue-rgb), 0.08);
+.why-stack-track {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
-  margin: 0 auto 1rem;
-  color: var(--brand-blue);
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  perspective: 1200px;
+  overflow: hidden;
 }
 
-.why-card:hover .why-icon {
-  background: var(--brand-blue);
+.why-stack-header {
+  position: absolute;
+  top: 8vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 1.5rem;
+  z-index: 100;
+}
+
+.why-stack-header .section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.75rem;
+}
+
+.why-stack-header .section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
   color: #fff;
-  transform: rotate(5deg) scale(1.08);
+  margin-bottom: 0.75rem;
 }
 
-.why-card h3 {
+.why-stack-header .section-subtitle {
   font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.why-stack-cards {
+  position: relative;
+  width: 360px;
+  height: 420px;
+}
+
+.why-stack-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.why-stack-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 0.4rem;
   color: var(--color-text);
 }
 
-.why-card p {
-  font-size: 0.85rem;
+.why-stack-card p {
+  font-size: 0.9rem;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
+  max-width: 280px;
+}
+
+.why-stack-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--brand-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .why-stack-cards {
+    width: 300px;
+    height: 360px;
+  }
+
+  .why-stack-header {
+    top: 4vh;
+  }
+
+  .why-stack-header .section-subtitle {
+    font-size: 0.9rem;
+  }
 }
 
 /* ============================================
