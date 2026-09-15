@@ -45,6 +45,9 @@ desktop.ini
 *.swo
 *~
 
+# Supabase CLI temp artifacts (tokens, linked project refs)
+supabase/.temp/
+
 # Temp/backup files from editing sessions
 original_*
 projects_*.html
