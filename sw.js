@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v13';
+const CACHE_NAME = 'codebridge-v14';
 const ASSETS = [
   '/',
   '/index.html',
@@ -17,9 +17,7 @@ const ASSETS = [
   '/assets/images/play_store_icon.webp',
   '/assets/images/play_store_icon.png',
   '/assets/images/home_cdmis.webp',
-  '/assets/images/revenue_sharing_app.svg',
-  '/assets/images/job_exams_prep.svg',
-  '/assets/images/project_overwatch.svg',
+  '/assets/images/placeholder.svg',
   '/manifest.json'
 ];
 
