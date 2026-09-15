@@ -203,6 +203,7 @@ function formatPhoneInput(input) {
   const SUPABASE_EDGE_FN = 'https://siruvivfrinoyudbotko.supabase.co/functions/v1/submit-form';
 
   document.addEventListener('DOMContentLoaded', () => {
+
   /* ============================================
      SERVICE WORKER REGISTRATION
      ============================================ */
@@ -428,14 +429,20 @@ function formatPhoneInput(input) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target); // Reveal only once
+        revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
-    revealObserver.observe(el);
-  });
+  // Small delay to ensure initial state is set before observing
+  setTimeout(() => {
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
+      revealObserver.observe(el);
+    });
+  }, 100);
+
+  // About section — Lenis smooth scroll handles background transitions
+  // Each .about-panel is sticky and stacks on scroll
 
   /* ============================================
      ANIMATED COUNTERS
@@ -1569,8 +1576,8 @@ function formatPhoneInput(input) {
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -10px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));

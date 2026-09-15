@@ -28,8 +28,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 
   <!-- Preload Critical Assets -->
   <link rel="preload" href="assets/images/update_logo.webp" as="image" fetchpriority="high" type="image/webp">
@@ -39,7 +39,7 @@
   
   <!-- Critical CSS Inlined for Instant FCP & LCP -->
   <style>
-    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #0057B8; --color-primary-rgb: 0,87,184; --color-text: #0F172A; --color-text-secondary: #64748B; --color-accent: #FF7A00; --font-body: 'Inter', sans-serif; --font-heading: 'Plus Jakarta Sans', 'Inter', sans-serif; --color-border: #E2E8F0; --color-eyebrow: #64748B; --glass-bg: rgba(255,255,255,0.7); --glass-border: rgba(226,232,240,0.6); --page-gradient: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%); }
+    :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #0057B8; --color-primary-rgb: 0,87,184; --color-text: #0F172A; --color-text-secondary: #64748B; --color-accent: #FF7A00; --font-body: 'JetBrains Mono', monospace; --font-heading: 'Geist Mono', monospace; --color-border: #E2E8F0; --color-eyebrow: #64748B; --glass-bg: rgba(255,255,255,0.7); --glass-border: rgba(226,232,240,0.6); --page-gradient: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%); }
     [data-theme="dark"] { --bg-primary: #0A0A0A; --bg-section: rgba(20,20,20,0.8); --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F5F5F5; --color-text-secondary: #A0A0A0; --color-accent: #60A5FA; --color-border: rgba(42,42,42,0.6); --color-eyebrow: #c9a882; --glass-bg: rgba(26,26,26,0.7); --glass-border: rgba(42,42,42,0.4); --page-gradient: linear-gradient(180deg, #0A0A0A 0%, #0f0f0f 50%, #0A0A0A 100%); }
     body { font-family: var(--font-body); background: var(--page-gradient); background-attachment: fixed; color: var(--color-text); -webkit-font-smoothing: antialiased; margin: 0; }
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
@@ -281,84 +281,98 @@
   </section>
 
   <!-- ============================================
-       2. ABOUT SECTION
+       2. ABOUT SECTION (Lenis sticky scroll)
        ============================================ -->
-  <section class="section" id="about">
-    <div class="container">
-      <!-- Eyebrow + Title -->
-      <div class="about-hero reveal">
-        <div class="scroll-reveal-up" data-delay="0"><span class="section-label">About Us</span></div>
-        <div class="scroll-reveal-up" data-delay="100"><h2 class="about-hero-title">We build <span class="highlight">real developers</span> who build <span class="highlight">real software</span>.</h2></div>
-        <p class="about-hero-sub">CodeBridge Academy is a software development company and practical technology training academy in Kigali — building digital solutions for organizations while preparing learners for real-world software careers through hands-on projects and mentorship.</p>
-      </div>
-
-      <!-- Stats Row -->
-      <div class="about-stats reveal">
-        <div class="about-stat">
-          <p class="about-stat-num">500+</p>
-          <p class="about-stat-label">Graduates Trained</p>
+  <div id="about-wrapper">
+    <!-- Panel 1: Hero + Stats -->
+    <section class="about-panel about-panel-1" data-about-panel>
+      <div class="about-panel-inner">
+        <div class="about-hero">
+          <div class="scroll-reveal-up" data-delay="0"><span class="section-label">About Us</span></div>
+          <div class="scroll-reveal-up" data-delay="100"><h2 class="about-hero-title">We build <span class="highlight">real developers</span> who build <span class="highlight">real software</span>.</h2></div>
+          <p class="about-hero-sub">CodeBridge Academy is a software development company and practical technology training academy in Kigali — building digital solutions for organizations while preparing learners for real-world software careers through hands-on projects and mentorship.</p>
         </div>
-        <div class="about-stat-divider"></div>
-        <div class="about-stat">
-          <p class="about-stat-num">95%</p>
-          <p class="about-stat-label">Placement Rate</p>
-        </div>
-        <div class="about-stat-divider"></div>
-        <div class="about-stat">
-          <p class="about-stat-num">50+</p>
-          <p class="about-stat-label">Projects Delivered</p>
-        </div>
-        <div class="about-stat-divider"></div>
-        <div class="about-stat">
-          <p class="about-stat-num">6+</p>
-          <p class="about-stat-label">Years Building</p>
-        </div>
-      </div>
-
-      <!-- Two Column: Image + Company Profile -->
-      <div class="about-two-col reveal">
-        <div class="about-two-col-img">
-          <img 
-            src="./assets/images/about_section.webp" 
-            alt="CodeBridge Academy Training" 
-            width="600"
-            height="450"
-            loading="lazy">
-        </div>
-        <div class="about-two-col-text">
-          <span class="about-small-label">Company Profile</span>
-          <h3 class="about-two-col-title">Practical skills, real projects, career readiness.</h3>
-          <p>CodeBridge Academy is a practical software development training academy focused on preparing learners for internships, employment, freelance work, and continuous professional growth in the technology sector.</p>
-          <p>The academy bridges the gap between classroom learning and workplace expectations through hands-on projects, mentorship, portfolio building, and career-readiness training.</p>
-          <div class="about-two-col-tags">
-            <span class="about-pill">Web Development</span>
-            <span class="about-pill">Mobile Apps</span>
-            <span class="about-pill">Career Training</span>
-            <span class="about-pill">Mentorship</span>
+        <div class="about-stats">
+          <div class="about-stat">
+            <p class="about-stat-num">500+</p>
+            <p class="about-stat-label">Graduates Trained</p>
+          </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat">
+            <p class="about-stat-num">95%</p>
+            <p class="about-stat-label">Placement Rate</p>
+          </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat">
+            <p class="about-stat-num">50+</p>
+            <p class="about-stat-label">Projects Delivered</p>
+          </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat">
+            <p class="about-stat-num">6+</p>
+            <p class="about-stat-label">Years Building</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Mission / Vision Row -->
-      <div class="about-mv-row reveal">
-        <div class="about-mv-card">
-          <div class="about-mv-icon"><i class="fa-solid fa-bullseye"></i></div>
-          <h4 class="about-mv-title">Mission</h4>
-          <p class="about-mv-text">To equip learners with practical software development skills, real project experience, and career readiness needed to succeed in internships, employment, and technology innovation.</p>
-        </div>
-        <div class="about-mv-card">
-          <div class="about-mv-icon"><i class="fa-solid fa-eye"></i></div>
-          <h4 class="about-mv-title">Vision</h4>
-          <p class="about-mv-text">To become a leading software development academy that transforms learners into confident, industry-ready professionals who create impactful digital solutions.</p>
-        </div>
-        <div class="about-mv-card">
-          <div class="about-mv-icon"><i class="fa-solid fa-handshake"></i></div>
-          <h4 class="about-mv-title">Brand Promise</h4>
-          <p class="about-mv-text">At CodeBridge Academy, every learner gains practical skills, builds real projects, and moves closer to internship and career success.</p>
+    <!-- Panel 2: Company Profile -->
+    <section class="about-panel about-panel-2" data-about-panel>
+      <div class="about-panel-inner">
+        <div class="about-two-col">
+          <div class="about-two-col-img">
+            <img 
+              src="./assets/images/about_section.webp" 
+              alt="CodeBridge Academy Training" 
+              width="600"
+              height="450"
+              loading="lazy">
+          </div>
+          <div class="about-two-col-text">
+            <span class="about-small-label">Company Profile</span>
+            <h3 class="about-two-col-title">Practical skills, real projects, career readiness.</h3>
+            <p>CodeBridge Academy is a practical software development training academy focused on preparing learners for internships, employment, freelance work, and continuous professional growth in the technology sector.</p>
+            <p>The academy bridges the gap between classroom learning and workplace expectations through hands-on projects, mentorship, portfolio building, and career-readiness training.</p>
+            <div class="about-two-col-tags">
+              <span class="about-pill">Web Development</span>
+              <span class="about-pill">Mobile Apps</span>
+              <span class="about-pill">Career Training</span>
+              <span class="about-pill">Mentorship</span>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Core Values -->
+    <!-- Panel 3: Mission / Vision -->
+    <section class="about-panel about-panel-3" data-about-panel>
+      <div class="about-panel-inner">
+        <div class="about-mv-row">
+          <div class="about-mv-card">
+            <div class="about-mv-icon"><i class="fa-solid fa-bullseye"></i></div>
+            <h4 class="about-mv-title">Mission</h4>
+            <p class="about-mv-text">To equip learners with practical software development skills, real project experience, and career readiness needed to succeed in internships, employment, and technology innovation.</p>
+          </div>
+          <div class="about-mv-card">
+            <div class="about-mv-icon"><i class="fa-solid fa-eye"></i></div>
+            <h4 class="about-mv-title">Vision</h4>
+            <p class="about-mv-text">To become a leading software development academy that transforms learners into confident, industry-ready professionals who create impactful digital solutions.</p>
+          </div>
+          <div class="about-mv-card">
+            <div class="about-mv-icon"><i class="fa-solid fa-handshake"></i></div>
+            <h4 class="about-mv-title">Brand Promise</h4>
+            <p class="about-mv-text">At CodeBridge Academy, every learner gains practical skills, builds real projects, and moves closer to internship and career success.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================
+       CORE VALUES (separate from About)
+       ============================================ -->
+  <section class="section" id="core-values">
+    <div class="container">
       <div class="about-values-header reveal">
         <span class="about-small-label">Core Values</span>
         <h3 class="about-values-title">What guides everything we do</h3>

@@ -68,8 +68,8 @@
   --scrollbar-thumb: #94A3B8;
 
   /* --- Typography --- */
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
+  --font-heading: 'Geist Mono', 'Geist Mono Fallback', monospace;
 
   /* --- Border Radius --- */
   --radius-xs: 4px;
@@ -165,6 +165,8 @@ html {
 
 body {
   font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
   background: var(--page-gradient);
   background-attachment: fixed;
   color: var(--color-text);
@@ -925,7 +927,7 @@ input, textarea, select {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 9rem 1.5rem 0;
+  padding: 9rem 1.5rem 4rem;
   background: linear-gradient(180deg, #b7d5f1 0%, #9cc3e7 40%, #e2ecf6 80%, var(--bg-primary) 100%);
   position: relative;
   overflow: hidden;
@@ -1334,7 +1336,7 @@ input, textarea, select {
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
-    padding: 8rem 1rem 2rem;
+    padding: 8rem 1rem 3rem;
     gap: 2rem;
   }
 
@@ -1683,11 +1685,13 @@ input, textarea, select {
   opacity: 0;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.6s ease;
+  will-change: opacity, transform;
 }
 
 .scroll-reveal-up.revealed > * {
   transform: translateY(0);
   opacity: 1;
+  will-change: auto;
 }
 
 .scroll-reveal-up[data-delay="100"] > * {
@@ -1698,8 +1702,8 @@ input, textarea, select {
 .scroll-fade-up {
   opacity: 0;
   transform: translateY(24px);
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.6s ease;
+  transition: transform 0.9s ease,
+              opacity 0.9s ease;
 }
 
 .scroll-fade-up.revealed {
@@ -1714,10 +1718,123 @@ input, textarea, select {
    ABOUT SECTION
    ============================================ */
 /* ============================================
-   ABOUT SECTION (SaaS-quality)
+   ABOUT SECTION (Lenis sticky scroll)
    ============================================ */
 
-/* Hero / Title */
+#about-wrapper {
+  position: relative;
+}
+
+/* Each panel stacks on top of the previous */
+.about-panel {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.8s ease;
+}
+
+.about-panel-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+/* Panel 1: Hero + Stats — starts white, fades to blue */
+.about-panel-1 {
+  background: #FFFFFF;
+  z-index: 1;
+  color: #0F172A;
+}
+
+.about-panel-1 .about-hero-title {
+  color: #0F172A;
+}
+
+.about-panel-1 .highlight {
+  color: #F97710;
+}
+
+.about-panel-1 .about-hero-sub {
+  color: #64748B;
+}
+
+.about-panel-1 .about-stat-num {
+  color: #0057B8;
+}
+
+.about-panel-1 .about-stat-label {
+  color: #64748B;
+}
+
+.about-panel-1 .about-stat-divider {
+  background: #E2E8F0;
+}
+
+/* Panel 2: Company Profile — blue background */
+.about-panel-2 {
+  background: #1358B6;
+  z-index: 2;
+  color: #FFFFFF;
+}
+
+.about-panel-2 .about-two-col-title {
+  color: #FFFFFF;
+}
+
+.about-panel-2 .about-two-col-text p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.about-panel-2 .about-small-label {
+  color: #F97710;
+}
+
+.about-panel-2 .about-pill {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.about-panel-2 .about-two-col-img::after {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Panel 3: Mission/Vision — dark blue */
+.about-panel-3 {
+  background: #0D4A99;
+  z-index: 3;
+  color: #FFFFFF;
+}
+
+.about-panel-3 .about-mv-title {
+  color: #FFFFFF;
+}
+
+.about-panel-3 .about-mv-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.about-panel-3 .about-mv-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.about-panel-3 .about-mv-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.about-panel-3 .about-mv-icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+/* Shared panel styles */
 .about-hero {
   text-align: center;
   max-width: 680px;
@@ -1729,28 +1846,25 @@ input, textarea, select {
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 800;
   line-height: 1.2;
-  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .about-hero-sub {
   font-size: 1rem;
   line-height: 1.75;
-  color: var(--color-text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Stats Row */
 .about-stats {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2.5rem;
   padding: 2.5rem 0;
-  margin-bottom: 4rem;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.9;
 }
 
 .about-stat {
@@ -1761,30 +1875,35 @@ input, textarea, select {
   font-family: var(--font-heading);
   font-size: 2.2rem;
   font-weight: 800;
-  color: var(--color-primary);
   line-height: 1;
   margin-bottom: 0.3rem;
 }
 
 .about-stat-label {
   font-size: 0.82rem;
-  color: var(--color-text-secondary);
   white-space: nowrap;
 }
 
 .about-stat-divider {
   width: 1px;
   height: 40px;
-  background: var(--color-border);
 }
 
-/* Two Column Layout */
+.about-small-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+/* Two Column */
 .about-two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  margin-bottom: 5rem;
 }
 
 .about-two-col-img {
@@ -1798,7 +1917,7 @@ input, textarea, select {
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  border: 1px solid var(--color-border);
+  border: 1px solid;
   pointer-events: none;
 }
 
@@ -1811,29 +1930,17 @@ input, textarea, select {
   aspect-ratio: 4/3;
 }
 
-.about-small-label {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
-}
-
 .about-two-col-title {
   font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.3;
-  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .about-two-col-text p {
   font-size: 0.92rem;
   line-height: 1.75;
-  color: var(--color-text-secondary);
   margin-bottom: 1rem;
 }
 
@@ -1849,135 +1956,56 @@ input, textarea, select {
   font-weight: 500;
   padding: 0.35rem 0.75rem;
   border-radius: 100px;
-  background: var(--bg-section);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
+  border: 1px solid;
 }
 
-/* Mission / Vision Row */
+/* Mission / Vision */
 .about-mv-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 5rem;
 }
 
 .about-mv-card {
   padding: 2rem;
   border-radius: 16px;
-  border: 1px solid var(--color-border);
-  background: var(--bg-section);
+  border: 1px solid;
   transition: all 0.3s ease;
 }
 
 .about-mv-card:hover {
-  border-color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 87, 184, 0.08);
 }
 
 .about-mv-icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(0, 87, 184, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  color: var(--color-primary);
   margin-bottom: 1rem;
-}
-
-[data-theme="dark"] .about-mv-icon {
-  background: rgba(0, 92, 255, 0.15);
 }
 
 .about-mv-title {
   font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-text);
   margin-bottom: 0.6rem;
 }
 
 .about-mv-text {
   font-size: 0.85rem;
   line-height: 1.7;
-  color: var(--color-text-secondary);
-}
-
-/* Core Values */
-.about-values-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.about-values-title {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.about-values-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--color-border);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.about-value-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: var(--bg-primary);
-  transition: background 0.3s ease;
-}
-
-.about-value-item:hover {
-  background: var(--bg-section);
-}
-
-.about-value-num {
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  background: rgba(0, 87, 184, 0.08);
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-[data-theme="dark"] .about-value-num {
-  background: rgba(0, 92, 255, 0.15);
-}
-
-.about-value-content h4 {
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: 0.25rem;
-}
-
-.about-value-content p {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
 }
 
 /* About Responsive */
 @media (max-width: 768px) {
+  .about-panel-inner {
+    padding: 4rem 1rem;
+  }
+
   .about-hero-title {
     font-size: 1.75rem;
   }
@@ -1985,7 +2013,6 @@ input, textarea, select {
   .about-stats {
     flex-wrap: wrap;
     gap: 1.5rem;
-    padding: 2rem 0;
   }
 
   .about-stat-divider {
@@ -2003,17 +2030,11 @@ input, textarea, select {
   .about-two-col {
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-bottom: 3rem;
   }
 
   .about-mv-row {
     grid-template-columns: 1fr;
     gap: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  .about-values-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -2389,6 +2410,7 @@ input, textarea, select {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
+  font-style: italic;
   line-height: 1.55;
   color: #FFFFFF;
   margin-bottom: 2rem;
@@ -3015,13 +3037,15 @@ input, textarea, select {
    ============================================ */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: opacity, transform;
 }
 
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 .reveal-left {
