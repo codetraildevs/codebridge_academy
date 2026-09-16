@@ -402,6 +402,15 @@ input, textarea, select {
   background: rgba(255,255,255,0.12);
 }
 
+[data-theme="dark"] .hero-buttons .btn-secondary {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+
+[data-theme="dark"] .hero-buttons .btn-secondary:hover {
+  background: rgba(255,255,255,0.14);
+}
+
 .btn-accent {
   background: var(--color-accent);
   color: #FFFFFF;
@@ -6169,6 +6178,61 @@ fieldset.form-group > legend {
 [data-theme="dark"] .program-card:not(.program-card-highlight) .program-cta:hover {
   background: var(--color-border);
   color: var(--color-accent);
+}
+
+/* About Panel 2 */
+[data-theme="dark"] .about-panel-2 {
+  background: #0a1e3d;
+}
+
+[data-theme="dark"] .about-panel-2 .about-two-col-title {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .about-panel-2 .about-two-col-text p {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .about-panel-2 .about-small-label {
+  color: var(--color-accent);
+}
+
+[data-theme="dark"] .about-panel-2 .about-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .about-panel-2 .about-two-col-img::after {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Why Choose Us */
+[data-theme="dark"] .why-stack-section {
+  background: #0a1628;
+}
+
+[data-theme="dark"] .why-stack-card {
+  background: var(--bg-card);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .why-stack-icon {
+  background: var(--color-accent);
+}
+
+/* Featured review card */
+[data-theme="dark"] .dreelio-featured-review {
+  background: #0a1e3d;
+}
+
+/* Qualexas CTA */
+[data-theme="dark"] .qualexas-cta {
+  background: #0a1e3d;
+}
+
+[data-theme="dark"] .qualexas-feature-lead {
+  background: linear-gradient(135deg, #0a1e3d 0%, #081530 100%);
 }
 
 /* Services CTA button */
