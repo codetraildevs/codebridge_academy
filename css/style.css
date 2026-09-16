@@ -2742,7 +2742,6 @@ input, textarea, select {
   width: 42px;
   height: 42px;
   border-radius: var(--radius-md);
-  background: rgba(var(--color-primary-rgb), 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2753,8 +2752,7 @@ input, textarea, select {
 }
 
 .audience-card:hover .audience-icon {
-  background: var(--color-primary);
-  color: #fff;
+  color: var(--color-primary);
   transform: scale(1.06);
 }
 
