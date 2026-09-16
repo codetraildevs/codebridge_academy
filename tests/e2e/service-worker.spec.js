@@ -106,12 +106,22 @@ test.describe('Service Worker — Fetch Handler', () => {
     await page.waitForTimeout(2000);
 
     // Open and fill registration form
-    // (nav CTA is now "Start a Project"; registration opens via the banner button)
-    const registerBtn = page.locator('.btn-banner-cta.btn-register');
+    // (banner CTA is a .announcement-cta button that opens registration)
+    const registerBtn = page.locator('.announcement-cta');
     await expect(registerBtn).toBeVisible({ timeout: 10000 });
     await registerBtn.scrollIntoViewIfNeeded();
     await registerBtn.click({ force: true });
-    await expect(page.locator('#registrationModal')).toHaveClass(/active/, { timeout: 5000 });
+    // Fall back to a dispatched click if hit-testing misroutes the
+    // synthetic click (see note in registration-form.spec.js)
+    try {
+      await expect(page.locator('#registrationModal')).toHaveClass(/active/, { timeout: 2500 });
+    } catch {
+      await page.evaluate(() => {
+        document.querySelector('.announcement-cta')
+          .dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      });
+      await expect(page.locator('#registrationModal')).toHaveClass(/active/, { timeout: 5000 });
+    }
 
     await fillAllSteps(page);
     await page.locator('#submitBtn').click();

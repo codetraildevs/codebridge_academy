@@ -205,6 +205,47 @@ function formatPhoneInput(input) {
   document.addEventListener('DOMContentLoaded', () => {
 
   /* ============================================
+     LAZY FORMS — inject modal markup from forms.partial.html
+     (registration, survey, quote modals: ~57KB of HTML kept
+     out of the critical document payload)
+     ============================================ */
+  let formsInjected = null;
+  function fetchFormsWithRetry(attempts) {
+    return fetch('forms.partial.min.html').then(r => {
+      if (!r.ok) throw new Error('forms.partial.min.html ' + r.status);
+      return r.text();
+    }).catch(err => {
+      // The service worker can transiently fail a fetch while it is
+      // installing/claiming — retry a few times before giving up
+      if (attempts > 1) {
+        return new Promise(resolve => setTimeout(resolve, 400))
+          .then(() => fetchFormsWithRetry(attempts - 1));
+      }
+      throw err;
+    });
+  }
+  function ensureFormsInjected() {
+    if (!formsInjected) {
+      formsInjected = fetchFormsWithRetry(3)
+        .then(html => {
+          const tpl = document.createElement('template');
+          tpl.innerHTML = html;
+          // Mark injected .reveal elements as revealed immediately —
+          // the scroll-reveal observer only wires up once at page load,
+          // so late-injected elements would otherwise stay at opacity 0
+          tpl.content.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+          document.body.appendChild(tpl.content);
+        })
+        .catch(err => {
+          console.error('Failed to load forms:', err);
+          formsInjected = null;
+          throw err;
+        });
+    }
+    return formsInjected;
+  }
+
+  /* ============================================
      SERVICE WORKER REGISTRATION
      ============================================ */
   if ('serviceWorker' in navigator) {
@@ -556,8 +597,13 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
-     SURVEY MODAL
+     SURVEY MODAL — all modal wiring lives in initSurveyModal();
+     markup is lazy-injected on demand (see ensureFormsInjected)
      ============================================ */
+  let surveyInitialized = false;
+  let openSurveyRef = null;
+
+  function initSurveyModal() {
   const surveyModal = document.getElementById('surveyModal');
   const surveyFloatBtn = document.getElementById('surveyFloatBtn');
   const openSurveyBtn = document.getElementById('openSurveyBtn');
@@ -720,14 +766,6 @@ function formatPhoneInput(input) {
     openSurvey();
   };
 
-  if (surveyFloatBtn) {
-    surveyFloatBtn.addEventListener('click', openSurvey);
-    surveyFloatBtn.addEventListener('touchend', openSurveyMobile);
-  }
-  if (openSurveyBtn) {
-    openSurveyBtn.addEventListener('click', openSurvey);
-    openSurveyBtn.addEventListener('touchend', openSurveyMobile);
-  }
   if (surveyCloseBtn) {
     surveyCloseBtn.addEventListener('click', closeSurvey);
   }
@@ -830,9 +868,53 @@ function formatPhoneInput(input) {
     });
   }
 
+  openSurveyRef = openSurvey;
+  }
+
+  // Survey triggers — the floating button and the "Take the Survey" CTA
+  // both lazy-inject the forms markup, then open the survey
+  ['surveyFloatBtn', 'openSurveyBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const openSurveyLazy = (e) => {
+      e.preventDefault();
+      ensureFormsInjected().then(() => {
+        if (!surveyInitialized) {
+          surveyInitialized = true;
+          initSurveyModal();
+        }
+        if (openSurveyRef) openSurveyRef();
+      }).catch(() => {});
+    };
+    el.addEventListener('click', openSurveyLazy);
+    el.addEventListener('touchend', openSurveyLazy);
+  });
+
+  // Warm the forms cache in the background so modals open instantly.
+  // If the page was loaded with #project-quote (deep link), open the
+  // quote modal once the markup is available — preserves the behaviour
+  // the deep-link handler had when the markup was inline.
+  setTimeout(() => {
+    ensureFormsInjected().then(() => {
+      if (window.location.hash === '#project-quote') {
+        if (!quoteInitialized) {
+          quoteInitialized = true;
+          initQuoteModal();
+        }
+        if (openQuoteRef) openQuoteRef();
+      }
+    }).catch(() => {});
+  }, 2500);
+
+  let regInitialized = false;
+  let openRegistrationRef = null;
+
   /* ============================================
-     REGISTRATION MODAL
+     REGISTRATION MODAL — all modal wiring lives in
+     initRegistrationModal(); ".btn-register" clicks are
+     delegated at the document level below
      ============================================ */
+  function initRegistrationModal() {
   const registrationModal = document.getElementById('registrationModal');
   const closeModal = document.getElementById('closeModal');
   const regForm = document.getElementById('registrationForm');
@@ -865,8 +947,7 @@ function formatPhoneInput(input) {
 
   const registrationSuccessEl = document.getElementById('registrationSuccess');
 
-  regButtons.forEach(btn => btn.addEventListener('click', (e) => {
-    e.preventDefault();
+  function openRegistration() {
     // Reset modal visibility states for fresh open
     regForm.style.display = 'block';
     regForm.querySelector('.form-navigation').style.display = 'flex';
@@ -880,7 +961,8 @@ function formatPhoneInput(input) {
     if (typeof updateTechCheckboxes === 'function') {
       updateTechCheckboxes(null);
     }
-  }));
+  }
+  openRegistrationRef = openRegistration;
 
   closeModal.addEventListener('click', () => {
     registrationModal.classList.remove('active');
@@ -1435,66 +1517,76 @@ function formatPhoneInput(input) {
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     });
   }
+  }
+
+  // ".btn-register" buttons may exist before the modal markup is
+  // lazy-injected — delegate at the document level
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-register');
+    if (!btn) return;
+    e.preventDefault();
+    ensureFormsInjected().then(() => {
+      if (!regInitialized) {
+        regInitialized = true;
+        initRegistrationModal();
+      }
+      if (openRegistrationRef) openRegistrationRef();
+    }).catch(err => console.error('[codebridge] register open failed:', err));
+  });
 
   /* ============================================
      PROJECT QUOTE MODAL (Software Development)
      ============================================ */
-  const quoteModal = document.getElementById('quoteModal');
-  const quoteCloseBtn = document.getElementById('quoteCloseBtn');
-  const quoteForm = document.getElementById('quoteForm');
-  const quoteSubmitBtn = document.getElementById('quoteSubmitBtn');
-  const quoteSuccess = document.getElementById('quoteSuccess');
-  const quoteCloseSuccessBtn = document.getElementById('quoteCloseSuccessBtn');
-  const openQuoteFormBtn = document.getElementById('openQuoteFormBtn');
+  let quoteInitialized = false;
+  let openQuoteRef = null;
 
-  function openQuoteModal() {
-    if (!quoteModal) return;
-    quoteModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    if (quoteForm) quoteForm.style.display = 'block';
-    if (quoteSuccess) quoteSuccess.style.display = 'none';
-    const qHeader = quoteModal.querySelector('.modal-header');
-    if (qHeader) qHeader.style.display = 'block';
-    const qNav = quoteModal.querySelector('.form-navigation');
-    if (qNav) qNav.style.display = 'flex';
-  }
+  function initQuoteModal() {
+    const quoteModal = document.getElementById('quoteModal');
+    const quoteCloseBtn = document.getElementById('quoteCloseBtn');
+    const quoteForm = document.getElementById('quoteForm');
+    const quoteSubmitBtn = document.getElementById('quoteSubmitBtn');
+    const quoteSuccess = document.getElementById('quoteSuccess');
+    const quoteCloseSuccessBtn = document.getElementById('quoteCloseSuccessBtn');
+    const openQuoteFormBtn = document.getElementById('openQuoteFormBtn');
 
-  function closeQuoteModal() {
-    if (!quoteModal) return;
-    quoteModal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+    function openQuoteModal() {
+      if (!quoteModal) return;
+      quoteModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (quoteForm) quoteForm.style.display = 'block';
+      if (quoteSuccess) quoteSuccess.style.display = 'none';
+      const qHeader = quoteModal.querySelector('.modal-header');
+      if (qHeader) qHeader.style.display = 'block';
+      const qNav = quoteModal.querySelector('.form-navigation');
+      if (qNav) qNav.style.display = 'flex';
+    }
 
-  if (openQuoteFormBtn) {
-    openQuoteFormBtn.addEventListener('click', openQuoteModal);
-    openQuoteFormBtn.addEventListener('touchend', (e) => { e.preventDefault(); openQuoteModal(); });
-  }
-  if (quoteCloseBtn) quoteCloseBtn.addEventListener('click', closeQuoteModal);
-  if (quoteCloseSuccessBtn) quoteCloseSuccessBtn.addEventListener('click', closeQuoteModal);
-  if (quoteModal) {
-    quoteModal.addEventListener('click', (e) => {
-      if (e.target === quoteModal) closeQuoteModal();
+    function closeQuoteModal() {
+      if (!quoteModal) return;
+      quoteModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (quoteCloseBtn) quoteCloseBtn.addEventListener('click', closeQuoteModal);
+    if (quoteCloseSuccessBtn) quoteCloseSuccessBtn.addEventListener('click', closeQuoteModal);
+    if (quoteModal) {
+      quoteModal.addEventListener('click', (e) => {
+        if (e.target === quoteModal) closeQuoteModal();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && quoteModal && quoteModal.classList.contains('active')) closeQuoteModal();
     });
-  }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && quoteModal && quoteModal.classList.contains('active')) closeQuoteModal();
-  });
 
-  // All "Start a Project" buttons open the quote modal
-  document.querySelectorAll('.js-start-project').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openQuoteModal();
-    });
-  });
+    // Deep-link support: #project-quote opens the quote modal (direct links
+    // and in-page hash changes)
+    const handleQuoteHash = () => {
+      if (window.location.hash === '#project-quote') openQuoteModal();
+    };
+    window.addEventListener('hashchange', handleQuoteHash);
+    window.addEventListener('load', handleQuoteHash);
 
-  // Deep-link support: #project-quote opens the quote modal (direct links
-  // and in-page hash changes)
-  const handleQuoteHash = () => {
-    if (window.location.hash === '#project-quote') openQuoteModal();
-  };
-  window.addEventListener('hashchange', handleQuoteHash);
-  window.addEventListener('load', handleQuoteHash);
+    openQuoteRef = openQuoteModal;
 
   function validateQuoteForm() {
     if (!quoteForm) return false;
@@ -1619,6 +1711,34 @@ function formatPhoneInput(input) {
       }
     });
   }
+  }
+
+  function openQuoteLazy() {
+    ensureFormsInjected().then(() => {
+      if (!quoteInitialized) {
+        quoteInitialized = true;
+        initQuoteModal();
+      }
+      if (openQuoteRef) openQuoteRef();
+    }).catch(() => {});
+  }
+
+  // All "Start a Project" buttons open the quote modal
+  document.querySelectorAll('.js-start-project').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openQuoteLazy();
+    });
+  });
+
+  // The "Discuss Your Project" button (#openQuoteFormBtn) lives inside the
+  // lazy-injected markup — delegate at the document level
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#openQuoteFormBtn')) {
+      e.preventDefault();
+      openQuoteLazy();
+    }
+  });
 
   /* ============================================
      SCROLL-REVEAL ANIMATIONS

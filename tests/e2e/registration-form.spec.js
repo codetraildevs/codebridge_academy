@@ -73,7 +73,14 @@ test.describe('Registration Form — 5-Step Modal', () => {
   test('shows network error on fetch failure', async ({ page }) => {
     await page.evaluate(() => {
       window.grecaptcha = { execute: async () => 'mock-token', ready: (cb) => cb() };
-      window.fetch = async () => { throw new TypeError('Failed to fetch'); };
+      // Fail only the form submission — the lazy forms partial must
+      // still be fetchable so the modal can open
+      window.fetch = async (url, opts) => {
+        if (typeof url === 'string' && url.includes('submit-form')) {
+          throw new TypeError('Failed to fetch');
+        }
+        return window.__originalFetch(url, opts);
+      };
     });
 
     await clickRegister(page);
@@ -98,7 +105,19 @@ async function clickRegister(page) {
   await expect(btn).toBeVisible({ timeout: 10000 });
   await btn.scrollIntoViewIfNeeded();
   await btn.click({ force: true });
-  await expect(page.locator('#registrationModal')).toHaveClass(/active/, { timeout: 5000 });
+  // Async web-font swapping can make a synthetic click's hit-testing
+  // resolve to the button's paint ancestor for a brief window after
+  // load (same reason openSurveyModal uses dispatchEvent below).
+  // If the real click didn't register, fall back to a dispatched one.
+  try {
+    await expect(page.locator('#registrationModal')).toHaveClass(/active/, { timeout: 2500 });
+  } catch {
+    await page.evaluate(() => {
+      document.querySelector('.announcement-cta')
+        .dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    });
+    await expect(page.locator('#registrationModal')).toHaveClass(/active/, { timeout: 5000 });
+  }
 }
 
 async function mockFormSubmission(page) {

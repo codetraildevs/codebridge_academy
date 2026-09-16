@@ -602,6 +602,10 @@ input, textarea, select {
   font-family: var(--font-heading);
   text-decoration: none;
   white-space: nowrap;
+  /* button element support (CTA may be a <button> instead of an <a>) */
+  border: none;
+  cursor: pointer;
+}
   transition: all 0.25s ease;
 }
 

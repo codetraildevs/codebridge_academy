@@ -1,0 +1,912 @@
+
+  <!-- ============================================
+       REGISTRATION MODAL (Multi-step)
+       ============================================ -->
+  <div class="modal-overlay" id="registrationModal">
+    <div class="modal-content reveal">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <h3>Training Registration</h3>
+        <p>Join CodeBridge Academy 2026 Cohort</p>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-steps">
+          <div class="step-indicator active">1</div>
+          <div class="step-indicator">2</div>
+          <div class="step-indicator">3</div>
+          <div class="step-indicator">4</div>
+          <div class="step-indicator">5</div>
+        </div>
+      </div>
+
+      <form id="registrationForm" novalidate>
+        <!-- Step 1: Instructions & Welcome -->
+        <div class="form-step active" data-step="1">
+          <div class="form-description-box full-step">
+            <h3>Welcome to CodeBridge Academy</h3>
+            <p class="subtitle text-accent">Bridging learning to real software careers</p>
+            <p>Are you a student or young developer looking to gain real-world software development skills and become internship or job ready?</p>
+            <p>Our programs are designed to help you move beyond theory and start building real projects, working in teams, and preparing for professional careers in tech.</p>
+            <div class="info-highlight-grid">
+              <div class="highlight-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <strong>Training Location:</strong>
+                  <p>Kigali – Gikondo (Association des Guides Gikondo)</p>
+                </div>
+              </div>
+              <div class="highlight-item">
+                <i class="fa-solid fa-calendar-star"></i>
+                <div>
+                  <strong>Training Start Date:</strong>
+                  <p>11 November 2026</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Holiday Bootcamp Packages -->
+            <div class="holiday-packages">
+              <h4 style="font-size:1.1rem;font-weight:800;color:var(--brand-blue);margin-bottom:1rem;">Holiday Bootcamp Packages</h4>
+              <div class="package-cards">
+                <!-- Package 1: Starter -->
+                <div class="package-card" data-package="starter" data-duration="4 Weeks" data-price="60,000">
+                  <div class="package-label">Package 1</div>
+                  <h5 class="package-name">Starter</h5>
+                  <div class="package-duration">4 Weeks</div>
+                  <div class="package-price"><span class="price-currency">RWF</span> 60,000</div>
+                  <ul class="package-includes">
+                    <li><i class="fa-solid fa-check"></i> Training</li>
+                    <li><i class="fa-solid fa-check"></i> Projects</li>
+                    <li><i class="fa-solid fa-check"></i> Certificate</li>
+                    <li><i class="fa-solid fa-check"></i> Community</li>
+                  </ul>
+                </div>
+                <!-- Package 2: Professional (Highlighted) -->
+                <div class="package-card package-highlight" data-package="professional" data-duration="8 Weeks" data-price="110,000">
+                  <div class="package-badge">Most Popular</div>
+                  <div class="package-label">Package 2</div>
+                  <h5 class="package-name">Professional</h5>
+                  <div class="package-duration">8 Weeks</div>
+                  <div class="package-price"><span class="price-currency">RWF</span> 110,000</div>
+                  <ul class="package-includes">
+                    <li><i class="fa-solid fa-check"></i> Everything in Starter</li>
+                    <li><i class="fa-solid fa-check"></i> Mentorship</li>
+                    <li><i class="fa-solid fa-check"></i> Portfolio</li>
+                    <li><i class="fa-solid fa-check"></i> Career Guidance</li>
+                    <li><i class="fa-solid fa-check"></i> Hackathon Participation</li>
+                  </ul>
+                </div>
+                <!-- Package 3: Advanced -->
+                <div class="package-card" data-package="advanced" data-duration="12 Weeks" data-price="150,000">
+                  <div class="package-label">Package 3</div>
+                  <h5 class="package-name">Advanced</h5>
+                  <div class="package-duration">12 Weeks</div>
+                  <div class="package-price"><span class="price-currency">RWF</span> 150,000</div>
+                  <ul class="package-includes">
+                    <li><i class="fa-solid fa-check"></i> Everything in Professional</li>
+                    <li><i class="fa-solid fa-check"></i> Advanced Projects</li>
+                    <li><i class="fa-solid fa-check"></i> Internship Recommendation</li>
+                    <li><i class="fa-solid fa-check"></i> Interview Preparation</li>
+                    <li><i class="fa-solid fa-check"></i> Professional Mentorship</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="discounts-section">
+              <h4>Special Discounts:</h4>
+              <ul>
+                <li>Get <strong>10% off</strong> if you already have coding experience (GitHub required).</li>
+                <li>Get <strong>10% off</strong> if you refer someone who registers and pays.</li>
+              </ul>
+            </div>
+
+            <div class="payment-methods">
+              <h4>Payment Methods:</h4>
+              <p><i class="fa-solid fa-mobile-screen"></i> <strong>MoMo:</strong> 0780494000 (Fidèle NDAYISHIMIYE)</p>
+              <p><i class="fa-solid fa-building-columns"></i> <strong>Bank:</strong> Equity 4002113119763 (Fidèle NDAYISHIMIYE)</p>
+            </div>
+
+            <div class="gains-section">
+              <h4>What You Will Gain:</h4>
+              <div class="gains-grid">
+                <span><i class="fa-solid fa-check-circle"></i> Real Projects</span>
+                <span><i class="fa-solid fa-check-circle"></i> Portfolio Building</span>
+                <span><i class="fa-solid fa-check-circle"></i> Teamwork</span>
+                <span><i class="fa-solid fa-check-circle"></i> Career Ready</span>
+                <span><i class="fa-solid fa-check-circle"></i> Certificate</span>
+                <span><i class="fa-solid fa-check-circle"></i> Mentorship</span>
+              </div>
+            </div>
+
+            <p class="final-call"><em>Limited slots available — secure your place now!</em></p>
+          </div>
+        </div>
+
+        <!-- Step 2: Personal Profile -->
+        <div class="form-step" data-step="2">
+          <div class="form-group">
+            <label for="fullName">Full Names *</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" autocomplete="name" data-textonly="true">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="example@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <div class="phone-input-group">
+              <label for="phoneCode" class="sr-only">Country code</label>
+              <select id="phoneCode" name="phoneCode" class="phone-code-select" aria-label="Country code">
+                <option value="+250" selected>🇷🇼 RW +250</option>
+                <option value="+256">🇺🇬 UG +256</option>
+                <option value="+254">🇰🇪 KE +254</option>
+                <option value="+255">🇹🇿 TZ +255</option>
+                <option value="+257">🇧🇮 BI +257</option>
+                <option value="+243">🇨🇩 CD +243</option>
+                <option value="+251">🇪🇹 ET +251</option>
+                <option value="+211">🇸🇸 SS +211</option>
+                <option value="+27">🇿🇦 ZA +27</option>
+                <option value="+234">🇳🇬 NG +234</option>
+                <option value="+20">🇪🇬 EG +20</option>
+                <option value="+44">🇬🇧 GB +44</option>
+                <option value="+1">🇺🇸 US +1</option>
+                <option value="+33">🇫🇷 FR +33</option>
+                <option value="+49">🇩🇪 DE +49</option>
+                <option value="+86">🇨🇳 CN +86</option>
+                <option value="+91">🇮🇳 IN +91</option>
+              </select>
+              <input type="tel" id="phone" name="phone" required placeholder="7XX XXX XXX" autocomplete="tel">
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <legend>Gender *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="gender" value="Male" required> Male</label>
+              <label class="radio-label"><input type="radio" name="gender" value="Female"> Female</label>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="location">Location *</label>
+            <input type="text" id="location" name="location" required placeholder="e.g., Gikondo, Nyamirambo" autocomplete="address-level2" data-textonly="true">
+          </div>
+          <div class="form-group">
+            <label for="ageGroup">Age Group *</label>
+            <select id="ageGroup" name="ageGroup" required class="form-control">
+              <option value="" disabled selected>Select your age group</option>
+              <option value="12-15">12&ndash;15</option>
+              <option value="16-18">16&ndash;18</option>
+              <option value="19-25">19&ndash;25</option>
+              <option value="25+">25+</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 3: Education & Background -->
+        <div class="form-step" data-step="3">
+          <fieldset class="form-group">
+            <legend>Current Status Level *</legend>
+            <div class="radio-group vertical" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="status" value="Secondary school student" required> Secondary school student</label>
+              <label class="radio-label"><input type="radio" name="status" value="University student"> University student</label>
+              <label class="radio-label"><input type="radio" name="status" value="Graduate"> Graduate</label>
+              <label class="radio-label"><input type="radio" name="status" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="organization">School / University / Company Name *</label>
+            <input type="text" id="organization" name="organization" required placeholder="Name of your institution" autocomplete="organization" data-textonly="true">
+          </div>
+          <div class="form-group">
+            <label for="level">Current Class / Level / Year *</label>
+            <select id="level" name="level" required class="form-control">
+              <option value="" disabled selected>Select your level</option>
+              <option value="O Level">O Level</option>
+              <option value="L3">L3</option>
+              <option value="L4">L4</option>
+              <option value="L5">L5</option>
+              <option value="Year 1">Year 1</option>
+              <option value="Year 2">Year 2</option>
+              <option value="Graduate">Graduate</option>
+              <option value="Working Professional">Working Professional</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="educationLevel">Education Level *</label>
+            <select id="educationLevel" name="educationLevel" required class="form-control">
+              <option value="" disabled selected>Select your education level</option>
+              <option value="Secondary">Secondary School</option>
+              <option value="Certificate">Certificate</option>
+              <option value="Diploma">Diploma</option>
+              <option value="Bachelor">Bachelor</option>
+              <option value="Master">Master</option>
+              <option value="PhD">PhD</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="experienceLevel">Experience Level *</label>
+            <select id="experienceLevel" name="experienceLevel" required class="form-control">
+              <option value="" disabled selected>Select your experience level</option>
+              <option value="Beginner">Beginner (No experience)</option>
+              <option value="Intermediate">Intermediate (Some projects)</option>
+              <option value="Advanced">Advanced (Can build independently)</option>
+            </select>
+          </div>
+          
+          <!-- Parent/Guardian Information (Required if under 16) -->
+          <div id="parentInfoSection" class="parent-info-section">
+            <h4 style="font-size:0.9rem;font-weight:700;color:var(--color-text);margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:1px solid var(--color-border);">
+              <i class="fa-solid fa-shield-halved"></i> Parent / Guardian Information
+              <span style="font-size:0.75rem;font-weight:500;color:var(--color-text-secondary);"> (Required if under 16)</span>
+            </h4>
+            <div class="form-group">
+              <label for="parentName">Parent/Guardian Full Name</label>
+              <input type="text" id="parentName" name="parentName" placeholder="Enter parent or guardian full name" autocomplete="name" data-textonly="true">
+            </div>
+            <div class="form-group">
+              <label for="parentPhone">Parent/Guardian Phone</label>
+              <div class="phone-input-group">
+                <label for="parentPhoneCode" class="sr-only">Country code</label>
+                <select id="parentPhoneCode" name="parentPhoneCode" class="phone-code-select" aria-label="Country code">
+                  <option value="+250" selected>&#x1F1F7;&#x1F1FC; RW +250</option>
+                  <option value="+256">&#x1F1FA;&#x1F1EC; UG +256</option>
+                  <option value="+254">&#x1F1F0;&#x1F1EA; KE +254</option>
+                  <option value="+255">&#x1F1F9;&#x1F1FF; TZ +255</option>
+                  <option value="+257">&#x1F1E7;&#x1F1ED; BI +257</option>
+                  <option value="+243">&#x1F1E8;&#x1F1E9; CD +243</option>
+                  <option value="+251">&#x1F1EA;&#x1F1F9; ET +251</option>
+                  <option value="+211">&#x1F1F8;&#x1F1F8; SS +211</option>
+                  <option value="+27">&#x1F1FF;&#x1F1E6; ZA +27</option>
+                  <option value="+234">&#x1F1F3;&#x1F1EC; NG +234</option>
+                  <option value="+20">&#x1F1EA;&#x1F1EC; EG +20</option>
+                  <option value="+44">&#x1F1EC;&#x1F1E7; GB +44</option>
+                  <option value="+1">&#x1F1FA;&#x1F1F8; US +1</option>
+                  <option value="+33">&#x1F1EB;&#x1F1F7; FR +33</option>
+                  <option value="+49">&#x1F1E9;&#x1F1EA; DE +49</option>
+                  <option value="+86">&#x1F1E8;&#x1F1F3; CN +86</option>
+                  <option value="+91">&#x1F1EE;&#x1F1F3; IN +91</option>
+                </select>
+                <input type="tel" id="parentPhone" name="parentPhone" placeholder="7XX XXX XXX" autocomplete="tel">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Training & Skills -->
+        <div class="form-step" data-step="4">
+          <fieldset class="form-group">
+            <legend>Which training program do you want to join? *</legend>
+            <div class="radio-group vertical" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="program" value="Software Development" required> Software Development</label>
+              <label class="radio-label"><input type="radio" name="program" value="Networking"> Networking</label>
+              <label class="radio-label"><input type="radio" name="program" value="CSA"> CSA (Computer System Architecture)</label>
+              <label class="radio-label"><input type="radio" name="program" value="Electronics"> Electronics</label>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="duration">Duration *</label>
+            <select id="duration" name="duration" required class="form-control">
+              <option value="" disabled selected>Select duration</option>
+              <option value="4 Weeks">4 Weeks</option>
+              <option value="8 Weeks">8 Weeks</option>
+              <option value="12 Weeks">12 Weeks</option>
+            </select>
+            <div id="priceDisplay" class="price-display" style="display:none;">
+              <span class="price-display-icon"><i class="fa-solid fa-tag"></i></span>
+              <span class="price-display-label">You selected:</span>
+              <span class="price-display-package" id="priceDisplayPackage"></span>
+              <span class="price-display-sep">&mdash;</span>
+              <span class="price-display-amount" id="priceDisplayAmount"></span>
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <legend>Preferred Schedule *</legend>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Morning" required> Morning</label>
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Afternoon"> Afternoon</label>
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Weekend"> Weekend</label>
+              <label class="checkbox-label"><input type="checkbox" name="schedule" value="Online"> Online</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>Current skill level in software development *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="skillLevel" value="Beginner" required> Beginner</label>
+              <label class="radio-label"><input type="radio" name="skillLevel" value="Intermediate"> Intermediate</label>
+              <label class="radio-label"><input type="radio" name="skillLevel" value="Advanced"> Advanced</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group" id="techContainer">
+            <legend>Technologies used (Select all that apply) <span id="techRequiredMark" style="color:red;">*</span></legend>
+            <div class="checkbox-grid" id="techCheckboxes" role="group">
+              <!-- Populated dynamically by JS based on selected program -->
+              <p id="techPrompt" style="font-size:0.82rem;color:var(--color-text-secondary);margin:0.5rem 0;grid-column:1/-1;">
+                <i class="fa-solid fa-arrow-up"></i> Select a training program above to see relevant technologies
+              </p>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 5: Background & Goals -->
+        <div class="form-step" data-step="5">
+          <fieldset class="form-group inline">
+            <div>
+              <legend>Do you have a laptop? *</legend>
+              <div class="radio-group" role="radiogroup">
+                <label class="radio-label"><input type="radio" name="hasLaptop" value="Yes" required> Yes</label>
+                <label class="radio-label"><input type="radio" name="hasLaptop" value="No"> No</label>
+              </div>
+            </div>
+            <div>
+              <legend>Reliable internet? *</legend>
+              <div class="radio-group" role="radiogroup">
+                <label class="radio-label"><input type="radio" name="hasInternet" value="Yes" required> Yes</label>
+                <label class="radio-label"><input type="radio" name="hasInternet" value="No"> No</label>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label for="projects_link">Software projects before? Share links (optional)</label>
+            <input type="text" id="projects_link" name="projects" placeholder="GitHub link or project title" autocomplete="url">
+          </div>
+          <div class="form-group">
+            <label for="careerGoals">Career Goals *</label>
+            <textarea id="careerGoals" name="careerGoals" required placeholder="Tell us about your career aspirations in tech..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="motivation">Why do you want to join? *</label>
+            <textarea id="motivation" name="motivation" required placeholder="Tell us your motivation..."></textarea>
+          </div>
+          <fieldset class="form-group">
+            <legend>Main goals (Select all apply) *</legend>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="Learn software development"> Learn software dev</label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="Prepare for internship"> Prepare for internship</label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="Improve practical skills"> Improve practical skills</label>
+              <label class="checkbox-label"><input type="checkbox" name="goals" value="Build real projects"> Build real projects</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="form-submit-error" style="display: none;"></div>
+        <div class="form-navigation">
+          <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+          <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">Submit Application</button>
+        </div>
+      </form>
+
+      <!-- Registration Success Screen -->
+      <div class="form-success" id="registrationSuccess" style="display: none;">
+        <div class="form-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h3>Application Submitted Successfully!</h3>
+        <p class="form-success-message">Thank you for applying to CodeBridge Academy. Your journey to a software career begins now.</p>
+        
+        <div class="success-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Application Received</strong>
+              <span>We have your details safely stored</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Review Process</strong>
+              <span>Our team reviews your application (1-2 days)</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Welcome Call</strong>
+              <span>We contact you with next steps and payment details</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Training Starts</strong>
+              <span>Join the 2026 Cohort — start building your future!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="https://wa.me/250780494000" class="btn btn-accent" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Chat With Us on WhatsApp
+          </a>
+          <a href="#contact" class="btn btn-primary" id="regSuccessContact">
+            <i class="fa-solid fa-phone"></i> Contact Us
+          </a>
+          <button type="button" class="btn btn-secondary" id="regSuccessClose">
+            <i class="fa-solid fa-check"></i> Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SURVEY MODAL (Multi-step)
+       ============================================ -->
+  <div class="modal-overlay" id="surveyModal">
+    <div class="modal-content survey-modal-content reveal" id="surveyModalContent">
+      <button type="button" class="modal-close" id="surveyCloseBtn" aria-label="Close survey">&times;</button>
+      <div class="modal-header">
+        <h3>Help Shape the Future of Competency Assessment in Rwanda</h3>
+        <p>CodeBridge Academy is conducting a national research study to understand challenges in practical assessment, competency verification, technical recruitment, workforce readiness, and digital assessment adoption.</p>
+        <p>Your feedback will directly contribute to the development of <strong>Qualexas</strong>, an AI-powered Competency Assessment, Verification, and Skills Intelligence Platform.</p>
+        <div class="survey-time-badge"><i class="fa-solid fa-clock"></i> Estimated completion: 5–7 minutes</div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="survey-progress-container">
+        <div class="survey-progress-bar" id="surveyProgressBar"></div>
+        <div class="survey-progress-steps">
+          <div class="survey-step-indicator active">1</div>
+          <div class="survey-step-indicator">2</div>
+          <div class="survey-step-indicator">3</div>
+          <div class="survey-step-indicator">4</div>
+          <div class="survey-step-indicator">5</div>
+          <div class="survey-step-indicator">6</div>
+          <div class="survey-step-indicator">7</div>
+        </div>
+        <div class="survey-step-labels">
+          <span>Info</span>
+          <span>Challenges</span>
+          <span>Verification</span>
+          <span>Digital</span>
+          <span>Workforce</span>
+          <span>Qualexas</span>
+          <span>Feedback</span>
+        </div>
+      </div>
+
+      <form id="surveyForm" novalidate>
+        <!-- Step 1: Participant Information -->
+        <div class="survey-step active" data-step="1">
+          <h4 class="survey-step-title">Section 1: Participant Information</h4>
+          <div class="form-group">
+            <label for="surveyFullName">Full Name *</label>
+            <input type="text" id="surveyFullName" name="surveyFullName" required placeholder="Enter your full name" autocomplete="name" aria-label="Full Name" data-textonly="true">
+          </div>
+          <div class="form-group">
+            <label for="surveyEmail">Email Address *</label>
+            <input type="email" id="surveyEmail" name="surveyEmail" required placeholder="example@email.com" autocomplete="email" aria-label="Email Address">
+          </div>
+          <div class="form-group">
+            <label for="surveyPhone">Phone Number (Optional)</label>
+            <div class="phone-input-group">
+              <label for="surveyPhoneCode" class="sr-only">Country code</label>
+              <select id="surveyPhoneCode" name="surveyPhoneCode" class="phone-code-select" aria-label="Country code">
+                <option value="+250" selected>🇷🇼 +250</option>
+                <option value="+256">🇺🇬 +256</option>
+                <option value="+254">🇰🇪 +254</option>
+                <option value="+255">🇹🇿 +255</option>
+                <option value="+257">🇧🇮 +257</option>
+                <option value="+243">🇨🇩 +243</option>
+                <option value="+251">🇪🇹 +251</option>
+                <option value="+211">🇸🇸 +211</option>
+                <option value="+27">🇿🇦 +27</option>
+                <option value="+234">🇳🇬 +234</option>
+                <option value="+20">🇪🇬 +20</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+86">🇨🇳 +86</option>
+                <option value="+91">🇮🇳 +91</option>
+              </select>
+              <input type="tel" id="surveyPhone" name="surveyPhone" placeholder="7XX XXX XXX" autocomplete="tel" aria-label="Phone Number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="surveyInstitution">Institution Name *</label>
+            <input type="text" id="surveyInstitution" name="surveyInstitution" required placeholder="Name of your institution" autocomplete="organization" aria-label="Institution Name" data-textonly="true">
+          </div>
+          <div class="form-group">
+            <label for="surveyDistrict">District *</label>
+            <input type="text" id="surveyDistrict" name="surveyDistrict" required placeholder="e.g., Kicukiro, Gasabo" autocomplete="address-level2" aria-label="District" data-textonly="true">
+          </div>
+          <fieldset class="form-group">
+            <legend>Institution Type *</legend>
+            <div class="radio-group vertical" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="TVET School" required> TVET School</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="University"> University</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="Secondary School"> Secondary School</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="Training Center"> Training Center</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="Employer"> Employer</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="Government Institution"> Government Institution</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="Certification Body"> Certification Body</label>
+              <label class="radio-label"><input type="radio" name="surveyInstType" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>Occupation *</legend>
+            <div class="radio-group vertical" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Student" required> Student</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Graduate"> Graduate</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Trainer"> Trainer</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Lecturer"> Lecturer</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Assessor"> Assessor</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Employer"> Employer</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="HR Officer"> HR Officer</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Government Officer"> Government Officer</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="School Administrator"> School Administrator</label>
+              <label class="radio-label"><input type="radio" name="surveyOccupation" value="Other"> Other</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 2: Current Assessment Challenges -->
+        <div class="survey-step" data-step="2">
+          <h4 class="survey-step-title">Section 2: Current Assessment Challenges</h4>
+          <fieldset class="form-group">
+            <legend>1. How are practical assessments currently conducted in your institution? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s2q1" value="Paper-Based" required> Paper-Based</label>
+              <label class="radio-label"><input type="radio" name="s2q1" value="Digital"> Digital</label>
+              <label class="radio-label"><input type="radio" name="s2q1" value="Both"> Both</label>
+              <label class="radio-label"><input type="radio" name="s2q1" value="Not Sure"> Not Sure</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. What are the biggest challenges in practical assessments? *</legend>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Manual marking"> Manual marking</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Delayed results"> Delayed results</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Inconsistent scoring"> Inconsistent scoring</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Examination malpractice"> Examination malpractice</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Lack of assessment tools"> Lack of assessment tools</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Lack of standardization"> Lack of standardization</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="High operational costs"> High operational costs</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Limited competency verification"> Limited competency verification</label>
+              <label class="checkbox-label"><input type="checkbox" name="s2q2" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. How satisfied are you with the current practical assessment process? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s2q3" value="1" required> 1 — Very Dissatisfied</label>
+              <label class="radio-label"><input type="radio" name="s2q3" value="2"> 2 — Dissatisfied</label>
+              <label class="radio-label"><input type="radio" name="s2q3" value="3"> 3 — Neutral</label>
+              <label class="radio-label"><input type="radio" name="s2q3" value="4"> 4 — Satisfied</label>
+              <label class="radio-label"><input type="radio" name="s2q3" value="5"> 5 — Very Satisfied</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>4. How often do practical assessments fail to reflect actual competency? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s2q4" value="Never" required> Never</label>
+              <label class="radio-label"><input type="radio" name="s2q4" value="Rarely"> Rarely</label>
+              <label class="radio-label"><input type="radio" name="s2q4" value="Sometimes"> Sometimes</label>
+              <label class="radio-label"><input type="radio" name="s2q4" value="Often"> Often</label>
+              <label class="radio-label"><input type="radio" name="s2q4" value="Very Often"> Very Often</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 3: Competency Verification -->
+        <div class="survey-step" data-step="3">
+          <h4 class="survey-step-title">Section 3: Competency Verification</h4>
+          <fieldset class="form-group">
+            <legend>1. Do certificates and grades always reflect actual skills and competence? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s3q1" value="Yes" required> Yes</label>
+              <label class="radio-label"><input type="radio" name="s3q1" value="No"> No</label>
+              <label class="radio-label"><input type="radio" name="s3q1" value="Not Sure"> Not Sure</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. How important is competency verification? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s3q2" value="1" required> 1 — Not Important</label>
+              <label class="radio-label"><input type="radio" name="s3q2" value="2"> 2 — Slightly Important</label>
+              <label class="radio-label"><input type="radio" name="s3q2" value="3"> 3 — Neutral</label>
+              <label class="radio-label"><input type="radio" name="s3q2" value="4"> 4 — Important</label>
+              <label class="radio-label"><input type="radio" name="s3q2" value="5"> 5 — Very Important</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. Which competencies should be assessed? *</legend>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Technical Skills"> Technical Skills</label>
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Problem Solving"> Problem Solving</label>
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Communication"> Communication</label>
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Teamwork"> Teamwork</label>
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Professional Ethics"> Professional Ethics</label>
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Critical Thinking"> Critical Thinking</label>
+              <label class="checkbox-label"><input type="checkbox" name="s3q3" value="Workplace Readiness"> Workplace Readiness</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 4: Digital Assessment -->
+        <div class="survey-step" data-step="4">
+          <h4 class="survey-step-title">Section 4: Digital Assessment</h4>
+          <fieldset class="form-group">
+            <legend>1. Would your institution benefit from digital practical assessments? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s4q1" value="Yes" required> Yes</label>
+              <label class="radio-label"><input type="radio" name="s4q1" value="No"> No</label>
+              <label class="radio-label"><input type="radio" name="s4q1" value="Not Sure"> Not Sure</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. Which features would be most valuable? *</legend>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Online Practical Exams"> Online Practical Exams</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="AI Assessment"> AI Assessment</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Oral Defense"> Oral Defense</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Competency Reports"> Competency Reports</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Simulation-Based Assessment"> Simulation-Based Assessment</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Digital Certificates"> Digital Certificates</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Anti-Cheating Tools"> Anti-Cheating Tools</label>
+              <label class="checkbox-label"><input type="checkbox" name="s4q2" value="Skills Analytics"> Skills Analytics</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. How important is reducing examination malpractice? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s4q3" value="1" required> 1 — Not Important</label>
+              <label class="radio-label"><input type="radio" name="s4q3" value="2"> 2 — Slightly Important</label>
+              <label class="radio-label"><input type="radio" name="s4q3" value="3"> 3 — Neutral</label>
+              <label class="radio-label"><input type="radio" name="s4q3" value="4"> 4 — Important</label>
+              <label class="radio-label"><input type="radio" name="s4q3" value="5"> 5 — Very Important</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 5: Employer & Workforce Readiness -->
+        <div class="survey-step" data-step="5">
+          <h4 class="survey-step-title">Section 5: Employer &amp; Workforce Readiness</h4>
+          <fieldset class="form-group">
+            <legend>1. How do you currently evaluate technical skills during recruitment? *</legend>
+            <p class="field-hint">Select all that apply</p>
+            <div class="checkbox-grid" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="CV Review"> CV Review</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Interview"> Interview</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Practical Test"> Practical Test</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Technical Assessment"> Technical Assessment</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q1" value="Portfolio Review"> Portfolio Review</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. Would you use a platform that objectively measures candidate competencies? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s5q2" value="Yes" required> Yes</label>
+              <label class="radio-label"><input type="radio" name="s5q2" value="No"> No</label>
+              <label class="radio-label"><input type="radio" name="s5q2" value="Maybe"> Maybe</label>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <label>3. Which areas are most difficult to assess during recruitment? *</label>
+            <div class="checkbox-grid" role="group" aria-label="Difficult recruitment areas">
+              <label class="checkbox-label"><input type="checkbox" name="s5q3" value="Technical Skills"> Technical Skills</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q3" value="Communication"> Communication</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q3" value="Problem Solving"> Problem Solving</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q3" value="Professional Competence"> Professional Competence</label>
+              <label class="checkbox-label"><input type="checkbox" name="s5q3" value="Workplace Readiness"> Workplace Readiness</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6: Qualexas Validation -->
+        <div class="survey-step" data-step="6">
+          <h4 class="survey-step-title">Section 6: Qualexas Validation</h4>
+          <fieldset class="form-group">
+            <legend>1. How valuable would a platform combining Practical Assessment, AI Evaluation, Oral Defense, Competency Verification, and Digital Certification be for your institution? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s6q1" value="1" required> 1 — Not Valuable</label>
+              <label class="radio-label"><input type="radio" name="s6q1" value="2"> 2 — Slightly Valuable</label>
+              <label class="radio-label"><input type="radio" name="s6q1" value="3"> 3 — Neutral</label>
+              <label class="radio-label"><input type="radio" name="s6q1" value="4"> 4 — Valuable</label>
+              <label class="radio-label"><input type="radio" name="s6q1" value="5"> 5 — Extremely Valuable</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>2. Would you be interested in piloting Qualexas? *</legend>
+            <div class="radio-group" role="radiogroup">
+              <label class="radio-label"><input type="radio" name="s6q2" value="Yes" required> Yes</label>
+              <label class="radio-label"><input type="radio" name="s6q2" value="No"> No</label>
+              <label class="radio-label"><input type="radio" name="s6q2" value="Maybe"> Maybe</label>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <legend>3. Which trades or fields should be supported? *</legend>
+            <div class="checkbox-grid three-cols" role="group">
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Software Development"> Software Development</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Computer Networking"> Computer Networking</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Multimedia &amp; Graphic Design"> Multimedia &amp; Graphic Design</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Tourism &amp; Tour Guiding"> Tourism &amp; Tour Guiding</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Culinary Arts"> Culinary Arts</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Food &amp; Beverage Services"> Food &amp; Beverage Services</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Fashion Design &amp; Tailoring"> Fashion Design &amp; Tailoring</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Hairdressing &amp; Beauty Therapy"> Hairdressing &amp; Beauty Therapy</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Electrical Installation"> Electrical Installation</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Electronics &amp; Telecommunication"> Electronics &amp; Telecommunication</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Automotive Mechanics"> Automotive Mechanics</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Construction Trades"> Construction Trades</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Agriculture &amp; Production"> Agriculture &amp; Production</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="University Programs"> University Programs</label>
+              <label class="checkbox-label"><input type="checkbox" name="s6q3" value="Professional Certifications"> Professional Certifications</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 7: Open Feedback -->
+        <div class="survey-step" data-step="7">
+          <h4 class="survey-step-title">Section 7: Open Feedback</h4>
+          <div class="form-group">
+            <label for="surveyFeedback1">1. What are the biggest challenges facing practical assessment in Rwanda?</label>
+            <textarea id="surveyFeedback1" name="surveyFeedback1" rows="3" placeholder="Share your thoughts..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="surveyFeedback2">2. What improvements would you like to see in practical examinations?</label>
+            <textarea id="surveyFeedback2" name="surveyFeedback2" rows="3" placeholder="Share your suggestions..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="surveyFeedback3">3. Any additional comments or suggestions?</label>
+            <textarea id="surveyFeedback3" name="surveyFeedback3" rows="3" placeholder="Any other thoughts..."></textarea>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="form-submit-error" style="display: none;"></div>
+        <div class="form-navigation">
+          <button type="button" class="btn btn-secondary" id="surveyPrevBtn" style="display: none;">
+            <i class="fa-solid fa-arrow-left"></i> Previous
+          </button>
+          <button type="button" class="btn btn-primary" id="surveyNextBtn">
+            Next <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <button type="submit" class="btn btn-primary" id="surveySubmitBtn" style="display: none;">
+            <i class="fa-solid fa-paper-plane"></i> Submit Survey
+          </button>
+        </div>
+      </form>
+
+      <!-- Survey Success Screen -->
+      <div class="form-success" id="surveySuccess" style="display: none;">
+        <div class="form-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h3>Thank You for Your Contribution!</h3>
+        <p class="form-success-message">Your feedback will directly shape the development of Qualexas — an AI-powered Competency Assessment and Skills Intelligence Platform for Rwanda and beyond.</p>
+        
+        <div class="success-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Survey Recorded</strong>
+              <span>Your responses have been safely stored</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Data Analysis</strong>
+              <span>Research team analyzes all contributions</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Findings Shared</strong>
+              <span>Research results published with the community</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <strong>Qualexas Launch</strong>
+              <span>Platform development informed by your insights</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="#why-qualexas" class="btn btn-primary" id="surveySuccessLearn">
+            <i class="fa-solid fa-info-circle"></i> Learn More About Qualexas
+          </a>
+          <a href="https://wa.me/250780494000" class="btn btn-accent" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Join Research Community
+          </a>
+          <button type="button" class="btn btn-secondary" id="surveyCloseSuccessBtn">
+            <i class="fa-solid fa-check"></i> Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       PROJECT QUOTE MODAL (Software Development)
+       ============================================ -->
+  <div class="modal-overlay" id="quoteModal">
+    <div class="modal-content quote-modal-content reveal">
+      <button type="button" class="modal-close" id="quoteCloseBtn" aria-label="Close quote form">&times;</button>
+      <div class="modal-header">
+        <h3>Request a Project Quote</h3>
+        <p>Tell us about your project — we reply within 48 hours.</p>
+      </div>
+
+      <form id="quoteForm" novalidate>
+        <div class="form-group">
+          <label for="quoteFullName">Full Name *</label>
+          <input type="text" id="quoteFullName" name="fullName" required placeholder="Enter your full name" autocomplete="name" data-textonly="true">
+        </div>
+        <div class="form-group">
+          <label for="quoteEmail">Email Address *</label>
+          <input type="email" id="quoteEmail" name="email" required placeholder="example@email.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="quotePhone">Phone Number</label>
+          <input type="tel" id="quotePhone" name="phone" placeholder="e.g., 0788 123 456" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="quoteOrg">Company / Organization</label>
+          <input type="text" id="quoteOrg" name="organization" placeholder="e.g., Acme Ltd, GS Nyamata, personal project">
+        </div>
+        <div class="form-group">
+          <label for="quoteService">Service Needed *</label>
+          <select id="quoteService" name="service" required class="form-control">
+            <option value="" disabled selected>Select a service</option>
+            <option>Custom Web Application Development</option>
+            <option>Mobile App Development</option>
+            <option>Full-Stack Software Development</option>
+            <option>Business Management Systems</option>
+            <option>API Development &amp; Integration</option>
+            <option>Database Design &amp; Development</option>
+            <option>E-commerce Platforms</option>
+            <option>School &amp; Institution Management Systems</option>
+            <option>Enterprise Software Solutions</option>
+            <option>System Maintenance &amp; Technical Support</option>
+            <option>Cloud Deployment &amp; DevOps</option>
+            <option>UI/UX Design and Development</option>
+            <option>Other / Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quoteBudget">Estimated Budget (Optional)</label>
+          <select id="quoteBudget" name="budget" class="form-control">
+            <option value="" selected>Select a range (optional)</option>
+            <option>Under 500,000 RWF</option>
+            <option>500,000 – 1,500,000 RWF</option>
+            <option>1,500,000 – 5,000,000 RWF</option>
+            <option>Above 5,000,000 RWF</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quoteMessage">Project Description *</label>
+          <textarea id="quoteMessage" name="message" required placeholder="Describe your project: what problem it solves, key features, timeline, and anything else we should know..."></textarea>
+        </div>
+
+        <div class="form-navigation">
+          <button type="submit" class="btn btn-primary btn-full-width" id="quoteSubmitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Send Quote Request
+          </button>
+        </div>
+      </form>
+
+      <!-- Quote Success Screen -->
+      <div class="form-success" id="quoteSuccess" style="display: none;">
+        <div class="form-success-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h3>Quote Request Received!</h3>
+        <p class="form-success-message">Thank you for choosing CodeBridge Academy. Our team will review your project details and get back to you within 48 hours.</p>
+        <div class="success-actions">
+          <a href="https://wa.me/250780494000" class="btn btn-accent" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+          <button type="button" class="btn btn-secondary" id="quoteCloseSuccessBtn">
+            <i class="fa-solid fa-check"></i> Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
