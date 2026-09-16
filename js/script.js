@@ -321,6 +321,60 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
+     MOBILE MENU
+     ============================================ */
+  const navBurger = document.getElementById('navBurger');
+  const navOverlay = document.getElementById('navOverlay');
+  const navMobileMenu = document.getElementById('navMobileMenu');
+  const navMobileClose = document.getElementById('navMobileClose');
+  const navMobileLinks = document.querySelectorAll('.nav-mobile-link');
+
+  function openMobileMenu() {
+    navBurger.classList.add('active');
+    navBurger.setAttribute('aria-expanded', 'true');
+    navOverlay.classList.add('active');
+    navMobileMenu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    navBurger.classList.remove('active');
+    navBurger.setAttribute('aria-expanded', 'false');
+    navOverlay.classList.remove('active');
+    navMobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (navBurger) {
+    navBurger.addEventListener('click', () => {
+      const isOpen = navMobileMenu.classList.contains('active');
+      isOpen ? closeMobileMenu() : openMobileMenu();
+    });
+  }
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeMobileMenu);
+  }
+
+  if (navMobileClose) {
+    navMobileClose.addEventListener('click', closeMobileMenu);
+  }
+
+  navMobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      closeMobileMenu();
+      if (targetSection) {
+        setTimeout(() => {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }, 350);
+      }
+    });
+  });
+
+  /* ============================================
      TUBELIGHT NAVBAR — Active Tab + Scroll Spy
      ============================================ */
   const tubelightNav = document.getElementById('tubelightNav');
@@ -348,6 +402,10 @@ function formatPhoneInput(input) {
       if (isActive) targetItem = item;
     });
     if (targetItem) moveIndicator(targetItem);
+    // Also highlight active mobile link
+    navMobileLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === sectionId);
+    });
   }
 
   // Click handlers for nav items
