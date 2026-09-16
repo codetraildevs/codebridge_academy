@@ -3919,17 +3919,23 @@ input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  align-self: center;
+  align-self: stretch;
   margin-top: auto;
-  padding: 0.85rem 1.8rem;
+  padding: 0.9rem 1.5rem;
   background-color: #ED7521;
   color: #fff;
+  border: 1px solid #ED7521;
   border-radius: 0.5rem;
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.program-card:not(.program-card-highlight) .program-cta {
+  background-color: #FFFFFF;
+  color: #ED7521;
 }
 
 .program-cta i {
@@ -3951,6 +3957,10 @@ input, textarea, select {
   border-color: rgba(var(--color-primary-rgb), 0.45);
   background: linear-gradient(180deg, rgba(var(--color-primary-rgb), 0.05) 0%, var(--bg-card) 60%);
   box-shadow: var(--shadow-card-hover);
+}
+
+.program-card:not(.program-card-highlight) {
+  background: #FFFFFF;
 }
 
 .program-card-highlight:hover {
