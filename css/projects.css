@@ -1,6 +1,156 @@
 /* ============================================
-   PROJECTS SECTION
+   PROJECTS SECTION (Scroll)
    ============================================ */
+.project-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-scroll-container {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0.5rem 0;
+}
+
+.project-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.project-scroll-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--bg-primary);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.project-scroll-btn:hover {
+  background: var(--color-text);
+  color: #fff;
+  border-color: var(--color-text);
+}
+
+.project-mcard {
+  flex-shrink: 0;
+  width: 380px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-mcard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-medium);
+}
+
+.project-mcard-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--bg-section);
+}
+
+.project-mcard-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-mcard:hover .project-mcard-image img {
+  transform: scale(1.05);
+}
+
+.project-mcard-body {
+  padding: 1.25rem;
+}
+
+.project-mcard-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.project-mcard-body p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.project-mcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.project-mcard-tags span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.project-mcard-tags span::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 0.65rem;
+  color: var(--brand-orange);
+}
+
+.project-mcard-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand-orange);
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+
+.project-mcard-cta:hover {
+  gap: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-mcard {
+    width: 300px;
+  }
+
+  .project-mcard-image {
+    height: 160px;
+  }
+
+  .project-scroll-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.8rem;
+  }
+}
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

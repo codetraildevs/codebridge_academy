@@ -62,6 +62,30 @@ User Browser
 
 ---
 
+## 1b. CDN Layer (Cloudflare — recommended)
+
+Website checkers flag "Enable CDN" because the site is served directly from
+origin nginx (verified: no `Age`/`X-Cache` markers on responses). Add a CDN in
+front of the VPS:
+
+1. Create a free Cloudflare account and add the domain `codebridgecademy.com`.
+2. At the registrar, switch nameservers to the ones Cloudflare assigns.
+3. Enable the orange cloud (proxy) on the DNS records for `@` and `www`.
+4. In **SSL/TLS → Overview**, set mode to **Full (strict)** (the VPS already
+   serves HTTPS).
+5. Caching is automatic for CSS/JS/images. HTML is not cached by default,
+   which is correct for this site.
+6. Optional: **Speed → Optimization → Auto Minify** and Brotli are on by default.
+
+No changes to the deploy workflow are needed — deploys still `git pull` on the
+VPS. Cloudflare keeps a short edge cache of HTML, so deploy propagation is near
+instant; if needed, purge cache from the Cloudflare dashboard after a deploy.
+
+> **Note:** The architecture table above still lists Netlify as the frontend
+> host. The live site currently answers from origin nginx, so that table is
+> outdated — either re-point the domain at Netlify (which is itself a CDN) or
+> put Cloudflare in front of the VPS as described here. Do not do both.
+
 ## 2. Generate New SSH Keys (Local Machine)
 
 Run these commands on your **local computer** (not the VPS).

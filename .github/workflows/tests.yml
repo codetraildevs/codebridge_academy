@@ -25,6 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build site (validates minified artifacts + 64KB document limit)
+        run: |
+          npm run build
+          # Deploys ship the committed artifacts as-is (no build on the VPS),
+          # so fail if they were not regenerated after the latest source change
+          git diff --exit-code -- index.html forms.partial.min.html css/style.min.css css/projects.min.css css/services.min.css js/script.min.js \
+            || (echo "::error::Build artifacts are stale — run 'npm run build' and commit the results" && exit 1)
+
       - name: Install Playwright browsers
         run: npx playwright install chromium
 
