@@ -221,8 +221,8 @@ function formatPhoneInput(input) {
      COUNTDOWN TIMER
      ============================================ */
   function startCountdown() {
-    // Registration extended to: October 14, 2026
-    const deadline = new Date('2026-10-14T09:00:00').getTime();
+    // Registration extended to: November 11, 2026
+    const deadline = new Date('2026-11-11T09:00:00').getTime();
     let isFirstUpdate = true;
 
     function updateTimer() {
@@ -1786,4 +1786,69 @@ function formatPhoneInput(input) {
 
     updateWhyCards();
   }
+
+  /* ============================================
+     EXPANDED LOCATION MAP CARD INTERACTION
+     ============================================ */
+  const mapCard = document.getElementById('expandedMapCard');
+  if (mapCard) {
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let animId = null;
+
+    function updateTilt() {
+      currentRotateX += (targetRotateX - currentRotateX) * 0.15;
+      currentRotateY += (targetRotateY - currentRotateY) * 0.15;
+
+      mapCard.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg)`;
+
+      if (Math.abs(targetRotateX - currentRotateX) > 0.01 || Math.abs(targetRotateY - currentRotateY) > 0.01) {
+        animId = requestAnimationFrame(updateTilt);
+      } else {
+        animId = null;
+      }
+    }
+
+    mapCard.addEventListener('mousemove', (e) => {
+      const rect = mapCard.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const offsetX = e.clientX - centerX;
+      const offsetY = e.clientY - centerY;
+
+      targetRotateX = (-offsetY / (rect.height / 2)) * 8;
+      targetRotateY = (offsetX / (rect.width / 2)) * 8;
+
+      if (!animId) {
+        animId = requestAnimationFrame(updateTilt);
+      }
+    });
+
+    mapCard.addEventListener('mouseleave', () => {
+      targetRotateX = 0;
+      targetRotateY = 0;
+      if (!animId) {
+        animId = requestAnimationFrame(updateTilt);
+      }
+    });
+
+    mapCard.addEventListener('click', () => {
+      const isExpanded = mapCard.classList.toggle('is-expanded');
+      mapCard.setAttribute('aria-expanded', isExpanded);
+      const badgeText = mapCard.querySelector('.badge-text');
+      const badgeIcon = mapCard.querySelector('.badge-icon');
+
+      if (badgeText) {
+        badgeText.textContent = isExpanded ? 'Click to Collapse' : 'Click to Expand';
+      }
+      if (badgeIcon) {
+        badgeIcon.className = isExpanded 
+          ? 'fa-solid fa-compress badge-icon' 
+          : 'fa-solid fa-up-right-and-down-left-from-center badge-icon';
+      }
+    });
+  }
 });
+
