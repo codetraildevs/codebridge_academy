@@ -19,15 +19,27 @@ const OPTIONS = {
   minifyJS: true,
   minifyCSS: true,
   keepClosingSlash: true,
-  // Do NOT remove attribute quotes / optional tags — keep output robust
-  removeAttributeQuotes: false,
-  removeOptionalTags: false,
+  removeAttributeQuotes: true,
+  collapseBooleanAttributes: true,
+  // Strips optional closers (</li>, </p>, </option>...) — spec-valid and
+  // saves ~1KB. build() re-appends </body></html> afterwards so the
+  // deployed document still *looks* complete when opened in an editor.
+  removeOptionalTags: true,
+  removeEmptyAttributes: true,
+  // NOTE: removeRedundantAttributes is intentionally OFF — it strips
+  // type="text" (default), but style.css targets input[type="text"]
   caseSensitive: true,
 };
 
 async function build(src, dest) {
   const html = fs.readFileSync(path.join(__dirname, '..', src), 'utf8');
-  const result = await minify(html, OPTIONS);
+  let result = await minify(html, OPTIONS);
+  // removeOptionalTags strips document-level closers; re-append them so the
+  // deployed artifact remains a visibly complete document
+  if (OPTIONS.removeOptionalTags) {
+    if (/<body/i.test(html)) result += '</body>';
+    if (/<html/i.test(html)) result += '</html>';
+  }
   fs.writeFileSync(path.join(__dirname, '..', dest), result, 'utf8');
   const before = Buffer.byteLength(html, 'utf8');
   const after = Buffer.byteLength(result, 'utf8');

@@ -86,7 +86,7 @@
           </span>
           <span class="announcement-separator">|</span>
           <span class="announcement-date">
-            <i class="fa-regular fa-calendar"></i> Extended to 02 Nov 2026
+            <i class="fa-regular fa-calendar"></i> Extended to 11 Nov 2026
           </span>
         </div>
         <div class="announcement-actions">
@@ -99,10 +99,10 @@
             <span class="cd-sep">:</span>
             <div class="cd-box"><span class="cd-val" id="countdown-seconds">00</span><span class="cd-lbl">s</span></div>
           </div>
-          <button type="button" class="announcement-cta btn-register">
+          <a href="#" class="announcement-cta btn-register">
             Register Now
             <i class="fa-solid fa-arrow-right"></i>
-          </button>
+          </a>
           <button type="button" class="announcement-close" id="announcementClose" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -165,7 +165,57 @@
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <i class="fa-solid fa-moon"></i>
         </button>
-        <a href="#" class="btn btn-primary dreelio-pill-cta js-start-project">Register Now</a>
+        <a href="#" class="btn btn-primary dreelio-pill-cta btn-register">Register Now</a>
+        <button type="button" class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Mobile slide-in menu -->
+    <div class="nav-mobile-menu" id="navMobileMenu">
+      <div class="nav-mobile-header">
+        <img src="assets/images/Horizontal_logo.png" alt="CodeBridge Academy" width="150" height="34">
+        <button type="button" class="nav-mobile-close" id="navMobileClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="nav-mobile-links">
+        <a href="#about" class="nav-mobile-link" data-section="about">
+          <i class="fa-solid fa-user"></i> About
+        </a>
+        <a href="#programs" class="nav-mobile-link" data-section="programs">
+          <i class="fa-solid fa-graduation-cap"></i> Programs
+        </a>
+        <a href="#software-dev" class="nav-mobile-link" data-section="software-dev">
+          <i class="fa-solid fa-laptop-code"></i> Our Services
+        </a>
+        <a href="#projects" class="nav-mobile-link" data-section="projects">
+          <i class="fa-solid fa-diagram-project"></i> Projects
+        </a>
+        <a href="#why-us" class="nav-mobile-link" data-section="why-us">
+          <i class="fa-solid fa-circle-check"></i> Why Us
+        </a>
+        <a href="#internships" class="nav-mobile-link" data-section="internships">
+          <i class="fa-solid fa-briefcase"></i> Internships
+        </a>
+        <a href="#why-qualexas" class="nav-mobile-link" data-section="why-qualexas">
+          <i class="fa-solid fa-magnifying-glass-chart"></i> Qualexas
+        </a>
+        <a href="#tech-stack" class="nav-mobile-link" data-section="tech-stack">
+          <i class="fa-solid fa-layer-group"></i> Tech Stack
+        </a>
+        <a href="#contact" class="nav-mobile-link" data-section="contact">
+          <i class="fa-solid fa-envelope"></i> Contact
+        </a>
+      </div>
+      <div class="nav-mobile-footer">
+        <a href="#" class="btn btn-primary btn-lg btn-register nav-mobile-cta">Register Now</a>
       </div>
     </div>
   </nav>
@@ -283,9 +333,10 @@
   <!-- ============================================
        2. ABOUT SECTION (Lenis sticky scroll)
        ============================================ -->
+  <div id="about"></div>
   <div id="about-wrapper">
     <!-- Panel 1: Hero + Stats -->
-    <section class="about-panel about-panel-1" data-about-panel>
+    <section class="about-panel about-panel-1" id="about-panel-1" data-about-panel>
       <div class="about-panel-inner">
         <div class="about-hero">
           <div class="scroll-reveal-up" data-delay="0"><span class="section-label">About Us</span></div>
@@ -1035,89 +1086,112 @@
         <p class="section-subtitle">Gain practical experience and launch your career with our specialized internship programs tailored for all levels.</p>
       </div>
 
-      <div class="why-grid">
+      <div class="programs-grid">
         <!-- L3 Students -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-code"></i></div>
-          <h3>L3 Students</h3>
-          <p>Foundational internship support for Level 3 students building practical skills in web development, interface design, and beginner software workflow.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">HTML, CSS, JavaScript fundamentals, UI/UX basics, version control, teamwork basics, simple project practice</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">L3 Students</h3>
+          <p class="program-desc">Foundational internship support for Level 3 students building practical skills in web development, interface design, and beginner software workflow.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> HTML</li>
+            <li><i class="fa-solid fa-check"></i> CSS</li>
+            <li><i class="fa-solid fa-check"></i> JavaScript fundamentals</li>
+            <li><i class="fa-solid fa-check"></i> UI/UX basics</li>
+            <li><i class="fa-solid fa-check"></i> Version control</li>
+            <li><i class="fa-solid fa-check"></i> Teamwork &amp; simple projects</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- L4 Students -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-laptop-code"></i></div>
-          <h3>L4 Students</h3>
-          <p>Industry-focused internship preparation for Level 4 students strengthening backend development, database design, and system-building skills through guided practical work.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">Backend system design, PHP/Laravel, Node.js REST APIs, database development, algorithms, debugging, Git collaboration, basic deployment awareness</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">L4 Students</h3>
+          <p class="program-desc">Industry-focused internship preparation for Level 4 students strengthening backend development, database design, and system-building skills through guided practical work.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> Backend system design</li>
+            <li><i class="fa-solid fa-check"></i> PHP / Laravel</li>
+            <li><i class="fa-solid fa-check"></i> Node.js REST APIs</li>
+            <li><i class="fa-solid fa-check"></i> Database development</li>
+            <li><i class="fa-solid fa-check"></i> Algorithms &amp; debugging</li>
+            <li><i class="fa-solid fa-check"></i> Git collaboration</li>
+            <li><i class="fa-solid fa-check"></i> Basic deployment</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- L5 Students -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-code-branch"></i></div>
-          <h3>L5 Students</h3>
-          <p>Advanced practical training for Level 5 students preparing for modern software engineering roles through specialization, full project delivery, and workplace readiness.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">Python development, React.js frontend, NoSQL databases, DevOps basics, mobile apps, machine learning, deployment, portfolio-ready projects</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">L5 Students</h3>
+          <p class="program-desc">Advanced practical training for Level 5 students preparing for modern software engineering roles through specialization, full project delivery, and workplace readiness.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> Python development</li>
+            <li><i class="fa-solid fa-check"></i> React.js frontend</li>
+            <li><i class="fa-solid fa-check"></i> NoSQL databases</li>
+            <li><i class="fa-solid fa-check"></i> DevOps basics</li>
+            <li><i class="fa-solid fa-check"></i> Mobile apps</li>
+            <li><i class="fa-solid fa-check"></i> Machine learning</li>
+            <li><i class="fa-solid fa-check"></i> Deployment &amp; portfolio</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- Year 1 -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-book-open"></i></div>
-          <h3>Year 1</h3>
-          <p>Beginner-friendly training for first-year university students developing core programming confidence and digital problem-solving skills.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">Programming fundamentals, web basics, problem-solving, digital literacy, simple coding projects, learning discipline</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">Year 1</h3>
+          <p class="program-desc">Beginner-friendly training for first-year university students developing core programming confidence and digital problem-solving skills.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> Programming fundamentals</li>
+            <li><i class="fa-solid fa-check"></i> Web basics</li>
+            <li><i class="fa-solid fa-check"></i> Problem-solving</li>
+            <li><i class="fa-solid fa-check"></i> Digital literacy</li>
+            <li><i class="fa-solid fa-check"></i> Simple coding projects</li>
+            <li><i class="fa-solid fa-check"></i> Learning discipline</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- Year 2 -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-layer-group"></i></div>
-          <h3>Year 2</h3>
-          <p>Practical growth training for second-year students ready to move from theory into project work, collaboration, and stronger technical confidence.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">Real projects, teamwork, version control, frontend/backend practice, documentation, portfolio building</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">Year 2</h3>
+          <p class="program-desc">Practical growth training for second-year students ready to move from theory into project work, collaboration, and stronger technical confidence.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> Real projects</li>
+            <li><i class="fa-solid fa-check"></i> Teamwork</li>
+            <li><i class="fa-solid fa-check"></i> Version control</li>
+            <li><i class="fa-solid fa-check"></i> Frontend / backend practice</li>
+            <li><i class="fa-solid fa-check"></i> Documentation</li>
+            <li><i class="fa-solid fa-check"></i> Portfolio building</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- Graduates -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
-          <h3>Graduates</h3>
-          <p>Career acceleration support for graduates who need stronger practical experience, professional branding, and job-readiness in software development.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">Full stack projects, GitHub portfolio, CV improvement, interview preparation, deployment practice, workplace communication</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">Graduates</h3>
+          <p class="program-desc">Career acceleration support for graduates who need stronger practical experience, professional branding, and job-readiness in software development.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> Full stack projects</li>
+            <li><i class="fa-solid fa-check"></i> GitHub portfolio</li>
+            <li><i class="fa-solid fa-check"></i> CV improvement</li>
+            <li><i class="fa-solid fa-check"></i> Interview preparation</li>
+            <li><i class="fa-solid fa-check"></i> Deployment practice</li>
+            <li><i class="fa-solid fa-check"></i> Workplace communication</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <!-- Working Professionals -->
-        <div class="why-card reveal flex-col-card">
-          <div class="why-icon"><i class="fa-solid fa-briefcase"></i></div>
-          <h3>Working Professionals</h3>
-          <p>Flexible upskilling support for professionals who want to strengthen modern development skills and stay competitive in the tech industry.</p>
-          <div class="focus-areas-container">
-            <h4 class="focus-areas-title">Focus Areas:</h4>
-            <p class="focus-areas-text">Modern tools, practical project experience, code quality, new frameworks, backend/frontend improvement, career upskilling</p>
-          </div>
-          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
+        <div class="program-card reveal">
+          <h3 class="program-name">Working Professionals</h3>
+          <p class="program-desc">Flexible upskilling support for professionals who want to strengthen modern development skills and stay competitive in the tech industry.</p>
+          <ul class="program-features">
+            <li><i class="fa-solid fa-check"></i> Modern tools</li>
+            <li><i class="fa-solid fa-check"></i> Practical project experience</li>
+            <li><i class="fa-solid fa-check"></i> Code quality</li>
+            <li><i class="fa-solid fa-check"></i> New frameworks</li>
+            <li><i class="fa-solid fa-check"></i> Backend / frontend improvement</li>
+            <li><i class="fa-solid fa-check"></i> Career upskilling</li>
+          </ul>
+          <a href="#" class="program-cta btn-register">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -1410,32 +1484,77 @@
       </div>
 
       <div class="contact-grid">
-        <!-- Google Map Embed -->
+        <!-- Interactive Location Map Card -->
         <div class="contact-map reveal-left">
-          <div class="map-wrapper">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d527.7636906611099!2d30.07938001888084!3d-1.9769880556177135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca612e8e1ac07%3A0xf669b6674da833d4!2sAssociation%20Des%20Guides%20Du%20Rwanda!5e0!3m2!1sen!2srw!4v1776249423075!5m2!1sen!2srw"
-              class="map-iframe"
-              height="400"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="CodeBridge Academy Location - Gikondo, Kigali">
-            </iframe>
-          </div>
-          <div class="map-address">
-            <i class="fa-solid fa-location-dot"></i>
-            <p>Gikondo Merez 2, Known As Association des Guides -Gikondo, Kicukiro District, Kigali, Rwanda</p>
+          <div class="expanded-map-card" id="expandedMapCard" role="button" aria-expanded="false" aria-label="Interactive location map for Kigali, Rwanda">
+            <!-- Subtle gradient & grid overlays -->
+            <div class="map-card-gradient-overlay"></div>
+            <div class="map-card-grid-pattern">
+              <svg width="100%" height="100%">
+                <defs>
+                  <pattern id="cardGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width="0.5" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#cardGrid)" />
+              </svg>
+            </div>
+
+            <!-- Map View Layer (Tiles + Live Interactive Map) -->
+            <div class="map-card-tiles-layer" id="mapCardTilesLayer">
+              <div class="map-tiles-grid" id="mapTilesGrid">
+                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19120/16837.png" alt="" width="256" height="256" loading="lazy">
+                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19121/16837.png" alt="" width="256" height="256" loading="lazy">
+                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19122/16837.png" alt="" width="256" height="256" loading="lazy">
+                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19120/16838.png" alt="" width="256" height="256" loading="lazy">
+                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19121/16838.png" alt="" width="256" height="256" loading="lazy">
+                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19122/16838.png" alt="" width="256" height="256" loading="lazy">
+              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d527.7636906611099!2d30.07938001888084!3d-1.9769880556177135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca612e8e1ac07%3A0xf669b6674da833d4!2sAssociation%20Des%20Guides%20Du%20Rwanda!5e0!3m2!1sen!2srw!4v1776249423075!5m2!1sen!2srw"
+                class="map-card-iframe"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="CodeBridge Academy Location Map - Gikondo, Kigali">
+              </iframe>
+            </div>
+
+            <!-- Location Pin Marker -->
+            <div class="map-card-marker">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" class="marker-svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#34D399" />
+                <circle cx="12" cy="9" r="2.5" fill="var(--bg-card)" />
+              </svg>
+              <div class="marker-pulse"></div>
+            </div>
+
+            <!-- Card Content Header & Footer -->
+            <div class="map-card-content">
+              <div class="map-card-top">
+                <div class="map-card-icon-badge" title="Location Map">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="map-icon-svg">
+                    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+                    <line x1="9" x2="9" y1="3" y2="18" />
+                    <line x1="15" x2="15" y1="6" y2="21" />
+                  </svg>
+                </div>
+                <div class="map-card-expand-badge" id="mapExpandBadge">
+                  <span class="badge-text">Click to Expand</span>
+                  <i class="fa-solid fa-up-right-and-down-left-from-center badge-icon"></i>
+                </div>
+              </div>
+
+              <div class="map-card-bottom">
+                <h3 class="map-card-location-name">Kigali, Rwanda</h3>
+                <p class="map-card-coordinates">1.9770° S, 30.0794° E</p>
+                <div class="map-card-underline"></div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Contact info -->
         <div class="contact-info reveal-right">
-          <div class="contact-info-header">
-            <h3>Let's Connect</h3>
-            <p>We're here to answer your questions about our programs, registration, schedules, and more.</p>
-          </div>
-
           <div class="contact-item">
             <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
             <div>
@@ -1452,22 +1571,15 @@
             </div>
           </div>
 
-          <div class="contact-item">
-            <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div>
-              <h3>Location</h3>
-              <p>Gikondo Merez 2, Kicukiro District<br>Kigali, Rwanda</p>
-            </div>
-          </div>
-
           <div>
             <h3 class="social-links-header">Follow Us</h3>
             <div class="social-links">
-              <a href="https://web.facebook.com/profile.php?id=61589739789431" class="social-link" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="https://x.com/CodeBridgeAcad" class="social-link" aria-label="Twitter / X" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="https://www.linkedin.com/codebridge-academy/" class="social-link" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="https://www.instagram.com/codebridgecademy/" class="social-link" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://github.com/codetraildevs" class="social-link" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://web.facebook.com/profile.php?id=61589739789431" class="social-link" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="https://x.com/CodeBridgeAcad" class="social-link" aria-label="Twitter / X" title="Twitter / X" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://www.linkedin.com/codebridge-academy/" class="social-link" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/codebridgecademy/" class="social-link" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.youtube.com/@CodeBridgeAcademy" class="social-link" aria-label="YouTube" title="YouTube" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+              <a href="https://github.com/codetraildevs" class="social-link" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
         </div>
@@ -1498,6 +1610,7 @@
             <a href="https://x.com/CodeBridgeAcad" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://www.linkedin.com/codebridge-academy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="https://www.instagram.com/codebridgecademy/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@CodeBridgeAcademy" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://github.com/codetraildevs" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
@@ -1544,21 +1657,16 @@
     </div>
   </footer>
 
-  <!-- Back to Top -->
-  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
-
   <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/250780494000" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
   <!-- Floating Survey Button -->
-  <button type="button" class="survey-float" id="surveyFloatBtn" aria-label="Take Research Survey">
+  <button type="button" class="survey-float" id="surveyFloatBtn" aria-label="Take Research Survey" title="Qualexas Research Survey">
     <i class="fa-solid fa-clipboard-list"></i>
-    <span>Qualexas Survey</span>
   </button>
 
   <script src="js/script.min.js" defer></script>
-
 </body>
 </html>

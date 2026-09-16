@@ -265,6 +265,10 @@
   color: var(--color-primary);
 }
 
+[data-theme="dark"] .sdev-quote-cta {
+  background: #0a1e3d;
+}
+
 /* --- Quote modal --- */
 .quote-modal-content {
   max-width: 640px;

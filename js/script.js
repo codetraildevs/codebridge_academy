@@ -262,8 +262,8 @@ function formatPhoneInput(input) {
      COUNTDOWN TIMER
      ============================================ */
   function startCountdown() {
-    // Registration extended to: October 14, 2026
-    const deadline = new Date('2026-11-02T09:00:00').getTime();
+    // Registration extended to: November 11, 2026
+    const deadline = new Date('2026-11-11T09:00:00').getTime();
     let isFirstUpdate = true;
 
     function updateTimer() {
@@ -362,6 +362,60 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
+     MOBILE MENU
+     ============================================ */
+  const navBurger = document.getElementById('navBurger');
+  const navOverlay = document.getElementById('navOverlay');
+  const navMobileMenu = document.getElementById('navMobileMenu');
+  const navMobileClose = document.getElementById('navMobileClose');
+  const navMobileLinks = document.querySelectorAll('.nav-mobile-link');
+
+  function openMobileMenu() {
+    navBurger.classList.add('active');
+    navBurger.setAttribute('aria-expanded', 'true');
+    navOverlay.classList.add('active');
+    navMobileMenu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    navBurger.classList.remove('active');
+    navBurger.setAttribute('aria-expanded', 'false');
+    navOverlay.classList.remove('active');
+    navMobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (navBurger) {
+    navBurger.addEventListener('click', () => {
+      const isOpen = navMobileMenu.classList.contains('active');
+      isOpen ? closeMobileMenu() : openMobileMenu();
+    });
+  }
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeMobileMenu);
+  }
+
+  if (navMobileClose) {
+    navMobileClose.addEventListener('click', closeMobileMenu);
+  }
+
+  navMobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      closeMobileMenu();
+      if (targetSection) {
+        setTimeout(() => {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }, 350);
+      }
+    });
+  });
+
+  /* ============================================
      TUBELIGHT NAVBAR — Active Tab + Scroll Spy
      ============================================ */
   const tubelightNav = document.getElementById('tubelightNav');
@@ -369,7 +423,7 @@ function formatPhoneInput(input) {
   const tubelightIndicator = document.getElementById('tubelightIndicator');
   const navbar = document.getElementById('navbar');
   const backToTop = document.getElementById('backToTop');
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('section[id], div[id="about"]');
 
   // Move indicator to active tab
   function moveIndicator(item) {
@@ -389,6 +443,10 @@ function formatPhoneInput(input) {
       if (isActive) targetItem = item;
     });
     if (targetItem) moveIndicator(targetItem);
+    // Also highlight active mobile link
+    navMobileLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === sectionId);
+    });
   }
 
   // Click handlers for nav items
@@ -415,7 +473,7 @@ function formatPhoneInput(input) {
     navbar.classList.toggle('scrolled', scrollY > 50);
 
     // Back to top
-    backToTop.classList.toggle('visible', scrollY > 500);
+    if (backToTop) backToTop.classList.toggle('visible', scrollY > 500);
 
     // Active section detection
     let current = '';
@@ -458,9 +516,11 @@ function formatPhoneInput(input) {
   /* ============================================
      BACK TO TOP CLICK HANDLER
      ============================================ */
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* ============================================
      INTERSECTION OBSERVER (Scroll Reveal)
@@ -1906,4 +1966,69 @@ function formatPhoneInput(input) {
 
     updateWhyCards();
   }
+
+  /* ============================================
+     EXPANDED LOCATION MAP CARD INTERACTION
+     ============================================ */
+  const mapCard = document.getElementById('expandedMapCard');
+  if (mapCard) {
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let animId = null;
+
+    function updateTilt() {
+      currentRotateX += (targetRotateX - currentRotateX) * 0.15;
+      currentRotateY += (targetRotateY - currentRotateY) * 0.15;
+
+      mapCard.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg)`;
+
+      if (Math.abs(targetRotateX - currentRotateX) > 0.01 || Math.abs(targetRotateY - currentRotateY) > 0.01) {
+        animId = requestAnimationFrame(updateTilt);
+      } else {
+        animId = null;
+      }
+    }
+
+    mapCard.addEventListener('mousemove', (e) => {
+      const rect = mapCard.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const offsetX = e.clientX - centerX;
+      const offsetY = e.clientY - centerY;
+
+      targetRotateX = (-offsetY / (rect.height / 2)) * 8;
+      targetRotateY = (offsetX / (rect.width / 2)) * 8;
+
+      if (!animId) {
+        animId = requestAnimationFrame(updateTilt);
+      }
+    });
+
+    mapCard.addEventListener('mouseleave', () => {
+      targetRotateX = 0;
+      targetRotateY = 0;
+      if (!animId) {
+        animId = requestAnimationFrame(updateTilt);
+      }
+    });
+
+    mapCard.addEventListener('click', () => {
+      const isExpanded = mapCard.classList.toggle('is-expanded');
+      mapCard.setAttribute('aria-expanded', isExpanded);
+      const badgeText = mapCard.querySelector('.badge-text');
+      const badgeIcon = mapCard.querySelector('.badge-icon');
+
+      if (badgeText) {
+        badgeText.textContent = isExpanded ? 'Click to Collapse' : 'Click to Expand';
+      }
+      if (badgeIcon) {
+        badgeIcon.className = isExpanded 
+          ? 'fa-solid fa-compress badge-icon' 
+          : 'fa-solid fa-up-right-and-down-left-from-center badge-icon';
+      }
+    });
+  }
 });
+
