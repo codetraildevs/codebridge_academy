@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <path d="M8 34c0-8 3-14 16-14s16 6 16 14" stroke="#2563EB" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-  <line x1="16" y1="34" x2="16" y2="28" stroke="#2563EB" strokeWidth="1.2" strokeLinecap="round"/>
-  <line x1="32" y1="34" x2="32" y2="28" stroke="#2563EB" strokeWidth="1.2" strokeLinecap="round"/>
-  <text x="18" y="20" fill="#2563EB" fontSize="11" fontWeight="bold" fontFamily="monospace" opacity="0.4">&lt;/&gt;</text>
-  <circle cx="24" cy="12" r="2" fill="#2563EB" opacity="0.4"/>
-</svg>
