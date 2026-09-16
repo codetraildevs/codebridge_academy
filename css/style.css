@@ -5151,6 +5151,7 @@ input.error, select.error, textarea.error {
 /* Section sub-header */
 .section-sub-header {
   text-align: center;
+  margin-top: 4.5rem;
   margin-bottom: 2.5rem;
 }
 
@@ -5331,23 +5332,24 @@ input.error, select.error, textarea.error {
 }
 
 .benefit-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-md);
-  background: rgba(var(--color-primary-rgb), 0.08);
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent !important;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  margin: 0 0 1rem;
-  color: var(--color-primary);
-  transition: all 0.3s ease;
+  justify-content: flex-start;
+  font-size: 1.5rem;
+  margin: 0 0 0.85rem;
+  color: #F08626 !important;
+  transition: transform 0.3s ease;
+  padding: 0;
 }
 
 .benefit-card:hover .benefit-icon {
-  background: var(--color-primary);
-  color: #fff;
-  transform: scale(1.06);
+  background: transparent !important;
+  color: #F08626 !important;
+  transform: scale(1.1);
 }
 
 .benefit-card h4 {
@@ -5657,36 +5659,33 @@ input.error, select.error, textarea.error {
    ============================================ */
 .survey-float {
   position: fixed;
-  bottom: 8rem;
+  bottom: 6.25rem;
   right: 2rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-full);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   background: var(--brand-blue);
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  box-shadow: var(--shadow-md);
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(var(--brand-blue-rgb), 0.4);
   z-index: 996;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   border: none;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.85rem;
-  white-space: nowrap;
   animation: surveyFloatPulse 3s ease-in-out infinite;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 .survey-float:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 8px 30px rgba(var(--brand-blue-rgb), 0.5);
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 8px 30px rgba(var(--brand-blue-rgb), 0.6);
 }
 
 .survey-float i {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
 @keyframes surveyFloatPulse {
@@ -5999,13 +5998,13 @@ fieldset.form-group > legend {
 
 @media (max-width: 768px) {
   .survey-float {
-    bottom: 7rem;
+    bottom: 4.75rem;
     right: 1rem;
-    padding: 0.65rem 1rem;
-    font-size: 0.78rem;
+    width: 48px;
+    height: 48px;
   }
-  .survey-float span {
-    display: none;
+  .survey-float i {
+    font-size: 1.25rem;
   }
   .qstat-number {
     font-size: 1.8rem;

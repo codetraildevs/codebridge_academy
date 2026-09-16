@@ -374,7 +374,7 @@ function formatPhoneInput(input) {
     navbar.classList.toggle('scrolled', scrollY > 50);
 
     // Back to top
-    backToTop.classList.toggle('visible', scrollY > 500);
+    if (backToTop) backToTop.classList.toggle('visible', scrollY > 500);
 
     // Active section detection
     let current = '';
@@ -417,9 +417,11 @@ function formatPhoneInput(input) {
   /* ============================================
      BACK TO TOP CLICK HANDLER
      ============================================ */
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* ============================================
      INTERSECTION OBSERVER (Scroll Reveal)
