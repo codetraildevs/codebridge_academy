@@ -2,15 +2,17 @@
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "csso-cli": "^4.0.2",
+    "html-minifier-terser": "^7.2.0",
     "http-server": "^14.1.1",
     "lighthouse": "^13.4.0",
     "sharp": "^0.35.2",
     "terser": "^5.48.0"
   },
   "scripts": {
+    "build:html": "node scripts/build-html.js",
     "build:css": "csso css/style.css --output css/style.min.css && csso css/projects.css --output css/projects.min.css && csso css/services.css --output css/services.min.css",
     "build:js": "terser js/script.js --output js/script.min.js",
-    "build": "npm run build:css && npm run build:js",
+    "build": "npm run build:css && npm run build:html && npm run build:js",
     "lighthouse": "lighthouse http://localhost:8080/ --view --output=json --output=html --output-path=lighthouse-report/report",
     "lighthouse:ci": "lighthouse http://localhost:8080/ --output=json --output=html --output-path=lighthouse-report/report --chrome-flags=\"--headless --no-sandbox\"",
     "lighthouse:budget": "lighthouse http://localhost:8080/ --output=json --output-path=lighthouse-report/report.report.json --budget-file=lighthouse-budget.json --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",
@@ -24,6 +26,5 @@
     "test:unit": "npx playwright test tests/unit",
     "test:e2e": "npx playwright test tests/e2e",
     "test:api": "npx playwright test tests/api"
-  },
-  "dependencies": {}
+  }
 }

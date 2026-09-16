@@ -54,8 +54,9 @@ projects_*.html
 *.ps1
 nul
 
-# Helper scripts from development
-scripts/
+# Helper scripts from development (keep the HTML build script)
+scripts/*
+!scripts/build-html.js
 
 # Test artifacts (screenshots, videos)
 test-results/
