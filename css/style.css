@@ -6043,6 +6043,145 @@ fieldset.form-group > legend {
 }
 
 /* ============================================
+   DARK MODE — SECTION OVERRIDES
+   ============================================ */
+
+/* About Panel 1 */
+[data-theme="dark"] .about-panel-1 {
+  background: var(--bg-primary);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .about-panel-1 .about-hero-title {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .about-panel-1 .about-hero-sub {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .about-panel-1 .about-stat-num {
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .about-panel-1 .about-stat-label {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .about-panel-1 .about-stat-divider {
+  background: var(--color-border);
+}
+
+/* About Panel 3 */
+[data-theme="dark"] .about-panel-3 {
+  background: var(--bg-primary);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .about-panel-3 .about-mv-title {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .about-panel-3 .about-mv-text {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="dark"] .about-panel-3 .about-mv-card {
+  background: var(--bg-card);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .about-panel-3 .about-mv-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.15), 0 0 60px rgba(var(--color-primary-rgb), 0.08);
+}
+
+[data-theme="dark"] .about-panel-3 .about-mv-icon {
+  background: rgba(var(--color-primary-rgb), 0.15);
+  color: var(--color-primary);
+}
+
+/* Core Values */
+[data-theme="dark"] .core-values-wrapper {
+  background: #0a1628;
+}
+
+[data-theme="dark"] .cv-eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .cv-intro-title {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .cv-intro-sub {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .cv-dot {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .cv-dot-active {
+  background: var(--color-text);
+}
+
+[data-theme="dark"] .cv-watermark {
+  color: var(--color-text);
+  opacity: 0.04;
+}
+
+[data-theme="dark"] .cv-slide-title {
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .cv-slide-line {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .cv-slide-tagline {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .cv-slide-bullets li {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme="dark"] .cv-label {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="dark"] .cv-label-active {
+  color: var(--color-text);
+}
+
+/* Programs non-highlighted cards */
+[data-theme="dark"] .program-card:not(.program-card-highlight) {
+  background: var(--bg-card);
+}
+
+[data-theme="dark"] .program-card:not(.program-card-highlight) .program-cta {
+  background: var(--bg-section);
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .program-card:not(.program-card-highlight) .program-cta:hover {
+  background: var(--color-border);
+  color: var(--color-accent);
+}
+
+/* Services CTA button */
+[data-theme="dark"] .sdev-quote-cta .btn-primary {
+  background: var(--bg-card);
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .sdev-quote-cta .btn-primary:hover {
+  background: var(--bg-section);
+}
+
+/* ============================================
    PROFESSIONAL REDESIGN ADDITIONS
    ============================================ */
 
