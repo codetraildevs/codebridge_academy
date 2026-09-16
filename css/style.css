@@ -5123,124 +5123,207 @@ input.error, select.error, textarea.error {
 /* ============================================
    QUALEXAS BENTO GRID
    ============================================ */
-.qualexas-bento {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 4rem;
+/* ============================================
+   QUALEXAS PREMIUM EDITORIAL LAYOUT
+   ============================================ */
+.qualexas-editorial {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.bento-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.qualexas-hero-feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255,255,255,0.05) 100%);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  padding: 1.5rem;
-  transition: all 0.35s cubic-bezier(0.44, 0, 0.56, 1);
+  padding: 1.5rem 2.5rem;
   overflow: hidden;
+  position: relative;
 }
 
-.bento-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevation-medium);
-  border-color: transparent;
-}
-
-.bento-card-hero {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 2.5rem 2rem;
-}
-
-.bento-card-hero .bento-stat-big {
+.qualexas-hero-badge {
+  display: inline-block;
   font-family: var(--font-heading);
-  font-size: 4rem;
-  font-weight: 900;
-  background: var(--brand-blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-
-.bento-card-hero h3 {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  color: var(--color-text);
+  letter-spacing: 1px;
+  background: var(--brand-orange);
+  color: #fff;
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
   margin-bottom: 0.5rem;
 }
 
-.bento-card-hero p {
-  font-size: 0.95rem;
-  color: var(--color-text-secondary);
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.bento-card-wide {
-  grid-column: span 2;
-}
-
-.bento-card-inner h3 {
+.qualexas-hero-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--color-text);
-  margin-top: 1rem;
-  margin-bottom: 0.4rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(90deg, var(--color-text) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
 }
 
-.bento-card-inner p {
-  font-size: 0.85rem;
+.qualexas-hero-sub {
+  font-size: 0.9rem;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  max-width: 400px;
+  line-height: 1.5;
 }
 
-.bento-icon-circle {
-  width: 48px;
-  height: 48px;
+.qualexas-hero-graphic {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.qualexas-circle-track, .qualexas-circle-progress {
+  position: absolute;
   border-radius: 50%;
+}
+
+.qualexas-circle-track {
+  width: 100%;
+  height: 100%;
+  border: 10px solid var(--glass-border);
+}
+
+.qualexas-circle-progress {
+  width: 100%;
+  height: 100%;
+  border: 10px solid var(--color-primary);
+  border-radius: 50%;
+  clip-path: polygon(50% 0, 100% 0, 100% 87%, 50% 87%);
+  transform: rotate(-10deg);
+}
+
+.qualexas-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.25rem;
+}
+
+.qualexas-feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qualexas-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+}
+
+.qualexas-feature-lead {
+  background: linear-gradient(135deg, #1358B6 0%, #0a4a9c 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.qualexas-feature-lead h3, .qualexas-feature-lead p, .qualexas-feature-lead li {
+  color: #fff !important;
+}
+
+.qualexas-feature-lead p {
+  color: #fff !important;
+}
+
+.qualexas-feature-side {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.qualexas-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
 }
 
-.bento-icon-red { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
-.bento-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
-.bento-icon-orange { background: rgba(249, 115, 22, 0.1); color: #F97316; }
-.bento-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
-.bento-icon-purple { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
-.bento-icon-teal { background: rgba(20, 184, 166, 0.1); color: #14B8A6; }
-.bento-icon-indigo { background: rgba(99, 102, 241, 0.1); color: #6366F1; }
-
-.bento-card-split {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.qualexas-editorial .bento-icon-orange,
+.qualexas-editorial .bento-icon-red,
+.qualexas-editorial .bento-icon-blue,
+.qualexas-editorial .bento-icon-purple,
+.qualexas-editorial .bento-icon-green,
+.qualexas-editorial .bento-icon-teal,
+.qualexas-editorial .bento-icon-indigo {
+  background: transparent;
+  color: #E77426;
 }
 
-.bento-mini-list {
+.qualexas-feature-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.qualexas-feature-card p {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.qualexas-mini-list {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.bento-mini-list span {
+.qualexas-mini-list li {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.82rem;
-  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
 }
 
-.bento-mini-list span i {
+.qualexas-mini-list li i {
   color: var(--brand-orange);
   font-size: 0.7rem;
+}
+
+.qualexas-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .qualexas-hero-feature {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .qualexas-hero-sub {
+    margin: 0 auto;
+  }
+  .qualexas-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .qualexas-feature-side {
+    grid-template-columns: 1fr;
+  }
+  .qualexas-footer-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* CTA */
@@ -5613,12 +5696,6 @@ fieldset.form-group > legend {
    RESPONSIVE — Qualexas & Survey
    ============================================ */
 @media (max-width: 992px) {
-  .qualexas-bento {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .bento-card-wide {
-    grid-column: span 2;
-  }
   .qualexas-stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -5640,15 +5717,6 @@ fieldset.form-group > legend {
 }
 
 @media (max-width: 768px) {
-  .qualexas-bento {
-    grid-template-columns: 1fr;
-  }
-  .bento-card-wide {
-    grid-column: span 1;
-  }
-  .bento-card-hero .bento-stat-big {
-    font-size: 3rem;
-  }
   .survey-float {
     bottom: 7rem;
     right: 1rem;
