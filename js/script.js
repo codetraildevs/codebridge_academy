@@ -328,7 +328,7 @@ function formatPhoneInput(input) {
   const tubelightIndicator = document.getElementById('tubelightIndicator');
   const navbar = document.getElementById('navbar');
   const backToTop = document.getElementById('backToTop');
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('section[id], div[id="about"]');
 
   // Move indicator to active tab
   function moveIndicator(item) {
