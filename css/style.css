@@ -234,8 +234,6 @@ input, textarea, select {
 .section {
   padding: 5rem 0;
   position: relative;
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 500px;
 }
 
 .section-alt {
@@ -2203,9 +2201,6 @@ input, textarea, select {
   margin-top: 0.7em;
   flex-shrink: 0;
 }
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-}
 
 .cv-bullet-dash {
   display: inline-block;
@@ -2660,6 +2655,68 @@ input, textarea, select {
 }
 
 /* ============================================
+   WHY CHOOSE US GRID (used by Internships)
+   ============================================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.why-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: all 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-medium);
+  border-color: transparent;
+}
+
+.why-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-xl);
+  background: rgba(var(--brand-blue-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 1rem;
+  color: var(--brand-blue);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.why-card:hover .why-icon {
+  background: var(--brand-blue);
+  color: #fff;
+  transform: rotate(5deg) scale(1.08);
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+}
+
+.why-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
    AUDIENCE SECTION
    ============================================ */
 .audience-grid {
@@ -2708,7 +2765,7 @@ input, textarea, select {
   transform: scale(1.1);
 }
 
-.audience-card h4 {
+.audience-card h3 {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text);
@@ -3794,11 +3851,102 @@ input, textarea, select {
   .project-card {
     padding: 1.25rem;
   }
+}
+
+/* ============================================
+   PROGRAMS SECTION
+   ============================================ */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.program-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.44, 0, 0.56, 1);
+  box-shadow: var(--shadow-card);
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-medium);
+  border-color: transparent;
+}
+
+.program-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.program-card:nth-child(1) .program-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.program-card:nth-child(2) .program-icon { background: rgba(var(--brand-blue-rgb), 0.1); color: var(--brand-blue); }
+.program-card:nth-child(3) .program-icon { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+
+.program-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.program-card .program-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.program-tag {
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: var(--bg-section);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  transition: all 0.25s ease;
+}
+
+.program-card:hover .program-tag {
+  background: rgba(var(--brand-blue-rgb), 0.06);
+  color: var(--brand-blue);
+  border-color: rgba(var(--brand-blue-rgb), 0.2);
+}
+
+.program-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.program-card-highlight {
+  border: 3px solid var(--brand-blue);
+  background: linear-gradient(180deg, rgba(0, 87, 184, 0.06) 0%, var(--glass-bg) 100%);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.program-card-highlight:hover {
+  transform: scale(1.02) translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
 
 /* ============================================
    UTILITY CLASSES
    ============================================ */
-.program-desc { font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; line-height: 1.7; }
 .flex-col-card { display: flex; flex-direction: column; }
 
 .btn-full-width { width: 100%; justify-content: center; }
@@ -4927,6 +5075,129 @@ input.error, select.error, textarea.error {
   margin: 0 auto;
 }
 
+/* ============================================
+   QUALEXAS BENTO GRID
+   ============================================ */
+.qualexas-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.bento-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.35s cubic-bezier(0.44, 0, 0.56, 1);
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevation-medium);
+  border-color: transparent;
+}
+
+.bento-card-hero {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.bento-card-hero .bento-stat-big {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 900;
+  background: var(--brand-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.bento-card-hero h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.bento-card-hero p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.bento-card-wide {
+  grid-column: span 2;
+}
+
+.bento-card-inner h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.bento-card-inner p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.bento-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.bento-icon-red { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+.bento-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+.bento-icon-orange { background: rgba(249, 115, 22, 0.1); color: #F97316; }
+.bento-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
+.bento-icon-purple { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
+.bento-icon-teal { background: rgba(20, 184, 166, 0.1); color: #14B8A6; }
+.bento-icon-indigo { background: rgba(99, 102, 241, 0.1); color: #6366F1; }
+
+.bento-card-split {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bento-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bento-mini-list span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
+.bento-mini-list span i {
+  color: var(--brand-orange);
+  font-size: 0.7rem;
+}
+
 /* CTA */
 .qualexas-cta {
   text-align: center;
@@ -5297,6 +5568,12 @@ fieldset.form-group > legend {
    RESPONSIVE — Qualexas & Survey
    ============================================ */
 @media (max-width: 992px) {
+  .qualexas-bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-card-wide {
+    grid-column: span 2;
+  }
   .qualexas-stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -5318,6 +5595,15 @@ fieldset.form-group > legend {
 }
 
 @media (max-width: 768px) {
+  .qualexas-bento {
+    grid-template-columns: 1fr;
+  }
+  .bento-card-wide {
+    grid-column: span 1;
+  }
+  .bento-card-hero .bento-stat-big {
+    font-size: 3rem;
+  }
   .survey-float {
     bottom: 7rem;
     right: 1rem;

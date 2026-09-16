@@ -45,7 +45,7 @@
     .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
     .highlight { color: var(--color-primary); }
     .navbar { position: fixed; top: 0; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 1000; }
-    .section { padding: 4rem 0; position: relative; content-visibility: auto; contain-intrinsic-size: 1px 500px; }
+    .section { padding: 4rem 0; position: relative; }
     .section-alt { background-color: var(--bg-section); }
   </style>
 
@@ -760,71 +760,53 @@
         <p class="section-subtitle">Structured learning paths designed to take you from fundamentals to career-ready full stack development.</p>
       </div>
 
-      <div class="pricing-grid">
+      <div class="programs-grid">
         <!-- Web Development Fundamentals -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Web Development Fundamentals</p>
-            <p class="pricing-card-desc">Master the essential building blocks of the web. Build responsive, accessible websites from scratch and learn professional workflows.</p>
+        <div class="program-card reveal">
+          <div class="program-icon"><i class="fa-solid fa-globe"></i></div>
+          <h3>Web Development Fundamentals</h3>
+          <div class="program-tags">
+            <span class="program-tag">HTML</span>
+            <span class="program-tag">CSS</span>
+            <span class="program-tag">JavaScript</span>
+            <span class="program-tag">Git / GitHub</span>
+            <span class="program-tag">Responsive Design</span>
           </div>
-          <div class="pricing-card-body">
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>HTML</span></li>
-              <li><i class="fa-solid fa-check"></i><span>CSS</span></li>
-              <li><i class="fa-solid fa-check"></i><span>JavaScript</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Git / GitHub</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Responsive Design</span></li>
-            </ul>
-          </div>
-          <a href="#" class="pricing-card-cta btn-register">
-            <span>Enroll Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <p class="program-desc">Master the essential building blocks of the web. Build responsive, accessible websites from scratch and learn professional workflows.</p>
+          <a href="#" class="btn btn-secondary btn-register">Enroll Now</a>
         </div>
 
         <!-- Full Stack Development -->
-        <div class="pricing-card pricing-card-featured reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Full Stack Development</p>
-            <p class="pricing-card-desc">Build complete applications from frontend to backend. Learn modern frameworks, databases, authentication, and deployment strategies.</p>
+        <div class="program-card program-card-highlight reveal">
+          <div class="program-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Full Stack Development</h3>
+          <div class="program-tags">
+            <span class="program-tag">React.js</span>
+            <span class="program-tag">Node.js / Express</span>
+            <span class="program-tag">PHP / Laravel</span>
+            <span class="program-tag">MySQL / MongoDB</span>
+            <span class="program-tag">APIs</span>
+            <span class="program-tag">Authentication</span>
+            <span class="program-tag">Deployment</span>
           </div>
-          <div class="pricing-card-body">
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>React.js</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Node.js / Express</span></li>
-              <li><i class="fa-solid fa-check"></i><span>PHP / Laravel</span></li>
-              <li><i class="fa-solid fa-check"></i><span>MySQL / MongoDB</span></li>
-              <li><i class="fa-solid fa-check"></i><span>APIs</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Authentication</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Deployment</span></li>
-            </ul>
-          </div>
-          <a href="#" class="pricing-card-cta btn-register">
-            <span>Enroll Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <p class="program-desc">Build complete applications from frontend to backend. Learn modern frameworks, databases, authentication, and deployment strategies.</p>
+          <a href="#" class="btn btn-secondary btn-register">Enroll Now</a>
         </div>
 
         <!-- Career & Internship Readiness -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Career &amp; Internship Readiness</p>
-            <p class="pricing-card-desc">Prepare for the professional world with polished CVs, optimized online presence, interview skills, and workplace communication training.</p>
+        <div class="program-card reveal">
+          <div class="program-icon"><i class="fa-solid fa-rocket"></i></div>
+          <h3>Career &amp; Internship Readiness</h3>
+          <div class="program-tags">
+            <span class="program-tag">CV Writing</span>
+            <span class="program-tag">LinkedIn Optimization</span>
+            <span class="program-tag">GitHub Portfolio</span>
+            <span class="program-tag">Interview Prep</span>
+            <span class="program-tag">Teamwork</span>
+            <span class="program-tag">Workplace Communication</span>
           </div>
-          <div class="pricing-card-body">
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>CV Writing</span></li>
-              <li><i class="fa-solid fa-check"></i><span>LinkedIn Optimization</span></li>
-              <li><i class="fa-solid fa-check"></i><span>GitHub Portfolio</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Interview Prep</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Teamwork</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Workplace Communication</span></li>
-            </ul>
-          </div>
-          <a href="#" class="pricing-card-cta btn-register">
-            <span>Enroll Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <p class="program-desc">Prepare for the professional world with polished CVs, optimized online presence, interview skills, and workplace communication training.</p>
+          <a href="#" class="btn btn-secondary btn-register">Enroll Now</a>
         </div>
       </div>
     </div>
@@ -997,46 +979,47 @@
         <p class="section-subtitle">Our training programs are designed for anyone ready to start or advance their software development journey.</p>
       </div>
 
-      <div class="pricing-grid">
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Secondary School Students</p>
-            <p class="pricing-card-desc">Get a head start in tech before university.</p>
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-school"></i></div>
+          <div>
+            <h3>Secondary School Students</h3>
+            <p>Get a head start in tech before university.</p>
           </div>
         </div>
-
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">University Students</p>
-            <p class="pricing-card-desc">Supplement your degree with practical coding skills.</p>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <h3>University Students</h3>
+            <p>Supplement your degree with practical coding skills.</p>
           </div>
         </div>
-
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Graduates</p>
-            <p class="pricing-card-desc">Bridge the gap between academics and industry requirements.</p>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div>
+            <h3>Graduates</h3>
+            <p>Bridge the gap between academics and industry requirements.</p>
           </div>
         </div>
-
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Internship Seekers</p>
-            <p class="pricing-card-desc">Build the skills and portfolio needed for competitive internships.</p>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div>
+            <h3>Internship Seekers</h3>
+            <p>Build the skills and portfolio needed for competitive internships.</p>
           </div>
         </div>
-
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Junior Developers</p>
-            <p class="pricing-card-desc">Level up your skills and accelerate your career growth.</p>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-terminal"></i></div>
+          <div>
+            <h3>Junior Developers</h3>
+            <p>Level up your skills and accelerate your career growth.</p>
           </div>
         </div>
-
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Working Professionals</p>
-            <p class="pricing-card-desc">Upgrade your development skills while working full-time.</p>
+        <div class="audience-card reveal">
+          <div class="audience-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <div>
+            <h3>Working Professionals</h3>
+            <p>Upgrade your development skills while working full-time.</p>
           </div>
         </div>
       </div>
@@ -1055,153 +1038,91 @@
         <p class="section-subtitle">Gain practical experience and launch your career with our specialized internship programs tailored for all levels.</p>
       </div>
 
-      <div class="pricing-grid">
+      <div class="why-grid">
         <!-- L3 Students -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">L3 Students</p>
-            <p class="pricing-card-desc">Foundational internship support for Level 3 students building practical skills in web development, interface design, and beginner software workflow.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-code"></i></div>
+          <h3>L3 Students</h3>
+          <p>Foundational internship support for Level 3 students building practical skills in web development, interface design, and beginner software workflow.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">HTML, CSS, JavaScript fundamentals, UI/UX basics, version control, teamwork basics, simple project practice</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>HTML, CSS, JavaScript</span></li>
-              <li><i class="fa-solid fa-check"></i><span>UI/UX basics</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Version control</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Teamwork basics</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
 
         <!-- L4 Students -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">L4 Students</p>
-            <p class="pricing-card-desc">Industry-focused internship preparation for Level 4 students strengthening backend development, database design, and system-building skills.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>L4 Students</h3>
+          <p>Industry-focused internship preparation for Level 4 students strengthening backend development, database design, and system-building skills through guided practical work.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">Backend system design, PHP/Laravel, Node.js REST APIs, database development, algorithms, debugging, Git collaboration, basic deployment awareness</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>Backend system design</span></li>
-              <li><i class="fa-solid fa-check"></i><span>PHP/Laravel, Node.js</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Database development</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Git collaboration</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
 
         <!-- L5 Students -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">L5 Students</p>
-            <p class="pricing-card-desc">Advanced practical training for Level 5 students preparing for modern software engineering roles through specialization and full project delivery.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-code-branch"></i></div>
+          <h3>L5 Students</h3>
+          <p>Advanced practical training for Level 5 students preparing for modern software engineering roles through specialization, full project delivery, and workplace readiness.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">Python development, React.js frontend, NoSQL databases, DevOps basics, mobile apps, machine learning, deployment, portfolio-ready projects</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>Python development</span></li>
-              <li><i class="fa-solid fa-check"></i><span>React.js frontend</span></li>
-              <li><i class="fa-solid fa-check"></i><span>DevOps basics</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Portfolio-ready projects</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
 
         <!-- Year 1 -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Year 1</p>
-            <p class="pricing-card-desc">Beginner-friendly training for first-year university students developing core programming confidence and digital problem-solving skills.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3>Year 1</h3>
+          <p>Beginner-friendly training for first-year university students developing core programming confidence and digital problem-solving skills.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">Programming fundamentals, web basics, problem-solving, digital literacy, simple coding projects, learning discipline</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>Programming fundamentals</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Web basics</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Problem-solving</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Simple coding projects</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
 
         <!-- Year 2 -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Year 2</p>
-            <p class="pricing-card-desc">Practical growth training for second-year students ready to move from theory into project work, collaboration, and stronger technical confidence.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Year 2</h3>
+          <p>Practical growth training for second-year students ready to move from theory into project work, collaboration, and stronger technical confidence.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">Real projects, teamwork, version control, frontend/backend practice, documentation, portfolio building</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>Real projects</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Teamwork &amp; version control</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Frontend/backend practice</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Portfolio building</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
 
         <!-- Graduates -->
-        <div class="pricing-card reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Graduates</p>
-            <p class="pricing-card-desc">Career acceleration support for graduates who need stronger practical experience, professional branding, and job-readiness in software development.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+          <h3>Graduates</h3>
+          <p>Career acceleration support for graduates who need stronger practical experience, professional branding, and job-readiness in software development.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">Full stack projects, GitHub portfolio, CV improvement, interview preparation, deployment practice, workplace communication</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>Full stack projects</span></li>
-              <li><i class="fa-solid fa-check"></i><span>GitHub portfolio</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Interview preparation</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Workplace communication</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
 
         <!-- Working Professionals -->
-        <div class="pricing-card pricing-card-featured reveal">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Working Professionals</p>
-            <p class="pricing-card-desc">Flexible upskilling support for professionals who want to strengthen modern development skills and stay competitive in the tech industry.</p>
+        <div class="why-card reveal flex-col-card">
+          <div class="why-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h3>Working Professionals</h3>
+          <p>Flexible upskilling support for professionals who want to strengthen modern development skills and stay competitive in the tech industry.</p>
+          <div class="focus-areas-container">
+            <h4 class="focus-areas-title">Focus Areas:</h4>
+            <p class="focus-areas-text">Modern tools, practical project experience, code quality, new frameworks, backend/frontend improvement, career upskilling</p>
           </div>
-          <div class="pricing-card-body">
-            <p class="focus-areas-title">Focus Areas:</p>
-            <ul class="pricing-card-features">
-              <li><i class="fa-solid fa-check"></i><span>Modern tools &amp; frameworks</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Code quality</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Backend/frontend improvement</span></li>
-              <li><i class="fa-solid fa-check"></i><span>Career upskilling</span></li>
-            </ul>
-          </div>
-          <a href="#contact" class="pricing-card-cta btn-register">
-            <span>Apply Now</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
+          <a href="#" class="btn btn-secondary btn-full-width btn-register">Apply Now</a>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -1216,149 +1137,139 @@
       <div class="section-header reveal">
         <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Innovation &amp; Research</span></div>
         <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Qualexas — <span class="highlight">Competency Intelligence Platform</span></h2></div>
-        <p class="section-subtitle">Transforming Competency Assessment, Skills Verification, and Workforce Readiness in Rwanda and Beyond.</p>
+        <p class="section-subtitle">Everything you need for modern competency assessment — from AI scoring to secure verification, all in one platform.</p>
       </div>
 
-      <!-- Hero / Intro -->
-      <div class="qualexas-intro reveal">
-        <div class="qualexas-intro-content">
-          <p>CodeBridge Academy is conducting a <strong>national research study</strong> to understand the critical challenges facing practical competency assessment in Rwanda. Your insights will directly contribute to the development of <strong>Qualexas</strong> — an AI-powered Competency Assessment, Verification, and Skills Intelligence Platform.</p>
-        </div>
-      </div>
-
-      <!-- Stats Cards -->
-      <div class="qualexas-stats reveal">
-        <div class="qstat-card">
-          <div class="qstat-number">87%</div>
-          <div class="qstat-label">Employers report skills mismatch</div>
-        </div>
-        <div class="qstat-card">
-          <div class="qstat-number">70%</div>
-          <div class="qstat-label">Assessments still paper-based</div>
-        </div>
-        <div class="qstat-card">
-          <div class="qstat-number">2x</div>
-          <div class="qstat-label">Higher hiring accuracy with verified skills</div>
-        </div>
-        <div class="qstat-card">
-          <div class="qstat-number">500+</div>
-          <div class="qstat-label">Institutions need digital assessment</div>
-        </div>
-      </div>
-
-      <!-- Challenge Cards -->
-      <div class="section-sub-header reveal">
-        <h3 class="sub-header-title">Current Challenges in Practical Assessment</h3>
-        <p>Rwanda's education and employment sectors face critical gaps that demand innovation.</p>
-      </div>
-
-      <div class="qualexas-challenges reveal">
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Manual Marking</p>
-            <p class="pricing-card-desc">Assessors spend hours grading manually, leading to fatigue, errors, and inconsistent scoring across institutions.</p>
+      <!-- Bento Grid -->
+      <div class="qualexas-bento reveal">
+        <!-- Card 1: Hero stat — full width -->
+        <div class="bento-card bento-card-hero">
+          <div class="bento-card-inner">
+            <div class="bento-stat-big">87%</div>
+            <h3>AI-Powered Assessment</h3>
+            <p>Employers report skills mismatch — Qualexas bridges the gap with AI-driven competency evaluation.</p>
           </div>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Examination Malpractice</p>
-            <p class="pricing-card-desc">Without robust invigilation and anti-cheating tools, exam integrity remains a significant concern.</p>
+
+        <!-- Card 2: Practical Workspaces -->
+        <div class="bento-card">
+          <div class="bento-card-inner">
+            <div class="bento-icon-circle bento-icon-red">
+              <i class="fa-solid fa-pen-ruler"></i>
+            </div>
+            <h3>Manual Marking</h3>
+            <p>Assessors spend hours grading manually, leading to fatigue, errors, and inconsistent scoring.</p>
           </div>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Delayed Results</p>
-            <p class="pricing-card-desc">Manual processing causes weeks or months of delay, slowing down graduation and workforce entry.</p>
+
+        <!-- Card 3: Skills Intelligence -->
+        <div class="bento-card">
+          <div class="bento-card-inner">
+            <div class="bento-icon-circle bento-icon-blue">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Delayed Results</h3>
+            <p>Manual processing causes weeks of delay, slowing down graduation and workforce entry.</p>
           </div>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Inconsistent Scoring</p>
-            <p class="pricing-card-desc">Different assessors apply different standards, creating unfair outcomes and unreliable competency data.</p>
+
+        <!-- Card 4: Anti-Cheating — wide -->
+        <div class="bento-card bento-card-wide">
+          <div class="bento-card-inner bento-card-split">
+            <div>
+              <div class="bento-icon-circle bento-icon-orange">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <h3>Anti-Cheating System</h3>
+              <p>Comprehensive proctoring with tab-switch detection, plagiarism checking, activity logging, and risk scoring.</p>
+            </div>
+            <div class="bento-mini-list">
+              <span><i class="fa-solid fa-check"></i> Tab-switch detection</span>
+              <span><i class="fa-solid fa-check"></i> Plagiarism checking</span>
+              <span><i class="fa-solid fa-check"></i> Activity logging</span>
+              <span><i class="fa-solid fa-check"></i> Risk scoring</span>
+            </div>
           </div>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Skills Mismatch</p>
-            <p class="pricing-card-desc">Employers find graduates lack practical skills, revealing a gap between education outputs and industry needs.</p>
+
+        <!-- Card 5: Interview Management — wide -->
+        <div class="bento-card bento-card-wide">
+          <div class="bento-card-inner bento-card-split">
+            <div>
+              <div class="bento-icon-circle bento-icon-green">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <h3>Skills Intelligence</h3>
+              <p>Advanced analytics with competency mapping, skills gap analysis, and trend insights for workforce planning.</p>
+            </div>
+            <div class="bento-mini-list">
+              <span><i class="fa-solid fa-check"></i> Competency mapping</span>
+              <span><i class="fa-solid fa-check"></i> Skills gap analysis</span>
+              <span><i class="fa-solid fa-check"></i> Trend insights</span>
+              <span><i class="fa-solid fa-check"></i> Workforce analytics</span>
+            </div>
           </div>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">No Competency Verification</p>
-            <p class="pricing-card-desc">Employers struggle to verify actual candidate skills, relying on certificates that may not reflect true ability.</p>
+
+        <!-- Card 6: AI Oral Defense -->
+        <div class="bento-card">
+          <div class="bento-card-inner">
+            <div class="bento-icon-circle bento-icon-purple">
+              <i class="fa-solid fa-microphone"></i>
+            </div>
+            <h3>AI Oral Defense</h3>
+            <p>Speech-to-text powered oral examinations with AI-generated questions and real-time response evaluation.</p>
+          </div>
+        </div>
+
+        <!-- Card 7: Digital Certificates -->
+        <div class="bento-card">
+          <div class="bento-card-inner">
+            <div class="bento-icon-circle bento-icon-teal">
+              <i class="fa-solid fa-certificate"></i>
+            </div>
+            <h3>Digital Certificates</h3>
+            <p>Blockchain-ready digital certificates with QR verification, secure sharing, and competency breakdowns.</p>
+          </div>
+        </div>
+
+        <!-- Card 8: Multi-Tenant -->
+        <div class="bento-card">
+          <div class="bento-card-inner">
+            <div class="bento-icon-circle bento-icon-indigo">
+              <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <h3>Multi-Tenant Platform</h3>
+            <p>Unified organization management supporting schools, universities, companies, and government agencies.</p>
           </div>
         </div>
       </div>
 
-      <!-- Problem vs Solution -->
-      <div class="section-sub-header reveal">
-        <h3 class="sub-header-title">Problem vs. Solution</h3>
-        <p>How Qualexas bridges the gap between assessment challenges and workforce readiness.</p>
-      </div>
-
-      <div class="pvs-grid reveal">
-        <div class="pvs-card problem">
-          <div class="pvs-label">The Problem</div>
-          <ul>
-            <li><i class="fa-solid fa-xmark"></i> Paper-based, slow manual assessments</li>
-            <li><i class="fa-solid fa-xmark"></i> No standardized competency framework</li>
-            <li><i class="fa-solid fa-xmark"></i> Limited workforce readiness data</li>
-            <li><i class="fa-solid fa-xmark"></i> Employers can't verify practical skills</li>
-            <li><i class="fa-solid fa-xmark"></i> High operational costs for exam administration</li>
-          </ul>
-        </div>
-        <div class="pvs-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="pvs-card solution">
-          <div class="pvs-label">Qualexas Solution</div>
-          <ul>
-            <li><i class="fa-solid fa-check"></i> AI-powered digital practical assessments</li>
-            <li><i class="fa-solid fa-check"></i> Standardized competency scoring &amp; rubrics</li>
-            <li><i class="fa-solid fa-check"></i> Real-time skills analytics &amp; workforce data</li>
-            <li><i class="fa-solid fa-check"></i> Verifiable digital certificates &amp; competency reports</li>
-            <li><i class="fa-solid fa-check"></i> Automated grading with anti-cheating safeguards</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Benefits -->
+      <!-- Who Benefits -->
       <div class="section-sub-header reveal">
         <h3 class="sub-header-title">Who Benefits from Qualexas?</h3>
       </div>
 
       <div class="qualexas-benefits reveal">
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">TVET Schools &amp; Universities</p>
-            <p class="pricing-card-desc">Automate practical exams, reduce administrative burden, and generate instant competency reports.</p>
-          </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fa-solid fa-school"></i></div>
+          <h4>TVET Schools &amp; Universities</h4>
+          <p>Automate practical exams, reduce administrative burden, and generate instant competency reports.</p>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Employers</p>
-            <p class="pricing-card-desc">Access verified candidate competency profiles and make data-driven hiring decisions with confidence.</p>
-          </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fa-solid fa-building"></i></div>
+          <h4>Employers</h4>
+          <p>Access verified candidate competency profiles and make data-driven hiring decisions with confidence.</p>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Certification Bodies</p>
-            <p class="pricing-card-desc">Issue tamper-proof digital certificates backed by objective assessment data and AI evaluation.</p>
-          </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fa-solid fa-award"></i></div>
+          <h4>Certification Bodies</h4>
+          <p>Issue tamper-proof digital certificates backed by objective assessment data and AI evaluation.</p>
         </div>
-        <div class="pricing-card">
-          <div class="pricing-card-header">
-            <p class="pricing-card-name">Government Institutions</p>
-            <p class="pricing-card-desc">Gain national-level workforce readiness insights and skills gap analytics for policy planning.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Future Vision -->
-      <div class="qualexas-vision reveal" id="qualexas-vision">
-        <div class="vision-content">
-          <span class="section-label">Future Vision</span>
-          <h3>Becoming a Competency Intelligence Ecosystem</h3>
-          <p>Qualexas aims to evolve into a comprehensive Competency Intelligence Ecosystem that connects learners, educators, employers, and policymakers through real-time skills data, AI-driven insights, and verifiable credentialing — creating a transparent, merit-based workforce marketplace for Rwanda and beyond.</p>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fa-solid fa-landmark"></i></div>
+          <h4>Government Institutions</h4>
+          <p>Gain national-level workforce readiness insights and skills gap analytics for policy planning.</p>
         </div>
       </div>
 
