@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v16';
+const CACHE_NAME = 'codebridge-v17';
 const ASSETS = [
   '/',
   '/index.html',
@@ -46,7 +46,10 @@ self.addEventListener('activate', (event) => {
 
 // Helper: Network-first strategy with cache fallback
 function networkFirstWithCacheFallback(request) {
-  return fetch(request)
+  // Navigations must bypass the browser HTTP cache — a heuristically-fresh
+  // stale document would otherwise be served without ever hitting the server.
+  const fetchInit = request.mode === 'navigate' ? { cache: 'reload' } : undefined;
+  return fetch(request, fetchInit)
     .then((networkResponse) => {
       // Cache the fresh response for offline use
       const cloned = networkResponse.clone();
