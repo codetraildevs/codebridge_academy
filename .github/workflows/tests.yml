@@ -8,6 +8,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Allows deploy.yml to invoke this workflow as a pre-deploy test gate
+  workflow_call:
 
 jobs:
   test:

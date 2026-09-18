@@ -7,7 +7,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  test:
+    # Pre-deploy gate: run the full Playwright suite first.
+    # (Also runs on its own push/PR triggers via tests.yml.)
+    uses: ./.github/workflows/tests.yml
+
   deploy:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
