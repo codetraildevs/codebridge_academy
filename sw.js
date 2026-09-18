@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v15';
+const CACHE_NAME = 'codebridge-v16';
 const ASSETS = [
   '/',
   '/index.html',
@@ -50,9 +50,9 @@ function networkFirstWithCacheFallback(request) {
     .then((networkResponse) => {
       // Cache the fresh response for offline use
       const cloned = networkResponse.clone();
-      caches.open(CACHE_NAME).then((cache) => {
-        cache.put(request, cloned);
-      });
+      caches.open(CACHE_NAME)
+        .then((cache) => cache.put(request, cloned))
+        .catch(() => {/* ignore uncacheable responses (opaque, unsupported schemes, quota) */});
       return networkResponse;
     })
     .catch(() => {
@@ -65,6 +65,13 @@ function networkFirstWithCacheFallback(request) {
 self.addEventListener('fetch', (event) => {
   // Skip non-GET requests — Cache API only supports GET/HEAD for put()
   if (event.request.method !== 'GET') {
+    return;
+  }
+
+  // Skip unsupported schemes (chrome-extension://, about:, blob:, etc.) —
+  // cache.put() throws on requests that aren't http/https
+  const url = new URL(event.request.url);
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
     return;
   }
 
