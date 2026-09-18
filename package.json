@@ -12,7 +12,7 @@
     "build:html": "node scripts/build-html.js",
     "build:css": "csso css/style.css --output css/style.min.css && csso css/projects.css --output css/projects.min.css && csso css/services.css --output css/services.min.css",
     "build:js": "terser js/script.js --output js/script.min.js",
-    "build": "npm run build:css && npm run build:html && npm run build:js",
+    "build": "npm run build:css && npm run build:js && npm run build:html",
     "lighthouse": "lighthouse http://localhost:8080/ --view --output=json --output=html --output-path=lighthouse-report/report",
     "lighthouse:ci": "lighthouse http://localhost:8080/ --output=json --output=html --output-path=lighthouse-report/report --chrome-flags=\"--headless --no-sandbox\"",
     "lighthouse:budget": "lighthouse http://localhost:8080/ --output=json --output-path=lighthouse-report/report.report.json --budget-file=lighthouse-budget.json --max-wait-for-load=90000 --chrome-flags=\"--headless --no-sandbox --disable-dev-shm-usage\"",

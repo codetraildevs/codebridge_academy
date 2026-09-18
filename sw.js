@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v17';
+const CACHE_NAME = 'codebridge-v18';
 const ASSETS = [
   '/',
   '/index.html',
@@ -59,8 +59,9 @@ function networkFirstWithCacheFallback(request) {
       return networkResponse;
     })
     .catch(() => {
-      // Network failed — serve from cache
-      return caches.match(request);
+      // Network failed — serve from cache. ignoreSearch lets versioned
+      // URLs (?v=<hash>) match their unversioned precached copies.
+      return caches.match(request, { ignoreSearch: true });
     });
 }
 

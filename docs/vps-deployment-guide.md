@@ -297,16 +297,31 @@ server {
     add_header X-Content-Type-Options "nosniff" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 
-    # Cache static assets
+    # Cache static assets (30d). HTML references carry ?v=<content-hash>
+    # query strings, rewritten on every build by scripts/build-html.js,
+    # so any asset change gets a new URL and busts this cache instantly.
     location ~* \.(css|js|svg|webp|png|jpg|jpeg|gif|ico|woff2?)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
+        expires 30d;
+        add_header Cache-Control "public";
     }
 
-    # Service worker must NOT be cached
+    # Service worker must NOT be cached — it is the PWA update mechanism
     location = /sw.js {
         add_header Cache-Control "no-cache";
         add_header Service-Worker-Allowed "/";
+    }
+
+    # HTML must revalidate on every load — this is what makes deploys
+    # visible immediately. Without Cache-Control, browsers heuristically
+    # cache pages and serve stale HTML (this caused a real stale-page bug).
+    # NOTE: add_header does NOT inherit from server level once a location
+    # has its own add_header, so the security headers are re-declared here.
+    location / {
+        add_header Cache-Control "no-cache";
+        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        try_files $uri $uri/ /index.html;
     }
 
     # 404 handler
@@ -322,6 +337,14 @@ server {
 }
 ```
 
+> **Caching rules & gotchas (learned the hard way):**
+>
+> - `nginx -t` **must** pass before every reload; a failed test leaves the old config running.
+> - **Never leave backup or temp files in `sites-enabled/`** — nginx loads every file there as config, so `codebridgeacademy.bak` causes `duplicate listen options for [::]:443`. Keep backups in `/root` or elsewhere outside `sites-enabled`.
+> - nginx directives are **case-sensitive** (`add_header`, not `ADD_header`). Beware editors/keyboard auto-capitalization when pasting over SSH.
+> - Only **one** `location /` block per server — duplicates fail with `duplicate location "/"`.
+> - Exact-match locations (`location = /sw.js`) always beat regex blocks, so the no-cache rule for the SW wins over the 30-day `.js` caching.
+>
 > **Note:** For HTTPS (recommended), install Certbot after DNS is pointing to this IP:
 > ```bash
 > sudo apt install certbot python3-certbot-nginx -y

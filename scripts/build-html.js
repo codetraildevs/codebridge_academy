@@ -4,11 +4,17 @@
  *
  * 1. Minifies index.src.html -> index.html (strips comments + whitespace)
  * 2. Minifies forms.partial.html -> forms.partial.min.html
+ * 3. Rewrites local css/js references with content-hash query strings
+ *    (?v=abcdef12) in index.html and verify.html, so the long-lived
+ *    nginx asset cache (expires 30d) busts automatically whenever the
+ *    asset content changes.
  *
  * The source files stay readable; only the deployed artifacts are minified.
- * Run via: npm run build
+ * Run via: npm run build  (css/js builds must run BEFORE this script so
+ * the hashes are computed from the freshly minified assets)
  */
 const { minify } = require('html-minifier-terser');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -31,9 +37,40 @@ const OPTIONS = {
   caseSensitive: true,
 };
 
+function assetVersion(filePath) {
+  const content = fs.readFileSync(path.join(__dirname, '..', filePath));
+  return crypto.createHash('sha256').update(content).digest('hex').slice(0, 8);
+}
+
+// Rewrites local css/... and js/... references (href or src) to include
+// ?v=<content-hash>. CDN/absolute URLs are untouched. Idempotent: an
+// existing ?v=... is replaced with the current hash.
+function applyVersionedAssets(html) {
+  return html.replace(
+    /\b(href|src)="((?:css|js)\/[A-Za-z0-9._-]+\.(?:css|js))(?:\?v=[a-f0-9]+)?"/g,
+    (match, attr, file) => `${attr}="${file}?v=${assetVersion(file)}"`
+  );
+}
+
+function versionAssetsInPlace(file) {
+  const p = path.join(__dirname, '..', file);
+  const html = fs.readFileSync(p, 'utf8');
+  const out = applyVersionedAssets(html);
+  if (out !== html) {
+    fs.writeFileSync(p, out, 'utf8');
+    console.log(`  ${file}: local asset URLs versioned`);
+  } else {
+    console.log(`  ${file}: asset URLs already up to date`);
+  }
+}
+
 async function build(src, dest) {
   const html = fs.readFileSync(path.join(__dirname, '..', src), 'utf8');
-  let result = await minify(html, OPTIONS);
+  // Version local assets BEFORE minifying: the minifier strips attribute
+  // quotes, which would defeat a post-minify rewrite. Values containing
+  // ?v= keep their quotes ("=" is illegal in unquoted attribute values).
+  const versioned = applyVersionedAssets(html);
+  let result = await minify(versioned, OPTIONS);
   // removeOptionalTags strips document-level closers; re-append them so the
   // deployed artifact remains a visibly complete document
   if (OPTIONS.removeOptionalTags) {
@@ -51,6 +88,10 @@ async function build(src, dest) {
   console.log('Building HTML...');
   const idx = await build('index.src.html', 'index.html');
   const forms = await build('forms.partial.html', 'forms.partial.min.html');
+
+  // verify.html is served as-is (no minified variant); version its
+  // css/verify.css and js/verify.js references in place
+  versionAssetsInPlace('verify.html');
 
   // Guard: the deployed document must stay under the 64KB checker threshold
   if (idx >= 64 * 1024) {
