@@ -1,12 +1,16 @@
 /**
- * audit-live.js — Live-site mobile/a11y checklist audit (items 1–10).
+ * audit-live.js — Live-site mobile/a11y/SEO/content checklist audit (items 1–17).
  *
  * Verifies against any deployed or local URL:
- *   1  no horizontal overflow        6  images have alt attributes
- *   2  banner/navbar clear the hero  7  icon-only buttons are labeled
- *   3  banner dismiss persists       8  hero visible under reduced motion
- *   4  floating buttons placement    9  raster images within 2x display size
- *   5  44px tap targets             10  below-fold lazy loading + timing
+ *   1  no horizontal overflow        10  below-fold lazy loading + timing
+ *   2  banner/navbar clear the hero  11  meta description (length + locale)
+ *   3  banner dismiss persists       12  JSON-LD Organization + Course
+ *   4  floating buttons placement    13  OG tags + 1200x630 image + twitter:card
+ *   5  44px tap targets              14  heading structure (1x H1, sane H2s)
+ *   6  images have alt attributes    15  named testimonials w/ proof links
+ *   7  icon-only buttons labeled     16  Kigali/Rwanda keywords + campus map
+ *   8  hero visible, reduced motion  17  application CTA / fees / start dates
+ *   9  raster imgs within 2x size
  *
  * Usage:
  *   node scripts/audit-live.js [url]
@@ -35,10 +39,13 @@ const ok = (n, pass, ev) => results.push({ n, pass, ev });
   });
   const page = await ctx.newPage();
 
+  // domcontentloaded — the full `load` event also waits for third-party
+  // iframes/tiles (Google Maps, basemap CDN) which can hang the audit.
+  // The scroll-through + settle waits below cover asset loading.
   const t0 = Date.now();
-  await page.goto(BASE, { waitUntil: 'load', timeout: 60000 });
+  await page.goto(BASE, { waitUntil: 'domcontentloaded', timeout: 90000 });
   const loadMs = Date.now() - t0;
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(4000);
 
   // Scroll through the page so scroll-reveal elements settle into their
   // final (translateX(0)) state before any geometry measurements.
@@ -218,6 +225,117 @@ const ok = (n, pass, ev) => results.push({ n, pass, ev });
   const eager = imgSizes.filter(i => i.lazy !== 'lazy').map(i => i.file);
   ok(10, null, `${lazyCount}/${imgSizes.length} imgs loading=lazy; eager: ${eager.join(', ') || 'none'}`);
 
+  // ── Items 11–17: SEO/content checks (live DOM, before the mutating item 3) ──
+  const seo = await page.evaluate(async () => {
+    const out = {};
+
+    // 11: meta description — length + locale keywords
+    const desc = document.querySelector('meta[name="description"]')?.content || '';
+    out.desc = { len: desc.length, kigali: /Kigali/i.test(desc), rwanda: /Rwanda/i.test(desc) };
+
+    // 12: JSON-LD — Organization (name/logo/address/contact/socials) + Courses
+    const blocks = [...document.querySelectorAll('script[type="application/ld+json"]')];
+    const graph = [];
+    blocks.forEach(s => {
+      try { const j = JSON.parse(s.textContent); (j['@graph'] || [j]).forEach(g => graph.push(g)); } catch (e) { /* malformed block */ }
+    });
+    const isType = (g, t) => g['@type'] === t || (Array.isArray(g['@type']) && g['@type'].includes(t));
+    const org = graph.find(g => isType(g, 'Organization'));
+    out.jsonld = {
+      blocks: blocks.length,
+      types: graph.map(g => Array.isArray(g['@type']) ? g['@type'].join('+') : g['@type']),
+      org: org ? {
+        name: !!org.name,
+        logo: !!org.logo,
+        addressKigali: org.address ? /Kigali/i.test(JSON.stringify(org.address)) : false,
+        contact: !!(org.telephone || org.email),
+        socials: Array.isArray(org.sameAs) ? org.sameAs.length : 0,
+      } : null,
+      courses: graph.filter(g => isType(g, 'Course')).length,
+    };
+
+    // 13: OG completeness + twitter:card + actual og:image pixel size
+    const meta = sel => document.querySelector(sel)?.content || null;
+    const ogImage = meta('meta[property="og:image"]');
+    out.og = {
+      title: !!meta('meta[property="og:title"]'),
+      desc: !!meta('meta[property="og:description"]'),
+      image: ogImage,
+      twitterCard: meta('meta[name="twitter:card"]'),
+      imgDims: null,
+    };
+    if (ogImage) {
+      try {
+        const img = new Image();
+        img.src = ogImage;
+        await img.decode();
+        out.og.imgDims = img.naturalWidth + 'x' + img.naturalHeight;
+      } catch (e) { out.og.imgDims = 'load-failed'; }
+    }
+
+    // 14: heading structure — one readable H1, H2s for major sections only
+    const h1s = [...document.querySelectorAll('h1')];
+    out.headings = {
+      h1: h1s.length,
+      h1Text: h1s[0] ? h1s[0].textContent.trim().replace(/\s+/g, ' ').slice(0, 80) : '',
+      h2: document.querySelectorAll('h2').length,
+      h3: document.querySelectorAll('h3').length,
+    };
+
+    // 15: named testimonials with role + proof (photo or verifiable cert link)
+    out.testimonials = [...document.querySelectorAll('.testimonial-card')].map(c => ({
+      name: c.querySelector('figcaption strong')?.textContent.trim() || null,
+      role: c.querySelector('figcaption span')?.textContent.trim() || null,
+      photo: !!c.querySelector('img'),
+      certLink: !!c.querySelector('a[href*="verify.html?id="]'),
+    }));
+
+    // 16: Kigali/Rwanda in headings + copy, embedded campus map
+    const headsText = [...document.querySelectorAll('h1, h2, h3')].map(h => h.textContent).join(' ');
+    out.local = {
+      kigaliHeadings: /Kigali/i.test(headsText),
+      rwandaHeadings: /Rwanda/i.test(headsText),
+      kigaliCopy: /Kigali/i.test(document.body.innerText),
+      rwandaCopy: /Rwanda/i.test(document.body.innerText),
+      mapIframe: !!document.querySelector('iframe[src*="google.com/maps"]'),
+    };
+
+    // 17: application CTA + fees/pricing or start dates
+    const applyButtons = [...document.querySelectorAll('a, button')]
+      .filter(el => /register now|enroll now|\bapply\b/i.test(el.textContent || '')).length;
+    const bodyText = document.body.innerText;
+    out.cta = {
+      applyButtons,
+      feesMention: /fees|tuition|pricing/i.test(bodyText),
+      startDate: /\d{1,2}\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+\d{4}/i.test(bodyText),
+    };
+    return out;
+  });
+
+  ok(11, seo.desc.len >= 70 && seo.desc.len <= 170 && seo.desc.kigali && seo.desc.rwanda,
+    `description ${seo.desc.len} chars (target ~155), Kigali:${seo.desc.kigali} Rwanda:${seo.desc.rwanda}`);
+
+  const j = seo.jsonld;
+  ok(12, !!(j.org && j.org.name && j.org.logo && j.org.addressKigali && j.org.contact && j.org.socials >= 3 && j.courses >= 1),
+    `${j.blocks} JSON-LD block(s) [${j.types.join(', ')}]; Organization: name=${j.org?.name} logo=${j.org?.logo} Kigali-address=${j.org?.addressKigali} contact=${j.org?.contact} socials=${j.org?.socials}; Courses: ${j.courses}`);
+
+  ok(13, seo.og.title && seo.og.desc && !!seo.og.image && seo.og.twitterCard === 'summary_large_image' && seo.og.imgDims === '1200x630',
+    `og:title=${seo.og.title} og:description=${seo.og.desc} og:image=${seo.og.image ? 'present' : 'missing'} (${seo.og.imgDims}) twitter:card=${seo.og.twitterCard}`);
+
+  ok(14, seo.headings.h1 === 1 && seo.headings.h1Text.length >= 20 && seo.headings.h2 <= 25 && seo.headings.h3 >= 1,
+    `h1=${seo.headings.h1} ("${seo.headings.h1Text}"), h2=${seo.headings.h2}, h3=${seo.headings.h3}`);
+
+  const t = seo.testimonials;
+  const tOk = t.length >= 3 && t.length <= 4 && t.every(x => x.name && x.role && (x.photo || x.certLink));
+  ok(15, tOk,
+    `${t.length} testimonial card(s): ${t.map(x => `${x.name} [${x.role}] photo=${x.photo} cert=${x.certLink}`).join(' | ')}`);
+
+  ok(16, seo.local.kigaliHeadings && seo.local.rwandaHeadings && seo.local.kigaliCopy && seo.local.mapIframe,
+    `headings Kigali=${seo.local.kigaliHeadings} Rwanda=${seo.local.rwandaHeadings}; copy Kigali=${seo.local.kigaliCopy} Rwanda=${seo.local.rwandaCopy}; map iframe=${seo.local.mapIframe}`);
+
+  ok(17, seo.cta.applyButtons >= 1 && (seo.cta.feesMention || seo.cta.startDate),
+    `${seo.cta.applyButtons} apply/register CTA(s); fees/pricing mentioned=${seo.cta.feesMention}; start date found=${seo.cta.startDate}`);
+
   // ── Item 3: banner close button dismisses permanently (LAST — mutates state) ──
   const bannerBefore = await page.evaluate(() => {
     const b = document.querySelector('.announcement-bar');
@@ -256,4 +374,13 @@ const ok = (n, pass, ev) => results.push({ n, pass, ev });
 
   await browser.close();
   console.log(JSON.stringify(results, null, 1));
+
+  // CI gate: exit 1 if any hard check failed (INFO items have pass=null
+  // and never fail the run). The human-readable summary goes to stderr.
+  const fails = results.filter(r => r.pass === false);
+  if (fails.length) {
+    console.error(`\n✖ ${fails.length} check(s) FAILED: items ${fails.map(f => f.n).join(', ')}`);
+    process.exit(1);
+  }
+  console.error('\n✔ All checklist checks passed.');
 })().catch(e => { console.error('AUDIT ERROR:', e.message); process.exit(1); });

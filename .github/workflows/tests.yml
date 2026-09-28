@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright Tests & Checklist Audit
 
 on:
   push:
@@ -40,6 +40,26 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          CI: true
+
+      - name: Run full a11y/SEO checklist audit (local build)
+        # Audits the freshly built artifacts on a local server — NOT the
+        # live site — so the gate validates the changes being merged.
+        # deploy.yml invokes this workflow as a pre-deploy gate, which
+        # makes a failing audit block deployment automatically.
+        timeout-minutes: 10
+        run: |
+          npx http-server . -p 8080 -c-1 --silent &
+          SERVER_PID=$!
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:8080/ >/dev/null && break
+            sleep 1
+          done
+          npm run audit:local
+          STATUS=$?
+          kill $SERVER_PID 2>/dev/null || true
+          exit $STATUS
         env:
           CI: true
 

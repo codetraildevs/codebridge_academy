@@ -146,11 +146,13 @@ npm run audit:live
 npm run audit:local
 ```
 
-The checklist audit (`scripts/audit-live.js`) verifies at a 375px viewport:
-no horizontal overflow, banner/navbar clearing the hero, persistent banner
-dismissal, 44px tap targets, image alt attributes, labeled icon buttons,
-reduced-motion support, raster image sizing, and lazy loading. Exit code
-is 0 only when all hard checks pass, so it can run in CI.
+The checklist audit (`scripts/audit-live.js`) verifies all 17 items at a
+375px viewport — mobile UX (overflow, hero overlap, banner dismissal,
+44px tap targets), accessibility (alt attributes, button labels,
+reduced-motion support, image sizing, lazy loading), and SEO/content
+(meta description, JSON-LD Organization + Course schema, OG/twitter
+cards, heading structure, testimonials, local keywords + map, CTAs).
+Exit code is 0 only when every hard check passes, so it can gate CI.
 
 > **Note:** Start a local server first — e.g. `npx serve -p 8080` or VS Code Live Server — since Lighthouse targets `http://localhost:8080/`.
 
