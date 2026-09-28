@@ -605,8 +605,15 @@ input, textarea, select {
   /* button element support (CTA may be a <button> instead of an <a>) */
   border: none;
   cursor: pointer;
-}
   transition: all 0.25s ease;
+}
+
+@media (max-width: 768px) {
+  .announcement-cta {
+    padding: 0.4rem 0.85rem;
+    min-height: 44px;
+    align-items: center;
+  }
 }
 
 .announcement-cta:hover {
@@ -631,6 +638,8 @@ input, textarea, select {
   justify-content: center;
   width: 24px;
   height: 24px;
+  min-width: 44px;
+  min-height: 44px;
   border: none;
   background: rgba(255,255,255,0.1);
   color: rgba(255,255,255,0.7);
@@ -639,6 +648,13 @@ input, textarea, select {
   transition: all 0.2s ease;
   font-size: 0.75rem;
   flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+  .announcement-close {
+    min-width: 24px;
+    min-height: 24px;
+  }
 }
 
 .announcement-close:hover {
@@ -793,8 +809,11 @@ input, textarea, select {
 .dreelio-pill-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   margin-right: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .dreelio-pill-logo img {
@@ -922,6 +941,8 @@ input, textarea, select {
 .theme-toggle {
   width: 34px;
   height: 34px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   background: transparent;
   border: 1px solid rgba(227, 225, 225, 0.4);
@@ -970,6 +991,8 @@ input, textarea, select {
   gap: 4px;
   width: 34px;
   height: 34px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   background: transparent;
   border: 1px solid rgba(227, 225, 225, 0.4);
@@ -1441,7 +1464,7 @@ input, textarea, select {
 /* Responsive */
 @media (max-width: 768px) {
   .hero {
-    padding: 8rem 1rem 3rem;
+    padding: 11.5rem 1rem 3rem;
     gap: 2rem;
   }
 
@@ -1771,6 +1794,92 @@ input, textarea, select {
 .scroll-reveal-text.revealed span {
   transform: translateY(0);
   opacity: 1;
+}
+
+/* Item 8 — accessibility: reduced-motion users get the finished state
+   instantly, with no transform/opacity animation to sit through. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal-text span {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* Graduate testimonials (audit item 15) */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 1.75rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+.testimonial-card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: auto;
+}
+
+.testimonial-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-section);
+}
+
+.testimonial-card figcaption div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.testimonial-card figcaption strong {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.testimonial-card figcaption span {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.testimonial-card figcaption a {
+  font-size: 0.78rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.testimonial-card figcaption a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Staggered delays via data-delay */
@@ -4121,6 +4230,8 @@ input, textarea, select {
   .nav-mobile-close {
     width: 36px;
     height: 36px;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: 50%;
     background: var(--bg-section);
     border: 1px solid var(--color-border);
@@ -6560,6 +6671,26 @@ fieldset.form-group > legend {
 .reveal-scale.revealed {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Reduced motion: render the final state immediately — no translate
+   offsets (which would overflow the viewport pre-reveal) and no
+   opacity hiding, so content is never shifted or stuck invisible. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .stagger-children > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Staggered children animation */

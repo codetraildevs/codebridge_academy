@@ -323,18 +323,112 @@ function formatPhoneInput(input) {
   const announcementClose = document.getElementById('announcementClose');
   const announcementBar = document.getElementById('announcementBar');
   if (announcementClose && announcementBar) {
-    announcementClose.addEventListener('click', () => {
+    // Dismissal persists across visits (per browser, via localStorage)
+    const ANNOUNCE_KEY = 'cba-announcement-dismissed';
+    const dismissAnnouncement = (persist, instant) => {
       announcementBar.classList.add('closed');
       // Adjust navbar top if needed
       const navbar = document.getElementById('navbar');
       if (navbar) {
         navbar.style.top = '0';
       }
-      setTimeout(() => {
+      if (instant) {
         announcementBar.style.display = 'none';
-      }, 400);
-    });
+      } else {
+        setTimeout(() => {
+          announcementBar.style.display = 'none';
+        }, 400);
+      }
+      if (persist) {
+        try { localStorage.setItem(ANNOUNCE_KEY, '1'); } catch (e) { /* storage unavailable */ }
+      }
+    };
+    let announcementDismissed = false;
+    try { announcementDismissed = localStorage.getItem(ANNOUNCE_KEY) === '1'; } catch (e) { /* storage unavailable */ }
+    if (announcementDismissed) {
+      dismissAnnouncement(false, true);
+    } else {
+      announcementClose.addEventListener('click', () => dismissAnnouncement(true, false));
+    }
   }
+
+  /* ============================================
+     STRUCTURED DATA (JSON-LD)
+     Injected at runtime — Organization + Course schema. Google
+     indexes JS-injected structured data, and keeping it here keeps
+     the HTML document under its 64KB build budget.
+     ============================================ */
+  const LD = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://codebridgecademy.com/#organization",
+        "name": "CodeBridge Academy",
+        "url": "https://codebridgecademy.com/",
+        "logo": "https://codebridgecademy.com/assets/images/og-image.jpg",
+        "description": "Software development company and tech training academy in Kigali, Rwanda.",
+        "telephone": "+250780494000",
+        "email": "info.codebridgeacademy@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gikondo",
+          "addressLocality": "Kigali",
+          "addressCountry": "RW"
+        },
+        "sameAs": [
+          "https://web.facebook.com/profile.php?id=61589739789431",
+          "https://x.com/CodeBridgeAcad",
+          "https://www.linkedin.com/codebridge-academy/",
+          "https://www.instagram.com/codebridgecademy/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://codebridgecademy.com/#website",
+        "url": "https://codebridgecademy.com/",
+        "name": "CodeBridge Academy",
+        "publisher": { "@id": "https://codebridgecademy.com/#organization" }
+      },
+      {
+        "@type": "Course",
+        "name": "Web Development Fundamentals",
+        "description": "Master the essential building blocks of the web: HTML, CSS, JavaScript, Git/GitHub, and responsive design.",
+        "provider": { "@id": "https://codebridgecademy.com/#organization" },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "onsite",
+          "location": { "@type": "Place", "name": "CodeBridge Academy, Gikondo, Kigali, Rwanda" }
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "Full Stack Development",
+        "description": "Build complete applications from frontend to backend: React.js, Node.js/Express, PHP/Laravel, MySQL/MongoDB, APIs, and deployment.",
+        "provider": { "@id": "https://codebridgecademy.com/#organization" },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "onsite",
+          "location": { "@type": "Place", "name": "CodeBridge Academy, Gikondo, Kigali, Rwanda" }
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "Career & Internship Readiness",
+        "description": "Prepare for the professional world: CV writing, LinkedIn optimization, GitHub portfolio, interview prep, and workplace communication.",
+        "provider": { "@id": "https://codebridgecademy.com/#organization" },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "onsite",
+          "location": { "@type": "Place", "name": "CodeBridge Academy, Gikondo, Kigali, Rwanda" }
+        }
+      }
+    ]
+  };
+  const ldScript = document.createElement('script');
+  ldScript.type = 'application/ld+json';
+  ldScript.textContent = JSON.stringify(LD);
+  document.head.appendChild(ldScript);
 
   /* ============================================
      THEME TOGGLE
@@ -537,7 +631,14 @@ function formatPhoneInput(input) {
 
   // Small delay to ensure initial state is set before observing
   setTimeout(() => {
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
+    // Reduced motion: reveal everything immediately (CSS also disables
+    // the transforms/animations, so nothing shifts or hides).
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      revealEls.forEach(el => el.classList.add('revealed'));
+      return;
+    }
+    revealEls.forEach(el => {
       revealObserver.observe(el);
     });
   }, 100);
@@ -1763,8 +1864,12 @@ function formatPhoneInput(input) {
     revealElements.forEach(el => revealObserver.observe(el));
   }
 
-  /* Hero text reveals immediately (above the fold) */
-  setTimeout(() => {
+  /* Hero text reveals immediately (above the fold).
+     prefers-reduced-motion: skip the reveal delay entirely — the CSS
+     media query also removes the transform/opacity animation, so the
+     finished state renders with zero motion. */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealHero = () => {
     document.querySelectorAll('.hero .scroll-reveal-text, .hero .scroll-reveal-up, .hero .scroll-fade-up').forEach(el => {
       el.classList.add('revealed');
     });
@@ -1775,7 +1880,12 @@ function formatPhoneInput(input) {
     /* Reveal gallery container with 3D tilt */
     const gc = document.getElementById('galleryContainer');
     if (gc) gc.classList.add('revealed');
-  }, 400);
+  };
+  if (prefersReducedMotion) {
+    revealHero();
+  } else {
+    setTimeout(revealHero, 400);
+  }
 
   /* Gallery scroll — scale + fade editor on scroll (Dreelio-style) */
   const galleryContainer = document.getElementById('galleryContainer');
