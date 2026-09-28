@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v18';
+const CACHE_NAME = 'codebridge-v19';
 const ASSETS = [
   '/',
   '/index.html',
@@ -12,12 +12,11 @@ const ASSETS = [
   '/js/script.min.js',
   '/js/verify.js',
   '/assets/images/update_logo.webp',
-  '/assets/images/update_logo.png',
-  '/assets/images/about_section.webp',
-  '/assets/images/play_store_img.webp',
+  '/assets/images/about_section_display.webp',
+  '/assets/images/play_store_img_display.webp',
   '/assets/images/play_store_icon.webp',
   '/assets/images/play_store_icon.png',
-  '/assets/images/home_cdmis.webp',
+  '/assets/images/home_cdmis_display.webp',
   '/assets/images/placeholder.svg',
   '/manifest.json'
 ];
