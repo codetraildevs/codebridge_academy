@@ -54,10 +54,11 @@ projects_*.html
 *.ps1
 nul
 
-# Helper scripts from development (keep the HTML build + og-image scripts)
+# Helper scripts from development (keep the HTML build + og-image + audit scripts)
 scripts/*
 !scripts/build-html.js
 !scripts/generate-og-image.js
+!scripts/audit-live.js
 
 # Test artifacts (screenshots, videos)
 test-results/

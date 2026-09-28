@@ -25,6 +25,8 @@
     "dev": "http-server . -p 8080 -c-1",
     "test:unit": "npx playwright test tests/unit",
     "test:e2e": "npx playwright test tests/e2e",
-    "test:api": "npx playwright test tests/api"
+    "test:api": "npx playwright test tests/api",
+    "audit:live": "node scripts/audit-live.js https://codebridgecademy.com/",
+    "audit:local": "node scripts/audit-live.js http://127.0.0.1:8080/"
   }
 }
