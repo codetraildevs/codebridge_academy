@@ -277,6 +277,15 @@ input, textarea, select {
   line-height: 1.65;
 }
 
+/* Centered CTA row under a section header (links to detail pages) */
+.section-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 /* ============================================
    BUTTONS (Premium)
    ============================================ */
