@@ -4,8 +4,9 @@
 // The certificates table is never exposed directly; this function uses
 // the service role and rate-limits every attempt per client.
 // ============================================
-import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+// Edge runtime: Deno.serve is built into the Supabase edge runtime.
+// The std import was removed because the deployed function threw.
+serve(async (req: Request) => {
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -135,9 +136,7 @@ serve(async (req: Request) => {
     );
   }
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
+  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
   // ---------- Rate limit ----------
   try {
