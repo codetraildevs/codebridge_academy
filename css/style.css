@@ -4264,6 +4264,17 @@ input, textarea, select {
     flex-direction: column;
     padding: 0.75rem 0;
     flex: 1;
+    overflow-y: auto;
+  }
+
+  .nav-mobile-group-label {
+    padding: 1rem 1.5rem 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
   }
 
   .nav-mobile-link {

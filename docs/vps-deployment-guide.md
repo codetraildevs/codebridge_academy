@@ -293,9 +293,16 @@ server {
     gzip_min_length 256;
 
     # Security headers
-    add_header X-Frame-Options "SAMEORIGIN" always;
+    # HSTS is intentionally NOT here: it belongs in the HTTPS (443) block
+    # only, where browsers honour it. See the Certbot note below.
+    add_header X-Frame-Options "DENY" always;
     add_header X-Content-Type-Options "nosniff" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), browsing-topics=()" always;
+    # CSP: no inline executable <script> is used (JSON-LD is a data block, not
+    # executed). 'unsafe-inline' in style-src is required because the pages use
+    # style="" attributes; scripts do not get it.
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https://cartodb-basemaps-a.global.ssl.fastly.net https://*.basemaps.cartocdn.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://siruvivfrinoyudbotko.supabase.co; manifest-src 'self'; worker-src 'self'; media-src 'self'" always;
 
     # Cache static assets (30d). HTML references carry ?v=<content-hash>
     # query strings, rewritten on every build by scripts/build-html.js,
@@ -318,9 +325,14 @@ server {
     # has its own add_header, so the security headers are re-declared here.
     location / {
         add_header Cache-Control "no-cache";
-        add_header X-Frame-Options "SAMEORIGIN" always;
+        add_header X-Frame-Options "DENY" always;
         add_header X-Content-Type-Options "nosniff" always;
         add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), browsing-topics=()" always;
+        # CSP: no inline executable <script> is used (JSON-LD is a data block,
+        # not executed). 'unsafe-inline' in style-src is required because the
+        # pages use style="" attributes; scripts do not get it.
+        add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https://cartodb-basemaps-a.global.ssl.fastly.net https://*.basemaps.cartocdn.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://siruvivfrinoyudbotko.supabase.co; manifest-src 'self'; worker-src 'self'; media-src 'self'" always;
         try_files $uri $uri/ /index.html;
     }
 
@@ -350,6 +362,43 @@ server {
 > sudo apt install certbot python3-certbot-nginx -y
 > sudo certbot --nginx -d codebridgecademy.com -d www.codebridgecademy.com
 > ```
+
+### 5c-bis — Add HSTS to the HTTPS server
+
+Certbot rewrites the config and creates the `listen 443 ssl` server block. Add
+HSTS **only inside that HTTPS block** (browsers ignore it over plain HTTP), and
+keep the other security headers that Certbot copied over:
+
+```nginx
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name codebridgecademy.com www.codebridgecademy.com;
+
+    # ... Certbot's ssl_certificate / ssl_certificate_key lines ...
+
+    root /var/www/codebridgeacademy;
+    index index.html;
+
+    # Tell browsers to use HTTPS for this host for one year. Add `preload`
+    # only after every subdomain is HTTPS-only and permanently.
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    # Keep these in sync with the port-80 block (Certbot usually copies them,
+    # but verify): Content-Security-Policy, Permissions-Policy,
+    # X-Frame-Options, X-Content-Type-Options, Referrer-Policy.
+
+    # ... the same location blocks as above, with the security headers
+    # re-declared inside `location /` because add_header does not inherit ...
+}
+```
+
+Verify after reloading:
+
+```bash
+curl -sI https://codebridgecademy.com/ | grep -iE 'strict-transport|content-security|permissions-policy'
+sudo nginx -T | grep -c 'Content-Security-Policy'   # expect one per server/location that serves HTML
+```
 
 ### 5d — Enable the Site
 

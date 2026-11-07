@@ -415,6 +415,14 @@ function formatPhoneInput(input) {
       ['tech-stack', 'fa-layer-group', 'Tech Stack'],
       ['contact', 'fa-envelope', 'Contact']
     ];
+    // Detail pages live outside the one-page anchors, so they need their own
+    // entries in the drawer; without these, phone users cannot reach them.
+    const MOBILE_PAGE_LINKS = [
+      ['software-development.html', 'fa-laptop-code', 'Software Development'],
+      ['training.html', 'fa-graduation-cap', 'Training Programs'],
+      ['internships.html', 'fa-briefcase', 'Internship Program'],
+      ['projects.html', 'fa-diagram-project', 'Project Portfolio']
+    ];
     navOverlayEl.insertAdjacentHTML('afterend', `
       <div class="nav-mobile-menu" id="navMobileMenu">
         <div class="nav-mobile-header">
@@ -425,6 +433,8 @@ function formatPhoneInput(input) {
         </div>
         <div class="nav-mobile-links">
           ${MOBILE_LINKS.map(([id, icon, label]) => `<a href="#${id}" class="nav-mobile-link" data-section="${id}"><i class="fa-solid ${icon}"></i> ${label}</a>`).join('\n          ')}
+          <div class="nav-mobile-group-label">Pages</div>
+          ${MOBILE_PAGE_LINKS.map(([href, icon, label]) => `<a href="${href}" class="nav-mobile-link"><i class="fa-solid ${icon}"></i> ${label}</a>`).join('\n          ')}
         </div>
         <div class="nav-mobile-footer">
           <a href="#" class="btn btn-primary btn-lg btn-register nav-mobile-cta">Register Now</a>
