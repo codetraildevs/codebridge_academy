@@ -262,8 +262,8 @@ function formatPhoneInput(input) {
      COUNTDOWN TIMER
      ============================================ */
   function startCountdown() {
-    // Registration extended to: November 11, 2026
-    const deadline = new Date('2026-11-11T09:00:00').getTime();
+    // Registration extended to: December 15, 2026
+    const deadline = new Date('2026-12-15T09:00:00').getTime();
     let isFirstUpdate = true;
 
     function updateTimer() {
