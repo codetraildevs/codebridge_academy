@@ -38,10 +38,17 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium
 
+      - name: Generate sitemap and robots.txt
+        run: |        
+          node scripts/generate-sitemap.js
+          node scripts/generate-robots.js
+      - name: Check sitemap and robots.txt
+        run: node scripts/check-sitemap.js
       - name: Run Playwright tests
         run: npx playwright test
         env:
           CI: true
+          EDGE_FN_URL: https://siruvivfrinoyudbotko.supabase.co/functions/v1/submit-form
 
       - name: Run full a11y/SEO checklist audit (local build)
         # Audits the freshly built artifacts on a local server — NOT the
