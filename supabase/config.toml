@@ -1,0 +1,4 @@
+project_id = "siruvivfrinoyudbotko"
+
+[functions.verify-certificate]
+verify_jwt = true

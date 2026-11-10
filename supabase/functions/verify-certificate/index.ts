@@ -4,9 +4,7 @@
 // The certificates table is never exposed directly; this function uses
 // the service role and rate-limits every attempt per client.
 // ============================================
-// Edge runtime: Deno.serve is built into the Supabase edge runtime.
-// The std import was removed because the deployed function threw.
-serve(async (req: Request) => {
+import { createClient } from "npm:@supabase/supabase-js@2.45.0";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -97,7 +95,7 @@ async function sha256Hex(value: string): Promise<string> {
 // forgotten env var still never stores a raw or trivially reversible IP.
 const IP_SALT = Deno.env.get("VERIFICATION_IP_SALT") ?? SUPABASE_SERVICE_ROLE_KEY;
 
-serve(async (req: Request) => {
+Deno.serve(async (req: Request) => {
   const origin = req.headers.get("origin");
 
   if (req.method === "OPTIONS") {
@@ -117,18 +115,21 @@ serve(async (req: Request) => {
     return json({ error: "origin_not_allowed" }, 403, origin);
   }
 
-  let payload: { id?: unknown; token?: unknown };
+  let payload: unknown;
   try {
     payload = await req.json();
   } catch {
     return json({ error: "invalid_json" }, 400, origin);
   }
 
-  const rawId = typeof payload.id === "string" ? payload.id : "";
-  const rawToken = typeof payload.token === "string" ? payload.token : "";
-  const input = (rawToken || rawId).trim().toUpperCase().slice(0, 80);
+  const fields = payload && typeof payload === "object" ? payload : {};
+  const rawId = "id" in fields && typeof fields.id === "string" ? fields.id : "";
+  const hasToken = "token" in fields;
+  const rawToken = hasToken && typeof fields.token === "string" ? fields.token : "";
+  const input = (hasToken ? rawToken : rawId).trim().toUpperCase();
+  const isToken = TOKEN_RE.test(input);
 
-  if (!input || (!TOKEN_RE.test(input) && !NUMBER_RE.test(input))) {
+  if (!isToken && (hasToken || input.startsWith("CBV-") || !NUMBER_RE.test(input))) {
     return json(
       { error: "invalid_input", message: "Provide a certificate number or verification token." },
       400,
@@ -136,10 +137,12 @@ serve(async (req: Request) => {
     );
   }
 
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-
   // ---------- Rate limit ----------
+  let supabase;
   try {
+    supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
     const ipHash = await hmacHex(IP_SALT, clientIp(req));
     const { data: allowed, error: rlError } = await supabase.rpc(
       "check_verification_rate_limit",
@@ -167,7 +170,6 @@ serve(async (req: Request) => {
   }
 
   // ---------- Lookup ----------
-  const isToken = TOKEN_RE.test(input);
   const columns =
     "certificate_number, holder_name, program, modules, start_date, end_date, issued_on, status";
 
