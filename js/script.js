@@ -264,7 +264,6 @@ function formatPhoneInput(input) {
   function startCountdown() {
     // Registration extended to: December 15, 2026
     const deadline = new Date('2026-12-15T09:00:00').getTime();
-    let isFirstUpdate = true;
 
     function updateTimer() {
       const now = new Date().getTime();
@@ -273,7 +272,8 @@ function formatPhoneInput(input) {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);          const dEl = document.getElementById('countdown-days');
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const dEl = document.getElementById('countdown-days');
       const hEl = document.getElementById('countdown-hours');
       const mEl = document.getElementById('countdown-minutes');
       const sEl = document.getElementById('countdown-seconds');
@@ -283,13 +283,6 @@ function formatPhoneInput(input) {
         const padded = String(value).padStart(2, '0');
         if (el.textContent !== padded) {
           el.textContent = padded;
-          // Skip animation on first update (prevents simultaneous flash on load)
-          if (isFirstUpdate) return;
-          // Add animation class
-          el.classList.remove('digit-change');
-          // Force reflow
-          void el.offsetWidth;
-          el.classList.add('digit-change');
         }
       }
 
@@ -297,8 +290,6 @@ function formatPhoneInput(input) {
       updateDigit(hEl, hours);
       updateDigit(mEl, minutes);
       updateDigit(sEl, seconds);
-
-      isFirstUpdate = false;
 
       if (distance < 0) {
         const bar = document.getElementById('announcementBar');
@@ -371,12 +362,28 @@ function formatPhoneInput(input) {
      2. Map basemap tiles: five decorative Carto tiles are
         generated here so the HTML only ships the first one.
      ============================================ */
-  const tickerTrack = document.querySelector('.dreelio-ticker-track');
-  if (tickerTrack) {
-    Array.from(tickerTrack.children).forEach(card => {
-      tickerTrack.appendChild(card.cloneNode(true));
-    });
-  }
+  // Build the looping copy just before the marquee is visible. Observe the
+  // stationary wrapper because the animated track itself moves offscreen.
+  const marqueeObserver = new IntersectionObserver(entries => {
+    for (const { target, isIntersecting } of entries) {
+      const track = target.firstElementChild;
+      if (isIntersecting && !track.dataset.loopReady) {
+        const copy = document.createDocumentFragment();
+        for (const item of track.children) {
+          const clone = item.cloneNode(true);
+          clone.inert = true;
+          copy.appendChild(clone);
+        }
+        track.appendChild(copy);
+        track.dataset.loopReady = 'true';
+      }
+      track.style.animationPlayState = isIntersecting ? '' : 'paused';
+    }
+  }, { rootMargin: '300px 0px' });
+  document.querySelectorAll('.dreelio-ticker-track, [data-sdev-marquee] .sdev-services-track, [data-tech-track]').forEach(track => {
+    track.style.animationPlayState = 'paused';
+    marqueeObserver.observe(track.parentElement);
+  });
   const tilesGrid = document.getElementById('mapTilesGrid');
   if (tilesGrid && tilesGrid.children.length === 1) {
     const proto = tilesGrid.querySelector('img');
@@ -569,7 +576,6 @@ function formatPhoneInput(input) {
   });
 
   // Scroll spy + navbar background
-  let lastScrollY = window.scrollY;
   let ticking = false;
 
   function updateScrollState() {
@@ -1876,15 +1882,9 @@ function formatPhoneInput(input) {
     revealElements.forEach(el => revealObserver.observe(el));
   }
 
-  /* Hero text reveals immediately (above the fold).
-     prefers-reduced-motion: skip the reveal delay entirely — the CSS
-     media query also removes the transform/opacity animation, so the
-     finished state renders with zero motion. */
+  /* Only the decorative gallery animates on entry. */
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealHero = () => {
-    document.querySelectorAll('.hero .scroll-reveal-text, .hero .scroll-reveal-up, .hero .scroll-fade-up').forEach(el => {
-      el.classList.add('revealed');
-    });
     /* Reveal floating badges */
     document.querySelectorAll('.gallery-float').forEach(el => {
       el.classList.add('revealed');
@@ -1903,12 +1903,9 @@ function formatPhoneInput(input) {
   const galleryContainer = document.getElementById('galleryContainer');
   if (galleryContainer) {
     const heroSection = document.getElementById('hero');
-    const heroTop = heroSection.offsetTop;
-    const heroHeight = heroSection.offsetHeight;
-
     window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const progress = Math.min(Math.max((scrollY - heroTop) / (heroHeight * 0.5), 0), 1);
+      const rect = heroSection.getBoundingClientRect();
+      const progress = Math.min(Math.max(-rect.top / (rect.height * 0.5), 0), 1);
       const scale = 1 - progress * 0.15;
       const opacity = 1 - progress * 0.7;
       const translateY = -32 - progress * 40;
@@ -1933,12 +1930,8 @@ function formatPhoneInput(input) {
 
   if (cvWrapper && cvRail && cvTrack) {
     const totalSlides = cvSlides.length;
-    const slideWidth = window.innerWidth;
-
-    // Set track width
-    cvTrack.style.width = `${totalSlides * slideWidth}px`;
-
     const handleCvScroll = () => {
+      const slideWidth = window.innerWidth;
       const rect = cvWrapper.getBoundingClientRect();
       const wrapperTop = cvWrapper.offsetTop;
       const wrapperHeight = cvWrapper.offsetHeight;
@@ -1984,31 +1977,9 @@ function formatPhoneInput(input) {
       });
     };
 
-    window.addEventListener('scroll', handleCvScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      const newWidth = window.innerWidth;
-      cvTrack.style.width = `${totalSlides * newWidth}px`;
-      handleCvScroll();
-    });
-    handleCvScroll();
+    observeScrollSection(cvWrapper, handleCvScroll);
   }
 
-  /* ============================================
-     SERVICES MARQUEE — duplicate tracks for infinite loop
-     ============================================ */
-  document.querySelectorAll('[data-sdev-marquee] .sdev-services-track').forEach(track => {
-    const cards = track.innerHTML;
-    track.innerHTML = cards + cards;
-  });
-
-  /* ============================================
-     TECH MARQUEE — duplicate track for infinite loop
-     ============================================ */
-  const techTrack = document.querySelector('[data-tech-track]');
-  if (techTrack) {
-    const items = techTrack.innerHTML;
-    techTrack.innerHTML = items + items;
-  }
 
   /* ============================================
      PROJECT SCROLL — arrow buttons
@@ -2032,8 +2003,6 @@ function formatPhoneInput(input) {
   const whyViewport = document.querySelector('.why-stack-viewport');
   const whyCards = document.querySelectorAll('.why-stack-card');
   if (whyViewport && whyCards.length) {
-    let ticking = false;
-
     function updateWhyCards() {
       const rect = whyViewport.getBoundingClientRect();
       const sectionHeight = whyViewport.offsetHeight;
@@ -2076,17 +2045,35 @@ function formatPhoneInput(input) {
         card.style.filter = `drop-shadow(0 ${4 + i * 2}px ${12 + i * 3}px rgba(0,0,0,${0.06 + i * 0.01}))`;
       });
 
-      ticking = false;
     }
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateWhyCards);
-        ticking = true;
-      }
-    }, { passive: true });
+    observeScrollSection(whyViewport, updateWhyCards);
+  }
 
-    updateWhyCards();
+  // Only measure a scroll-driven section while it is in or near the viewport.
+  function observeScrollSection(section, update) {
+    let frame = 0;
+    let active = false;
+    const schedule = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    };
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting === active) return;
+      active = entry.isIntersecting;
+      // Also settle the final state when an anchor jump leaves the section.
+      schedule();
+      if (active) {
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule);
+      } else {
+        window.removeEventListener('scroll', schedule);
+        window.removeEventListener('resize', schedule);
+      }
+    }, { rootMargin: '300px 0px' }).observe(section);
   }
 
   /* ============================================

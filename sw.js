@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codebridge-v20';
+const CACHE_NAME = 'codebridge-v21';
 const ASSETS = [
   '/',
   '/index.html',
@@ -12,6 +12,12 @@ const ASSETS = [
   '/privacy-policy.html',
   '/terms.html',
   '/css/style.min.css',
+  '/css/home-icons.css',
+  '/assets/fonts/geist-mono-latin-v6.woff2',
+  '/assets/fonts/jetbrains-mono-latin-v24.woff2',
+  '/assets/fonts/home-brands-400-be7e890a.woff2',
+  '/assets/fonts/home-regular-400-477c1be0.woff2',
+  '/assets/fonts/home-solid-900-ce8735d2.woff2',
   '/css/subpage.css',
   '/css/projects.min.css',
   '/css/services.min.css',

@@ -18,23 +18,13 @@
   <!-- Canonical Link -->
   <link rel="canonical" href="https://codebridgecademy.com/">
 
-  <!-- Preconnect to Font & CDN Origins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <!-- Stylesheets load with media="print" (non-blocking); js/script.js
-       flips them to media="all" — CSP-safe replacement for inline onload -->
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print">
-  <!-- Webfonts load via the media=print swap trick; noscript fallback
-       omitted to stay under the 64KB document budget. -->
-
-  <!-- Preload Critical Assets -->
-
-  <!-- FontAwesome (Deferred) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print">
+  <link rel="preload" href="css/style.min.css" as="style" fetchpriority="high">
+  <link rel="stylesheet" href="css/home-icons.css">
   
   <!-- Critical CSS Inlined for Instant FCP & LCP -->
   <style>
+    @font-face { font-family: 'Geist Mono'; src: url('assets/fonts/geist-mono-latin-v6.woff2') format('woff2'); font-weight: 100 900; font-display: optional; }
+    @font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/jetbrains-mono-latin-v24.woff2') format('woff2'); font-weight: 100 800; font-display: optional; }
     :root { --bg-primary: #FFFFFF; --bg-section: #F8FAFC; --color-primary: #0057B8; --color-primary-rgb: 0,87,184; --color-text: #0F172A; --color-text-secondary: #64748B; --color-accent: #FF7A00; --font-body: 'JetBrains Mono', monospace; --font-heading: 'Geist Mono', monospace; --color-border: #E2E8F0; --color-eyebrow: #64748B; --glass-bg: rgba(255,255,255,0.7); --glass-border: rgba(226,232,240,0.6); --page-gradient: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #F1F5F9 100%); }
     [data-theme="dark"] { --bg-primary: #0A0A0A; --bg-section: rgba(20,20,20,0.8); --color-primary: #60A5FA; --color-primary-rgb: 96,165,250; --color-text: #F5F5F5; --color-text-secondary: #A0A0A0; --color-accent: #60A5FA; --color-border: rgba(42,42,42,0.6); --color-eyebrow: #c9a882; --glass-bg: rgba(26,26,26,0.7); --glass-border: rgba(42,42,42,0.4); --page-gradient: linear-gradient(180deg, #0A0A0A 0%, #0f0f0f 50%, #0A0A0A 100%); }
     body { font-family: var(--font-body); background: var(--page-gradient); background-attachment: fixed; color: var(--color-text); -webkit-font-smoothing: antialiased; margin: 0; }
@@ -45,15 +35,15 @@
     .section-alt { background-color: var(--bg-section); }
   </style>
 
-  <!-- Preload stylesheets for early discovery -->
-  <link rel="preload" href="css/style.min.css" as="style">
-  <link rel="preload" href="css/projects.min.css" as="style">
-  <link rel="preload" href="css/services.min.css" as="style">
-
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.min.css">
-  <link rel="stylesheet" href="css/projects.min.css">
-  <link rel="stylesheet" href="css/services.min.css">
+  <!-- Project and service sections are below the hero. script.js activates these styles. -->
+  <link rel="stylesheet" href="css/projects.min.css" media="print">
+  <link rel="stylesheet" href="css/services.min.css" media="print">
+  <noscript>
+    <link rel="stylesheet" href="css/projects.min.css">
+    <link rel="stylesheet" href="css/services.min.css">
+  </noscript>
   <link rel="icon" href="assets/images/update_logo.webp" type="image/webp">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0057B8">
@@ -188,14 +178,14 @@
   <section class="hero" id="hero">
     <div class="hero-content-center">
       <h1 class="hero-matrix-title">
-        <span class="scroll-reveal-text" data-delay="0"><span>Software</span></span> <span class="scroll-reveal-text highlight" data-delay="1"><span>Development</span></span> <span class="scroll-reveal-text" data-delay="2"><span>&amp;</span></span><br><span class="scroll-reveal-text" data-delay="3"><span>Practical</span></span> <span class="scroll-reveal-text" data-delay="4"><span>Technology</span></span> <span class="scroll-reveal-text highlight" data-delay="5"><span>Training</span></span> <span class="scroll-reveal-text" data-delay="6"><span>in</span></span> <span class="scroll-reveal-text" data-delay="7"><span>Rwanda.</span></span>
+        Software <span class="highlight"><span>Development</span></span> &amp;<br>Practical Technology <span class="highlight"><span>Training</span></span> in Rwanda.
       </h1>
 
-      <p class="hero-matrix-subtitle scroll-fade-up">
+      <p class="hero-matrix-subtitle">
         CodeBridge Academy builds software for businesses and organizations while training students, graduates, and professionals through practical, project-based programs in Kigali.
       </p>
 
-      <div class="hero-buttons scroll-fade-up" data-delay="200">
+      <div class="hero-buttons">
         <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
           Build Software With Us <i class="fa-solid fa-arrow-right"></i>
         </a>
@@ -204,7 +194,7 @@
         </a>
       </div>
 
-      <div class="hero-trust-bar scroll-fade-up" data-delay="400">
+      <div class="hero-trust-bar">
         <span class="trust-item"><i class="fa-solid fa-check-circle"></i> 50+ Projects Built</span>
         <span class="trust-divider"></span>
         <span class="trust-item"><i class="fa-solid fa-check-circle"></i> 500+ Learners Trained</span>
@@ -731,7 +721,7 @@
               <div class="tech-tile"><i class="fa-brands fa-php"></i></div>
               <div class="tech-tile"><i class="fa-brands fa-laravel"></i></div>
               <div class="tech-tile"><i class="fa-brands fa-python"></i></div>
-              <div class="tech-tile"><i class="fa-brands fa-flutter"></i></div>
+              <div class="tech-tile"><i class="fa-solid fa-mobile-screen"></i></div>
               <div class="tech-tile"><i class="fa-solid fa-database"></i></div>
               <div class="tech-tile"><i class="fa-brands fa-figma"></i></div>
               <div class="tech-tile"><i class="fa-brands fa-aws"></i></div>

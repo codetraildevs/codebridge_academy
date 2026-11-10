@@ -38,7 +38,8 @@ const OPTIONS = {
 };
 
 function assetVersion(filePath) {
-  const content = fs.readFileSync(path.join(__dirname, '..', filePath));
+  // These are text assets. Use the same version for Windows and Linux checkouts.
+  const content = fs.readFileSync(path.join(__dirname, '..', filePath), 'utf8').replace(/\r\n/g, '\n');
   return crypto.createHash('sha256').update(content).digest('hex').slice(0, 8);
 }
 
