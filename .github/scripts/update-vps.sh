@@ -3,7 +3,7 @@
 set -euo pipefail
 target=$1
 commit=$2
-branch=improve-security-seo
+branch=main
 fail() { printf 'Deployment stopped: %s\n' "$1" >&2; exit 1; }
 
 [[ "$target" == /home/codebridge-academy && "$commit" =~ ^[0-9a-f]{40}$ ]] || fail 'Unexpected deployment target'

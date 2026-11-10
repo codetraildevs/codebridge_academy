@@ -104,7 +104,7 @@ To run the project locally:
 
 ### Production deployment
 
-Pushes to `improve-security-seo` run the website and certificate verification tests. After they pass, GitHub Actions fast-forwards the VPS checkout to the tested commit, deploys the Supabase verifier, and checks the public verifier and homepage. The workflow also supports manual runs on the production branch. See the [production deployment guide](docs/vps-deployment-guide.md) for the protected environment, SSH keys and initial VPS checkout.
+Pushes to `main` run the website and certificate verification tests. After they pass, GitHub Actions fast-forwards the VPS checkout to the tested commit, deploys the Supabase verifier, and checks the public verifier and homepage. The workflow also supports manual runs on the production branch. See the [production deployment guide](docs/vps-deployment-guide.md) for the repository secrets, SSH keys and initial VPS checkout.
 
 ### Lighthouse CI (performance budget)
 
