@@ -1,11 +1,18 @@
-const CACHE_NAME = 'codebridge-v19';
+const CACHE_NAME = 'codebridge-v20';
 const ASSETS = [
   '/',
   '/index.html',
   '/forms.partial.min.html',
   '/404.html',
   '/verify.html',
+  '/software-development.html',
+  '/training.html',
+  '/internships.html',
+  '/projects.html',
+  '/privacy-policy.html',
+  '/terms.html',
   '/css/style.min.css',
+  '/css/subpage.css',
   '/css/projects.min.css',
   '/css/services.min.css',
   '/css/verify.css',

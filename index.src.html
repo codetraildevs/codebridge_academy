@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <!-- Primary Meta Tags -->
-  <title>CodeBridge Academy — Software Development &amp; Training in Rwanda</title>
-  <meta name="description" content="Software development company and tech training academy in Kigali, Rwanda. We build custom web and mobile apps and train job-ready developers.">
+  <title>CodeBridge Academy | Software Development &amp; Training in Rwanda</title>
+  <meta name="description" content="Software development company and practical coding academy in Kigali, Rwanda. We build custom software and train developers through real projects.">
 
-  <meta property="og:title" content="CodeBridge Academy — Software Development &amp; Training in Rwanda">
-  <meta property="og:description" content="Professional software development and technology training company in Kigali, Rwanda. We build web, mobile, and business software solutions.">
+  <meta property="og:title" content="CodeBridge Academy | Software Development &amp; Training in Rwanda">
+  <meta property="og:description" content="Custom software development company and practical technology training academy in Kigali, Rwanda. Build software with us or train for a software career.">
+  <meta property="og:url" content="https://codebridgecademy.com/">
   <meta property="og:image" content="https://codebridgecademy.com/assets/images/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://codebridgecademy.com/assets/images/og-image.jpg">
 
   <!-- Canonical Link -->
   <link rel="canonical" href="https://codebridgecademy.com/">
@@ -19,14 +21,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <!-- Stylesheets load with media="print" (non-blocking); js/script.js
+       flips them to media="all" — CSP-safe replacement for inline onload -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print">
   <!-- Webfonts load via the media=print swap trick; noscript fallback
        omitted to stay under the 64KB document budget. -->
 
   <!-- Preload Critical Assets -->
 
   <!-- FontAwesome (Deferred) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print">
   
   <!-- Critical CSS Inlined for Instant FCP & LCP -->
   <style>
@@ -52,6 +56,10 @@
   <link rel="icon" href="assets/images/update_logo.webp" type="image/webp">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0057B8">
+
+  <!-- Structured Data: Organization, EducationalOrganization,
+       ProfessionalService, WebSite, BreadcrumbList + Courses -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://codebridgecademy.com/#organization","name":"CodeBridge Academy","url":"https://codebridgecademy.com/","logo":"https://codebridgecademy.com/assets/images/og-image.jpg","description":"Software development company and practical technology training academy in Kigali, Rwanda.","telephone":"+250780494000","email":"info.codebridgeacademy@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Gikondo, Merez 2, Kicukiro District","addressLocality":"Kigali","addressCountry":"RW"},"sameAs":["https://web.facebook.com/profile.php?id=61589739789431","https://x.com/CodeBridgeAcad","https://www.linkedin.com/codebridge-academy/","https://www.instagram.com/codebridgecademy/","https://www.youtube.com/@CodeBridgeAcademy","https://github.com/codetraildevs"]},{"@type":"EducationalOrganization","@id":"https://codebridgecademy.com/#academy","name":"CodeBridge Academy","url":"https://codebridgecademy.com/training.html","description":"Practical software development training academy in Kigali, Rwanda — web development, full stack, and career readiness programs.","parentOrganization":{"@id":"https://codebridgecademy.com/#organization"}},{"@type":"ProfessionalService","@id":"https://codebridgecademy.com/#software-services","name":"CodeBridge Academy — Software Development","url":"https://codebridgecademy.com/software-development.html","description":"Custom software development company in Kigali, Rwanda: web apps, mobile apps, business management systems, APIs, and cloud deployment.","parentOrganization":{"@id":"https://codebridgecademy.com/#organization"},"telephone":"+250780494000","areaServed":"Rwanda"},{"@type":"WebSite","@id":"https://codebridgecademy.com/#website","url":"https://codebridgecademy.com/","name":"CodeBridge Academy","publisher":{"@id":"https://codebridgecademy.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://codebridgecademy.com/"}]},{"@type":"Course","name":"Web Development Fundamentals","description":"HTML, CSS, JavaScript, Git/GitHub, and responsive design.","provider":{"@id":"https://codebridgecademy.com/#academy"}},{"@type":"Course","name":"Full Stack Development","description":"React.js, Node.js/Express, PHP/Laravel, MySQL/MongoDB, APIs, and deployment.","provider":{"@id":"https://codebridgecademy.com/#academy"}},{"@type":"Course","name":"Career &amp; Internship Readiness","description":"CV writing, LinkedIn optimization, GitHub portfolio, interview prep, and workplace communication.","provider":{"@id":"https://codebridgecademy.com/#academy"}}]}</script>
 </head>
 <body>
 
@@ -76,7 +84,7 @@
           </span>
           <span class="announcement-separator">|</span>
           <span class="announcement-date">
-            <i class="fa-regular fa-calendar"></i> Extended to 11 Nov 2026
+            <i class="fa-regular fa-calendar"></i> Extended to 15 Dec 2026
           </span>
         </div>
         <div class="announcement-actions">
@@ -167,47 +175,8 @@
     <!-- Mobile menu overlay -->
     <div class="nav-overlay" id="navOverlay"></div>
 
-    <!-- Mobile slide-in menu -->
-    <div class="nav-mobile-menu" id="navMobileMenu">
-      <div class="nav-mobile-header">
-        <img src="assets/images/Horizontal_logo.webp" alt="CodeBridge Academy" width="150" height="34">
-        <button type="button" class="nav-mobile-close" id="navMobileClose" aria-label="Close menu">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="nav-mobile-links">
-        <a href="#about" class="nav-mobile-link" data-section="about">
-          <i class="fa-solid fa-user"></i> About
-        </a>
-        <a href="#programs" class="nav-mobile-link" data-section="programs">
-          <i class="fa-solid fa-graduation-cap"></i> Programs
-        </a>
-        <a href="#software-dev" class="nav-mobile-link" data-section="software-dev">
-          <i class="fa-solid fa-laptop-code"></i> Our Services
-        </a>
-        <a href="#projects" class="nav-mobile-link" data-section="projects">
-          <i class="fa-solid fa-diagram-project"></i> Projects
-        </a>
-        <a href="#why-us" class="nav-mobile-link" data-section="why-us">
-          <i class="fa-solid fa-circle-check"></i> Why Us
-        </a>
-        <a href="#internships" class="nav-mobile-link" data-section="internships">
-          <i class="fa-solid fa-briefcase"></i> Internships
-        </a>
-        <a href="#why-qualexas" class="nav-mobile-link" data-section="why-qualexas">
-          <i class="fa-solid fa-magnifying-glass-chart"></i> Qualexas
-        </a>
-        <a href="#tech-stack" class="nav-mobile-link" data-section="tech-stack">
-          <i class="fa-solid fa-layer-group"></i> Tech Stack
-        </a>
-        <a href="#contact" class="nav-mobile-link" data-section="contact">
-          <i class="fa-solid fa-envelope"></i> Contact
-        </a>
-      </div>
-      <div class="nav-mobile-footer">
-        <a href="#" class="btn btn-primary btn-lg btn-register nav-mobile-cta">Register Now</a>
-      </div>
-    </div>
+    <!-- Mobile slide-in menu is injected by js/script.js at DOMContentLoaded
+         (it is only reachable through the JS-toggled burger button) -->
   </nav>
 
   <main>
@@ -218,19 +187,19 @@
   <section class="hero" id="hero">
     <div class="hero-content-center">
       <h1 class="hero-matrix-title">
-        <span class="scroll-reveal-text" data-delay="0"><span>Building</span></span> <span class="scroll-reveal-text" data-delay="1"><span>Digital</span></span> <span class="scroll-reveal-text highlight" data-delay="2"><span>Solutions.</span></span><br><span class="scroll-reveal-text" data-delay="3"><span>Developing</span></span> <span class="scroll-reveal-text" data-delay="4"><span>Future</span></span> <span class="scroll-reveal-text highlight" data-delay="5"><span>Professionals.</span></span>
+        <span class="scroll-reveal-text" data-delay="0"><span>Software</span></span> <span class="scroll-reveal-text highlight" data-delay="1"><span>Development</span></span> <span class="scroll-reveal-text" data-delay="2"><span>&amp;</span></span><br><span class="scroll-reveal-text" data-delay="3"><span>Practical</span></span> <span class="scroll-reveal-text" data-delay="4"><span>Technology</span></span> <span class="scroll-reveal-text highlight" data-delay="5"><span>Training</span></span> <span class="scroll-reveal-text" data-delay="6"><span>in</span></span> <span class="scroll-reveal-text" data-delay="7"><span>Rwanda.</span></span>
       </h1>
 
       <p class="hero-matrix-subtitle scroll-fade-up">
-        CodeBridge Academy combines professional software development with practical technology training to help businesses build reliable digital solutions and help developers build real-world careers.
+        CodeBridge Academy builds software for businesses and organizations while training students, graduates, and professionals through practical, project-based programs in Kigali.
       </p>
 
       <div class="hero-buttons scroll-fade-up" data-delay="200">
         <a href="#project-quote" class="btn btn-primary btn-lg js-start-project">
-          Start a Project <i class="fa-solid fa-arrow-right"></i>
+          Build Software With Us <i class="fa-solid fa-arrow-right"></i>
         </a>
         <a href="#programs" class="btn btn-secondary btn-lg">
-          Explore Training
+          Explore Training Programs
         </a>
       </div>
 
@@ -287,11 +256,8 @@
               </div>
             </div>
             <div class="editor-body">
-              <div class="editor-gutter">
-                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-                <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-                <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
-              </div>
+              <!-- Gutter line numbers are generated by js/script.js -->
+              <div class="editor-gutter"></div>
               <div class="editor-code">
                 <pre><code><span class="kw">const</span> <span class="var">student</span> <span class="op">=</span> <span class="punct">{</span>
   <span class="prop">name</span><span class="punct">:</span> <span class="str">"Future Developer"</span><span class="punct">,</span>
@@ -556,6 +522,9 @@
         <a href="#project-quote" class="btn btn-primary btn-lg js-start-project btn-orange">
           Discuss Your Project <i class="fa-solid fa-arrow-right"></i>
         </a>
+        <a href="software-development.html" class="btn btn-secondary btn-lg">
+          View Software Development Services
+        </a>
       </div>
 
       <!-- 1. Services (Marquee style) -->
@@ -799,6 +768,9 @@
         <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Our Programs</span></div>
         <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Training Programs</h2></div>
         <p class="section-subtitle">Structured learning paths designed to take you from fundamentals to career-ready full stack development.</p>
+        <div class="section-cta-row">
+          <a href="training.html" class="btn btn-secondary btn-lg">Explore Training Programs <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
 
       <div class="programs-grid">
@@ -859,6 +831,9 @@
         <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Our Work</span></div>
         <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">Solutions We Have <span class="highlight">Built</span></h2></div>
         <p class="section-subtitle">Real-world applications built by our team — from mobile apps to full-stack enterprise systems.</p>
+        <div class="section-cta-row">
+          <a href="projects.html" class="btn btn-secondary btn-lg">View Our Projects <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
 
       <div class="project-scroll-wrapper">
@@ -1074,6 +1049,9 @@
         <div class="scroll-reveal-up" data-delay="0"><span class="section-label">Opportunities</span></div>
         <div class="scroll-reveal-up" data-delay="100"><h2 class="section-title">We Offer Internships For</h2></div>
         <p class="section-subtitle">Gain practical experience and launch your career with our specialized internship programs tailored for all levels.</p>
+        <div class="section-cta-row">
+          <a href="internships.html" class="btn btn-secondary btn-lg">View Internship Opportunities <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
       </div>
 
       <div class="programs-grid">
@@ -1378,50 +1356,8 @@
             </div>
           </div>
 
-          <!-- Duplicated cards for seamless loop -->
-          <div class="dreelio-review-card">
-            <p class="dreelio-review-text">&ldquo;Before joining, I struggled with theory-heavy learning. The real-world projects at CodeBridge helped me build confidence and a professional portfolio.&rdquo;</p>
-            <div class="dreelio-review-author">
-              <div class="dreelio-review-avatar">AM</div>
-              <div>
-                <p class="dreelio-review-name">Alice Mukamana</p>
-                <p class="dreelio-review-role">Full Stack Developer</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="dreelio-review-card">
-            <p class="dreelio-review-text">&ldquo;The career readiness program was exactly what I needed. From CV writing to interview prep, they prepared me for the real job market.&rdquo;</p>
-            <div class="dreelio-review-author">
-              <div class="dreelio-review-avatar">DN</div>
-              <div>
-                <p class="dreelio-review-name">David Niyonzima</p>
-                <p class="dreelio-review-role">Software Engineer</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="dreelio-review-card">
-            <p class="dreelio-review-text">&ldquo;CodeBridge's hands-on approach to learning React and Node.js gave me the confidence to build full-stack applications from scratch.&rdquo;</p>
-            <div class="dreelio-review-author">
-              <div class="dreelio-review-avatar">SN</div>
-              <div>
-                <p class="dreelio-review-name">Sylvie Nshimiyimana</p>
-                <p class="dreelio-review-role">Junior Developer</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="dreelio-review-card">
-            <p class="dreelio-review-text">&ldquo;The mentorship and real-world projects at CodeBridge helped me transition from a non-tech background into software development.&rdquo;</p>
-            <div class="dreelio-review-author">
-              <div class="dreelio-review-avatar">PK</div>
-              <div>
-                <p class="dreelio-review-name">Patrick Kwizera</p>
-                <p class="dreelio-review-role">Mobile Developer</p>
-              </div>
-            </div>
-          </div>
+          <!-- Duplicates of the four cards above are cloned by
+               js/script.js at runtime to keep the HTML payload small -->
         </div>
       </div>
     </div>
@@ -1493,12 +1429,9 @@
             <!-- Map View Layer (Tiles + Live Interactive Map) -->
             <div class="map-card-tiles-layer" id="mapCardTilesLayer">
               <div class="map-tiles-grid" id="mapTilesGrid">
+                <!-- Remaining 5 basemap tiles are generated by js/script.js
+                     to keep the HTML payload small (light basemap, decorative) -->
                 <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19120/16837.png" alt="Map tile showing Gikondo area, Kigali" width="256" height="256" loading="lazy">
-                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19121/16837.png" alt="" width="256" height="256" loading="lazy">
-                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19122/16837.png" alt="" width="256" height="256" loading="lazy">
-                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19120/16838.png" alt="" width="256" height="256" loading="lazy">
-                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19121/16838.png" alt="" width="256" height="256" loading="lazy">
-                <img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/19122/16838.png" alt="" width="256" height="256" loading="lazy">
               </div>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d527.7636906611099!2d30.07938001888084!3d-1.9769880556177135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca612e8e1ac07%3A0xf669b6674da833d4!2sAssociation%20Des%20Guides%20Du%20Rwanda!5e0!3m2!1sen!2srw!4v1776249423075!5m2!1sen!2srw"
@@ -1661,28 +1594,28 @@
           <div class="footer-col">
             <h4>Programs</h4>
             <ul>
-              <li><a href="#programs">Web Fundamentals</a></li>
-              <li><a href="#programs">Full Stack Dev</a></li>
-              <li><a href="#programs">Career Readiness</a></li>
+              <li><a href="training.html">Training Programs</a></li>
+              <li><a href="internships.html">Internships</a></li>
+              <li><a href="#programs">Programs Overview</a></li>
             </ul>
           </div>
 
           <div class="footer-col">
             <h4>Company</h4>
             <ul>
+              <li><a href="software-development.html">Software Development</a></li>
+              <li><a href="projects.html">Our Projects</a></li>
               <li><a href="#about">About Us</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#why-us">Why Choose Us</a></li>
-              <li><a href="#internships">Internships</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
 
           <div class="footer-col">
-            <h4>Research</h4>
+            <h4>Resources</h4>
             <ul>
-              <li><a href="#why-qualexas">Why Qualexas</a></li>
-              <li><a href="#tech-stack">Tech Stack</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="verify.html">Verify Certificate</a></li>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
             </ul>
           </div>
         </div>

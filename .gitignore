@@ -21,6 +21,7 @@ new_logo.png
 *.md
 !README.md
 !docs/vps-deployment-guide.md
+!docs/certificate-verification.md
 
 # Generated Playwright test report
 /test-report/

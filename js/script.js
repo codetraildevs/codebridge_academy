@@ -262,8 +262,8 @@ function formatPhoneInput(input) {
      COUNTDOWN TIMER
      ============================================ */
   function startCountdown() {
-    // Registration extended to: November 11, 2026
-    const deadline = new Date('2026-11-11T09:00:00').getTime();
+    // Registration extended to: December 15, 2026
+    const deadline = new Date('2026-12-15T09:00:00').getTime();
     let isFirstUpdate = true;
 
     function updateTimer() {
@@ -353,82 +353,94 @@ function formatPhoneInput(input) {
   }
 
   /* ============================================
-     STRUCTURED DATA (JSON-LD)
-     Injected at runtime — Organization + Course schema. Google
-     indexes JS-injected structured data, and keeping it here keeps
-     the HTML document under its 64KB build budget.
+     CSS MEDIA-SWAP (CSP-safe progressive loading)
+     Stylesheets ship with media="print" so they don't block first
+     paint; this flips them to media="all" once the document is
+     parsed. Replaces the old inline onload= handlers so the site
+     can ship a strict Content-Security-Policy without them.
      ============================================ */
-  const LD = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://codebridgecademy.com/#organization",
-        "name": "CodeBridge Academy",
-        "url": "https://codebridgecademy.com/",
-        "logo": "https://codebridgecademy.com/assets/images/og-image.jpg",
-        "description": "Software development company and tech training academy in Kigali, Rwanda.",
-        "telephone": "+250780494000",
-        "email": "info.codebridgeacademy@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Gikondo",
-          "addressLocality": "Kigali",
-          "addressCountry": "RW"
-        },
-        "sameAs": [
-          "https://web.facebook.com/profile.php?id=61589739789431",
-          "https://x.com/CodeBridgeAcad",
-          "https://www.linkedin.com/codebridge-academy/",
-          "https://www.instagram.com/codebridgecademy/"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://codebridgecademy.com/#website",
-        "url": "https://codebridgecademy.com/",
-        "name": "CodeBridge Academy",
-        "publisher": { "@id": "https://codebridgecademy.com/#organization" }
-      },
-      {
-        "@type": "Course",
-        "name": "Web Development Fundamentals",
-        "description": "Master the essential building blocks of the web: HTML, CSS, JavaScript, Git/GitHub, and responsive design.",
-        "provider": { "@id": "https://codebridgecademy.com/#organization" },
-        "hasCourseInstance": {
-          "@type": "CourseInstance",
-          "courseMode": "onsite",
-          "location": { "@type": "Place", "name": "CodeBridge Academy, Gikondo, Kigali, Rwanda" }
-        }
-      },
-      {
-        "@type": "Course",
-        "name": "Full Stack Development",
-        "description": "Build complete applications from frontend to backend: React.js, Node.js/Express, PHP/Laravel, MySQL/MongoDB, APIs, and deployment.",
-        "provider": { "@id": "https://codebridgecademy.com/#organization" },
-        "hasCourseInstance": {
-          "@type": "CourseInstance",
-          "courseMode": "onsite",
-          "location": { "@type": "Place", "name": "CodeBridge Academy, Gikondo, Kigali, Rwanda" }
-        }
-      },
-      {
-        "@type": "Course",
-        "name": "Career & Internship Readiness",
-        "description": "Prepare for the professional world: CV writing, LinkedIn optimization, GitHub portfolio, interview prep, and workplace communication.",
-        "provider": { "@id": "https://codebridgecademy.com/#organization" },
-        "hasCourseInstance": {
-          "@type": "CourseInstance",
-          "courseMode": "onsite",
-          "location": { "@type": "Place", "name": "CodeBridge Academy, Gikondo, Kigali, Rwanda" }
-        }
-      }
-    ]
-  };
-  const ldScript = document.createElement('script');
-  ldScript.type = 'application/ld+json';
-  ldScript.textContent = JSON.stringify(LD);
-  document.head.appendChild(ldScript);
+  document.querySelectorAll('link[rel="stylesheet"][media="print"]').forEach(link => {
+    link.media = 'all';
+  });
+
+  /* ============================================
+     RUNTIME DUPLICATION (keeps the HTML payload light)
+     1. Testimonial ticker: the marquee CSS animation loops by
+        translating the track -50%, which needs the four review
+        cards to exist twice — clone them at runtime.
+     2. Map basemap tiles: five decorative Carto tiles are
+        generated here so the HTML only ships the first one.
+     ============================================ */
+  const tickerTrack = document.querySelector('.dreelio-ticker-track');
+  if (tickerTrack) {
+    Array.from(tickerTrack.children).forEach(card => {
+      tickerTrack.appendChild(card.cloneNode(true));
+    });
+  }
+  const tilesGrid = document.getElementById('mapTilesGrid');
+  if (tilesGrid && tilesGrid.children.length === 1) {
+    const proto = tilesGrid.querySelector('img');
+    if (proto) {
+      let tilesHtml = '';
+      [19121, 19122].forEach(x => {
+        tilesHtml += `<img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/${x}/16837.png" alt="" width="256" height="256" loading="lazy">`;
+      });
+      [19120, 19121, 19122].forEach(x => {
+        tilesHtml += `<img src="https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/15/${x}/16838.png" alt="" width="256" height="256" loading="lazy">`;
+      });
+      proto.insertAdjacentHTML('afterend', tilesHtml);
+    }
+  }
+  const editorGutter = document.querySelector('.editor-gutter');
+  if (editorGutter && !editorGutter.children.length) {
+    editorGutter.innerHTML = Array.from({ length: 15 }, (_, i) => `<span>${i + 1}</span>`).join('');
+  }
+
+  /* ============================================
+     MOBILE SLIDE-IN MENU — injected at runtime so the hidden
+     menu markup stays out of the HTML payload. The burger button
+     only works with JS, so there is no no-JS regression.
+     Runs BEFORE the menu bindings below resolve their elements.
+     ============================================ */
+  const navOverlayEl = document.getElementById('navOverlay');
+  if (navOverlayEl && !document.getElementById('navMobileMenu')) {
+    const MOBILE_LINKS = [
+      ['about', 'fa-user', 'About'],
+      ['programs', 'fa-graduation-cap', 'Programs'],
+      ['software-dev', 'fa-laptop-code', 'Our Services'],
+      ['projects', 'fa-diagram-project', 'Projects'],
+      ['why-us', 'fa-circle-check', 'Why Us'],
+      ['internships', 'fa-briefcase', 'Internships'],
+      ['why-qualexas', 'fa-magnifying-glass-chart', 'Qualexas'],
+      ['tech-stack', 'fa-layer-group', 'Tech Stack'],
+      ['contact', 'fa-envelope', 'Contact']
+    ];
+    // Detail pages live outside the one-page anchors, so they need their own
+    // entries in the drawer; without these, phone users cannot reach them.
+    const MOBILE_PAGE_LINKS = [
+      ['software-development.html', 'fa-laptop-code', 'Software Development'],
+      ['training.html', 'fa-graduation-cap', 'Training Programs'],
+      ['internships.html', 'fa-briefcase', 'Internship Program'],
+      ['projects.html', 'fa-diagram-project', 'Project Portfolio']
+    ];
+    navOverlayEl.insertAdjacentHTML('afterend', `
+      <div class="nav-mobile-menu" id="navMobileMenu">
+        <div class="nav-mobile-header">
+          <img src="assets/images/Horizontal_logo.webp" alt="CodeBridge Academy" width="150" height="34">
+          <button type="button" class="nav-mobile-close" id="navMobileClose" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="nav-mobile-links">
+          ${MOBILE_LINKS.map(([id, icon, label]) => `<a href="#${id}" class="nav-mobile-link" data-section="${id}"><i class="fa-solid ${icon}"></i> ${label}</a>`).join('\n          ')}
+          <div class="nav-mobile-group-label">Pages</div>
+          ${MOBILE_PAGE_LINKS.map(([href, icon, label]) => `<a href="${href}" class="nav-mobile-link"><i class="fa-solid ${icon}"></i> ${label}</a>`).join('\n          ')}
+        </div>
+        <div class="nav-mobile-footer">
+          <a href="#" class="btn btn-primary btn-lg btn-register nav-mobile-cta">Register Now</a>
+        </div>
+      </div>`);
+  }
 
   /* ============================================
      THEME TOGGLE
@@ -2140,5 +2152,29 @@ function formatPhoneInput(input) {
       }
     });
   }
+
+  /* ============================================
+     DEEP-LINKED MODALS — any page can open a form modal via
+     query param:  /training?register=1   /software-development?quote=1
+     Used by the CTA buttons on the new detail pages.
+     ============================================ */
+  (function openDeepLinkedModal() {
+    const params = new URLSearchParams(window.location.search);
+    const wantsRegister = params.get('register') === '1';
+    const wantsQuote = params.get('quote') === '1';
+    if (!wantsRegister && !wantsQuote) return;
+    ensureFormsInjected().then(() => {
+      if (wantsRegister) {
+        if (!regInitialized) {
+          regInitialized = true;
+          initRegistrationModal();
+        }
+        if (openRegistrationRef) openRegistrationRef();
+      }
+      if (wantsQuote) {
+        openQuoteLazy();
+      }
+    }).catch(err => console.error('[codebridge] deep-link modal failed:', err));
+  })();
 });
 

@@ -102,23 +102,11 @@ To run the project locally:
 
 ## CI/CD Pipeline
 
-Two GitHub Actions workflows run automatically on every push to `main`:
+### Production deployment
 
-### 1. Deploy to VPS (auto-pull)
+Pushes to `main` run the website and certificate verification tests. After they pass, GitHub Actions fast-forwards the VPS checkout to the tested commit, deploys the Supabase verifier, and checks the public verifier and homepage. The workflow also supports manual runs on the production branch. See the [production deployment guide](docs/vps-deployment-guide.md) for the repository secrets, SSH keys and initial VPS checkout.
 
-Triggered on every push to `main`, this workflow SSHs into the production VPS and pulls the latest changes:
-
-1. **SSH** into `deployer@159.198.36.184` using the deploy key stored in `VPS_SSH_KEY` secret
-2. **Stash** any local changes on the server (in case of manual edits)
-3. **Git pull** `origin main` into `/var/www/codebridgeacademy`
-4. **Reload** nginx to serve the updated files (`sudo systemctl reload nginx`)
-
-**One-time setup required:**
-- Clone the repo on the VPS: `git clone <repo-url> /var/www/codebridgeacademy`
-- Add your SSH private key as a GitHub secret named `VPS_SSH_KEY` in the repo settings
-- Add your SSH public key as a **deploy key** in GitHub repo settings with write access
-
-### 2. Lighthouse CI (performance budget)
+### Lighthouse CI (performance budget)
 
 Triggered on every push and pull request to `main`, this workflow audits the site against a performance budget:
 
@@ -165,5 +153,3 @@ The project is also configured for deployment on **Netlify** (for redundancy/bac
 
 ---
 © 2026 CodeBridge Academy. Bridging learning to real software careers.
-
-_Auto-deployed via GitHub Actions – last deploy: commit `01e1145`_

@@ -1,63 +1,120 @@
-name: Deploy Website
+name: Deploy CodeBridge Academy
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: codebridge-academy-production
+  cancel-in-progress: false
+  queue: max
+
 jobs:
-  test:
-    # Pre-deploy gate: run the full Playwright suite first.
-    # (Also runs on its own push/PR triggers via tests.yml.)
+  website:
     uses: ./.github/workflows/tests.yml
 
-  deploy:
-    needs: test
+  verifier:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Run Supabase SQL Migration
-        if: hashFiles('sql/migration-add-columns.sql') != ''
-        env:
-          SUPABASE_DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL }}
+      - name: Check deployment source
         run: |
-          if [ -z "$SUPABASE_DATABASE_URL" ]; then
-            echo "⚠️  SUPABASE_DATABASE_URL secret not set — skipping migration"
-            exit 0
-          fi
-          echo "=== Installing PostgreSQL client ==="
-          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
-          echo "=== Running SQL migration ==="
-          psql "$SUPABASE_DATABASE_URL" -f sql/migration-add-columns.sql
-          echo "✅ Migration complete"
-
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1.2.2
+          [[ "$GITHUB_REPOSITORY" == codetraildevs/codebridge_academy ]]
+          [[ "$GITHUB_REF" == refs/heads/main ]]
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            set -e
-            echo "=== Pulling latest changes ==="
-            cd ${{ secrets.DEPLOY_PATH }}
-            git stash --include-untracked || true
-            git pull origin main
-            sudo systemctl reload nginx || echo "nginx reload skipped (not running or not installed)"
-            echo "=== Deploy complete ==="
-
-      - name: Health Check
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.9.8
+      - name: Type-check and exercise the certificate worker over HTTP
         run: |
-          echo "=== Waiting for nginx to reload ==="
-          sleep 5
-          echo "=== Checking site health ==="
-          STATUS=$(curl -sf -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 30 https://codebridgecademy.com/)
-          if [ "$STATUS" -ne 200 ]; then
-            echo "❌ Health check failed — site returned HTTP $STATUS"
-            exit 1
-          fi
-          echo "✅ Health check passed — site is responding with HTTP 200"
+          deno check --no-config --frozen --lock=supabase/functions/verify-certificate/deno.lock --node-modules-dir=none supabase/functions/verify-certificate/index.ts
+          node --test supabase/tests/verify-certificate.test.cjs
+
+  deploy:
+    needs: [website, verifier]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - uses: supabase/setup-cli@3c2f5e2ae34c34e428e8e206e2c4d21fa2d20fbf # v2.1.1
+        with:
+          version: 2.75.0
+
+      - name: Check Supabase configuration
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+        run: |
+          : "${SUPABASE_ACCESS_TOKEN:?Missing repository secret SUPABASE_ACCESS_TOKEN}"
+          : "${SUPABASE_ANON_KEY:?Missing repository variable SUPABASE_ANON_KEY}"
+
+      - name: Fast-forward the VPS checkout and verify its commit
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST_KEY: ${{ secrets.VPS_HOST_KEY }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          set -eu
+          : "${VPS_HOST:?Missing VPS_HOST}" "${VPS_PORT:?Missing VPS_PORT}"
+          : "${VPS_SSH_KEY:?Missing VPS_SSH_KEY}" "${VPS_HOST_KEY:?Missing VPS_HOST_KEY}"
+          [[ "$VPS_USERNAME" == fidele && "$DEPLOY_PATH" == /home/codebridge-academy ]]
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ && "$VPS_PORT" =~ ^[0-9]+$ ]]
+          umask 077
+          ssh_dir=$(mktemp -d)
+          trap 'rm -f "$ssh_dir/key" "$ssh_dir/known_hosts"; rmdir "$ssh_dir"' EXIT
+          printf '%s\n' "$VPS_SSH_KEY" > "$ssh_dir/key"
+          printf '%s\n' "$VPS_HOST_KEY" > "$ssh_dir/known_hosts"
+          ssh -F /dev/null -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=15 -o GlobalKnownHostsFile=/dev/null \
+            -o UserKnownHostsFile="$ssh_dir/known_hosts" -i "$ssh_dir/key" \
+            -p "$VPS_PORT" "$VPS_USERNAME@$VPS_HOST" bash -se -- "$DEPLOY_PATH" "$GITHUB_SHA" \
+            < .github/scripts/update-vps.sh
+
+      - name: Deploy verify-certificate
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: supabase functions deploy verify-certificate --project-ref siruvivfrinoyudbotko --use-api
+
+      - name: Check the production verifier and website
+        env:
+          SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+        run: |
+          body="$RUNNER_TEMP/verifier-response.json"
+          status=$(curl --silent --show-error --max-time 30 --output "$body" --write-out '%{http_code}' \
+            --header "Authorization: Bearer $SUPABASE_ANON_KEY" --header "apikey: $SUPABASE_ANON_KEY" \
+            --header 'Content-Type: application/json' --data '{}' \
+            https://siruvivfrinoyudbotko.supabase.co/functions/v1/verify-certificate)
+          [[ "$status" == 400 ]] || { echo "::error::Verifier returned HTTP $status, expected 400"; exit 1; }
+          jq -e '.error == "invalid_input"' "$body"
+          status=$(curl --silent --show-error --retry 3 --max-time 20 --output /dev/null \
+            --write-out '%{http_code}' https://codebridgecademy.com/)
+          [[ "$status" == 200 ]] || { echo "::error::Homepage returned HTTP $status, expected 200"; exit 1; }
+
+  report:
+    if: always()
+    needs: [website, verifier, deploy]
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Summarize production deployment
+        env:
+          WEBSITE: ${{ needs.website.result }}
+          VERIFIER: ${{ needs.verifier.result }}
+          DEPLOY: ${{ needs.deploy.result }}
+        run: |
+          printf 'Commit \x60%s\x60\n\n| Stage | Result |\n|---|---|\n| Website tests | %s |\n| Verifier tests | %s |\n| Production deployment and health checks | %s |\n' \
+            "$GITHUB_SHA" "$WEBSITE" "$VERIFIER" "$DEPLOY" >> "$GITHUB_STEP_SUMMARY"
+          [[ "$DEPLOY" == success ]] || { echo "::error::Production deployment did not complete. Inspect the first failing step."; exit 1; }
