@@ -27,7 +27,6 @@ const OUT = process.argv[2] || path.join(ROOT, 'sitemap.xml');
 // Static pages we serve under the repo root. URLs follow /<file>.html.
 const PAGES = [
   { url: 'https://codebridgecademy.com/',          filePath: 'index.html',          priority: 1.0, changefreq: 'weekly' },
-  { url: 'https://codebridgecademy.com/index.html', filePath: 'index.html',          priority: 1.0, changefreq: 'weekly' },
   { url: 'https://codebridgecademy.com/software-development.html', filePath: 'software-development.html', priority: 0.9, changefreq: 'monthly' },
   { url: 'https://codebridgecademy.com/training.html',             filePath: 'training.html',             priority: 0.9, changefreq: 'monthly' },
   { url: 'https://codebridgecademy.com/internships.html',          filePath: 'internships.html',          priority: 0.8, changefreq: 'monthly' },
@@ -46,7 +45,6 @@ function buildSitemap(pages) {
   for (const p of pages) {
     lines.push('  <url>');
     lines.push(`    <loc>${p.url}</loc>`);
-    lines.push(`    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>`);
     lines.push(`    <changefreq>${p.changefreq}</changefreq>`);
     lines.push(`    <priority>${p.priority}</priority>`);
     lines.push('  </url>');
@@ -61,7 +59,7 @@ function main() {
 
   fs.writeFileSync(OUT, sitemap, 'utf8');
   console.log(`✔ sitemap.xml written to ${OUT}`);
-  console.log(`  ${PAGES.length} URLs, lastmod: ${new Date().toISOString().slice(0, 10)}`);
+  console.log(`  ${PAGES.length} URLs`);
 }
 
 main();

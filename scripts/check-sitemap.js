@@ -24,7 +24,7 @@ const ROBOTS = path.join(ROOT, 'robots.txt');
 const sITEMAP = path.join(ROOT, 'sitemap.xml');
 
 const SOURCE_PAGES = [
-  'index.html',
+  '',
   'software-development.html',
   'training.html',
   'internships.html',
@@ -64,6 +64,7 @@ function main() {
   if (locs.length === 0) fail('sitemap.xml has no URLs');
 
   const expected = SOURCE_PAGES.map((f) => `https://codebridgecademy.com/${f}`);
+  if (locs.includes('https://codebridgecademy.com/index.html')) fail('use only / for the homepage');
   const missing = expected.filter((u) => !locs.includes(u));
   if (missing.length > 0) fail(`sitemap.xml is missing ${missing.length} URL(s): ${missing.join(', ')}`);
 
